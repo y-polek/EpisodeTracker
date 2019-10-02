@@ -1,0 +1,3 @@
+include ':AndroidApp'
+include ':SharedCode'
+rootProject.name='Episode Tracker'
