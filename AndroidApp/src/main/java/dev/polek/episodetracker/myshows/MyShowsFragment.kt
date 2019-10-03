@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+import dev.polek.episodetracker.R
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.ShowViewModel
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
-import dev.polek.episodetracker.utils.dp2px
 import dev.polek.episodetracker.utils.setTopMargin
 import dev.polek.episodetracker.utils.setTopPadding
 
@@ -53,11 +53,12 @@ class MyShowsFragment : Fragment() {
         })
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            val searchBarVerticalMargin = requireContext().dp2px(8f)
-            binding.searchBar.setTopMargin(searchBarVerticalMargin + insets.systemWindowInsetTop)
+            val searchBarMarginTop = resources.getDimensionPixelOffset(R.dimen.search_bar_margin_top)
+            val searchBarMarginBottom = resources.getDimensionPixelOffset(R.dimen.search_bar_margin_bottom)
+            binding.searchBar.setTopMargin(searchBarMarginTop + insets.systemWindowInsetTop)
 
             val recyclerViewTopPadding =
-                2 * searchBarVerticalMargin + binding.searchBar.height + insets.systemWindowInsetTop
+                searchBarMarginTop + searchBarMarginBottom + binding.searchBar.height + insets.systemWindowInsetTop
             if (binding.recyclerView.paddingTop != recyclerViewTopPadding) {
                 binding.recyclerView.setTopPadding(recyclerViewTopPadding)
                 binding.recyclerView.scrollToPosition(0)
