@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="view_type_group" type="id"/>
+
+    <!-- My Shows -->
+    <item name="view_type_upcoming_show" type="id"/>
+    <item name="view_type_show" type="id"/>
+</resources>

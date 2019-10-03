@@ -12,6 +12,9 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
+import dev.polek.episodetracker.myshows.model.MyShowsListItem.ShowViewModel
+import dev.polek.episodetracker.myshows.model.MyShowsListItem.UpcomingShowViewModel
+import dev.polek.episodetracker.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.dp2px
 import dev.polek.episodetracker.utils.setTopMargin
@@ -62,6 +65,42 @@ class MyShowsFragment : Fragment() {
 
             return@setOnApplyWindowInsetsListener insets
         }
+
+
+
+
+        val model = MyShowsViewModel(
+            upcomingShows = listOf(
+                UpcomingShowViewModel(
+                    name = "Star Trek: Discovery",
+                    backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/rhE2h8WYJOPuBlMl20MQRnJw3aq.jpg",
+                    episodeNumber = "S01E01",
+                    episodeName = "The Vulcan Hello",
+                    timeLeft = "4 days"),
+                UpcomingShowViewModel(
+                    name = "South Park",
+                    backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/mSDKNVvDfitFE6Fb6fSSl5DQmgS.jpg",
+                    episodeNumber = "S23E01",
+                    episodeName = "TBA",
+                    timeLeft = "1 month")),
+            toBeAnnouncedShows = listOf(
+                ShowViewModel(
+                    name = "The Big Bang Theory",
+                    backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/nGsNruW3W27V6r4gkyc3iiEGsKR.jpg")),
+            endedShows = listOf(
+                ShowViewModel(
+                    name = "Game of Thrones",
+                    backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/c0Qt5uorF3WHv9pMKhV5uprNyVl.jpg"),
+                ShowViewModel(
+                    name = "Breaking Bad",
+                    backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg")),
+            isUpcomingExpanded = true,
+            isEndedExpanded = true,
+            isToBeAnnouncedExpanded = true)
+
+        showsAdapter.items = model.items
+
+
 
         return binding.root
     }
