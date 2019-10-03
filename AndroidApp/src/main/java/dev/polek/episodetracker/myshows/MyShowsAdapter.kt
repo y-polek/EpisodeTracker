@@ -69,6 +69,7 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
             }
             is ShowViewHolder -> {
                 val show = items[position] as ShowViewModel
+                holder.binding.name.text = show.name
                 Glide.with(holder.itemView)
                     .load(Uri.parse(show.backdropUrl))
                     .into(holder.binding.image)
