@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.databinding.GroupHeaderLayoutBinding
 import dev.polek.episodetracker.databinding.MyShowLayoutBinding
+import dev.polek.episodetracker.databinding.UpcomingShowLayoutBinding
 import dev.polek.episodetracker.myshows.MyShowsAdapter.ViewHolder.*
 import dev.polek.episodetracker.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.*
@@ -36,7 +37,7 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
         }
         R.id.view_type_upcoming_show -> {
             UpcomingShowViewHolder(
-                MyShowLayoutBinding.inflate(parent.layoutInflater, parent, false))
+                UpcomingShowLayoutBinding.inflate(parent.layoutInflater, parent, false))
         }
         R.id.view_type_show -> {
             ShowViewHolder(
@@ -58,6 +59,10 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
             }
             is UpcomingShowViewHolder -> {
                 val show = items[position] as UpcomingShowViewModel
+                holder.binding.name.text = show.name
+                holder.binding.episodeNumber.text = show.episodeNumber
+                holder.binding.episodeName.text = show.episodeName
+                holder.binding.timeLeft.text = show.timeLeft
                 Glide.with(holder.itemView)
                     .load(Uri.parse(show.backdropUrl))
                     .into(holder.binding.image)
@@ -75,7 +80,7 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
 
         class GroupHeaderViewHolder(val binding: GroupHeaderLayoutBinding) : ViewHolder(binding.root)
 
-        class UpcomingShowViewHolder(val binding: MyShowLayoutBinding) : ViewHolder(binding.root)
+        class UpcomingShowViewHolder(val binding: UpcomingShowLayoutBinding) : ViewHolder(binding.root)
 
         class ShowViewHolder(val binding: MyShowLayoutBinding) : ViewHolder(binding.root)
     }

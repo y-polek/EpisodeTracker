@@ -9,4 +9,11 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="AppTheme.ShowCardTitle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+    </style>
+    <style name="AppTheme.ShowCardSubtitle" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+    </style>
+
 </resources>

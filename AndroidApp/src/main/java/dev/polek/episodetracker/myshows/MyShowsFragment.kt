@@ -74,13 +74,13 @@ class MyShowsFragment : Fragment() {
                 UpcomingShowViewModel(
                     name = "Star Trek: Discovery",
                     backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/rhE2h8WYJOPuBlMl20MQRnJw3aq.jpg",
-                    episodeNumber = "S01E01",
+                    episodeNumber = "S01 E01",
                     episodeName = "The Vulcan Hello",
                     timeLeft = "4 days"),
                 UpcomingShowViewModel(
                     name = "South Park",
                     backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/mSDKNVvDfitFE6Fb6fSSl5DQmgS.jpg",
-                    episodeNumber = "S23E01",
+                    episodeNumber = "S23 E01",
                     episodeName = "TBA",
                     timeLeft = "1 month")),
             toBeAnnouncedShows = listOf(
