@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     >
 
     <com.google.android.material.appbar.AppBarLayout
@@ -39,6 +40,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         app:layout_behavior=".myshows.ScrollingBehavior"
         tools:listitem="@layout/my_show_layout"
         />
