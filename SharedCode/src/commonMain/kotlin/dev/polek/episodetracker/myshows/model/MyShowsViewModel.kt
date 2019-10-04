@@ -1,29 +1,38 @@
 package dev.polek.episodetracker.myshows.model
 
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.*
+import dev.polek.episodetracker.myshows.model.MyShowsListItem.GroupViewModel.*
 
 class MyShowsViewModel(
     private val upcomingShows: List<UpcomingShowViewModel>,
     private val toBeAnnouncedShows: List<ShowViewModel>,
     private val endedShows: List<ShowViewModel>,
-    isUpcomingExpanded: Boolean,
-    isToBeAnnouncedExpanded: Boolean,
-    isEndedExpanded: Boolean)
+    private var isUpcomingExpanded: Boolean,
+    private var isToBeAnnouncedExpanded: Boolean,
+    private var isEndedExpanded: Boolean)
 {
-    val items: List<MyShowsListItem> = populateItemList(
-        isUpcomingExpanded = isUpcomingExpanded,
-        isToBeAnnouncedExpanded = isToBeAnnouncedExpanded,
-        isEndedExpanded = isEndedExpanded)
+    var items: List<MyShowsListItem> = populateItemList()
 
-    private fun populateItemList(
-        isUpcomingExpanded: Boolean,
-        isToBeAnnouncedExpanded: Boolean,
-        isEndedExpanded: Boolean): List<MyShowsListItem>
-    {
+    fun setUpcomingExpanded(expanded: Boolean) {
+        isUpcomingExpanded = expanded
+        items = populateItemList()
+    }
+
+    fun setToBeAnnouncedExpanded(expanded: Boolean) {
+        isToBeAnnouncedExpanded = expanded
+        items = populateItemList()
+    }
+
+    fun setEndedExpanded(expanded: Boolean) {
+        isEndedExpanded = expanded
+        items = populateItemList()
+    }
+
+    private fun populateItemList(): List<MyShowsListItem> {
         val items = mutableListOf<MyShowsListItem>()
         if (upcomingShows.isNotEmpty()) {
             // "Upcoming" Group Header
-            items.add(GroupViewModel("Upcoming", isUpcomingExpanded))
+            items.add(UpcomingGroupViewModel("Upcoming", isUpcomingExpanded))
 
             // "Upcoming" Shows
             if (isUpcomingExpanded) {
@@ -32,7 +41,7 @@ class MyShowsViewModel(
         }
         if (toBeAnnouncedShows.isNotEmpty()) {
             // "To Be Announced" Group Header
-            items.add(GroupViewModel("To Be Announced", isToBeAnnouncedExpanded))
+            items.add(ToBeAnnouncedGroupViewModel("To Be Announced", isToBeAnnouncedExpanded))
 
             // "To Be Announced" Shows
             if (isToBeAnnouncedExpanded) {
@@ -41,7 +50,7 @@ class MyShowsViewModel(
         }
         if (endedShows.isNotEmpty()) {
             // "Ended" Group Header
-            items.add(GroupViewModel("Ended", isEndedExpanded))
+            items.add(EndedGroupViewModel("Ended", isEndedExpanded))
 
             // "Ended" Shows
             if (isEndedExpanded) {

@@ -96,10 +96,11 @@ class MyShowsFragment : Fragment() {
                     name = "Breaking Bad",
                     backdropUrl = "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg")),
             isUpcomingExpanded = true,
-            isEndedExpanded = true,
-            isToBeAnnouncedExpanded = true)
+            isToBeAnnouncedExpanded = true,
+            isEndedExpanded = true
+        )
 
-        showsAdapter.items = model.items
+        showsAdapter.viewModel = model
 
 
 

@@ -12,11 +12,19 @@ import dev.polek.episodetracker.databinding.UpcomingShowLayoutBinding
 import dev.polek.episodetracker.myshows.MyShowsAdapter.ViewHolder.*
 import dev.polek.episodetracker.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.*
+import dev.polek.episodetracker.myshows.model.MyShowsListItem.GroupViewModel.*
+import dev.polek.episodetracker.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.utils.layoutInflater
 
 class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
 
-    var items: List<MyShowsListItem> = emptyList()
+    var viewModel: MyShowsViewModel? = null
+        set(value) {
+            field = value
+            items = value?.items.orEmpty()
+        }
+
+    private var items: List<MyShowsListItem> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -33,7 +41,23 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         R.id.view_type_group -> {
             GroupHeaderViewHolder(
-                GroupHeaderLayoutBinding.inflate(parent.layoutInflater, parent, false))
+                GroupHeaderLayoutBinding.inflate(parent.layoutInflater, parent, false),
+                onExpandClicked = { position ->
+                    val group = items[position] as GroupViewModel
+                    val isExpanded = !group.expanded
+                    when (group) {
+                        is UpcomingGroupViewModel -> {
+                            viewModel?.setUpcomingExpanded(isExpanded)
+                        }
+                        is ToBeAnnouncedGroupViewModel -> {
+                            viewModel?.setToBeAnnouncedExpanded(isExpanded)
+                        }
+                        is EndedGroupViewModel -> {
+                            viewModel?.setEndedExpanded(isExpanded)
+                        }
+                    }
+                    items = viewModel?.items.orEmpty()
+                })
         }
         R.id.view_type_upcoming_show -> {
             UpcomingShowViewHolder(
@@ -79,7 +103,19 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
 
     sealed class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        class GroupHeaderViewHolder(val binding: GroupHeaderLayoutBinding) : ViewHolder(binding.root)
+        class GroupHeaderViewHolder(
+            val binding: GroupHeaderLayoutBinding,
+            onExpandClicked: (position: Int) -> Unit) : ViewHolder(binding.root)
+        {
+            init {
+                binding.root.setOnClickListener {
+                    val position = adapterPosition
+                    if (position == RecyclerView.NO_POSITION) return@setOnClickListener
+
+                    onExpandClicked(position)
+                }
+            }
+        }
 
         class UpcomingShowViewHolder(val binding: UpcomingShowLayoutBinding) : ViewHolder(binding.root)
 

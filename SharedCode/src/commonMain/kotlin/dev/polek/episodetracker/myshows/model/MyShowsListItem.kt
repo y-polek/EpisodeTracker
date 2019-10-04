@@ -1,10 +1,14 @@
 package dev.polek.episodetracker.myshows.model
 
 sealed class MyShowsListItem {
-    data class GroupViewModel(
+    sealed class  GroupViewModel(
         val name: String,
-        val expanded: Boolean
-    ) : MyShowsListItem()
+        val expanded: Boolean) : MyShowsListItem()
+    {
+        class UpcomingGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
+        class ToBeAnnouncedGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
+        class EndedGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
+    }
 
     data class ShowViewModel(
         val name: String,
