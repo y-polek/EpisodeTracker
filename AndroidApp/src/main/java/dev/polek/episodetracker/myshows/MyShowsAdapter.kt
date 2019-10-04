@@ -16,7 +16,7 @@ import dev.polek.episodetracker.myshows.model.MyShowsListItem.GroupViewModel.*
 import dev.polek.episodetracker.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.utils.layoutInflater
 
-class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
+class MyShowsAdapter(private val onGroupVisibilityChanged: () -> Unit) : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
 
     var viewModel: MyShowsViewModel? = null
         set(value) {
@@ -57,6 +57,7 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
                         }
                     }
                     items = viewModel?.items.orEmpty()
+                    onGroupVisibilityChanged()
                 })
         }
         R.id.view_type_upcoming_show -> {

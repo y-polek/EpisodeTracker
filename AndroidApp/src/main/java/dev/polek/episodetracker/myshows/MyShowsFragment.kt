@@ -8,7 +8,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
 import dev.polek.episodetracker.R
@@ -17,19 +16,24 @@ import dev.polek.episodetracker.myshows.model.MyShowsListItem.ShowViewModel
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.scrollFlags
 import dev.polek.episodetracker.utils.setTopMargin
 import dev.polek.episodetracker.utils.setTopPadding
 
 class MyShowsFragment : Fragment() {
 
-    private val showsAdapter = MyShowsAdapter()
+    private lateinit var binding: MyShowsFragmentBinding
+
+    private val showsAdapter = MyShowsAdapter(onGroupVisibilityChanged = {
+        makeSearchBarVisible()
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View?
     {
-        val binding: MyShowsFragmentBinding = MyShowsFragmentBinding.inflate(inflater)
+        binding = MyShowsFragmentBinding.inflate(inflater)
 
         binding.recyclerView.apply {
             setHasFixedSize(true)
@@ -42,7 +46,7 @@ class MyShowsFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(query: String): Boolean {
-                setSearchViewBehaviour(binding, showAlways = query.isNotBlank())
+                setSearchBarBehaviour(showAlways = query.isNotBlank())
                 return true
             }
 
@@ -107,9 +111,16 @@ class MyShowsFragment : Fragment() {
         return binding.root
     }
 
-    private fun setSearchViewBehaviour(binding: MyShowsFragmentBinding, showAlways: Boolean) {
-        val layoutParams = binding.searchBar.layoutParams as AppBarLayout.LayoutParams
-        layoutParams.scrollFlags = if (showAlways) 0 else SCROLL_FLAG_SCROLL or SCROLL_FLAG_ENTER_ALWAYS
+    private fun setSearchBarBehaviour(showAlways: Boolean) {
+        binding.searchBar.scrollFlags = if (showAlways) 0 else SCROLL_FLAG_SCROLL or SCROLL_FLAG_ENTER_ALWAYS
+    }
+
+    private fun makeSearchBarVisible() {
+        val scrollFlags = binding.searchBar.scrollFlags
+        binding.searchBar.scrollFlags = 0
+        binding.root.post {
+            binding.searchBar.scrollFlags = scrollFlags
+        }
     }
 
     companion object {
