@@ -86,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:maxLines="5"
+            android:ellipsize="end"
             tools:text="Follow the voyages of Starfleet on their missions to discover new worlds and new life forms, and one Starfleet officer who must learn that to truly understand all things alien, you must first understand yourself."
             style="@style/AppTheme.ShowOverview"
             />
