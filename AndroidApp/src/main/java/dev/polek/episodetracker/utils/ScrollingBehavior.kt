@@ -1,4 +1,4 @@
-package dev.polek.episodetracker.myshows
+package dev.polek.episodetracker.utils
 
 import android.content.Context
 import android.util.AttributeSet
