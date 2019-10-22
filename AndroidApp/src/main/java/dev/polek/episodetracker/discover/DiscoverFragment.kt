@@ -83,6 +83,20 @@ class DiscoverFragment : Fragment() {
                 network = "NBC",
                 posterUrl = "https://image.tmdb.org/t/p/w440_and_h660_face/3ATqzWYDbWOV2RBLWNwA43InT60.jpg",
                 overview = "Space. The Final Frontier. The U.S.S. Enterprise embarks on a five year mission to explore the galaxy. The Enterprise is under the command of Captain James T. Kirk with First Officer Mr. Spock, from the planet Vulcan. With a determined crew, the Enterprise encounters Klingons, Romulans, time paradoxes, tribbles and genetic supermen lead by Khan Noonian Singh. Their mission is to explore strange new worlds, to seek new life and new civilizations, and to boldly go where no man has gone before.",
+                isInMyShows = false),
+            DiscoverResultViewModel(
+                name = "Star Trek: Enterprise",
+                year = 2001,
+                network = "UPN",
+                posterUrl = "https://image.tmdb.org/t/p/w440_and_h660_face/3msta8aYp2309onnFkVXeohbN4w.jpg",
+                overview = "During the mid-22nd century, a century before Captain Kirk's five-year mission, Jonathan Archer captains the United Earth ship Enterprise during the early years of Starfleet, leading up to the Earth-Romulan War and the formation of the Federation.",
+                isInMyShows = false),
+            DiscoverResultViewModel(
+                name = "Star Trek: Voyager",
+                year = 1995,
+                network = "UPN",
+                posterUrl = "https://image.tmdb.org/t/p/w440_and_h660_face/tqUH9uyIKuW7gMTCWh56w1Z5hRY.jpg",
+                overview = "Pulled to the far side of the galaxy, where the Federation is 75 years away at maximum warp speed, a Starfleet ship must cooperate with Maquis rebels to find a way home.",
                 isInMyShows = false)
         )
         discoverAdapter.results = results
