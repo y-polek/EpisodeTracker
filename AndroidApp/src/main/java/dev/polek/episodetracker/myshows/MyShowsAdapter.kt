@@ -14,6 +14,7 @@ import dev.polek.episodetracker.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.*
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.GroupViewModel.*
 import dev.polek.episodetracker.myshows.model.MyShowsViewModel
+import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 
 class MyShowsAdapter(private val onGroupVisibilityChanged: () -> Unit) : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
@@ -109,9 +110,9 @@ class MyShowsAdapter(private val onGroupVisibilityChanged: () -> Unit) : Recycle
             onExpandClicked: (position: Int) -> Unit) : ViewHolder(binding.root)
         {
             init {
-                binding.root.setOnClickListener {
+                binding.root.doOnClick {
                     val position = adapterPosition
-                    if (position == RecyclerView.NO_POSITION) return@setOnClickListener
+                    if (position == RecyclerView.NO_POSITION) return@doOnClick
 
                     onExpandClicked(position)
                 }
