@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 42;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D28C821723A19182001CBADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28C821623A19182001CBADF /* Main.storyboard */; };
 		D2BEC93523421FEB001C13AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEC93423421FEB001C13AB /* AppDelegate.swift */; };
-		D2BEC93723421FEB001C13AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEC93623421FEB001C13AB /* SceneDelegate.swift */; };
-		D2BEC93923421FEB001C13AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEC93823421FEB001C13AB /* ContentView.swift */; };
 		D2BEC93B23421FEC001C13AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEC93A23421FEC001C13AB /* Assets.xcassets */; };
-		D2BEC93E23421FEC001C13AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEC93D23421FEC001C13AB /* Preview Assets.xcassets */; };
 		D2BEC94123421FEC001C13AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEC93F23421FEC001C13AB /* LaunchScreen.storyboard */; };
 		D2BEC94C23421FEC001C13AB /* Episode_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEC94B23421FEC001C13AB /* Episode_TrackerUITests.swift */; };
 		D2BEC9582342231E001C13AB /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BEC9572342231E001C13AB /* SharedCode.framework */; };
@@ -43,12 +41,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D28C821623A19182001CBADF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D2BEC93123421FEB001C13AB /* Episode Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Episode Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BEC93423421FEB001C13AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2BEC93623421FEB001C13AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D2BEC93823421FEB001C13AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D2BEC93A23421FEC001C13AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D2BEC93D23421FEC001C13AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D2BEC94023421FEC001C13AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BEC94223421FEC001C13AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2BEC94723421FEC001C13AB /* Episode TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Episode TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,22 +95,12 @@
 			isa = PBXGroup;
 			children = (
 				D2BEC93423421FEB001C13AB /* AppDelegate.swift */,
-				D2BEC93623421FEB001C13AB /* SceneDelegate.swift */,
-				D2BEC93823421FEB001C13AB /* ContentView.swift */,
-				D2BEC93A23421FEC001C13AB /* Assets.xcassets */,
+				D28C821623A19182001CBADF /* Main.storyboard */,
 				D2BEC93F23421FEC001C13AB /* LaunchScreen.storyboard */,
+				D2BEC93A23421FEC001C13AB /* Assets.xcassets */,
 				D2BEC94223421FEC001C13AB /* Info.plist */,
-				D2BEC93C23421FEC001C13AB /* Preview Content */,
 			);
 			path = "Episode Tracker";
-			sourceTree = "<group>";
-		};
-		D2BEC93C23421FEC001C13AB /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D2BEC93D23421FEC001C13AB /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		D2BEC94A23421FEC001C13AB /* Episode TrackerUITests */ = {
@@ -186,14 +172,19 @@
 				TargetAttributes = {
 					D2BEC93023421FEB001C13AB = {
 						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = K4N32QU4HD;
+						ProvisioningStyle = Automatic;
 					};
 					D2BEC94623421FEC001C13AB = {
 						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = K4N32QU4HD;
+						ProvisioningStyle = Automatic;
 						TestTargetID = D2BEC93023421FEB001C13AB;
 					};
 				};
 			};
 			buildConfigurationList = D2BEC92C23421FEB001C13AB /* Build configuration list for PBXProject "Episode Tracker" */;
+			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -217,8 +208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2BEC94123421FEC001C13AB /* LaunchScreen.storyboard in Resources */,
-				D2BEC93E23421FEC001C13AB /* Preview Assets.xcassets in Resources */,
 				D2BEC93B23421FEC001C13AB /* Assets.xcassets in Resources */,
+				D28C821723A19182001CBADF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,8 +248,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2BEC93523421FEB001C13AB /* AppDelegate.swift in Sources */,
-				D2BEC93723421FEB001C13AB /* SceneDelegate.swift in Sources */,
-				D2BEC93923421FEB001C13AB /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,8 +391,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -413,14 +401,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Episode Tracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K4N32QU4HD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Episode Tracker/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -433,14 +419,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Episode Tracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K4N32QU4HD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Episode Tracker/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -455,11 +439,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K4N32QU4HD;
 				INFOPLIST_FILE = "Episode TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -475,11 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K4N32QU4HD;
 				INFOPLIST_FILE = "Episode TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
