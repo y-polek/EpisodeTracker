@@ -12,7 +12,6 @@
 		D2BEC93523421FEB001C13AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEC93423421FEB001C13AB /* AppDelegate.swift */; };
 		D2BEC93B23421FEC001C13AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEC93A23421FEC001C13AB /* Assets.xcassets */; };
 		D2BEC94123421FEC001C13AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEC93F23421FEC001C13AB /* LaunchScreen.storyboard */; };
-		D2BEC94C23421FEC001C13AB /* Episode_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEC94B23421FEC001C13AB /* Episode_TrackerUITests.swift */; };
 		D2BEC9582342231E001C13AB /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BEC9572342231E001C13AB /* SharedCode.framework */; };
 		D2BEC9592342231E001C13AB /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2BEC9572342231E001C13AB /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -49,9 +48,7 @@
 		D2BEC93A23421FEC001C13AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2BEC94023421FEC001C13AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BEC94223421FEC001C13AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2BEC94723421FEC001C13AB /* Episode TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Episode TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2BEC94B23421FEC001C13AB /* Episode_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode_TrackerUITests.swift; sourceTree = "<group>"; };
-		D2BEC94D23421FEC001C13AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2BEC94723421FEC001C13AB /* EpisodeTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpisodeTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BEC9572342231E001C13AB /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,8 +82,7 @@
 		D2BEC92823421FEB001C13AB = {
 			isa = PBXGroup;
 			children = (
-				D2BEC93323421FEB001C13AB /* Episode Tracker */,
-				D2BEC94A23421FEC001C13AB /* Episode TrackerUITests */,
+				D2BEC93323421FEB001C13AB /* EpisodeTracker */,
 				D2BEC93223421FEB001C13AB /* Products */,
 				D2BEC9562342231E001C13AB /* Frameworks */,
 			);
@@ -96,12 +92,12 @@
 			isa = PBXGroup;
 			children = (
 				D2BEC93123421FEB001C13AB /* Episode Tracker.app */,
-				D2BEC94723421FEC001C13AB /* Episode TrackerUITests.xctest */,
+				D2BEC94723421FEC001C13AB /* EpisodeTrackerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D2BEC93323421FEB001C13AB /* Episode Tracker */ = {
+		D2BEC93323421FEB001C13AB /* EpisodeTracker */ = {
 			isa = PBXGroup;
 			children = (
 				D28C821823A1A6E7001CBADF /* MyShows */,
@@ -111,16 +107,7 @@
 				D2BEC93A23421FEC001C13AB /* Assets.xcassets */,
 				D2BEC94223421FEC001C13AB /* Info.plist */,
 			);
-			path = "Episode Tracker";
-			sourceTree = "<group>";
-		};
-		D2BEC94A23421FEC001C13AB /* Episode TrackerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D2BEC94B23421FEC001C13AB /* Episode_TrackerUITests.swift */,
-				D2BEC94D23421FEC001C13AB /* Info.plist */,
-			);
-			path = "Episode TrackerUITests";
+			path = EpisodeTracker;
 			sourceTree = "<group>";
 		};
 		D2BEC9562342231E001C13AB /* Frameworks */ = {
@@ -134,9 +121,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D2BEC93023421FEB001C13AB /* Episode Tracker */ = {
+		D2BEC93023421FEB001C13AB /* EpisodeTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D2BEC95023421FEC001C13AB /* Build configuration list for PBXNativeTarget "Episode Tracker" */;
+			buildConfigurationList = D2BEC95023421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTracker" */;
 			buildPhases = (
 				D2BEC95B234223E9001C13AB /* ShellScript */,
 				D2BEC92D23421FEB001C13AB /* Sources */,
@@ -148,14 +135,14 @@
 			);
 			dependencies = (
 			);
-			name = "Episode Tracker";
+			name = EpisodeTracker;
 			productName = "Episode Tracker";
 			productReference = D2BEC93123421FEB001C13AB /* Episode Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D2BEC94623421FEC001C13AB /* Episode TrackerUITests */ = {
+		D2BEC94623421FEC001C13AB /* EpisodeTrackerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D2BEC95323421FEC001C13AB /* Build configuration list for PBXNativeTarget "Episode TrackerUITests" */;
+			buildConfigurationList = D2BEC95323421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTrackerUITests" */;
 			buildPhases = (
 				D2BEC94323421FEC001C13AB /* Sources */,
 				D2BEC94423421FEC001C13AB /* Frameworks */,
@@ -166,9 +153,9 @@
 			dependencies = (
 				D2BEC94923421FEC001C13AB /* PBXTargetDependency */,
 			);
-			name = "Episode TrackerUITests";
+			name = EpisodeTrackerUITests;
 			productName = "Episode TrackerUITests";
-			productReference = D2BEC94723421FEC001C13AB /* Episode TrackerUITests.xctest */;
+			productReference = D2BEC94723421FEC001C13AB /* EpisodeTrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -194,7 +181,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D2BEC92C23421FEB001C13AB /* Build configuration list for PBXProject "Episode Tracker" */;
+			buildConfigurationList = D2BEC92C23421FEB001C13AB /* Build configuration list for PBXProject "EpisodeTracker" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -207,8 +194,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D2BEC93023421FEB001C13AB /* Episode Tracker */,
-				D2BEC94623421FEC001C13AB /* Episode TrackerUITests */,
+				D2BEC93023421FEB001C13AB /* EpisodeTracker */,
+				D2BEC94623421FEC001C13AB /* EpisodeTrackerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -267,7 +254,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BEC94C23421FEC001C13AB /* Episode_TrackerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +262,7 @@
 /* Begin PBXTargetDependency section */
 		D2BEC94923421FEC001C13AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D2BEC93023421FEB001C13AB /* Episode Tracker */;
+			target = D2BEC93023421FEB001C13AB /* EpisodeTracker */;
 			targetProxy = D2BEC94823421FEC001C13AB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -416,11 +402,11 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K4N32QU4HD;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Episode Tracker/Info.plist";
+				INFOPLIST_FILE = EpisodeTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-Tracker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.polek.EpisodeTracker;
+				PRODUCT_NAME = "Episode Tracker";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -434,11 +420,11 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K4N32QU4HD;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Episode Tracker/Info.plist";
+				INFOPLIST_FILE = EpisodeTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-Tracker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.polek.EpisodeTracker;
+				PRODUCT_NAME = "Episode Tracker";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -479,7 +465,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D2BEC92C23421FEB001C13AB /* Build configuration list for PBXProject "Episode Tracker" */ = {
+		D2BEC92C23421FEB001C13AB /* Build configuration list for PBXProject "EpisodeTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2BEC94E23421FEC001C13AB /* Debug */,
@@ -488,7 +474,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2BEC95023421FEC001C13AB /* Build configuration list for PBXNativeTarget "Episode Tracker" */ = {
+		D2BEC95023421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2BEC95123421FEC001C13AB /* Debug */,
@@ -497,7 +483,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2BEC95323421FEC001C13AB /* Build configuration list for PBXNativeTarget "Episode TrackerUITests" */ = {
+		D2BEC95323421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTrackerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2BEC95423421FEC001C13AB /* Debug */,
