@@ -81,11 +81,11 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return model.upcomingShows.count
+            return model.isUpcomingExpanded ? model.upcomingShows.count : 0
         case 1:
-            return model.toBeAnnouncedShows.count
+            return model.isToBeAnnouncedExpanded ? model.toBeAnnouncedShows.count : 0
         case 2:
-            return model.endedShows.count
+            return model.isEndedExpanded ? model.endedShows.count : 0
         default:
             return 0
         }
