@@ -4,12 +4,20 @@ import Kingfisher
 @IBDesignable
 class ImageView: UIImageView {
     
-    @IBInspectable
     var imageUrl: String? {
         didSet {
             updateImage()
         }
     }
+    
+    @IBInspectable
+    var overlayColor: UIColor? {
+        didSet {
+            updateOverlay()
+        }
+    }
+    
+    private let overlayLayer = CAGradientLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,11 +29,18 @@ class ImageView: UIImageView {
         setup()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateOverlay()
+    }
+    
     private func setup() {
         contentMode = .scaleAspectFill
         
         layer.cornerRadius = 8
         layer.masksToBounds = true
+        
+        layer.insertSublayer(overlayLayer, at: 0)
     }
     
     private func updateImage() {
@@ -33,6 +48,16 @@ class ImageView: UIImageView {
             kf.setImage(with: URL(string: imageUrl!))
         } else {
             image = nil
+        }
+    }
+    
+    private func updateOverlay() {
+        overlayLayer.frame = bounds
+        
+        if let color = overlayColor {
+            overlayLayer.colors = [color.withAlphaComponent(0), color.withAlphaComponent(0.8).cgColor]
+        } else {
+            overlayLayer.colors = [UIColor.transparent.cgColor, UIColor.transparent.cgColor]
         }
     }
 }
