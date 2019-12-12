@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		142614C68DBC5A7FC08FD273 /* Pods_EpisodeTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */; };
+		D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; };
+		D29D7AF023A24D4400B2832D /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2BEEF1923A248820077F125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF1823A248820077F125 /* AppDelegate.swift */; };
 		D2BEEF2023A248820077F125 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF1E23A248820077F125 /* Main.storyboard */; };
 		D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF2123A248820077F125 /* Assets.xcassets */; };
@@ -15,10 +17,25 @@
 		D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D29D7AF123A24D4500B2832D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D29D7AF023A24D4400B2832D /* SharedCode.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		227D1BA30C42A7A3281315FF /* Pods-EpisodeTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpisodeTracker.release.xcconfig"; path = "Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker.release.xcconfig"; sourceTree = "<group>"; };
 		A998D3B20E585233F3757CC8 /* Pods-EpisodeTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpisodeTracker.debug.xcconfig"; path = "Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpisodeTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29D7AEE23A24D4400B2832D /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
 		D2BEEF1523A248820077F125 /* EpisodeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpisodeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BEEF1823A248820077F125 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BEEF1F23A248820077F125 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */,
 				142614C68DBC5A7FC08FD273 /* Pods_EpisodeTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +61,7 @@
 		39BC37FA81559B3EC22A4FA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D29D7AEE23A24D4400B2832D /* SharedCode.framework */,
 				BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */,
 			);
 			name = Frameworks;
@@ -103,11 +122,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2BEEF2923A248820077F125 /* Build configuration list for PBXNativeTarget "EpisodeTracker" */;
 			buildPhases = (
+				D29D7AF223A24DD700B2832D /* ShellScript */,
 				8F7CD8C2574BB838E65C2BE8 /* [CP] Check Pods Manifest.lock */,
 				D2BEEF1123A248820077F125 /* Sources */,
 				D2BEEF1223A248820077F125 /* Frameworks */,
 				D2BEEF1323A248820077F125 /* Resources */,
 				96D4C9F1867C50DD12B72966 /* [CP] Embed Pods Frameworks */,
+				D29D7AF123A24D4500B2832D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -204,6 +225,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D29D7AF223A24DD700B2832D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../../SharedCode/build/xcode-frameworks\"\n./gradlew :SharedCode:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -274,6 +312,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -334,6 +373,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
