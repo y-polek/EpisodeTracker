@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kb9-Rm-90n">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -95,24 +96,70 @@
         <!--My Shows-->
         <scene sceneID="dgf-By-NTy">
             <objects>
-                <viewController id="gGy-eL-7wF" customClass="MyShowsViewController" customModule="Episode_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gGy-eL-7wF" customClass="MyShowsViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q8a-7C-Z9L">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AjS-qA-CoM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AjS-qA-CoM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="upcoming_show_cell" id="Y8T-c0-TqR">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="upcoming_show_cell" id="JtA-B3-Cac" customClass="UpcomingShowCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="158"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y8T-c0-TqR" id="AmX-GB-4Sb">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JtA-B3-Cac" id="a7l-ai-VyE">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hiE-Pc-MZx" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="4" width="382" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="lOc-JX-0pZ"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hiE-Pc-MZx" firstAttribute="leading" secondItem="a7l-ai-VyE" secondAttribute="leading" constant="16" id="Dcs-8z-DID"/>
+                                                <constraint firstAttribute="trailing" secondItem="hiE-Pc-MZx" secondAttribute="trailing" constant="16" id="iTM-zB-YWz"/>
+                                                <constraint firstAttribute="bottom" secondItem="hiE-Pc-MZx" secondAttribute="bottom" constant="4" id="lZi-Jh-9ZY"/>
+                                                <constraint firstItem="hiE-Pc-MZx" firstAttribute="top" secondItem="a7l-ai-VyE" secondAttribute="top" constant="4" id="qGC-7i-DiH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backgroundImage" destination="hiE-Pc-MZx" id="zfb-s7-sp9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="show_cell" id="Ej1-Qu-KLL" customClass="ShowCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="186" width="414" height="158"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ej1-Qu-KLL" id="T8d-gZ-cA6">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jiE-hj-NNp" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="4" width="382" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="EE9-w6-lEr"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="jiE-hj-NNp" secondAttribute="bottom" constant="4" id="1U0-m2-vCo"/>
+                                                <constraint firstItem="jiE-hj-NNp" firstAttribute="leading" secondItem="T8d-gZ-cA6" secondAttribute="leading" constant="16" id="7YH-HM-Suv"/>
+                                                <constraint firstItem="jiE-hj-NNp" firstAttribute="top" secondItem="T8d-gZ-cA6" secondAttribute="top" constant="4" id="FJZ-9w-J3z"/>
+                                                <constraint firstAttribute="trailing" secondItem="jiE-hj-NNp" secondAttribute="trailing" constant="16" id="sca-Sh-jRU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backgroundImage" destination="jiE-hj-NNp" id="If0-aV-QqJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="gGy-eL-7wF" id="ftA-2u-uqZ"/>
+                                    <outlet property="delegate" destination="gGy-eL-7wF" id="SXv-SX-kdI"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -131,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXc-oO-vnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2309" y="840"/>
+            <point key="canvasLocation" x="-2310.144927536232" y="839.73214285714278"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XFQ-Ws-1HS">

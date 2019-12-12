@@ -4,18 +4,30 @@ import dev.polek.episodetracker.myshows.model.MyShowsListItem.*
 import dev.polek.episodetracker.myshows.model.MyShowsListItem.GroupViewModel.*
 
 class MyShowsViewModel(
-    private val upcomingShows: List<UpcomingShowViewModel>,
-    private val toBeAnnouncedShows: List<ShowViewModel>,
-    private val endedShows: List<ShowViewModel>,
-    private var isUpcomingExpanded: Boolean,
-    private var isToBeAnnouncedExpanded: Boolean,
-    private var isEndedExpanded: Boolean)
+    val upcomingShows: List<UpcomingShowViewModel>,
+    val toBeAnnouncedShows: List<ShowViewModel>,
+    val endedShows: List<ShowViewModel>,
+    isUpcomingExpanded: Boolean,
+    isToBeAnnouncedExpanded: Boolean,
+    isEndedExpanded: Boolean)
 {
+    var isUpcomingExpanded: Boolean = isUpcomingExpanded
+        private set
+    var isToBeAnnouncedExpanded: Boolean = isToBeAnnouncedExpanded
+        private set
+    var isEndedExpanded: Boolean = isEndedExpanded
+        private set
+
     var items: List<MyShowsListItem> = populateItemList()
+        private set
 
     fun setUpcomingExpanded(expanded: Boolean) {
         isUpcomingExpanded = expanded
         items = populateItemList()
+    }
+
+    fun toggleUpcomingExpanded() {
+        setUpcomingExpanded(!isUpcomingExpanded)
     }
 
     fun setToBeAnnouncedExpanded(expanded: Boolean) {
@@ -23,9 +35,17 @@ class MyShowsViewModel(
         items = populateItemList()
     }
 
+    fun toggleToBeAnnouncedExpanded() {
+        setToBeAnnouncedExpanded(!isToBeAnnouncedExpanded)
+    }
+
     fun setEndedExpanded(expanded: Boolean) {
         isEndedExpanded = expanded
         items = populateItemList()
+    }
+
+    fun toggleEndedExpanded() {
+        setEndedExpanded(!isEndedExpanded)
     }
 
     private fun populateItemList(): List<MyShowsListItem> {
