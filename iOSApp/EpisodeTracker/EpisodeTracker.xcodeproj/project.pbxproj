@@ -3,225 +3,169 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D28C821723A19182001CBADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28C821623A19182001CBADF /* Main.storyboard */; };
-		D28C821A23A1A70F001CBADF /* MyShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C821923A1A70F001CBADF /* MyShowsViewController.swift */; };
-		D2BEC93523421FEB001C13AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEC93423421FEB001C13AB /* AppDelegate.swift */; };
-		D2BEC93B23421FEC001C13AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEC93A23421FEC001C13AB /* Assets.xcassets */; };
-		D2BEC94123421FEC001C13AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEC93F23421FEC001C13AB /* LaunchScreen.storyboard */; };
-		D2BEC9582342231E001C13AB /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BEC9572342231E001C13AB /* SharedCode.framework */; };
-		D2BEC9592342231E001C13AB /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2BEC9572342231E001C13AB /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142614C68DBC5A7FC08FD273 /* Pods_EpisodeTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */; };
+		D2BEEF1923A248820077F125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF1823A248820077F125 /* AppDelegate.swift */; };
+		D2BEEF2023A248820077F125 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF1E23A248820077F125 /* Main.storyboard */; };
+		D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF2123A248820077F125 /* Assets.xcassets */; };
+		D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF2323A248820077F125 /* LaunchScreen.storyboard */; };
+		D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D2BEC94823421FEC001C13AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2BEC92923421FEB001C13AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D2BEC93023421FEB001C13AB;
-			remoteInfo = "Episode Tracker";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D2BEC95A2342231E001C13AB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D2BEC9592342231E001C13AB /* SharedCode.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		D28C821623A19182001CBADF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D28C821923A1A70F001CBADF /* MyShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsViewController.swift; sourceTree = "<group>"; };
-		D2BEC93123421FEB001C13AB /* Episode Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Episode Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2BEC93423421FEB001C13AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2BEC93A23421FEC001C13AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D2BEC94023421FEC001C13AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D2BEC94223421FEC001C13AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2BEC94723421FEC001C13AB /* EpisodeTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpisodeTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2BEC9572342231E001C13AB /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
+		227D1BA30C42A7A3281315FF /* Pods-EpisodeTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpisodeTracker.release.xcconfig"; path = "Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker.release.xcconfig"; sourceTree = "<group>"; };
+		A998D3B20E585233F3757CC8 /* Pods-EpisodeTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpisodeTracker.debug.xcconfig"; path = "Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpisodeTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2BEEF1523A248820077F125 /* EpisodeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpisodeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2BEEF1823A248820077F125 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2BEEF1F23A248820077F125 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2BEEF2123A248820077F125 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2BEEF2423A248820077F125 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2BEEF2623A248820077F125 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D2BEC92E23421FEB001C13AB /* Frameworks */ = {
+		D2BEEF1223A248820077F125 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BEC9582342231E001C13AB /* SharedCode.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2BEC94423421FEC001C13AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				142614C68DBC5A7FC08FD273 /* Pods_EpisodeTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D28C821823A1A6E7001CBADF /* MyShows */ = {
+		39BC37FA81559B3EC22A4FA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D28C821923A1A70F001CBADF /* MyShowsViewController.swift */,
+				BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */,
 			);
-			path = MyShows;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D2BEC92823421FEB001C13AB = {
+		A176E50197D6C1B1A8725E84 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D2BEC93323421FEB001C13AB /* EpisodeTracker */,
-				D2BEC93223421FEB001C13AB /* Products */,
-				D2BEC9562342231E001C13AB /* Frameworks */,
+				A998D3B20E585233F3757CC8 /* Pods-EpisodeTracker.debug.xcconfig */,
+				227D1BA30C42A7A3281315FF /* Pods-EpisodeTracker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D2BEEF0C23A248810077F125 = {
+			isa = PBXGroup;
+			children = (
+				D2BEEF1723A248820077F125 /* EpisodeTracker */,
+				D2BEEF1623A248820077F125 /* Products */,
+				A176E50197D6C1B1A8725E84 /* Pods */,
+				39BC37FA81559B3EC22A4FA1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		D2BEC93223421FEB001C13AB /* Products */ = {
+		D2BEEF1623A248820077F125 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2BEC93123421FEB001C13AB /* Episode Tracker.app */,
-				D2BEC94723421FEC001C13AB /* EpisodeTrackerUITests.xctest */,
+				D2BEEF1523A248820077F125 /* EpisodeTracker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D2BEC93323421FEB001C13AB /* EpisodeTracker */ = {
+		D2BEEF1723A248820077F125 /* EpisodeTracker */ = {
 			isa = PBXGroup;
 			children = (
-				D28C821823A1A6E7001CBADF /* MyShows */,
-				D2BEC93423421FEB001C13AB /* AppDelegate.swift */,
-				D28C821623A19182001CBADF /* Main.storyboard */,
-				D2BEC93F23421FEC001C13AB /* LaunchScreen.storyboard */,
-				D2BEC93A23421FEC001C13AB /* Assets.xcassets */,
-				D2BEC94223421FEC001C13AB /* Info.plist */,
+				D2BEEF2C23A249F70077F125 /* MyShows */,
+				D2BEEF1823A248820077F125 /* AppDelegate.swift */,
+				D2BEEF1E23A248820077F125 /* Main.storyboard */,
+				D2BEEF2123A248820077F125 /* Assets.xcassets */,
+				D2BEEF2323A248820077F125 /* LaunchScreen.storyboard */,
+				D2BEEF2623A248820077F125 /* Info.plist */,
 			);
 			path = EpisodeTracker;
 			sourceTree = "<group>";
 		};
-		D2BEC9562342231E001C13AB /* Frameworks */ = {
+		D2BEEF2C23A249F70077F125 /* MyShows */ = {
 			isa = PBXGroup;
 			children = (
-				D2BEC9572342231E001C13AB /* SharedCode.framework */,
+				D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */,
 			);
-			name = Frameworks;
+			path = MyShows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D2BEC93023421FEB001C13AB /* EpisodeTracker */ = {
+		D2BEEF1423A248820077F125 /* EpisodeTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D2BEC95023421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTracker" */;
+			buildConfigurationList = D2BEEF2923A248820077F125 /* Build configuration list for PBXNativeTarget "EpisodeTracker" */;
 			buildPhases = (
-				D2BEC95B234223E9001C13AB /* ShellScript */,
-				D2BEC92D23421FEB001C13AB /* Sources */,
-				D2BEC92E23421FEB001C13AB /* Frameworks */,
-				D2BEC92F23421FEB001C13AB /* Resources */,
-				D2BEC95A2342231E001C13AB /* Embed Frameworks */,
+				8F7CD8C2574BB838E65C2BE8 /* [CP] Check Pods Manifest.lock */,
+				D2BEEF1123A248820077F125 /* Sources */,
+				D2BEEF1223A248820077F125 /* Frameworks */,
+				D2BEEF1323A248820077F125 /* Resources */,
+				96D4C9F1867C50DD12B72966 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = EpisodeTracker;
-			productName = "Episode Tracker";
-			productReference = D2BEC93123421FEB001C13AB /* Episode Tracker.app */;
+			productName = EpisodeTracker;
+			productReference = D2BEEF1523A248820077F125 /* EpisodeTracker.app */;
 			productType = "com.apple.product-type.application";
-		};
-		D2BEC94623421FEC001C13AB /* EpisodeTrackerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D2BEC95323421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTrackerUITests" */;
-			buildPhases = (
-				D2BEC94323421FEC001C13AB /* Sources */,
-				D2BEC94423421FEC001C13AB /* Frameworks */,
-				D2BEC94523421FEC001C13AB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D2BEC94923421FEC001C13AB /* PBXTargetDependency */,
-			);
-			name = EpisodeTrackerUITests;
-			productName = "Episode TrackerUITests";
-			productReference = D2BEC94723421FEC001C13AB /* EpisodeTrackerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D2BEC92923421FEB001C13AB /* Project object */ = {
+		D2BEEF0D23A248810077F125 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Yury Polek";
 				TargetAttributes = {
-					D2BEC93023421FEB001C13AB = {
-						CreatedOnToolsVersion = 11.0;
-						DevelopmentTeam = K4N32QU4HD;
-						ProvisioningStyle = Automatic;
-					};
-					D2BEC94623421FEC001C13AB = {
-						CreatedOnToolsVersion = 11.0;
-						DevelopmentTeam = K4N32QU4HD;
-						ProvisioningStyle = Automatic;
-						TestTargetID = D2BEC93023421FEB001C13AB;
+					D2BEEF1423A248820077F125 = {
+						CreatedOnToolsVersion = 11.3;
 					};
 				};
 			};
-			buildConfigurationList = D2BEC92C23421FEB001C13AB /* Build configuration list for PBXProject "EpisodeTracker" */;
-			compatibilityVersion = "Xcode 2.4";
+			buildConfigurationList = D2BEEF1023A248810077F125 /* Build configuration list for PBXProject "EpisodeTracker" */;
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = D2BEC92823421FEB001C13AB;
-			productRefGroup = D2BEC93223421FEB001C13AB /* Products */;
+			mainGroup = D2BEEF0C23A248810077F125;
+			productRefGroup = D2BEEF1623A248820077F125 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D2BEC93023421FEB001C13AB /* EpisodeTracker */,
-				D2BEC94623421FEC001C13AB /* EpisodeTrackerUITests */,
+				D2BEEF1423A248820077F125 /* EpisodeTracker */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D2BEC92F23421FEB001C13AB /* Resources */ = {
+		D2BEEF1323A248820077F125 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BEC94123421FEC001C13AB /* LaunchScreen.storyboard in Resources */,
-				D2BEC93B23421FEC001C13AB /* Assets.xcassets in Resources */,
-				D28C821723A19182001CBADF /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2BEC94523421FEC001C13AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */,
+				D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */,
+				D2BEEF2023A248820077F125 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D2BEC95B234223E9001C13AB /* ShellScript */ = {
+		8F7CD8C2574BB838E65C2BE8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,49 +173,64 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EpisodeTracker-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/../../SharedCode/build/xcode-frameworks\"\n./gradlew :SharedCode:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96D4C9F1867C50DD12B72966 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D2BEC92D23421FEB001C13AB /* Sources */ = {
+		D2BEEF1123A248820077F125 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BEC93523421FEB001C13AB /* AppDelegate.swift in Sources */,
-				D28C821A23A1A70F001CBADF /* MyShowsViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2BEC94323421FEC001C13AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */,
+				D2BEEF1923A248820077F125 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		D2BEC94923421FEC001C13AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D2BEC93023421FEB001C13AB /* EpisodeTracker */;
-			targetProxy = D2BEC94823421FEC001C13AB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		D2BEC93F23421FEC001C13AB /* LaunchScreen.storyboard */ = {
+		D2BEEF1E23A248820077F125 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D2BEC94023421FEC001C13AB /* Base */,
+				D2BEEF1F23A248820077F125 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D2BEEF2323A248820077F125 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2BEEF2423A248820077F125 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -279,7 +238,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D2BEC94E23421FEC001C13AB /* Debug */ = {
+		D2BEEF2723A248820077F125 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -315,7 +274,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -330,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -340,7 +298,7 @@
 			};
 			name = Debug;
 		};
-		D2BEC94F23421FEC001C13AB /* Release */ = {
+		D2BEEF2823A248820077F125 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -376,7 +334,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -385,114 +342,78 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		D2BEC95123421FEC001C13AB /* Debug */ = {
+		D2BEEF2A23A248820077F125 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A998D3B20E585233F3757CC8 /* Pods-EpisodeTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K4N32QU4HD;
-				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = EpisodeTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.polek.EpisodeTracker;
-				PRODUCT_NAME = "Episode Tracker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		D2BEC95223421FEC001C13AB /* Release */ = {
+		D2BEEF2B23A248820077F125 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 227D1BA30C42A7A3281315FF /* Pods-EpisodeTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K4N32QU4HD;
-				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = EpisodeTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.polek.EpisodeTracker;
-				PRODUCT_NAME = "Episode Tracker";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D2BEC95423421FEC001C13AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K4N32QU4HD;
-				INFOPLIST_FILE = "Episode TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Episode Tracker";
-			};
-			name = Debug;
-		};
-		D2BEC95523421FEC001C13AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K4N32QU4HD;
-				INFOPLIST_FILE = "Episode TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.polek.Episode-TrackerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Episode Tracker";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D2BEC92C23421FEB001C13AB /* Build configuration list for PBXProject "EpisodeTracker" */ = {
+		D2BEEF1023A248810077F125 /* Build configuration list for PBXProject "EpisodeTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D2BEC94E23421FEC001C13AB /* Debug */,
-				D2BEC94F23421FEC001C13AB /* Release */,
+				D2BEEF2723A248820077F125 /* Debug */,
+				D2BEEF2823A248820077F125 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2BEC95023421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTracker" */ = {
+		D2BEEF2923A248820077F125 /* Build configuration list for PBXNativeTarget "EpisodeTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D2BEC95123421FEC001C13AB /* Debug */,
-				D2BEC95223421FEC001C13AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D2BEC95323421FEC001C13AB /* Build configuration list for PBXNativeTarget "EpisodeTrackerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2BEC95423421FEC001C13AB /* Debug */,
-				D2BEC95523421FEC001C13AB /* Release */,
+				D2BEEF2A23A248820077F125 /* Debug */,
+				D2BEEF2B23A248820077F125 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D2BEC92923421FEB001C13AB /* Project object */;
+	rootObject = D2BEEF0D23A248810077F125 /* Project object */;
 }

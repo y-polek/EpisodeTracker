@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/yury/Documents/EpisodeTracker/iOSApp/Episode Tracker/EpisodeTracker.xcodeproj">
+      location = "self:EpisodeTracker.xcodeproj">
    </FileRef>
 </Workspace>
