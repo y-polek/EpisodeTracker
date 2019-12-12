@@ -123,16 +123,62 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="ct7-xf-NF9">
+                                                    <rect key="frame" x="32" y="20" width="350" height="118"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-zB-OaS">
+                                                            <rect key="frame" x="0.0" y="63" width="350" height="55"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ovP-mk-Lk1">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="350" height="25.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCa-T1-iwz">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="283.5" height="25.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1 day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G74-BI-G6W">
+                                                                            <rect key="frame" x="299.5" y="0.0" width="50.5" height="25.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nux-2h-8M8" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="29.5" width="350" height="1"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="1" id="PsC-jZ-TRe"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S01 E01 | TBA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ega-3O-H2U">
+                                                                    <rect key="frame" x="0.0" y="34.5" width="350" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ct7-xf-NF9" firstAttribute="top" secondItem="hiE-Pc-MZx" secondAttribute="top" constant="16" id="8Wu-23-6of"/>
                                                 <constraint firstItem="hiE-Pc-MZx" firstAttribute="leading" secondItem="a7l-ai-VyE" secondAttribute="leading" constant="16" id="Dcs-8z-DID"/>
+                                                <constraint firstItem="ct7-xf-NF9" firstAttribute="trailing" secondItem="hiE-Pc-MZx" secondAttribute="trailing" constant="-16" id="KRC-Sv-iB4"/>
                                                 <constraint firstAttribute="trailing" secondItem="hiE-Pc-MZx" secondAttribute="trailing" constant="16" id="iTM-zB-YWz"/>
                                                 <constraint firstAttribute="bottom" secondItem="hiE-Pc-MZx" secondAttribute="bottom" constant="4" id="lZi-Jh-9ZY"/>
                                                 <constraint firstItem="hiE-Pc-MZx" firstAttribute="top" secondItem="a7l-ai-VyE" secondAttribute="top" constant="4" id="qGC-7i-DiH"/>
+                                                <constraint firstItem="ct7-xf-NF9" firstAttribute="leading" secondItem="hiE-Pc-MZx" secondAttribute="leading" constant="16" id="qyA-Vm-UHb"/>
+                                                <constraint firstItem="ct7-xf-NF9" firstAttribute="bottom" secondItem="hiE-Pc-MZx" secondAttribute="bottom" constant="-16" id="wFi-SQ-QWM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="backgroundImage" destination="hiE-Pc-MZx" id="zfb-s7-sp9"/>
+                                            <outlet property="subtitleLabel" destination="ega-3O-H2U" id="aIP-1l-iJX"/>
+                                            <outlet property="timeLeftLabel" destination="G74-BI-G6W" id="aek-g2-q7p"/>
+                                            <outlet property="titleLabel" destination="VCa-T1-iwz" id="qtI-SZ-9ex"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="show_cell" id="Ej1-Qu-KLL" customClass="ShowCell" customModule="EpisodeTracker" customModuleProvider="target">
@@ -153,16 +199,26 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFk-pH-ykq">
+                                                    <rect key="frame" x="32" y="112.5" width="350" height="25.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="jiE-hj-NNp" secondAttribute="bottom" constant="4" id="1U0-m2-vCo"/>
                                                 <constraint firstItem="jiE-hj-NNp" firstAttribute="leading" secondItem="T8d-gZ-cA6" secondAttribute="leading" constant="16" id="7YH-HM-Suv"/>
+                                                <constraint firstItem="UFk-pH-ykq" firstAttribute="bottom" secondItem="jiE-hj-NNp" secondAttribute="bottom" constant="-16" id="Exs-j6-lm2"/>
                                                 <constraint firstItem="jiE-hj-NNp" firstAttribute="top" secondItem="T8d-gZ-cA6" secondAttribute="top" constant="4" id="FJZ-9w-J3z"/>
+                                                <constraint firstItem="UFk-pH-ykq" firstAttribute="leading" secondItem="jiE-hj-NNp" secondAttribute="leading" constant="16" id="Gp6-Es-mFE"/>
+                                                <constraint firstItem="UFk-pH-ykq" firstAttribute="trailing" secondItem="jiE-hj-NNp" secondAttribute="trailing" constant="-16" id="MS3-Qt-jJ7"/>
                                                 <constraint firstAttribute="trailing" secondItem="jiE-hj-NNp" secondAttribute="trailing" constant="16" id="sca-Sh-jRU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="backgroundImage" destination="jiE-hj-NNp" id="If0-aV-QqJ"/>
+                                            <outlet property="titleLabel" destination="UFk-pH-ykq" id="PEg-hV-ixc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

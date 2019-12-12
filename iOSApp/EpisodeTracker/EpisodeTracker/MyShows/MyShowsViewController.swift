@@ -44,7 +44,7 @@ class MyShowsViewController: UIViewController {
                     backdropUrl: "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/sAzw6I1G9JUxm86KokIDdQeWtaq.jpg"),
                 MyShowsListItem.ShowViewModel(
                     name: "Love, Death & Robots",
-                    backdropUrl: "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/zGPXkczhXYRmTCO6t0x2OHJf8jZ.jpg")
+                    backdropUrl: "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/e7VzDMrYKXVrVon04Uqsrcgnf1k.jpg")
             ],
             endedShows: [
                 MyShowsListItem.ShowViewModel(
@@ -61,7 +61,7 @@ class MyShowsViewController: UIViewController {
                     backdropUrl: "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/900tHlUYUkp7Ol04XFSoAaEIXcT.jpg"),
                 MyShowsListItem.ShowViewModel(
                     name: "Preacher",
-                    backdropUrl: "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/e7VzDMrYKXVrVon04Uqsrcgnf1k.jpg")
+                    backdropUrl: "https://image.tmdb.org/t/p/w1066_and_h600_bestv2/aS8EVmpaTxGbZ5ANAIxs5SwYXnQ.jpg")
             ],
             isUpcomingExpanded: true,
             isToBeAnnouncedExpanded: true,
