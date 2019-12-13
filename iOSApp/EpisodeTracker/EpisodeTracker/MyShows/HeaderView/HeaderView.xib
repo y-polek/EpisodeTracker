@@ -20,6 +20,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xp-HP-XhW">
+                    <rect key="frame" x="0.0" y="44" width="414" height="125"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="egu-B5-Iah">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="prominent"/>
+                </visualEffectView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-wX-b9q">
                     <rect key="frame" x="16" y="44" width="382" height="125"/>
                     <subviews>
@@ -36,12 +44,15 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="8xp-HP-XhW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4d5-Q0-0Ki"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eTP-wX-b9q" secondAttribute="bottom" id="9IX-nZ-WKn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8xp-HP-XhW" secondAttribute="trailing" id="Gl3-Wo-3U9"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="eTP-wX-b9q" secondAttribute="top" id="Xs1-y7-aj3"/>
                 <constraint firstItem="eTP-wX-b9q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="foS-hS-D9L"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="8xp-HP-XhW" secondAttribute="top" id="fuV-sp-f5O"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eTP-wX-b9q" secondAttribute="trailing" constant="16" id="hke-Q6-wbc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8xp-HP-XhW" secondAttribute="bottom" id="lQo-Ie-sgn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
