@@ -4,6 +4,7 @@ import SharedCode
 class MyShowsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private let model = MyShowsViewModel(
             upcomingShows: [
