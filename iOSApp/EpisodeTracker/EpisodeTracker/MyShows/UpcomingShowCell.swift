@@ -11,7 +11,12 @@ class UpcomingShowCell: UITableViewCell {
     func bind(show: MyShowsListItem.UpcomingShowViewModel) {
         backgroundImage.imageUrl = show.backdropUrl
         titleLabel.text = show.name
-        subtitleLabel.text = "\(show.episodeNumber) | \(show.episodeName)"
         timeLeftLabel.text = show.timeLeft
+        
+        let subtitleText = "\(show.episodeNumber) | \(show.episodeName)"
+        subtitleLabel.attributedText = subtitleText.bold(
+            font: subtitleLabel.font,
+            location: 0,
+            length: show.episodeNumber.count)
     }
 }
