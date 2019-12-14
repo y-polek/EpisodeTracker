@@ -10,6 +10,12 @@ class Divider: UIView {
         }
     }
     
+    var thickness: CGFloat = 1 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -25,7 +31,8 @@ class Divider: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        let path = UIBezierPath(rect: rect)
+        let top = (rect.height - thickness) / 2
+        let path = UIBezierPath(rect: CGRect(x: 0, y: top, width: rect.width, height: thickness))
         color.setFill()
         path.fill()
     }

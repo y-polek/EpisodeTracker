@@ -189,10 +189,10 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nu6-he-rB5" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="46" width="266" height="1"/>
+                                                                            <rect key="frame" x="0.0" y="46" width="266" height="9"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="1" id="Huk-N9-8wb"/>
+                                                                                <constraint firstAttribute="height" constant="9" id="Huk-N9-8wb"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="color" keyPath="color">
@@ -201,10 +201,10 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </view>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="zQr-IQ-tYF">
-                                                                            <rect key="frame" x="0.0" y="47" width="266" height="103.5"/>
+                                                                            <rect key="frame" x="0.0" y="55" width="266" height="95.5"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpc-7Z-fHZ">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="266" height="101.5"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="266" height="95.5"/>
                                                                                     <string key="text">Follow the voyages of Starfleet on their missions to discover new worlds and new life forms, and one Starfleet officer who must learn that to truly understand all things alien, you must first understand yourself.</string>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
