@@ -4,7 +4,11 @@ import UIKit
 class Divider: UIView {
     
     @IBInspectable
-    let color: UIColor = UIColor.white.withAlphaComponent(0.25)
+    var color: UIColor = UIColor.gray {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
