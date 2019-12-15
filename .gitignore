@@ -13,4 +13,5 @@
 .externalNativeBuild
 .cxx
 SharedCode/build
+SharedCode/api_keys.properties
 

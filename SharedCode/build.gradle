@@ -33,11 +33,14 @@ kotlin {
     }
 
     sourceSets {
-
         all {
             languageSettings {
                 useExperimentalAnnotation('kotlin.Experimental')
             }
+        }
+
+        commonMain {
+            kotlin.srcDirs += "build/generated/source/properties/"
         }
 
         commonMain.dependencies {
@@ -104,3 +107,33 @@ task packForXCode(type: Sync) {
     }
 }
 tasks.build.dependsOn packForXCode
+
+task loadApiKeys(type: Sync) {
+    final propsFile = file("api_keys.properties")
+    if (propsFile.exists()) {
+        final props = new Properties()
+        props.load(new FileInputStream(propsFile))
+
+
+        final outFile = file("build/generated/source/properties/ApiKeys.kt")
+        if (outFile.exists()) {
+            outFile.delete()
+        }
+        final srcDir = file(outFile.parent)
+        if (!srcDir.exists()) {
+            srcDir.mkdirs()
+        }
+        outFile.createNewFile()
+        final writer = outFile.newPrintWriter()
+        writer.println("package dev.polek.episodetracker")
+        writer.println()
+
+        for (String propertyName : props.stringPropertyNames()) {
+            writer.println("const val ${propertyName} = \"${props[propertyName]}\"")
+        }
+        writer.close()
+    } else {
+        throw new GradleException("'" + propsFile.name + "' file does not exist")
+    }
+}
+tasks.build.dependsOn loadApiKeys
