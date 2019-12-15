@@ -60,10 +60,25 @@ class DiscoverViewController: UIViewController {
             isInMyShows: true)
     ]
     
+    private let presenter = DiscoverPresenter(repository: DiscoverRepository(tmdbService: TmdbService()))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.attachView(view: self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.detachView()
+    }
+}
+
+extension DiscoverViewController: DiscoverView {
+    
 }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
