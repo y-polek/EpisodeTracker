@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
-import dev.polek.episodetracker.myshows.discover.model.DiscoverResultViewModel
+import dev.polek.episodetracker.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.scrollFlags
 import dev.polek.episodetracker.utils.setTopMargin

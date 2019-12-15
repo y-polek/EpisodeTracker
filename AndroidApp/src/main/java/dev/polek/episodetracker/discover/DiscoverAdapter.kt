@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.polek.episodetracker.databinding.DiscoverResultLayoutBinding
-import dev.polek.episodetracker.myshows.discover.model.DiscoverResultViewModel
+import dev.polek.episodetracker.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 

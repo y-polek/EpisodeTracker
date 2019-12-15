@@ -1,4 +1,4 @@
-package dev.polek.episodetracker.myshows.discover.model
+package dev.polek.episodetracker.discover.model
 
 data class DiscoverResultViewModel(
     val name: String,
