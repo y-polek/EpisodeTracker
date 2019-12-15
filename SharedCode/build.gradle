@@ -53,6 +53,8 @@ kotlin {
             implementation "io.ktor:ktor-client-core:$ktor_version"
             implementation "io.ktor:ktor-client-logging:$ktor_version"
             implementation "io.ktor:ktor-client-auth:$ktor_version"
+            implementation "io.ktor:ktor-client-json:$ktor_version"
+            implementation "io.ktor:ktor-client-serialization:$ktor_version"
 
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
@@ -68,19 +70,23 @@ kotlin {
             implementation "io.ktor:ktor-client-android:$ktor_version"
             implementation "io.ktor:ktor-client-logging-jvm:$ktor_version"
             implementation "io.ktor:ktor-client-auth-jvm:$ktor_version"
+            implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
+            implementation "io.ktor:ktor-client-serialization-jvm:$ktor_version"
 
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
         }
 
         iosMain.dependencies {
-            //Coroutines
+            // Coroutines
             implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
 
             // Ktor Client
             implementation "io.ktor:ktor-client-ios:$ktor_version"
             implementation "io.ktor:ktor-client-logging-native:$ktor_version"
             implementation "io.ktor:ktor-client-auth-native:$ktor_version"
+            implementation "io.ktor:ktor-client-json-native:$ktor_version"
+            implementation "io.ktor:ktor-client-serialization-native:$ktor_version"
 
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
