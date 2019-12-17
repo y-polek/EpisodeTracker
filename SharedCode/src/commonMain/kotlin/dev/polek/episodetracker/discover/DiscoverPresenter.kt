@@ -22,7 +22,7 @@ class DiscoverPresenter(private val repository: DiscoverRepository) : BasePresen
                 DiscoverResultViewModel(
                     id = it.id,
                     name = it.name,
-                    year = it.year?.toString() ?: "",
+                    year = it.year,
                     posterUrl = it.posterUrl,
                     overview = it.overview,
                     genres = it.genres,
