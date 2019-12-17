@@ -7,6 +7,7 @@ class DiscoverResultCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var divider: Divider!
     
     func bind(result: DiscoverResultViewModel) {
         posterView.imageUrl = result.posterUrl

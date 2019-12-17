@@ -154,7 +154,7 @@
                                             <outlet property="delegate" destination="ejl-jr-g1o" id="MUI-x0-eNn"/>
                                         </connections>
                                     </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqJ-tf-7WG" customClass="TableView" customModule="EpisodeTracker" customModuleProvider="target">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqJ-tf-7WG" customClass="TableView" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="56" width="414" height="713"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -219,15 +219,31 @@
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYt-C1-GBV" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="165.5" width="414" height="1"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1" id="8XN-1s-CoC"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                    <color key="value" name="DividerPrimary"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="ZYt-C1-GBV" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" id="Dv8-dv-J5e"/>
                                                         <constraint firstAttribute="trailing" secondItem="vCw-QC-pZJ" secondAttribute="trailing" constant="16" id="Gq9-QG-FNO"/>
                                                         <constraint firstItem="vCw-QC-pZJ" firstAttribute="top" secondItem="IwI-kR-PaA" secondAttribute="top" constant="8" id="Rg9-Jx-dwb"/>
                                                         <constraint firstItem="vCw-QC-pZJ" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" constant="16" id="WlU-Ot-Aj5"/>
                                                         <constraint firstAttribute="bottom" secondItem="vCw-QC-pZJ" secondAttribute="bottom" constant="8" id="XAp-Fk-kUX"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ZYt-C1-GBV" secondAttribute="trailing" id="bCH-9T-pKi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ZYt-C1-GBV" secondAttribute="bottom" id="egB-aP-xeA"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="divider" destination="ZYt-C1-GBV" id="P3i-0n-SJ3"/>
                                                     <outlet property="overviewLabel" destination="Kpc-7Z-fHZ" id="tcl-Dr-HTV"/>
                                                     <outlet property="posterView" destination="6di-CG-k0O" id="Ycp-xw-oPg"/>
                                                     <outlet property="subtitleLabel" destination="B8h-P2-OTM" id="Dah-5T-WAC"/>

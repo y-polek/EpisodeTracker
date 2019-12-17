@@ -63,8 +63,12 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        let count = tableView.numberOfRows(inSection: indexPath.section)
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "discover_cell", for: indexPath) as! DiscoverResultCell
-        cell.bind(result: results[indexPath.row])
+        cell.bind(result: results[row])
+        cell.divider.isHidden = row == (count - 1)
         return cell
     }
     
