@@ -57,6 +57,12 @@ class TableView: UITableView {
         activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
     
+    func scrollToTop(animated: Bool = false) {
+        if numberOfSections > 0 && numberOfRows(inSection: 0) > 0 {
+            scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: animated)
+        }
+    }
+    
     func showPromptView() {
         backgroundView = promptLabel
     }

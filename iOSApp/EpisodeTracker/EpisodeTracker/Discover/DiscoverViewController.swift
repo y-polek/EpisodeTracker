@@ -45,6 +45,7 @@ extension DiscoverViewController: DiscoverView {
     func showSearchResults(results: [DiscoverResultViewModel]) {
         self.results = results
         tableView.reloadData()
+        tableView.scrollToTop()
     }
     
     func showEmptyMessage() {
