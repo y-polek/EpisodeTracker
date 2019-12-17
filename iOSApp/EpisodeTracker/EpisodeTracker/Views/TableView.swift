@@ -40,7 +40,9 @@ class TableView: UITableView {
     private func setup() {
         promptLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
         emptyLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        
         activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        addSubview(activityIndicator)
     }
     
     func showPromptView() {
@@ -64,14 +66,10 @@ class TableView: UITableView {
     }
     
     func showProgress() {
-        backgroundView = activityIndicator
         activityIndicator.startAnimating()
     }
     
     func hideProgress() {
-        if backgroundView === activityIndicator {
-            backgroundView = nil
-        }
         activityIndicator.stopAnimating()
     }
 }
