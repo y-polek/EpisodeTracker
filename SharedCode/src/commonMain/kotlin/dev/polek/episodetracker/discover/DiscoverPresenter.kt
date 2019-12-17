@@ -25,6 +25,7 @@ class DiscoverPresenter(private val repository: DiscoverRepository) : BasePresen
                     year = it.year?.toString() ?: "",
                     posterUrl = it.posterUrl,
                     overview = it.overview,
+                    genres = it.genres,
                     isInMyShows = false
                 )
             }

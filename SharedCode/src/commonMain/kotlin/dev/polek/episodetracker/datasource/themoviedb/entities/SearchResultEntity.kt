@@ -9,4 +9,5 @@ data class SearchResultEntity(
     @SerialName("name") val name: String,
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("overview") val overview: String,
-    @SerialName("first_air_date") val firstAirDate: String)
+    @SerialName("first_air_date") val firstAirDate: String,
+    @SerialName("genre_ids") val genreIds: List<Int>)

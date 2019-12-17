@@ -6,4 +6,5 @@ data class DiscoverResultViewModel(
     val year: String,
     val posterUrl: String?,
     val overview: String,
+    val genres: List<String>,
     val isInMyShows: Boolean)

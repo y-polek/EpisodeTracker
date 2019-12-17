@@ -2,7 +2,7 @@ package dev.polek.episodetracker.datasource.themoviedb
 
 import dev.polek.episodetracker.THE_MOVIE_DB_API_ACCESS_TOKEN
 import dev.polek.episodetracker.common.network.bearer
-import dev.polek.episodetracker.datasource.themoviedb.entities.ConfigurationEntity
+import dev.polek.episodetracker.datasource.themoviedb.entities.GenresEntity
 import dev.polek.episodetracker.datasource.themoviedb.entities.SearchResultPageEntity
 import dev.polek.episodetracker.discover.model.DiscoverResult
 import io.ktor.client.HttpClient
@@ -30,6 +30,8 @@ class TmdbService {
         }
     }
 
+    private var genresMap: Map<Int, String>? = null
+
     suspend fun search(query: String, page: Int = 1): List<DiscoverResult> {
         require(page >= 1) { "Page number must be >= 1" }
 
@@ -39,8 +41,17 @@ class TmdbService {
                 name = it.name,
                 posterUrl = if (it.posterPath != null) "${BASE_IMAGE_URL}/w500${it.posterPath}" else null,
                 overview = it.overview,
-                year = it.firstAirDate.take(4).toIntOrNull())
+                year = it.firstAirDate.take(4).toIntOrNull(),
+                genres = it.genreIds.mapNotNull { id -> findGenreById(id) })
         }
+    }
+
+    private suspend fun findGenreById(id: Int): String? {
+        if (genresMap == null) {
+            genresMap = client.get<GenresEntity>("$BASE_URL/genre/tv/list").genres.map { it.id to it.name }.toMap()
+        }
+
+        return genresMap?.get(id)
     }
 
     companion object {

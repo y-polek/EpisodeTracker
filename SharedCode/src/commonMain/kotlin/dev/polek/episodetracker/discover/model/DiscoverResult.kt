@@ -5,4 +5,5 @@ data class DiscoverResult(
     val name: String,
     val posterUrl: String?,
     val overview: String,
-    val year: Int?)
+    val year: Int?,
+    val genres: List<String>)
