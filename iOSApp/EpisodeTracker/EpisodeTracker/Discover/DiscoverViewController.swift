@@ -81,5 +81,6 @@ extension DiscoverViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         presenter.onSearchQuerySubmitted(query: searchBar.text ?? "")
+        searchBar.resignFirstResponder()
     }
 }
