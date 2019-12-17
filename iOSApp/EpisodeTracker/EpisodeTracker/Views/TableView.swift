@@ -17,13 +17,21 @@ class TableView: UITableView {
         }
     }
     
-    private let promptLabel = UILabel()
-    private let emptyLabel = UILabel()
+    private let promptLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
     private let activityIndicator: UIActivityIndicatorView = {
         if #available(iOS 13.0, *) {
             return UIActivityIndicatorView(style: .large)
         } else {
-            return UIActivityIndicatorView()
+            return UIActivityIndicatorView(style: .gray)
         }
     }()
     
@@ -41,8 +49,12 @@ class TableView: UITableView {
         promptLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
         emptyLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
         
-        activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
         addSubview(activityIndicator)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
     
     func showPromptView() {
@@ -66,6 +78,7 @@ class TableView: UITableView {
     }
     
     func showProgress() {
+        activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
