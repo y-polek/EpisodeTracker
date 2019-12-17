@@ -27,6 +27,7 @@
 		D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF2123A248820077F125 /* Assets.xcassets */; };
 		D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF2323A248820077F125 /* LaunchScreen.storyboard */; };
 		D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */; };
+		D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CA23A8F89A00E45753 /* TableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +68,7 @@
 		D2BEEF2423A248820077F125 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BEEF2623A248820077F125 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsViewController.swift; sourceTree = "<group>"; };
+		D2D905CA23A8F89A00E45753 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				D29D7B0223A2A93D00B2832D /* ImageView.swift */,
 				D29D7B0723A2D47D00B2832D /* Divider.swift */,
+				D2D905CA23A8F89A00E45753 /* TableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				D29D7AFE23A2974700B2832D /* UpcomingShowCell.swift in Sources */,
 				D29D7B1623A5063A00B2832D /* DiscoverResultCell.swift in Sources */,
 				D29D7B0323A2A93D00B2832D /* ImageView.swift in Sources */,
+				D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */,
 				D29D7B0023A299DE00B2832D /* ShowCell.swift in Sources */,
 				D29D7B0623A2CD0600B2832D /* Colors.swift in Sources */,
 				D29D7B0F23A3DC6B00B2832D /* AttributedStrings.swift in Sources */,

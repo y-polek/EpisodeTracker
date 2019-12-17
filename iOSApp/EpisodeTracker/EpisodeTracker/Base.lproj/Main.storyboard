@@ -150,8 +150,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="ejl-jr-g1o" id="MUI-x0-eNn"/>
+                                        </connections>
                                     </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqJ-tf-7WG">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqJ-tf-7WG" customClass="TableView" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="56" width="414" height="713"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -232,6 +235,10 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="promptText" value="Search for TV Show"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="emptyText" value="Nothing found"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="ejl-jr-g1o" id="HHQ-hO-eD3"/>
                                             <outlet property="delegate" destination="ejl-jr-g1o" id="RoI-BZ-tyF"/>
@@ -251,6 +258,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Discover" image="ic-search" id="8ih-e6-2lk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="QqJ-tf-7WG" id="8gb-Le-lRe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Va9-rp-8ic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -484,7 +494,7 @@
             <color red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DividerPrimary">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -14,7 +14,7 @@ class DiscoverResultCell: UITableViewCell {
         overviewLabel.text = result.overview
         
         let yearText = String(result.year)
-        let subtitleText = "\(yearText) | \(result.network)"
+        let subtitleText = "\(yearText) |"
         subtitleLabel.attributedText = subtitleText.bold(font: subtitleLabel.font, location: 0, length: yearText.count)
     }
 }

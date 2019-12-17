@@ -1,9 +1,8 @@
 package dev.polek.episodetracker.discover.model
 
-data class DiscoverResultViewModel(
+data class DiscoverResult(
     val id: Int,
     val name: String,
-    val year: String,
     val posterUrl: String?,
     val overview: String,
-    val isInMyShows: Boolean)
+    val year: Int?)
