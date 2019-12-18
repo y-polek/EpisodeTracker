@@ -231,8 +231,20 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncl-Ub-ORL" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="46" y="63.5" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="XOe-du-U9n"/>
+                                                                <constraint firstAttribute="width" constant="40" id="aQC-em-yQn"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-add"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="Ncl-Ub-ORL" firstAttribute="centerY" secondItem="6di-CG-k0O" secondAttribute="centerY" id="7xb-Oy-Zyg"/>
+                                                        <constraint firstItem="Ncl-Ub-ORL" firstAttribute="centerX" secondItem="6di-CG-k0O" secondAttribute="centerX" id="A06-9i-Hvg"/>
                                                         <constraint firstItem="ZYt-C1-GBV" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" id="Dv8-dv-J5e"/>
                                                         <constraint firstAttribute="trailing" secondItem="vCw-QC-pZJ" secondAttribute="trailing" constant="16" id="Gq9-QG-FNO"/>
                                                         <constraint firstItem="vCw-QC-pZJ" firstAttribute="top" secondItem="IwI-kR-PaA" secondAttribute="top" constant="8" id="Rg9-Jx-dwb"/>
@@ -502,6 +514,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic-add" width="24" height="24"/>
         <image name="ic-eye" width="24" height="24"/>
         <image name="ic-search" width="24" height="24"/>
         <image name="ic-settings" width="24" height="24"/>
