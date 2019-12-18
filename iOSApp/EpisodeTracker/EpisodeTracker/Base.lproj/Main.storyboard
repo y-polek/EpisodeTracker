@@ -172,7 +172,7 @@
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6di-CG-k0O" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="150.5"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="150" id="tKZ-tR-k49"/>
+                                                                        <constraint firstAttribute="height" constant="150.5" id="ogE-Dy-Lnp"/>
                                                                         <constraint firstAttribute="width" constant="100" id="yMI-IJ-0Mz"/>
                                                                     </constraints>
                                                                 </imageView>
