@@ -1,4 +1,4 @@
-package dev.polek.episodetracker.discover
+package dev.polek.episodetracker.common.repositories
 
 import dev.polek.episodetracker.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.discover.model.DiscoverResult

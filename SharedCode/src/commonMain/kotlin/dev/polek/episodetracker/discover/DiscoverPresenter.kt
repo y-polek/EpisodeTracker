@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.discover
 
 import dev.polek.episodetracker.common.presentation.BasePresenter
+import dev.polek.episodetracker.common.repositories.DiscoverRepository
 import dev.polek.episodetracker.discover.model.DiscoverResultViewModel
 import kotlinx.coroutines.launch
 
