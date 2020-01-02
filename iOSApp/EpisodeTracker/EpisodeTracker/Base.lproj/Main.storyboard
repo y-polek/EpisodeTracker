@@ -154,7 +154,7 @@
                                             <outlet property="delegate" destination="ejl-jr-g1o" id="MUI-x0-eNn"/>
                                         </connections>
                                     </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqJ-tf-7WG" customClass="TableView" customModule="EpisodeTracker" customModuleProvider="target">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="166" estimatedRowHeight="166" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqJ-tf-7WG" customClass="TableView" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="56" width="414" height="713"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -167,17 +167,17 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vCw-QC-pZJ">
-                                                            <rect key="frame" x="16" y="8" width="382" height="150.5"/>
+                                                            <rect key="frame" x="16" y="8" width="382" height="150"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6di-CG-k0O" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="150.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="150.5" id="ogE-Dy-Lnp"/>
+                                                                        <constraint firstAttribute="height" constant="150" id="ogE-Dy-Lnp"/>
                                                                         <constraint firstAttribute="width" constant="100" id="yMI-IJ-0Mz"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bTb-PH-6Od">
-                                                                    <rect key="frame" x="116" y="0.0" width="266" height="150.5"/>
+                                                                    <rect key="frame" x="116" y="0.0" width="266" height="150"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKE-Bg-1KC">
                                                                             <rect key="frame" x="0.0" y="0.0" width="266" height="24"/>
@@ -204,7 +204,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </view>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="zQr-IQ-tYF">
-                                                                            <rect key="frame" x="0.0" y="51" width="266" height="99.5"/>
+                                                                            <rect key="frame" x="0.0" y="51" width="266" height="99"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpc-7Z-fHZ">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="266" height="90"/>
@@ -232,7 +232,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncl-Ub-ORL" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
-                                                            <rect key="frame" x="46" y="63.5" width="40" height="40"/>
+                                                            <rect key="frame" x="46" y="63" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="XOe-du-U9n"/>
                                                                 <constraint firstAttribute="width" constant="40" id="aQC-em-yQn"/>
@@ -249,7 +249,6 @@
                                                         <constraint firstAttribute="trailing" secondItem="vCw-QC-pZJ" secondAttribute="trailing" constant="16" id="Gq9-QG-FNO"/>
                                                         <constraint firstItem="vCw-QC-pZJ" firstAttribute="top" secondItem="IwI-kR-PaA" secondAttribute="top" constant="8" id="Rg9-Jx-dwb"/>
                                                         <constraint firstItem="vCw-QC-pZJ" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" constant="16" id="WlU-Ot-Aj5"/>
-                                                        <constraint firstAttribute="bottom" secondItem="vCw-QC-pZJ" secondAttribute="bottom" constant="8" id="XAp-Fk-kUX"/>
                                                         <constraint firstAttribute="trailing" secondItem="ZYt-C1-GBV" secondAttribute="trailing" id="bCH-9T-pKi"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZYt-C1-GBV" secondAttribute="bottom" id="egB-aP-xeA"/>
                                                     </constraints>
