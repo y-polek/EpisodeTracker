@@ -32,7 +32,7 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
         val result = results[position]
         holder.binding.name.text = result.name
         holder.binding.year.text = result.year.toString()
-        holder.binding.network.text = result.network
+        holder.binding.network.text = ""
         holder.binding.overview.text = result.overview
         Glide.with(holder.itemView)
             .load(Uri.parse(result.posterUrl))
