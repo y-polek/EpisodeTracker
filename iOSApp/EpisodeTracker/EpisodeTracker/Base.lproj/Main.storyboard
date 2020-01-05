@@ -255,6 +255,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="divider" destination="ZYt-C1-GBV" id="P3i-0n-SJ3"/>
+                                                    <outlet property="imageButton" destination="Ncl-Ub-ORL" id="eht-1x-2cE"/>
                                                     <outlet property="overviewLabel" destination="Kpc-7Z-fHZ" id="tcl-Dr-HTV"/>
                                                     <outlet property="posterView" destination="6di-CG-k0O" id="Ycp-xw-oPg"/>
                                                     <outlet property="subtitleLabel" destination="B8h-P2-OTM" id="Dah-5T-WAC"/>

@@ -13,6 +13,8 @@ class ImageButton: UIView {
         }
     }
     
+    var tapCallback: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -45,6 +47,6 @@ class ImageButton: UIView {
     }
     
     @objc private  func onTapped(gesture: UIGestureRecognizer) {
-        print("tapped")
+        tapCallback?()
     }
 }

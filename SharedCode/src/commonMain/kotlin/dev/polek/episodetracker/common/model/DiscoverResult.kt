@@ -1,4 +1,4 @@
-package dev.polek.episodetracker.discover.model
+package dev.polek.episodetracker.common.model
 
 data class DiscoverResult(
     val id: Int,

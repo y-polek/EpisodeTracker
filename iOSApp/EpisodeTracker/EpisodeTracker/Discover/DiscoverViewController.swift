@@ -7,7 +7,9 @@ class DiscoverViewController: UIViewController {
     
     @IBOutlet weak var tableView: TableView!
     
-    private let presenter = DiscoverPresenter(repository: DiscoverRepository(tmdbService: TmdbService()))
+    private let presenter = DiscoverPresenter(
+        discoverRepository: AppDelegate.instance().discoverRepository,
+        myShowsRepository: AppDelegate.instance().myShowsRepository)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,13 @@ extension DiscoverViewController: DiscoverView {
         tableView.scrollToTop()
     }
     
+    func updateSearchResult(result: DiscoverResultViewModel) {
+        if let row = self.results.firstIndex(where: { $0.tmdbId == result.tmdbId }) {
+            self.results[row] = result
+            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+        }
+    }
+    
     func showEmptyMessage() {
         tableView.showEmptyView()
     }
@@ -66,10 +75,15 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let count = tableView.numberOfRows(inSection: indexPath.section)
+        let result = results[row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "discover_cell", for: indexPath) as! DiscoverResultCell
-        cell.bind(result: results[row])
+        cell.bind(result: result)
         cell.divider.isHidden = row == (count - 1)
+        cell.imageButton.tapCallback = {
+            self.presenter.onAddButtonClicked(show: result)
+        }
+        
         return cell
     }
     

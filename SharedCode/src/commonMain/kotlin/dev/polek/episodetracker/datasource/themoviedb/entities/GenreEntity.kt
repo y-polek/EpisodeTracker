@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class GenreEntity(
+data class GenreEntity(
     @SerialName("id") val id: Int,
     @SerialName("name") val name: String
 )

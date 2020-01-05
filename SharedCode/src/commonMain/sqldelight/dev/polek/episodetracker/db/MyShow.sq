@@ -1,0 +1,17 @@
+CREATE TABLE MyShow (
+    id INTEGER,
+    imdbId TEXT,
+    tmdbId INTEGER,
+    name TEXT NOT NULL,
+    overview TEXT NOT NULL,
+    year INTEGER,
+    PRIMARY KEY (id)
+);
+
+insert:
+INSERT INTO MyShow(imdbId, tmdbId, name, overview, year)
+VALUES (?, ?, ?, ?, ?);
+
+selectAll:
+SELECT *
+FROM MyShow;

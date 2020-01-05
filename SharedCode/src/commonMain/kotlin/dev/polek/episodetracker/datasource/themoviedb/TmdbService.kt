@@ -2,10 +2,10 @@ package dev.polek.episodetracker.datasource.themoviedb
 
 import dev.polek.episodetracker.THE_MOVIE_DB_API_ACCESS_TOKEN
 import dev.polek.episodetracker.common.network.bearer
+import dev.polek.episodetracker.datasource.themoviedb.entities.*
 import dev.polek.episodetracker.datasource.themoviedb.entities.GenresEntity
-import dev.polek.episodetracker.datasource.themoviedb.entities.SearchResultEntity
-import dev.polek.episodetracker.datasource.themoviedb.entities.SearchResultPageEntity
-import dev.polek.episodetracker.discover.model.DiscoverResult
+import dev.polek.episodetracker.datasource.themoviedb.entities.ShowEntity
+import dev.polek.episodetracker.common.model.DiscoverResult
 import io.ktor.client.HttpClient
 import io.ktor.client.features.auth.Auth
 import io.ktor.client.features.json.JsonFeature
@@ -39,14 +39,22 @@ class TmdbService {
         return client.get<SearchResultPageEntity>("$BASE_URL/search/tv?query=$query&page=$page").results
             .filter(SearchResultEntity::isValid)
             .map {
-            DiscoverResult(
-                id = it.id ?: 0,
-                name = it.name.orEmpty(),
-                posterUrl = if (it.posterPath != null) "${BASE_IMAGE_URL}/w500${it.posterPath}" else null,
-                overview = it.overview.orEmpty(),
-                year = it.firstAirDate?.take(4)?.toIntOrNull(),
-                genres = it.genreIds.orEmpty().mapNotNull { id -> findGenreById(id) })
+                DiscoverResult(
+                    id = it.id ?: 0,
+                    name = it.name.orEmpty(),
+                    posterUrl = if (it.posterPath != null) "${BASE_IMAGE_URL}/w500${it.posterPath}" else null,
+                    overview = it.overview.orEmpty(),
+                    year = it.firstAirDate?.take(4)?.toIntOrNull(),
+                    genres = it.genreIds.orEmpty().mapNotNull { id -> findGenreById(id) })
         }
+    }
+
+    suspend fun showDetails(tmdbId: Int): ShowEntity {
+        return client.get(urlString = "$BASE_URL/tv/$tmdbId")
+    }
+
+    suspend fun externalIds(tmdbId: Int): ExternalIdsEntity {
+        return client.get("$BASE_URL/tv/$tmdbId/external_ids")
     }
 
     private suspend fun findGenreById(id: Int): String? {

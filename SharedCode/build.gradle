@@ -1,5 +1,6 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlinx-serialization'
+apply plugin: 'com.squareup.sqldelight'
 apply plugin: 'com.android.library'
 
 android {
@@ -75,6 +76,9 @@ kotlin {
 
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
+
+            // SQLDelight
+            implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
         }
 
         iosMain.dependencies {
@@ -90,7 +94,16 @@ kotlin {
 
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
+
+            // SQLDelight
+            implementation "com.squareup.sqldelight:ios-driver:$sqldelight_version"
         }
+    }
+}
+
+sqldelight {
+    Database {
+        packageName = "dev.polek.episodetracker.db"
     }
 }
 

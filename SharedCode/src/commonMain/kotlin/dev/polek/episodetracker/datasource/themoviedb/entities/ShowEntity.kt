@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
 @Serializable
-internal data class ShowEntity(
-    @SerialName("id") val id: Int? = null,
+data class ShowEntity(
+    @SerialName("id") val tmdbId: Int? = null,
     @SerialName("name") val name: String? = null,
     @SerialName("first_air_date") val firstAirDate: String? = null,
     @SerialName("genres") val genres: List<GenreEntity>? = null,
@@ -16,5 +16,6 @@ internal data class ShowEntity(
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("backdrop_path") val backdropPath: String? = null)
 {
-    @Transient val isValid = allNotNull(id, name)
+    @Transient val year: Int? = firstAirDate?.take(4)?.toIntOrNull()
+    @Transient val isValid = allNotNull(tmdbId, name)
 }

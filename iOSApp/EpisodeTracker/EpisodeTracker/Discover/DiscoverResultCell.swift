@@ -3,10 +3,14 @@ import SharedCode
 
 class DiscoverResultCell: UITableViewCell {
     
+    private static var addImage: UIImage = UIImage(named: "ic-add")!
+    private static var checkImage: UIImage = UIImage(named: "ic-check")!
+    
     @IBOutlet weak var posterView: ImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var imageButton: ImageButton!
     @IBOutlet weak var divider: Divider!
     
     func bind(result: DiscoverResultViewModel) {
@@ -27,5 +31,7 @@ class DiscoverResultCell: UITableViewCell {
         
         subtitleLabel.attributedText = subtitleText
         subtitleLabel.isHidden = result.year == nil && result.genres.isEmpty
+        
+        imageButton.image = result.isInMyShows ? DiscoverResultCell.checkImage : DiscoverResultCell.addImage
     }
 }

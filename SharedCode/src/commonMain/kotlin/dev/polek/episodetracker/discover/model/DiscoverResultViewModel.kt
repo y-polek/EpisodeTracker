@@ -1,7 +1,7 @@
 package dev.polek.episodetracker.discover.model
 
 data class DiscoverResultViewModel(
-    val id: Int,
+    val tmdbId: Int,
     val name: String,
     val year: Int?,
     val posterUrl: String?,

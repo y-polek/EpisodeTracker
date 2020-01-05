@@ -8,6 +8,7 @@ interface DiscoverView {
     fun showProgress()
     fun hideProgress()
     fun showSearchResults(results: List<DiscoverResultViewModel>)
+    fun updateSearchResult(result: DiscoverResultViewModel)
     fun showEmptyMessage()
     fun hideEmptyMessage()
 }
