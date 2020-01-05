@@ -24,13 +24,13 @@ class DiscoverPresenter(
         launch {
             val results = discoverRepository.search(query).map {
                 DiscoverResultViewModel(
-                    tmdbId = it.id,
+                    tmdbId = it.tmdbId,
                     name = it.name,
                     year = it.year,
                     posterUrl = it.posterUrl,
                     overview = it.overview,
                     genres = it.genres,
-                    isInMyShows = false
+                    isInMyShows = myShowsRepository.isInMyShows(it.tmdbId)
                 )
             }
 
@@ -47,7 +47,9 @@ class DiscoverPresenter(
 
         launch {
             myShowsRepository.addShow(show.tmdbId)
+            show.isInMyShows = true
 
+            view?.updateSearchResult(show)
             view?.hideProgress()
         }
     }

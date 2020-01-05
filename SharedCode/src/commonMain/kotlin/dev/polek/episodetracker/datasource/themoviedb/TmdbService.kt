@@ -40,7 +40,7 @@ class TmdbService {
             .filter(SearchResultEntity::isValid)
             .map {
                 DiscoverResult(
-                    id = it.id ?: 0,
+                    tmdbId = it.id ?: 0,
                     name = it.name.orEmpty(),
                     posterUrl = if (it.posterPath != null) "${BASE_IMAGE_URL}/w500${it.posterPath}" else null,
                     overview = it.overview.orEmpty(),
