@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="piQ-XT-mZj" id="6OE-MT-lLt"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="p3L-m1-jrs"/>
                 <outlet property="imageView" destination="jhE-cQ-Ih7" id="WgU-uF-yub"/>
             </connections>
@@ -19,6 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="307" height="249"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="piQ-XT-mZj">
+                    <rect key="frame" x="143.5" y="136.5" width="20" height="20"/>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jhE-cQ-Ih7">
                     <rect key="frame" x="8" y="52" width="291" height="189"/>
                 </imageView>
@@ -28,6 +33,8 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jhE-cQ-Ih7" secondAttribute="trailing" constant="8" id="9mW-kw-0qf"/>
                 <constraint firstItem="jhE-cQ-Ih7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="Xcx-cM-m51"/>
                 <constraint firstItem="jhE-cQ-Ih7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="XsN-Mi-BJz"/>
+                <constraint firstItem="piQ-XT-mZj" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="a4l-O8-52B"/>
+                <constraint firstItem="piQ-XT-mZj" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="gXa-fs-0W3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="jhE-cQ-Ih7" secondAttribute="bottom" constant="8" id="jOD-sG-cTt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

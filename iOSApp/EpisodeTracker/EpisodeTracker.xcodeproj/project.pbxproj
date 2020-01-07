@@ -215,8 +215,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2BEEF2923A248820077F125 /* Build configuration list for PBXNativeTarget "EpisodeTracker" */;
 			buildPhases = (
-				D29D7AF223A24DD700B2832D /* ShellScript */,
 				8F7CD8C2574BB838E65C2BE8 /* [CP] Check Pods Manifest.lock */,
+				D29D7AF223A24DD700B2832D /* ShellScript */,
 				D2BEEF1123A248820077F125 /* Sources */,
 				D2BEEF1223A248820077F125 /* Frameworks */,
 				D2BEEF1323A248820077F125 /* Resources */,

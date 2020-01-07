@@ -12,11 +12,14 @@ class MyShowsRepository(
         if (isInMyShows(tmdbId)) return
 
         val show = tmdbService.showDetails(tmdbId)
-        val imdbId = tmdbService.externalIds(tmdbId).imdbId ?: TODO("Support TV Shows without IMDB ID")
+        val externalIds = tmdbService.externalIds(tmdbId)
 
         db.myShowQueries.insert(
-            imdbId = imdbId,
+            imdbId = externalIds.imdbId,
             tmdbId = tmdbId.toLong(),
+            facebookId = externalIds.facebookId,
+            instagramId = externalIds.instagramId,
+            twitterId = externalIds.twitterId,
             name = show.name.orEmpty(),
             overview = show.overview.orEmpty(),
             year = show.year?.toLong())
@@ -26,7 +29,7 @@ class MyShowsRepository(
 
 
 
-        val myShows = db.myShowQueries.selectAll { id, _, _, name, _, year -> "$id. $name ($year)" }.executeAsList()
+        val myShows = db.myShowQueries.selectAll { id, _, _, _, _, _, name, _, year -> "$id. $name ($year)" }.executeAsList()
         log("My Shows: $myShows")
     }
 

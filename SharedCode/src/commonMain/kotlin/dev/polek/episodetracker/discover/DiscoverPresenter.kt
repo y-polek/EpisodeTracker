@@ -43,12 +43,13 @@ class DiscoverPresenter(
     }
 
     fun onAddButtonClicked(show: DiscoverResultViewModel) {
-        view?.showProgress()
+        show.isAddInProgress = true
+        view?.updateSearchResult(show)
 
         launch {
             myShowsRepository.addShow(show.tmdbId)
             show.isInMyShows = true
-
+            show.isAddInProgress = false
             view?.updateSearchResult(show)
             view?.hideProgress()
         }

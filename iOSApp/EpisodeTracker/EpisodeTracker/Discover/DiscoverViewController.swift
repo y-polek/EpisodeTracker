@@ -53,7 +53,7 @@ extension DiscoverViewController: DiscoverView {
     func updateSearchResult(result: DiscoverResultViewModel) {
         if let row = self.results.firstIndex(where: { $0.tmdbId == result.tmdbId }) {
             self.results[row] = result
-            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
         }
     }
     
@@ -80,6 +80,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "discover_cell", for: indexPath) as! DiscoverResultCell
         cell.bind(result: result)
         cell.divider.isHidden = row == (count - 1)
+        cell.imageButton.isActivityIndicatorHidden = !result.isAddInProgress
         cell.imageButton.tapCallback = {
             self.presenter.onAddButtonClicked(show: result)
         }
