@@ -2,6 +2,7 @@ CREATE TABLE MyShow (
     id INTEGER,
     imdbId TEXT,
     tmdbId INTEGER,
+    tvdbId INTEGER,
     facebookId TEXT,
     instagramId TEXT,
     twitterId TEXT,
@@ -12,8 +13,11 @@ CREATE TABLE MyShow (
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, facebookId, instagramId, twitterId, name, overview, year)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteByTmdbId:
+DELETE FROM MyShow WHERE tmdbId = ?;
 
 selectAll:
 SELECT *

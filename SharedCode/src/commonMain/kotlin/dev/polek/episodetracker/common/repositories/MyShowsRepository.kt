@@ -17,6 +17,7 @@ class MyShowsRepository(
         db.myShowQueries.insert(
             imdbId = externalIds.imdbId,
             tmdbId = tmdbId.toLong(),
+            tvdbId = externalIds.tvdbId?.toLong(),
             facebookId = externalIds.facebookId,
             instagramId = externalIds.instagramId,
             twitterId = externalIds.twitterId,
@@ -29,8 +30,12 @@ class MyShowsRepository(
 
 
 
-        val myShows = db.myShowQueries.selectAll { id, _, _, _, _, _, name, _, year -> "$id. $name ($year)" }.executeAsList()
+        val myShows = db.myShowQueries.selectAll { id, _, _, _, _, _, _, name, _, year -> "$id. $name ($year)" }.executeAsList()
         log("My Shows: $myShows")
+    }
+
+    suspend fun removeShow(tmdbId: Int) {
+        db.myShowQueries.deleteByTmdbId(tmdbId.toLong())
     }
 
     suspend fun isInMyShows(tmdbId: Int): Boolean {

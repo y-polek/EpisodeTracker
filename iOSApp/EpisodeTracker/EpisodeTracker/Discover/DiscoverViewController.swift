@@ -82,7 +82,11 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         cell.divider.isHidden = row == (count - 1)
         cell.imageButton.isActivityIndicatorHidden = !result.isAddInProgress
         cell.imageButton.tapCallback = {
-            self.presenter.onAddButtonClicked(show: result)
+            if result.isInMyShows {
+                self.presenter.onRemoveButtonClicked(show: result)
+            } else {
+                self.presenter.onAddButtonClicked(show: result)
+            }
         }
         
         return cell

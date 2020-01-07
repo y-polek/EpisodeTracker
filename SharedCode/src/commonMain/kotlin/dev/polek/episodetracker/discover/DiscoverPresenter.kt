@@ -54,4 +54,14 @@ class DiscoverPresenter(
             view?.hideProgress()
         }
     }
+
+    fun onRemoveButtonClicked(show: DiscoverResultViewModel) {
+        show.isInMyShows = false
+        show.isAddInProgress = false
+        view?.updateSearchResult(show)
+
+        launch {
+            myShowsRepository.removeShow(show.tmdbId)
+        }
+    }
 }
