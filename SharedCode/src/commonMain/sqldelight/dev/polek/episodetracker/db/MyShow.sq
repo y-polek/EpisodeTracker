@@ -1,20 +1,23 @@
 CREATE TABLE MyShow (
     id INTEGER,
     imdbId TEXT,
-    tmdbId INTEGER,
-    tvdbId INTEGER,
+    tmdbId INTEGER AS Int,
+    tvdbId INTEGER AS Int,
     facebookId TEXT,
     instagramId TEXT,
     twitterId TEXT,
     name TEXT NOT NULL,
     overview TEXT NOT NULL,
-    year INTEGER,
+    year INTEGER as Int,
+    isEnded INTEGER AS Boolean NOT NULL,
+    isUpcoming INTEGER AS Boolean NOT NULL,
+    nextEpisodeId INTEGER,
     PRIMARY KEY (id)
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, isEnded, isUpcoming, nextEpisodeId)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;

@@ -42,7 +42,7 @@ class TmdbService {
                 DiscoverResult(
                     tmdbId = it.id ?: 0,
                     name = it.name.orEmpty(),
-                    posterUrl = if (it.posterPath != null) "${BASE_IMAGE_URL}/w500${it.posterPath}" else null,
+                    posterUrl = if (it.posterPath != null) posterImageUrl(it.posterPath) else null,
                     overview = it.overview.orEmpty(),
                     year = it.firstAirDate?.take(4)?.toIntOrNull(),
                     genres = it.genreIds.orEmpty().mapNotNull { id -> findGenreById(id) })
@@ -68,5 +68,13 @@ class TmdbService {
     companion object {
         private const val BASE_URL = "https://api.themoviedb.org/3"
         private const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p"
+
+        fun posterImageUrl(path: String): String {
+            return "$BASE_IMAGE_URL/w500$path"
+        }
+
+        fun stillImageUrl(path: String): String {
+            return "$BASE_IMAGE_URL/original$path"
+        }
     }
 }

@@ -1,0 +1,16 @@
+CREATE TABLE NextEpisode (
+    id INTEGER,
+    tmdbId INTEGER AS Int,
+    name TEXT NOT NULL,
+    episodeNumber INTEGER AS Int NOT NULL,
+    seasonNumber INTEGER AS Int NOT NULL,
+    air_date TEXT NOT NULL,
+    imageUrl TEXT
+);
+
+insert:
+INSERT INTO NextEpisode(tmdbId, name, episodeNumber, seasonNumber, air_date, imageUrl)
+VALUES (?, ?, ?, ?, ?, ?);
+
+lastInsertRowId:
+SELECT last_insert_rowid();
