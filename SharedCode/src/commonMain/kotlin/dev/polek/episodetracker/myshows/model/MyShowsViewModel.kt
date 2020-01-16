@@ -79,4 +79,14 @@ class MyShowsViewModel(
         }
         return items
     }
+
+    companion object {
+        val EMPTY = MyShowsViewModel(
+            upcomingShows = emptyList(),
+            toBeAnnouncedShows = emptyList(),
+            endedShows = emptyList(),
+            isUpcomingExpanded = true,
+            isToBeAnnouncedExpanded = true,
+            isEndedExpanded = true)
+    }
 }

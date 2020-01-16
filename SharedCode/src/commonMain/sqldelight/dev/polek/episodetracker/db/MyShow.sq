@@ -10,23 +10,38 @@ CREATE TABLE MyShow (
     overview TEXT NOT NULL,
     year INTEGER as Int,
     isEnded INTEGER AS Boolean NOT NULL,
-    isUpcoming INTEGER AS Boolean NOT NULL,
     nextEpisodeId INTEGER,
     PRIMARY KEY (id)
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, isEnded, isUpcoming, nextEpisodeId)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, isEnded, nextEpisodeId)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;
 
 selectAll:
 SELECT *
-FROM MyShow;
+FROM MyShow
+LEFT JOIN NextEpisode ON NextEpisode.id = MyShow.nextEpisodeId;
 
 isInMyShows:
 SELECT count(*) > 0
 FROM MyShow
 WHERE tmdbId = ?;
+
+upcomingShows:
+SELECT MyShow.id, MyShow.name, MyShow.overview, NextEpisode.name, episodeNumber, seasonNumber, air_date, NextEpisode.imageUrl
+FROM MyShow
+INNER JOIN NextEpisode ON NextEpisode.id = MyShow.nextEpisodeId;
+
+toBeAnnouncedShows:
+SELECT id, name
+FROM MyShow
+WHERE isEnded = 0 AND nextEpisodeId IS NULL;
+
+endedShows:
+SELECT id, name
+FROM MyShow
+WHERE isEnded = 1;

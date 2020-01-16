@@ -3,6 +3,7 @@ package dev.polek.episodetracker.common.repositories
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.db.Database
+import dev.polek.episodetracker.myshows.model.MyShowsListItem
 
 class MyShowsRepository(
     private val db: Database,
@@ -43,19 +44,8 @@ class MyShowsRepository(
                 overview = show.overview.orEmpty(),
                 year = show.year,
                 isEnded = show.isEnded,
-                isUpcoming = show.isUpcoming,
                 nextEpisodeId = nextEpisodeId)
         }
-
-
-
-
-
-
-        val myShows = db.myShowQueries.selectAll { id, imdbId, _, tvdbId, facebookId, instagramId, twitterId, name, overview, year, isEnded, isUpcoming, nextEpisodeId ->
-            "$id. $name ($year), Ended: $isEnded, Upcoming: $isUpcoming, Next episode: $nextEpisodeId"
-        }.executeAsList()
-        log("My Shows: $myShows")
     }
 
     suspend fun removeShow(tmdbId: Int) {
@@ -64,5 +54,46 @@ class MyShowsRepository(
 
     suspend fun isInMyShows(tmdbId: Int): Boolean {
         return db.myShowQueries.isInMyShows(tmdbId).executeAsOne()
+    }
+
+    fun printAllShows() {
+        val myShows = db.myShowQueries.selectAll { id, imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, isEnded, nextEpisodeId, episodeId, _, episodeName, episodeNumber, seasonNumber, air_date, imageUrl ->
+            "$id. $name($year), Ended: $isEnded, NextEpisodeId: $nextEpisodeId, episodeId: $episodeId"
+        }.executeAsList()
+
+        log("My Shows: ${myShows.joinToString("\n")}")
+    }
+
+    fun upcomingShows(): List<MyShowsListItem.UpcomingShowViewModel> {
+        return db.myShowQueries.upcomingShows { id, name, overview, episodeName, episodeNumber, seasonNumber, air_date, imageUrl ->
+            val show = MyShowsListItem.UpcomingShowViewModel(
+                name = name,
+                backdropUrl = imageUrl,
+                episodeName = episodeName,
+                episodeNumber = "S${seasonNumber}E$episodeNumber",
+                timeLeft = "?")
+            log("Upcoming: $show")
+            show
+        }.executeAsList()
+    }
+
+    fun toBeAnnouncedShows(): List<MyShowsListItem.ShowViewModel> {
+        return db.myShowQueries.toBeAnnouncedShows { id, name ->
+            val show = MyShowsListItem.ShowViewModel(
+                name = name,
+                backdropUrl = null)
+            log("ToBeAnnounced: $show")
+            show
+        }.executeAsList()
+    }
+
+    fun endedShows(): List<MyShowsListItem.ShowViewModel> {
+        return db.myShowQueries.endedShows { id, name ->
+            val show = MyShowsListItem.ShowViewModel(
+                name = name,
+                backdropUrl = null)
+            log("Ended: $show")
+            show
+        }.executeAsList()
     }
 }

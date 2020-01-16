@@ -5,7 +5,8 @@ CREATE TABLE NextEpisode (
     episodeNumber INTEGER AS Int NOT NULL,
     seasonNumber INTEGER AS Int NOT NULL,
     air_date TEXT NOT NULL,
-    imageUrl TEXT
+    imageUrl TEXT,
+    PRIMARY KEY (id)
 );
 
 insert:

@@ -21,7 +21,6 @@ data class ShowEntity(
     @Transient val year: Int? = firstAirDate?.take(4)?.toIntOrNull()
     @Transient val isValid = allNotNull(tmdbId, name)
     @Transient val isEnded = !inProduction
-    @Transient val isUpcoming = nextEpisodeToAir != null
 
     @Serializable
     data class EpisodeEntity(
