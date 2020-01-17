@@ -9,14 +9,15 @@ CREATE TABLE MyShow (
     name TEXT NOT NULL,
     overview TEXT NOT NULL,
     year INTEGER as Int,
+    imageUrl TEXT,
     isEnded INTEGER AS Boolean NOT NULL,
     nextEpisodeId INTEGER,
     PRIMARY KEY (id)
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, isEnded, nextEpisodeId)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeId)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;
@@ -37,11 +38,11 @@ FROM MyShow
 INNER JOIN NextEpisode ON NextEpisode.id = MyShow.nextEpisodeId;
 
 toBeAnnouncedShows:
-SELECT id, name
+SELECT id, name, imageUrl
 FROM MyShow
 WHERE isEnded = 0 AND nextEpisodeId IS NULL;
 
 endedShows:
-SELECT id, name
+SELECT id, name, imageUrl
 FROM MyShow
 WHERE isEnded = 1;

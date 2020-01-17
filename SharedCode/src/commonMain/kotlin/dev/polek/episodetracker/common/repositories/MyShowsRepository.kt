@@ -15,7 +15,6 @@ class MyShowsRepository(
         val show = tmdbService.showDetails(tmdbId)
         val externalIds = tmdbService.externalIds(tmdbId)
 
-
         db.transaction {
             val nextEpisode = show.nextEpisodeToAir
             val nextEpisodeId = when {
@@ -43,22 +42,23 @@ class MyShowsRepository(
                 name = show.name.orEmpty(),
                 overview = show.overview.orEmpty(),
                 year = show.year,
+                imageUrl = if (show.posterPath != null) TmdbService.posterImageUrl(show.posterPath) else null,
                 isEnded = show.isEnded,
                 nextEpisodeId = nextEpisodeId)
         }
     }
 
-    suspend fun removeShow(tmdbId: Int) {
+    fun removeShow(tmdbId: Int) {
         db.myShowQueries.deleteByTmdbId(tmdbId)
     }
 
-    suspend fun isInMyShows(tmdbId: Int): Boolean {
+    fun isInMyShows(tmdbId: Int): Boolean {
         return db.myShowQueries.isInMyShows(tmdbId).executeAsOne()
     }
 
     fun printAllShows() {
-        val myShows = db.myShowQueries.selectAll { id, imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, isEnded, nextEpisodeId, episodeId, _, episodeName, episodeNumber, seasonNumber, air_date, imageUrl ->
-            "$id. $name($year), Ended: $isEnded, NextEpisodeId: $nextEpisodeId, episodeId: $episodeId"
+        val myShows = db.myShowQueries.selectAll { id, imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeId, episodeId, _, episodeName, episodeNumber, seasonNumber, air_date, episodeImageUrl ->
+            "$id. $name($year), Ended: $isEnded, NextEpisodeId: $nextEpisodeId, episodeId: $episodeId, poster: $imageUrl, episodeImage: $episodeImageUrl"
         }.executeAsList()
 
         log("My Shows: ${myShows.joinToString("\n")}")
@@ -72,27 +72,24 @@ class MyShowsRepository(
                 episodeName = episodeName,
                 episodeNumber = "S${seasonNumber}E$episodeNumber",
                 timeLeft = "?")
-            log("Upcoming: $show")
             show
         }.executeAsList()
     }
 
     fun toBeAnnouncedShows(): List<MyShowsListItem.ShowViewModel> {
-        return db.myShowQueries.toBeAnnouncedShows { id, name ->
+        return db.myShowQueries.toBeAnnouncedShows { id, name, imageUrl ->
             val show = MyShowsListItem.ShowViewModel(
                 name = name,
-                backdropUrl = null)
-            log("ToBeAnnounced: $show")
+                backdropUrl = imageUrl)
             show
         }.executeAsList()
     }
 
     fun endedShows(): List<MyShowsListItem.ShowViewModel> {
-        return db.myShowQueries.endedShows { id, name ->
+        return db.myShowQueries.endedShows { id, name, imageUrl ->
             val show = MyShowsListItem.ShowViewModel(
                 name = name,
-                backdropUrl = null)
-            log("Ended: $show")
+                backdropUrl = imageUrl)
             show
         }.executeAsList()
     }
