@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.datasource.themoviedb.entities
 
 import dev.polek.episodetracker.utils.allNotNull
+import dev.polek.episodetracker.utils.parseDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -32,5 +33,6 @@ data class ShowEntity(
         @SerialName("still_path") val stillPath: String? = null)
     {
         @Transient val isValid = allNotNull(tmdbId, episodeNumber, seasonNumber, airDate)
+        @Transient val airDateMillis: Long? = if (airDate != null) parseDate(airDate)?.timestamp else null
     }
 }

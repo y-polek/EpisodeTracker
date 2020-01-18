@@ -4,13 +4,13 @@ CREATE TABLE NextEpisode (
     name TEXT NOT NULL,
     episodeNumber INTEGER AS Int NOT NULL,
     seasonNumber INTEGER AS Int NOT NULL,
-    air_date TEXT NOT NULL,
+    airDateMillis INTEGER,
     imageUrl TEXT,
     PRIMARY KEY (id)
 );
 
 insert:
-INSERT INTO NextEpisode(tmdbId, name, episodeNumber, seasonNumber, air_date, imageUrl)
+INSERT INTO NextEpisode(tmdbId, name, episodeNumber, seasonNumber, airDateMillis, imageUrl)
 VALUES (?, ?, ?, ?, ?, ?);
 
 lastInsertRowId:

@@ -4,6 +4,10 @@ import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.db.Database
 import dev.polek.episodetracker.myshows.model.MyShowsListItem
+import dev.polek.episodetracker.utils.millisToDate
+import dev.polek.episodetracker.utils.millisToDays
+import io.ktor.util.date.GMTDate
+import kotlin.time.milliseconds
 
 class MyShowsRepository(
     private val db: Database,
@@ -24,7 +28,7 @@ class MyShowsRepository(
                         name = nextEpisode.name.orEmpty(),
                         episodeNumber = nextEpisode.episodeNumber ?: 0,
                         seasonNumber = nextEpisode.seasonNumber ?: 0,
-                        air_date = nextEpisode.airDate.orEmpty(),
+                        airDateMillis = nextEpisode.airDateMillis,
                         imageUrl = if (nextEpisode.stillPath != null) TmdbService.stillImageUrl(nextEpisode.stillPath) else null)
 
                     db.nextEpisodeQueries.lastInsertRowId().executeAsOne()
@@ -57,21 +61,32 @@ class MyShowsRepository(
     }
 
     fun printAllShows() {
-        val myShows = db.myShowQueries.selectAll { id, imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeId, episodeId, _, episodeName, episodeNumber, seasonNumber, air_date, episodeImageUrl ->
-            "$id. $name($year), Ended: $isEnded, NextEpisodeId: $nextEpisodeId, episodeId: $episodeId, poster: $imageUrl, episodeImage: $episodeImageUrl"
+        val myShows = db.myShowQueries.selectAll { id, imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeId, episodeId, _, episodeName, episodeNumber, seasonNumber, airDateMillis, episodeImageUrl ->
+            "$id. $name($year), Ended: $isEnded, NextEpisodeId: $nextEpisodeId, episodeId: $episodeId, poster: $imageUrl, episodeImage: $episodeImageUrl, airDate: ${airDateMillis?.millisToDate()}"
         }.executeAsList()
 
         log("My Shows: ${myShows.joinToString("\n")}")
     }
 
     fun upcomingShows(): List<MyShowsListItem.UpcomingShowViewModel> {
-        return db.myShowQueries.upcomingShows { id, name, overview, episodeName, episodeNumber, seasonNumber, air_date, imageUrl ->
+        return db.myShowQueries.upcomingShows { id, name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
+            log("$name. airDate: $airDateMillis")
+            val daysLeft: String = if (airDateMillis != null) {
+                val now = GMTDate().timestamp
+                val millisLeft = airDateMillis - now
+                log("Millis left: $millisLeft")
+                val days = millisToDays(millisLeft)
+                "$days days"
+            } else {
+                "N/A"
+            }
+
             val show = MyShowsListItem.UpcomingShowViewModel(
                 name = name,
                 backdropUrl = imageUrl,
                 episodeName = episodeName,
                 episodeNumber = "S${seasonNumber}E$episodeNumber",
-                timeLeft = "?")
+                timeLeft = daysLeft)
             show
         }.executeAsList()
     }

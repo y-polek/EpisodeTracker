@@ -33,7 +33,7 @@ FROM MyShow
 WHERE tmdbId = ?;
 
 upcomingShows:
-SELECT MyShow.id, MyShow.name, MyShow.overview, NextEpisode.name, episodeNumber, seasonNumber, air_date, NextEpisode.imageUrl
+SELECT MyShow.id, MyShow.name, NextEpisode.name, episodeNumber, seasonNumber, NextEpisode.airDateMillis, NextEpisode.imageUrl
 FROM MyShow
 INNER JOIN NextEpisode ON NextEpisode.id = MyShow.nextEpisodeId;
 
