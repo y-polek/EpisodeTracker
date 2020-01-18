@@ -20,8 +20,8 @@ class HeaderView: UIView {
     
     var tapCallback: (() -> Void)?
     
-    private let expandedImage = UIImage(named: "ic-chevron-down")
-    private let collapsedImage = UIImage(named: "ic-chevron-up")
+    private let expandedImage = UIImage(named: "ic-chevron-up")
+    private let collapsedImage = UIImage(named: "ic-chevron-down")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -31,16 +31,19 @@ extension MyShowsViewController: MyShowsView {
 extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        let number = (model.upcomingShows.isEmpty ? 0 : 1)
+            + (model.toBeAnnouncedShows.isEmpty ? 0 : 1)
+            + (model.endedShows.isEmpty ? 0 : 1)
+        return number
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case upcomingSectionIndex():
             return model.isUpcomingExpanded ? model.upcomingShows.count : 0
-        case 1:
+        case toBeAnnouncedSectionIndex():
             return model.isToBeAnnouncedExpanded ? model.toBeAnnouncedShows.count : 0
-        case 2:
+        case endedSectionIndex():
             return model.isEndedExpanded ? model.endedShows.count : 0
         default:
             return 0
@@ -51,26 +54,26 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
         let header = HeaderView()
         
         switch section {
-        case 0:
+        case upcomingSectionIndex():
             header.title = "Upcoming"
             header.isExpanded = model.isUpcomingExpanded
             header.tapCallback = {
                 self.model.toggleUpcomingExpanded()
-                tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .automatic)
+                tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
             }
-        case 1:
+        case toBeAnnouncedSectionIndex():
             header.title = "To Be Announced"
             header.isExpanded = model.isToBeAnnouncedExpanded
             header.tapCallback = {
                 self.model.toggleToBeAnnouncedExpanded()
-                tableView.reloadSections(IndexSet(arrayLiteral: 1), with: .automatic)
+                tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
             }
-        case 2:
+        case endedSectionIndex():
             header.title = "Ended"
             header.isExpanded = model.isEndedExpanded
             header.tapCallback = {
                 self.model.toggleEndedExpanded()
-                tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .automatic)
+                tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
             }
         default:
             break
@@ -81,15 +84,27 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
+        case upcomingSectionIndex():
             return upcomingShowCell(tableView, indexPath)
-        case 1:
+        case toBeAnnouncedSectionIndex():
             return toBeAnnouncedShowCell(tableView, indexPath)
-        case 2:
+        case endedSectionIndex():
             return endedShowCell(tableView, indexPath)
         default:
             fatalError("Unknown section #\(indexPath.section)")
         }
+    }
+    
+    private func upcomingSectionIndex() -> Int {
+        return model.upcomingShows.isEmpty ? -1 : 0
+    }
+    
+    private func toBeAnnouncedSectionIndex() -> Int {
+        return model.toBeAnnouncedShows.isEmpty ? -1 : (1 - (model.upcomingShows.isEmpty ? 1 : 0))
+    }
+    
+    private func endedSectionIndex() -> Int {
+        return model.endedShows.isEmpty ? -1 : (2 - (model.upcomingShows.isEmpty ? 1 : 0) - (model.toBeAnnouncedShows.isEmpty ? 1 : 0))
     }
     
     private func upcomingShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UpcomingShowCell {
