@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kb9-Rm-90n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kb9-Rm-90n">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="103" width="414" height="666"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="to_watch_show_cell" id="TBu-CC-EK4" customClass="UpcomingShowCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="to_watch_show_cell" id="TBu-CC-EK4" customClass="ToWatchCell" customModule="EpisodeTracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="158"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TBu-CC-EK4" id="Le4-YI-O14">
@@ -114,8 +114,18 @@
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="bottom" secondItem="Mht-Zg-3oy" secondAttribute="bottom" constant="-16" id="t6q-ZV-301"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="backgroundImage" destination="Mht-Zg-3oy" id="ZqR-SY-Jzu"/>
+                                                    <outlet property="episodeCountLabel" destination="ufU-P4-3g7" id="J7i-Mb-gUA"/>
+                                                    <outlet property="subtitleLabel" destination="87a-1A-UIS" id="zNN-2E-vGn"/>
+                                                    <outlet property="titleLabel" destination="rOk-WB-J15" id="jnX-y1-Phi"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="tua-Su-vU1" id="Ggu-kG-rY4"/>
+                                            <outlet property="delegate" destination="tua-Su-vU1" id="u5j-2W-Pwv"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                             </stackView>
@@ -130,6 +140,9 @@
                         <viewLayoutGuide key="safeArea" id="rkd-vD-fR5"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="To Watch" image="ic-eye" id="tRe-tF-hsg"/>
+                    <connections>
+                        <outlet property="tableView" destination="CFA-rV-z88" id="b7G-Bj-e6Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0n-p6-uCR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
