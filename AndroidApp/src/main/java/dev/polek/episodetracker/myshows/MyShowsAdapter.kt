@@ -10,10 +10,10 @@ import dev.polek.episodetracker.databinding.GroupHeaderLayoutBinding
 import dev.polek.episodetracker.databinding.MyShowLayoutBinding
 import dev.polek.episodetracker.databinding.UpcomingShowLayoutBinding
 import dev.polek.episodetracker.myshows.MyShowsAdapter.ViewHolder.*
-import dev.polek.episodetracker.myshows.model.MyShowsListItem
-import dev.polek.episodetracker.myshows.model.MyShowsListItem.*
-import dev.polek.episodetracker.myshows.model.MyShowsListItem.GroupViewModel.*
-import dev.polek.episodetracker.myshows.model.MyShowsViewModel
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.*
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.GroupViewModel.*
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 

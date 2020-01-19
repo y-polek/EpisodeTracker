@@ -1,13 +1,12 @@
 package dev.polek.episodetracker.common.repositories
 
 import dev.polek.episodetracker.common.logging.log
-import dev.polek.episodetracker.datasource.themoviedb.TmdbService
+import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.db.Database
-import dev.polek.episodetracker.myshows.model.MyShowsListItem
-import dev.polek.episodetracker.utils.millisToDate
-import dev.polek.episodetracker.utils.millisToDays
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
+import dev.polek.episodetracker.common.utils.millisToDate
+import dev.polek.episodetracker.common.utils.millisToDays
 import io.ktor.util.date.GMTDate
-import kotlin.time.milliseconds
 
 class MyShowsRepository(
     private val db: Database,
@@ -75,7 +74,8 @@ class MyShowsRepository(
                 val now = GMTDate().timestamp
                 val millisLeft = airDateMillis - now
                 log("Millis left: $millisLeft")
-                val days = millisToDays(millisLeft)
+                val days =
+                    millisToDays(millisLeft)
                 "$days days"
             } else {
                 "N/A"
