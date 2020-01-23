@@ -9,7 +9,7 @@ class ToWatchCell: UITableViewCell {
     @IBOutlet weak var episodeCountLabel: UILabel!
     
     func bind(_ show: ToWatchShowViewModel) {
-        backgroundImage.imageUrl = show.backdropUrl
+        backgroundImage.imageUrl = show.imageUrl
         titleLabel.text = show.name
         episodeCountLabel.text = String(show.episodeCount)
         

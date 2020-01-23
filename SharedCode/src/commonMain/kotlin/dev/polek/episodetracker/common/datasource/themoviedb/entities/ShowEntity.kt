@@ -17,31 +17,10 @@ data class ShowEntity(
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("backdrop_path") val backdropPath: String? = null,
     @SerialName("in_production") val inProduction: Boolean = true,
-    @SerialName("next_episode_to_air") val nextEpisodeToAir: EpisodeEntity? = null)
+    @SerialName("next_episode_to_air") val nextEpisodeToAir: EpisodeEntity? = null,
+    @SerialName("number_of_seasons") val numberOfSeasons: Int = 1)
 {
+    @Transient val isValid = allNotNull(tmdbId, name, numberOfSeasons)
     @Transient val year: Int? = firstAirDate?.take(4)?.toIntOrNull()
-    @Transient val isValid =
-        allNotNull(tmdbId, name)
     @Transient val isEnded = !inProduction
-
-    @Serializable
-    data class EpisodeEntity(
-        @SerialName("id") val tmdbId: Int? = null,
-        @SerialName("name") val name: String? = null,
-        @SerialName("episode_number") val episodeNumber: Int? = null,
-        @SerialName("season_number") val seasonNumber: Int? = null,
-        @SerialName("air_date") val airDate: String? = null,
-        @SerialName("still_path") val stillPath: String? = null)
-    {
-        @Transient val isValid =
-            allNotNull(
-                tmdbId,
-                episodeNumber,
-                seasonNumber,
-                airDate
-            )
-        @Transient val airDateMillis: Long? = if (airDate != null) parseDate(
-            airDate
-        )?.timestamp else null
-    }
 }

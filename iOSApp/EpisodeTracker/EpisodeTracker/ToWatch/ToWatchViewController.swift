@@ -5,7 +5,7 @@ class ToWatchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private let presenter = ToWatchPresenter()
+    private let presenter = ToWatchPresenter(repository: AppDelegate.instance().toWatchRepository)
     private var shows = [ToWatchShowViewModel]()
     
     override func viewDidLoad() {

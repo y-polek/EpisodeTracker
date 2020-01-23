@@ -12,6 +12,7 @@ CREATE TABLE MyShow (
     imageUrl TEXT,
     isEnded INTEGER AS Boolean NOT NULL,
     nextEpisodeId INTEGER,
+
     PRIMARY KEY (id)
 );
 
@@ -46,3 +47,14 @@ endedShows:
 SELECT id, name, imageUrl
 FROM MyShow
 WHERE isEnded = 1;
+
+toWatchShows:
+SELECT MyShow.id, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
+FROM MyShow
+INNER JOIN (
+        SELECT showTmdbId, count(*) AS count, min(episodeIndex) AS firstNotWatchedEpisodeIndex
+        FROM Episode
+        WHERE isWatched = 0
+        GROUP BY showTmdbId
+    ) AS NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
+INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND Episode.episodeIndex = NotWatchedEpisodes.firstNotWatchedEpisodeIndex;

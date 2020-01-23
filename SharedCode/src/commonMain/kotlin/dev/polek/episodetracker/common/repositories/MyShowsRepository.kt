@@ -17,6 +17,9 @@ class MyShowsRepository(
 
         val show = tmdbService.showDetails(tmdbId)
         val externalIds = tmdbService.externalIds(tmdbId)
+        val seasons = (1..show.numberOfSeasons).map { seasonNumber ->
+            tmdbService.season(tmdbId = tmdbId, number = seasonNumber)
+        }
 
         db.transaction {
             val nextEpisode = show.nextEpisodeToAir
@@ -33,6 +36,21 @@ class MyShowsRepository(
                     db.nextEpisodeQueries.lastInsertRowId().executeAsOne()
                 }
                 else -> null
+            }
+
+            seasons.flatMap { it.episodes.orEmpty() }.forEachIndexed { index, episode ->
+                log("Inserting $episode")
+                db.episodeQueries.insert(
+                    tmdbId = episode.tmdbId,
+                    showTmdbId = tmdbId,
+                    name = episode.name.orEmpty(),
+                    episodeNumber = episode.episodeNumber ?: -1,
+                    seasonNumber = episode.seasonNumber ?: -1,
+                    episodeIndex = index,
+                    airDateMillis = episode.airDateMillis,
+                    imageUrl = if (episode.stillPath != null) TmdbService.stillImageUrl(episode.stillPath) else null)
+                val id = db.episodeQueries.lastInsertRowId().executeAsOne()
+                log("Inserted episode ID: $id")
             }
 
             db.myShowQueries.insert(

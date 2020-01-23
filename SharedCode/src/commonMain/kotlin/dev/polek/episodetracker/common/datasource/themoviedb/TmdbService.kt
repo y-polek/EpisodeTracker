@@ -53,6 +53,10 @@ class TmdbService {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId")
     }
 
+    suspend fun season(tmdbId: Int, number: Int): SeasonEntity {
+        return client.get(urlString = "$BASE_URL/tv/$tmdbId/season/$number")
+    }
+
     suspend fun externalIds(tmdbId: Int): ExternalIdsEntity {
         return client.get("$BASE_URL/tv/$tmdbId/external_ids")
     }

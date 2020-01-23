@@ -10,7 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let database: Database = DatabaseKt.database
     let tmdbService: TmdbService = TmdbService()
     lazy var myShowsRepository: MyShowsRepository = MyShowsRepository(db: database, tmdbService: tmdbService)
-    lazy var discoverRepository = DiscoverRepository(tmdbService: tmdbService)
+    lazy var discoverRepository: DiscoverRepository = DiscoverRepository(tmdbService: tmdbService)
+    lazy var toWatchRepository: ToWatchRepository = ToWatchRepository(db: database)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

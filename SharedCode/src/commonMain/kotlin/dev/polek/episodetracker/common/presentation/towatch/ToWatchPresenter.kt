@@ -1,8 +1,9 @@
 package dev.polek.episodetracker.common.presentation.towatch
 
 import dev.polek.episodetracker.common.presentation.BasePresenter
+import dev.polek.episodetracker.common.repositories.ToWatchRepository
 
-class ToWatchPresenter : BasePresenter<ToWatchView>() {
+class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresenter<ToWatchView>() {
 
     override fun attachView(view: ToWatchView) {
         super.attachView(view)
@@ -11,16 +12,7 @@ class ToWatchPresenter : BasePresenter<ToWatchView>() {
     }
 
     private fun loadShows() {
-
-        val shows = listOf<ToWatchShowViewModel>(
-            ToWatchShowViewModel(
-                name = "The Mandalorian",
-                backdropUrl = "https://image.tmdb.org/t/p/w533_and_h300_bestv2/o7qi2v4uWQ8bZ1tW3KI0Ztn2epk.jpg",
-                episodeNumber = "S01 E01",
-                episodeName = "Chapter 1: The Mandalorian",
-                episodeCount = 8
-            )
-        )
+        val shows = repository.toWatchShows()
         view?.displayShows(shows)
     }
 }
