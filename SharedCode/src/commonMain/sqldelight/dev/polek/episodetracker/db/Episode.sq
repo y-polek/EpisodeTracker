@@ -5,7 +5,6 @@ CREATE TABLE Episode(
     name TEXT NOT NULL,
     episodeNumber INTEGER AS Int NOT NULL,
     seasonNumber INTEGER AS Int NOT NULL,
-    episodeIndex INTEGER AS Int NOT NULL,
     airDateMillis INTEGER,
     imageUrl TEXT,
     isWatched INTEGER AS Boolean NOT NULL DEFAULT 0,
@@ -14,8 +13,8 @@ CREATE TABLE Episode(
 );
 
 insert:
-INSERT INTO Episode(tmdbId, showTmdbId, name, episodeNumber, seasonNumber, episodeIndex, airDateMillis, imageUrl)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO Episode(tmdbId, showTmdbId, name, episodeNumber, seasonNumber, airDateMillis, imageUrl)
+VALUES (?, ?, ?, ?, ?, ?, ?);
 
 lastInsertRowId:
 SELECT last_insert_rowid();

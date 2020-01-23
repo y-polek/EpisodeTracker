@@ -38,7 +38,7 @@ class MyShowsRepository(
                 else -> null
             }
 
-            seasons.flatMap { it.episodes.orEmpty() }.forEachIndexed { index, episode ->
+            seasons.flatMap { it.episodes.orEmpty() }.forEach { episode ->
                 log("Inserting $episode")
                 db.episodeQueries.insert(
                     tmdbId = episode.tmdbId,
@@ -46,7 +46,6 @@ class MyShowsRepository(
                     name = episode.name.orEmpty(),
                     episodeNumber = episode.episodeNumber ?: -1,
                     seasonNumber = episode.seasonNumber ?: -1,
-                    episodeIndex = index,
                     airDateMillis = episode.airDateMillis,
                     imageUrl = if (episode.stillPath != null) TmdbService.stillImageUrl(episode.stillPath) else null)
                 val id = db.episodeQueries.lastInsertRowId().executeAsOne()
