@@ -41,6 +41,7 @@ class MyShowsRepository(
             val nextEpisodeId = when {
                 nextEpisodeNumber != null -> {
                     db.episodeQueries.episode(
+                        showTmdbId = tmdbId,
                         seasonNumber = nextEpisodeNumber.season,
                         episodeNumber = nextEpisodeNumber.episode).executeAsOneOrNull()?.id
                 }
