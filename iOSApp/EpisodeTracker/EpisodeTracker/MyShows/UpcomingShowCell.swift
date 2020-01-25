@@ -1,7 +1,7 @@
 import UIKit
 import SharedCode
 
-class UpcomingShowCell: UITableViewCell {
+class UpcomingShowCell: RippleTableViewCell {
     
     @IBOutlet weak var backgroundImage: ImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -9,6 +9,9 @@ class UpcomingShowCell: UITableViewCell {
     @IBOutlet weak var timeLeftLabel: UILabel!
     
     func bind(show: MyShowsListItem.UpcomingShowViewModel) {
+        selectionStyle = .none
+        rippleView.layer.cornerRadius = backgroundImage.layer.cornerRadius
+        
         backgroundImage.imageUrl = show.backdropUrl
         titleLabel.text = show.name
         timeLeftLabel.text = show.timeLeft

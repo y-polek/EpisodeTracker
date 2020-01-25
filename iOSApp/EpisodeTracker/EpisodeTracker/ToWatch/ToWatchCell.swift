@@ -1,7 +1,7 @@
 import UIKit
 import SharedCode
 
-class ToWatchCell: UITableViewCell {
+class ToWatchCell: RippleTableViewCell {
     
     @IBOutlet weak var backgroundImage: ImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -10,6 +10,9 @@ class ToWatchCell: UITableViewCell {
     @IBOutlet weak var checkButton: ImageButton!
     
     func bind(_ show: ToWatchShowViewModel) {
+        selectionStyle = .none
+        rippleView.layer.cornerRadius = backgroundImage.layer.cornerRadius
+        
         backgroundImage.imageUrl = show.imageUrl
         titleLabel.text = show.name
         episodeCountLabel.text = String(show.episodeCount)

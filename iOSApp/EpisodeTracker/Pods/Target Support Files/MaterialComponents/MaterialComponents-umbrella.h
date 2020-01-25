@@ -10,10 +10,17 @@
 #endif
 #endif
 
+#import "CAMediaTimingFunction+MDCAnimationTiming.h"
+#import "MaterialAnimationTiming.h"
+#import "UIView+MDCTimingFunction.h"
 #import "MaterialInk.h"
 #import "MDCInkGestureRecognizer.h"
 #import "MDCInkTouchController.h"
 #import "MDCInkView.h"
+#import "MaterialRipple.h"
+#import "MDCRippleTouchController.h"
+#import "MDCRippleView.h"
+#import "MDCStatefulRippleView.h"
 #import "MaterialColor.h"
 #import "UIColor+MaterialBlending.h"
 #import "UIColor+MaterialDynamic.h"

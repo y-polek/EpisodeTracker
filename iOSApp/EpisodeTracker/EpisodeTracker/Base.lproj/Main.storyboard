@@ -25,7 +25,7 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="search" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="158" estimatedRowHeight="158" sectionHeaderHeight="40" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CFA-rV-z88">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="158" estimatedRowHeight="158" sectionHeaderHeight="40" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CFA-rV-z88" customClass="TableView" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="103" width="414" height="666"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
@@ -47,6 +47,10 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PoO-u1-eqs" customClass="MDCRippleView">
+                                                            <rect key="frame" x="16" y="0.0" width="382" height="150"/>
+                                                            <color key="backgroundColor" name="Transparent"/>
+                                                        </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jod-XO-Wrr">
                                                             <rect key="frame" x="32" y="16" width="350" height="118"/>
                                                             <subviews>
@@ -119,12 +123,16 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="Mht-Zg-3oy" firstAttribute="leading" secondItem="Le4-YI-O14" secondAttribute="leading" constant="16" id="0aC-63-mIc"/>
+                                                        <constraint firstItem="PoO-u1-eqs" firstAttribute="top" secondItem="Mht-Zg-3oy" secondAttribute="top" id="4Ge-Q0-gx7"/>
                                                         <constraint firstAttribute="trailing" secondItem="Mht-Zg-3oy" secondAttribute="trailing" constant="16" id="6se-Q6-Kgz"/>
+                                                        <constraint firstItem="PoO-u1-eqs" firstAttribute="trailing" secondItem="Mht-Zg-3oy" secondAttribute="trailing" id="H0f-Lf-gHe"/>
+                                                        <constraint firstItem="PoO-u1-eqs" firstAttribute="leading" secondItem="Mht-Zg-3oy" secondAttribute="leading" id="MMN-vy-pJk"/>
                                                         <constraint firstAttribute="bottom" secondItem="Mht-Zg-3oy" secondAttribute="bottom" constant="8" id="NXZ-Al-9fn"/>
                                                         <constraint firstItem="Mht-Zg-3oy" firstAttribute="top" secondItem="Le4-YI-O14" secondAttribute="top" id="V1a-2b-oBP"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="top" secondItem="Mht-Zg-3oy" secondAttribute="top" constant="16" id="WE7-ZE-CqT"/>
                                                         <constraint firstItem="vk7-Oh-wJL" firstAttribute="centerX" secondItem="Le4-YI-O14" secondAttribute="centerX" id="ca7-Zp-qDB"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="trailing" secondItem="Mht-Zg-3oy" secondAttribute="trailing" constant="-16" id="jih-4v-ayO"/>
+                                                        <constraint firstItem="PoO-u1-eqs" firstAttribute="bottom" secondItem="Mht-Zg-3oy" secondAttribute="bottom" id="kQ3-Oz-UxM"/>
                                                         <constraint firstItem="vW3-nU-Ckz" firstAttribute="top" secondItem="vk7-Oh-wJL" secondAttribute="bottom" constant="5" id="oIp-ms-7jX"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="leading" secondItem="Mht-Zg-3oy" secondAttribute="leading" constant="16" id="sKJ-hE-9KT"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="bottom" secondItem="Mht-Zg-3oy" secondAttribute="bottom" constant="-16" id="t6q-ZV-301"/>
@@ -134,6 +142,7 @@
                                                     <outlet property="backgroundImage" destination="Mht-Zg-3oy" id="ZqR-SY-Jzu"/>
                                                     <outlet property="checkButton" destination="vk7-Oh-wJL" id="vdZ-Vj-qFi"/>
                                                     <outlet property="episodeCountLabel" destination="ufU-P4-3g7" id="J7i-Mb-gUA"/>
+                                                    <outlet property="rippleView" destination="PoO-u1-eqs" id="NvD-Qp-8vO"/>
                                                     <outlet property="subtitleLabel" destination="87a-1A-UIS" id="zNN-2E-vGn"/>
                                                     <outlet property="titleLabel" destination="rOk-WB-J15" id="jnX-y1-Phi"/>
                                                 </connections>
@@ -196,6 +205,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="166.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-IW-wwM" customClass="MDCRippleView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="166.5"/>
+                                                            <color key="backgroundColor" name="Transparent"/>
+                                                        </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vCw-QC-pZJ">
                                                             <rect key="frame" x="16" y="8" width="382" height="150"/>
                                                             <subviews>
@@ -275,12 +288,16 @@
                                                     <constraints>
                                                         <constraint firstItem="Ncl-Ub-ORL" firstAttribute="centerY" secondItem="6di-CG-k0O" secondAttribute="centerY" id="7xb-Oy-Zyg"/>
                                                         <constraint firstItem="Ncl-Ub-ORL" firstAttribute="centerX" secondItem="6di-CG-k0O" secondAttribute="centerX" id="A06-9i-Hvg"/>
+                                                        <constraint firstItem="hDu-IW-wwM" firstAttribute="top" secondItem="IwI-kR-PaA" secondAttribute="top" id="CUi-Ts-6Od"/>
                                                         <constraint firstItem="ZYt-C1-GBV" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" id="Dv8-dv-J5e"/>
                                                         <constraint firstAttribute="trailing" secondItem="vCw-QC-pZJ" secondAttribute="trailing" constant="16" id="Gq9-QG-FNO"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hDu-IW-wwM" secondAttribute="trailing" id="KHL-gL-eea"/>
+                                                        <constraint firstItem="hDu-IW-wwM" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" id="NUj-Gg-394"/>
                                                         <constraint firstItem="vCw-QC-pZJ" firstAttribute="top" secondItem="IwI-kR-PaA" secondAttribute="top" constant="8" id="Rg9-Jx-dwb"/>
                                                         <constraint firstItem="vCw-QC-pZJ" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" constant="16" id="WlU-Ot-Aj5"/>
                                                         <constraint firstAttribute="trailing" secondItem="ZYt-C1-GBV" secondAttribute="trailing" id="bCH-9T-pKi"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZYt-C1-GBV" secondAttribute="bottom" id="egB-aP-xeA"/>
+                                                        <constraint firstAttribute="bottom" secondItem="hDu-IW-wwM" secondAttribute="bottom" id="rcY-LE-0Ak"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -288,6 +305,7 @@
                                                     <outlet property="imageButton" destination="Ncl-Ub-ORL" id="eht-1x-2cE"/>
                                                     <outlet property="overviewLabel" destination="Kpc-7Z-fHZ" id="tcl-Dr-HTV"/>
                                                     <outlet property="posterView" destination="6di-CG-k0O" id="Ycp-xw-oPg"/>
+                                                    <outlet property="rippleView" destination="hDu-IW-wwM" id="OJh-wh-K3t"/>
                                                     <outlet property="subtitleLabel" destination="B8h-P2-OTM" id="Dah-5T-WAC"/>
                                                     <outlet property="titleLabel" destination="HKE-Bg-1KC" id="ZDG-D0-46M"/>
                                                 </connections>
@@ -390,6 +408,10 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYf-9R-lgX" customClass="MDCRippleView">
+                                                            <rect key="frame" x="16" y="0.0" width="382" height="150"/>
+                                                            <color key="backgroundColor" name="Transparent"/>
+                                                        </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="ct7-xf-NF9">
                                                             <rect key="frame" x="32" y="16" width="350" height="118"/>
                                                             <subviews>
@@ -436,18 +458,23 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="yYf-9R-lgX" firstAttribute="bottom" secondItem="hiE-Pc-MZx" secondAttribute="bottom" id="38B-6J-FXs"/>
                                                         <constraint firstItem="ct7-xf-NF9" firstAttribute="top" secondItem="hiE-Pc-MZx" secondAttribute="top" constant="16" id="8Wu-23-6of"/>
                                                         <constraint firstItem="hiE-Pc-MZx" firstAttribute="leading" secondItem="a7l-ai-VyE" secondAttribute="leading" constant="16" id="Dcs-8z-DID"/>
                                                         <constraint firstItem="ct7-xf-NF9" firstAttribute="trailing" secondItem="hiE-Pc-MZx" secondAttribute="trailing" constant="-16" id="KRC-Sv-iB4"/>
+                                                        <constraint firstItem="yYf-9R-lgX" firstAttribute="leading" secondItem="hiE-Pc-MZx" secondAttribute="leading" id="Q8i-mH-hOy"/>
+                                                        <constraint firstItem="yYf-9R-lgX" firstAttribute="top" secondItem="hiE-Pc-MZx" secondAttribute="top" id="hwM-o9-tgV"/>
                                                         <constraint firstAttribute="trailing" secondItem="hiE-Pc-MZx" secondAttribute="trailing" constant="16" id="iTM-zB-YWz"/>
                                                         <constraint firstAttribute="bottom" secondItem="hiE-Pc-MZx" secondAttribute="bottom" constant="8" id="lZi-Jh-9ZY"/>
                                                         <constraint firstItem="hiE-Pc-MZx" firstAttribute="top" secondItem="a7l-ai-VyE" secondAttribute="top" id="qGC-7i-DiH"/>
                                                         <constraint firstItem="ct7-xf-NF9" firstAttribute="leading" secondItem="hiE-Pc-MZx" secondAttribute="leading" constant="16" id="qyA-Vm-UHb"/>
                                                         <constraint firstItem="ct7-xf-NF9" firstAttribute="bottom" secondItem="hiE-Pc-MZx" secondAttribute="bottom" constant="-16" id="wFi-SQ-QWM"/>
+                                                        <constraint firstItem="yYf-9R-lgX" firstAttribute="trailing" secondItem="hiE-Pc-MZx" secondAttribute="trailing" id="yoi-FH-Vpt"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="backgroundImage" destination="hiE-Pc-MZx" id="zfb-s7-sp9"/>
+                                                    <outlet property="rippleView" destination="yYf-9R-lgX" id="6Yq-Qe-SEL"/>
                                                     <outlet property="subtitleLabel" destination="ega-3O-H2U" id="aIP-1l-iJX"/>
                                                     <outlet property="timeLeftLabel" destination="G74-BI-G6W" id="aek-g2-q7p"/>
                                                     <outlet property="titleLabel" destination="VCa-T1-iwz" id="qtI-SZ-9ex"/>
@@ -471,6 +498,10 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Roh-ip-c8U" customClass="MDCRippleView">
+                                                            <rect key="frame" x="16" y="0.0" width="382" height="150"/>
+                                                            <color key="backgroundColor" name="Transparent"/>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFk-pH-ykq">
                                                             <rect key="frame" x="32" y="108.5" width="350" height="25.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -484,12 +515,17 @@
                                                         <constraint firstItem="UFk-pH-ykq" firstAttribute="bottom" secondItem="jiE-hj-NNp" secondAttribute="bottom" constant="-16" id="Exs-j6-lm2"/>
                                                         <constraint firstItem="jiE-hj-NNp" firstAttribute="top" secondItem="T8d-gZ-cA6" secondAttribute="top" id="FJZ-9w-J3z"/>
                                                         <constraint firstItem="UFk-pH-ykq" firstAttribute="leading" secondItem="jiE-hj-NNp" secondAttribute="leading" constant="16" id="Gp6-Es-mFE"/>
+                                                        <constraint firstItem="Roh-ip-c8U" firstAttribute="bottom" secondItem="jiE-hj-NNp" secondAttribute="bottom" id="KAn-bt-xJ4"/>
+                                                        <constraint firstItem="Roh-ip-c8U" firstAttribute="leading" secondItem="jiE-hj-NNp" secondAttribute="leading" id="LsW-zT-cIC"/>
                                                         <constraint firstItem="UFk-pH-ykq" firstAttribute="trailing" secondItem="jiE-hj-NNp" secondAttribute="trailing" constant="-16" id="MS3-Qt-jJ7"/>
+                                                        <constraint firstItem="Roh-ip-c8U" firstAttribute="trailing" secondItem="jiE-hj-NNp" secondAttribute="trailing" id="b7v-b6-UeG"/>
+                                                        <constraint firstItem="Roh-ip-c8U" firstAttribute="top" secondItem="jiE-hj-NNp" secondAttribute="top" id="fTi-Uv-KJd"/>
                                                         <constraint firstAttribute="trailing" secondItem="jiE-hj-NNp" secondAttribute="trailing" constant="16" id="sca-Sh-jRU"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="backgroundImage" destination="jiE-hj-NNp" id="If0-aV-QqJ"/>
+                                                    <outlet property="rippleView" destination="Roh-ip-c8U" id="P6M-fl-78j"/>
                                                     <outlet property="titleLabel" destination="UFk-pH-ykq" id="PEg-hV-ixc"/>
                                                 </connections>
                                             </tableViewCell>
@@ -555,6 +591,9 @@
         </namedColor>
         <namedColor name="DividerPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Transparent">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

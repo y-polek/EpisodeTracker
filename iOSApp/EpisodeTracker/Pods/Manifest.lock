@@ -2,15 +2,21 @@ PODS:
   - Kingfisher (5.11.0):
     - Kingfisher/Core (= 5.11.0)
   - Kingfisher/Core (5.11.0)
+  - MaterialComponents/AnimationTiming (100.0.0)
   - MaterialComponents/Ink (100.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
   - MaterialComponents/private/Color (100.0.0)
   - MaterialComponents/private/Math (100.0.0)
+  - MaterialComponents/Ripple (100.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
 
 DEPENDENCIES:
   - Kingfisher (= 5.11.0)
   - MaterialComponents/Ink (= 100.0.0)
+  - MaterialComponents/Ripple (= 100.0.0)
 
 SPEC REPOS:
   trunk:
@@ -21,6 +27,6 @@ SPEC CHECKSUMS:
   Kingfisher: 4569606189149e19c7d9439f47e885d0679b7a90
   MaterialComponents: b4cc6c1649a566d70bd72096f3e1aae2c3701e4f
 
-PODFILE CHECKSUM: a4b78aa60f436c4742fd12c24892669108684533
+PODFILE CHECKSUM: f2e91dfc882499c96f20ab287a94760113428dae
 
 COCOAPODS: 1.8.4

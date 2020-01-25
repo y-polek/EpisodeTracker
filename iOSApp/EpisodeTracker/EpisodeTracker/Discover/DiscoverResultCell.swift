@@ -2,12 +2,10 @@ import UIKit
 import MaterialComponents.MaterialInk
 import SharedCode
 
-class DiscoverResultCell: UITableViewCell {
+class DiscoverResultCell: RippleTableViewCell {
     
     private static var addImage: UIImage = UIImage(named: "ic-add")!
     private static var checkImage: UIImage = UIImage(named: "ic-check")!
-    
-    private var inkTouchController: MDCInkTouchController!
     
     @IBOutlet weak var posterView: ImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -17,6 +15,8 @@ class DiscoverResultCell: UITableViewCell {
     @IBOutlet weak var divider: Divider!
     
     func bind(result: DiscoverResultViewModel) {
+        selectionStyle = .none
+        
         posterView.imageUrl = result.posterUrl
         titleLabel.text = result.name
         overviewLabel.text = result.overview
@@ -36,9 +36,5 @@ class DiscoverResultCell: UITableViewCell {
         subtitleLabel.isHidden = result.year == nil && result.genres.isEmpty
         
         imageButton.image = result.isInMyShows ? DiscoverResultCell.checkImage : DiscoverResultCell.addImage
-        
-        selectionStyle = .none
-        inkTouchController = MDCInkTouchController(view: self)
-        inkTouchController.addInkView()
     }
 }
