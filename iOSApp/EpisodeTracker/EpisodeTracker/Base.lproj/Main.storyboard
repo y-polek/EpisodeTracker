@@ -84,16 +84,16 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oIn-8O-E15">
-                                                                    <rect key="frame" x="275" y="54.5" width="75" height="63.5"/>
+                                                                    <rect key="frame" x="275" y="59" width="75" height="59"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufU-P4-3g7">
-                                                                            <rect key="frame" x="15" y="0.0" width="45" height="43"/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
+                                                                            <rect key="frame" x="17.5" y="0.0" width="40" height="38.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="episodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcM-CN-Zy4">
-                                                                            <rect key="frame" x="1.5" y="43" width="72.5" height="20.5"/>
+                                                                            <rect key="frame" x="1.5" y="38.5" width="72.5" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
