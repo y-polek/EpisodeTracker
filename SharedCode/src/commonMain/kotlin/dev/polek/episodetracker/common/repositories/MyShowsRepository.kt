@@ -1,11 +1,10 @@
 package dev.polek.episodetracker.common.repositories
 
-import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
-import dev.polek.episodetracker.db.Database
+import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
-import dev.polek.episodetracker.common.utils.millisToDate
 import dev.polek.episodetracker.common.utils.millisToDays
+import dev.polek.episodetracker.db.Database
 import io.ktor.util.date.GMTDate
 
 class MyShowsRepository(
@@ -22,22 +21,6 @@ class MyShowsRepository(
         }
 
         db.transaction {
-            val nextEpisode = show.nextEpisodeToAir
-            val nextEpisodeId = when {
-                nextEpisode != null && nextEpisode.isValid -> {
-                    db.nextEpisodeQueries.insert(
-                        tmdbId = nextEpisode.tmdbId,
-                        name = nextEpisode.name.orEmpty(),
-                        episodeNumber = nextEpisode.episodeNumber ?: 0,
-                        seasonNumber = nextEpisode.seasonNumber ?: 0,
-                        airDateMillis = nextEpisode.airDateMillis,
-                        imageUrl = if (nextEpisode.stillPath != null) TmdbService.stillImageUrl(nextEpisode.stillPath) else null)
-
-                    db.nextEpisodeQueries.lastInsertRowId().executeAsOne()
-                }
-                else -> null
-            }
-
             seasons.flatMap { it.episodes.orEmpty() }.forEach { episode ->
                 log("Inserting $episode")
                 db.episodeQueries.insert(
@@ -50,6 +33,16 @@ class MyShowsRepository(
                     imageUrl = if (episode.stillPath != null) TmdbService.stillImageUrl(episode.stillPath) else null)
                 val id = db.episodeQueries.lastInsertRowId().executeAsOne()
                 log("Inserted episode ID: $id")
+            }
+
+            val nextEpisodeNumber = show.nextEpisodeNumber
+            val nextEpisodeId = when {
+                nextEpisodeNumber != null -> {
+                    db.episodeQueries.episode(
+                        seasonNumber = nextEpisodeNumber.season,
+                        episodeNumber = nextEpisodeNumber.episode).executeAsOneOrNull()?.id
+                }
+                else -> null
             }
 
             db.myShowQueries.insert(
@@ -74,14 +67,6 @@ class MyShowsRepository(
 
     fun isInMyShows(tmdbId: Int): Boolean {
         return db.myShowQueries.isInMyShows(tmdbId).executeAsOne()
-    }
-
-    fun printAllShows() {
-        val myShows = db.myShowQueries.selectAll { id, imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeId, episodeId, _, episodeName, episodeNumber, seasonNumber, airDateMillis, episodeImageUrl ->
-            "$id. $name($year), Ended: $isEnded, NextEpisodeId: $nextEpisodeId, episodeId: $episodeId, poster: $imageUrl, episodeImage: $episodeImageUrl, airDate: ${airDateMillis?.millisToDate()}"
-        }.executeAsList()
-
-        log("My Shows: ${myShows.joinToString("\n")}")
     }
 
     fun upcomingShows(): List<MyShowsListItem.UpcomingShowViewModel> {

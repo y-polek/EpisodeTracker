@@ -1,5 +1,6 @@
 package dev.polek.episodetracker.common.datasource.themoviedb.entities
 
+import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.utils.allNotNull
 import dev.polek.episodetracker.common.utils.parseDate
 import kotlinx.serialization.SerialName
@@ -23,4 +24,8 @@ data class ShowEntity(
     @Transient val isValid = allNotNull(tmdbId, name, numberOfSeasons)
     @Transient val year: Int? = firstAirDate?.take(4)?.toIntOrNull()
     @Transient val isEnded = !inProduction
+    @Transient val nextEpisodeNumber: EpisodeNumber? = when {
+        nextEpisodeToAir != null && nextEpisodeToAir.isValid -> EpisodeNumber(season = nextEpisodeToAir.seasonNumber!!, episode = nextEpisodeToAir.episodeNumber!!)
+        else -> null
+    }
 }
