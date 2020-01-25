@@ -15,6 +15,13 @@ class ImageButton: UIView {
         }
     }
     
+    @IBInspectable
+    var isCircular: Bool = false {
+        didSet {
+            updateCornerRadius()
+        }
+    }
+    
     var isActivityIndicatorHidden: Bool = true {
         didSet {
             updateActivityIndicator()
@@ -44,7 +51,7 @@ class ImageButton: UIView {
         
         layer.borderWidth = 2
         layer.borderColor = UIColor.white.cgColor
-        layer.cornerRadius = 2
+        updateCornerRadius()
         clipsToBounds = true
         
         imageView.tintColor = .white
@@ -58,6 +65,10 @@ class ImageButton: UIView {
     
     private func updateImage() {
         imageView.image = image
+    }
+    
+    private func updateCornerRadius() {
+        layer.cornerRadius = isCircular ? frame.width / 2 : 2
     }
     
     private func updateActivityIndicator() {

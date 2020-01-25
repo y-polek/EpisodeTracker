@@ -19,6 +19,11 @@ VALUES (?, ?, ?, ?, ?, ?, ?);
 lastInsertRowId:
 SELECT last_insert_rowid();
 
+setEpisodeWatched:
+UPDATE Episode
+SET isWatched = ?
+WHERE id = ?;
+
 allEpisodes:
 SELECT name, seasonNumber, episodeNumber, isWatched, airDateMillis
 FROM Episode;

@@ -11,6 +11,16 @@ class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresente
         loadShows()
     }
 
+    fun onWatchedButtonClicked(show: ToWatchShowViewModel) {
+        repository.markEpisodeWatched(show.episodeId)
+        val updatedShow = repository.toWatchShow(showId = show.id)
+        if (updatedShow != null) {
+            view?.updateShow(updatedShow)
+        } else {
+            view?.removeShow(show)
+        }
+    }
+
     private fun loadShows() {
         val shows = repository.toWatchShows()
         view?.displayShows(shows)

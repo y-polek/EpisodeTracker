@@ -25,7 +25,7 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="search" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="40" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CFA-rV-z88">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="158" estimatedRowHeight="158" sectionHeaderHeight="40" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CFA-rV-z88">
                                         <rect key="frame" x="0.0" y="103" width="414" height="666"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
@@ -105,6 +105,17 @@
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vk7-Oh-wJL" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="187" y="34" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="CLo-8s-65i"/>
+                                                                <constraint firstAttribute="width" constant="40" id="Cug-NK-dbY"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-check"/>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCircular" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="Mht-Zg-3oy" firstAttribute="leading" secondItem="Le4-YI-O14" secondAttribute="leading" constant="16" id="0aC-63-mIc"/>
@@ -112,13 +123,16 @@
                                                         <constraint firstAttribute="bottom" secondItem="Mht-Zg-3oy" secondAttribute="bottom" constant="8" id="NXZ-Al-9fn"/>
                                                         <constraint firstItem="Mht-Zg-3oy" firstAttribute="top" secondItem="Le4-YI-O14" secondAttribute="top" id="V1a-2b-oBP"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="top" secondItem="Mht-Zg-3oy" secondAttribute="top" constant="16" id="WE7-ZE-CqT"/>
+                                                        <constraint firstItem="vk7-Oh-wJL" firstAttribute="centerX" secondItem="Le4-YI-O14" secondAttribute="centerX" id="ca7-Zp-qDB"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="trailing" secondItem="Mht-Zg-3oy" secondAttribute="trailing" constant="-16" id="jih-4v-ayO"/>
+                                                        <constraint firstItem="vW3-nU-Ckz" firstAttribute="top" secondItem="vk7-Oh-wJL" secondAttribute="bottom" constant="5" id="oIp-ms-7jX"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="leading" secondItem="Mht-Zg-3oy" secondAttribute="leading" constant="16" id="sKJ-hE-9KT"/>
                                                         <constraint firstItem="jod-XO-Wrr" firstAttribute="bottom" secondItem="Mht-Zg-3oy" secondAttribute="bottom" constant="-16" id="t6q-ZV-301"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="backgroundImage" destination="Mht-Zg-3oy" id="ZqR-SY-Jzu"/>
+                                                    <outlet property="checkButton" destination="vk7-Oh-wJL" id="vdZ-Vj-qFi"/>
                                                     <outlet property="episodeCountLabel" destination="ufU-P4-3g7" id="J7i-Mb-gUA"/>
                                                     <outlet property="subtitleLabel" destination="87a-1A-UIS" id="zNN-2E-vGn"/>
                                                     <outlet property="titleLabel" destination="rOk-WB-J15" id="jnX-y1-Phi"/>
@@ -531,6 +545,7 @@
     </scenes>
     <resources>
         <image name="ic-add" width="24" height="24"/>
+        <image name="ic-check" width="24" height="24"/>
         <image name="ic-eye" width="24" height="24"/>
         <image name="ic-search" width="24" height="24"/>
         <image name="ic-settings" width="24" height="24"/>

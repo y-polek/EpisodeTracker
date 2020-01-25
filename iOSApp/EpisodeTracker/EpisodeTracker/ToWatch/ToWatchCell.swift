@@ -7,6 +7,7 @@ class ToWatchCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var episodeCountLabel: UILabel!
+    @IBOutlet weak var checkButton: ImageButton!
     
     func bind(_ show: ToWatchShowViewModel) {
         backgroundImage.imageUrl = show.imageUrl

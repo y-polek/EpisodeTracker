@@ -19,6 +19,20 @@ extension ToWatchViewController: ToWatchView {
         self.shows = shows
         tableView.reloadData()
     }
+    
+    func updateShow(show: ToWatchShowViewModel) {
+        if let row = self.shows.firstIndex(where: { $0.id == show.id }) {
+            self.shows[row] = show
+            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+        }
+    }
+    
+    func removeShow(show: ToWatchShowViewModel) {
+        if let row = self.shows.firstIndex(where: { $0.id == show.id }) {
+            self.shows.remove(at: row)
+            tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .none)
+        }
+    }
 }
 
 extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -28,7 +42,11 @@ extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "to_watch_show_cell") as! ToWatchCell
-        cell.bind(shows[indexPath.row])
+        let show = shows[indexPath.row]
+        cell.bind(show)
+        cell.checkButton.tapCallback = {
+            self.presenter.onWatchedButtonClicked(show: show)
+        }
         return cell
     }
     
