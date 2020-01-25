@@ -1,5 +1,5 @@
 import UIKit
-import MaterialComponents.MaterialInk
+import MaterialComponents.MaterialRipple
 
 @IBDesignable
 class ImageButton: UIView {
@@ -30,7 +30,7 @@ class ImageButton: UIView {
     
     var tapCallback: (() -> Void)?
     
-    private var inkTouchController: MDCInkTouchController!
+    private let rippleController = MDCRippleTouchController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,8 +55,8 @@ class ImageButton: UIView {
         clipsToBounds = true
         
         imageView.tintColor = .white
-        inkTouchController = MDCInkTouchController(view: self)
-        inkTouchController.addInkView()
+
+        rippleController.addRipple(to: self)
         
         updateActivityIndicator()
         
