@@ -12,6 +12,16 @@ class ToWatchViewController: UIViewController {
         super.viewDidLoad()
         presenter.attachView(view: self)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.onViewAppeared()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.onViewDisappeared()
+    }
 }
 
 extension ToWatchViewController: ToWatchView {

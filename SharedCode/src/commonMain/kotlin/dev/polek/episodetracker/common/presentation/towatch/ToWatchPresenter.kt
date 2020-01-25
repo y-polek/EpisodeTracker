@@ -5,9 +5,7 @@ import dev.polek.episodetracker.common.repositories.ToWatchRepository
 
 class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresenter<ToWatchView>() {
 
-    override fun attachView(view: ToWatchView) {
-        super.attachView(view)
-
+    override fun onViewAppeared() {
         loadShows()
     }
 

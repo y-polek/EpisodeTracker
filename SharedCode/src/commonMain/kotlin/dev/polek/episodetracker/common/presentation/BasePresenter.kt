@@ -39,4 +39,10 @@ abstract class BasePresenter<V: Any> : CoroutineScope {
         job = null
         view = null
     }
+
+    open fun onViewAppeared() {
+    }
+
+    open fun onViewDisappeared() {
+    }
 }
