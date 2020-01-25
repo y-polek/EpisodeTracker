@@ -5,6 +5,7 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Compani
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.stillImageUrl
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
+import dev.polek.episodetracker.common.utils.formatEpisodeNumber
 import dev.polek.episodetracker.common.utils.millisToDays
 import dev.polek.episodetracker.db.Database
 import io.ktor.util.date.GMTDate
@@ -75,8 +76,7 @@ class MyShowsRepository(
             val daysLeft: String = if (airDateMillis != null) {
                 val now = GMTDate().timestamp
                 val millisLeft = airDateMillis - now
-                val days =
-                    millisToDays(millisLeft)
+                val days = millisToDays(millisLeft)
                 "$days days"
             } else {
                 "N/A"
@@ -86,7 +86,7 @@ class MyShowsRepository(
                 name = name,
                 backdropUrl = imageUrl,
                 episodeName = episodeName,
-                episodeNumber = "S${seasonNumber}E$episodeNumber",
+                episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),
                 timeLeft = daysLeft)
             show
         }.executeAsList()
