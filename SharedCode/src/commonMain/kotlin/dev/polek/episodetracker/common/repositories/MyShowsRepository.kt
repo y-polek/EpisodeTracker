@@ -1,6 +1,8 @@
 package dev.polek.episodetracker.common.repositories
 
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
+import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
+import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.stillImageUrl
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.common.utils.millisToDays
@@ -31,7 +33,7 @@ class MyShowsRepository(
                     episodeNumber = episode.episodeNumber ?: -1,
                     seasonNumber = episode.seasonNumber ?: -1,
                     airDateMillis = episode.airDateMillis,
-                    imageUrl = if (episode.stillPath != null) TmdbService.stillImageUrl(episode.stillPath) else null)
+                    imageUrl = episode.stillPath?.let(::stillImageUrl))
             }
 
             val nextEpisodeNumber = show.nextEpisodeNumber
@@ -54,7 +56,7 @@ class MyShowsRepository(
                 name = show.name.orEmpty(),
                 overview = show.overview.orEmpty(),
                 year = show.year,
-                imageUrl = if (show.posterPath != null) TmdbService.posterImageUrl(show.posterPath) else null,
+                imageUrl = show.backdropPath?.let(::backdropImageUrl),
                 isEnded = show.isEnded,
                 nextEpisodeId = nextEpisodeId)
         }

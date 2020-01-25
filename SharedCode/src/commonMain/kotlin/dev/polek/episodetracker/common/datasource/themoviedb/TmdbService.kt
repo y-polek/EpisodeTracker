@@ -71,6 +71,10 @@ class TmdbService {
             return "$BASE_IMAGE_URL/w500$path"
         }
 
+        fun backdropImageUrl(path: String): String {
+            return "$BASE_IMAGE_URL/original$path"
+        }
+
         fun stillImageUrl(path: String): String {
             return "$BASE_IMAGE_URL/original$path"
         }
