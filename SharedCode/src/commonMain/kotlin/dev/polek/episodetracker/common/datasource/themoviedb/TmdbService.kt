@@ -1,11 +1,9 @@
 package dev.polek.episodetracker.common.datasource.themoviedb
 
 import dev.polek.episodetracker.THE_MOVIE_DB_API_ACCESS_TOKEN
-import dev.polek.episodetracker.common.network.bearer
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.*
-import dev.polek.episodetracker.common.datasource.themoviedb.entities.GenresEntity
-import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowEntity
 import dev.polek.episodetracker.common.model.DiscoverResult
+import dev.polek.episodetracker.common.network.bearer
 import io.ktor.client.HttpClient
 import io.ktor.client.features.auth.Auth
 import io.ktor.client.features.json.JsonFeature
@@ -50,15 +48,11 @@ class TmdbService {
     }
 
     suspend fun showDetails(tmdbId: Int): ShowEntity {
-        return client.get(urlString = "$BASE_URL/tv/$tmdbId")
+        return client.get(urlString = "$BASE_URL/tv/$tmdbId?append_to_response=external_ids")
     }
 
     suspend fun season(tmdbId: Int, number: Int): SeasonEntity {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId/season/$number")
-    }
-
-    suspend fun externalIds(tmdbId: Int): ExternalIdsEntity {
-        return client.get("$BASE_URL/tv/$tmdbId/external_ids")
     }
 
     private suspend fun findGenreById(id: Int): String? {

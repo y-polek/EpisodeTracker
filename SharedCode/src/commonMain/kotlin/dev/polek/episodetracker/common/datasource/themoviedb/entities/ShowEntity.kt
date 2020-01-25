@@ -2,7 +2,6 @@ package dev.polek.episodetracker.common.datasource.themoviedb.entities
 
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.utils.allNotNull
-import dev.polek.episodetracker.common.utils.parseDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -19,7 +18,8 @@ data class ShowEntity(
     @SerialName("backdrop_path") val backdropPath: String? = null,
     @SerialName("in_production") val inProduction: Boolean = true,
     @SerialName("next_episode_to_air") val nextEpisodeToAir: EpisodeEntity? = null,
-    @SerialName("number_of_seasons") val numberOfSeasons: Int = 1)
+    @SerialName("number_of_seasons") val numberOfSeasons: Int = 1,
+    @SerialName("external_ids") val externalIds: ExternalIdsEntity? = null)
 {
     @Transient val isValid = allNotNull(tmdbId, name, numberOfSeasons)
     @Transient val year: Int? = firstAirDate?.take(4)?.toIntOrNull()

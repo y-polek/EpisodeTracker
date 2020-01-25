@@ -13,16 +13,17 @@ class MyShowsRepository(
 {
     suspend fun addShow(tmdbId: Int) {
         if (isInMyShows(tmdbId)) return
-
         val show = tmdbService.showDetails(tmdbId)
-        val externalIds = tmdbService.externalIds(tmdbId)
+        check(show.isValid) { throw RuntimeException("Trying to add invalid show: $show") }
+
+        log("Adding show: $show")
+
         val seasons = (1..show.numberOfSeasons).map { seasonNumber ->
             tmdbService.season(tmdbId = tmdbId, number = seasonNumber)
         }
 
         db.transaction {
             seasons.flatMap { it.episodes.orEmpty() }.forEach { episode ->
-                log("Inserting $episode")
                 db.episodeQueries.insert(
                     tmdbId = episode.tmdbId,
                     showTmdbId = tmdbId,
@@ -31,8 +32,6 @@ class MyShowsRepository(
                     seasonNumber = episode.seasonNumber ?: -1,
                     airDateMillis = episode.airDateMillis,
                     imageUrl = if (episode.stillPath != null) TmdbService.stillImageUrl(episode.stillPath) else null)
-                val id = db.episodeQueries.lastInsertRowId().executeAsOne()
-                log("Inserted episode ID: $id")
             }
 
             val nextEpisodeNumber = show.nextEpisodeNumber
@@ -46,12 +45,12 @@ class MyShowsRepository(
             }
 
             db.myShowQueries.insert(
-                imdbId = externalIds.imdbId,
+                imdbId = show.externalIds?.imdbId,
                 tmdbId = tmdbId,
-                tvdbId = externalIds.tvdbId,
-                facebookId = externalIds.facebookId,
-                instagramId = externalIds.instagramId,
-                twitterId = externalIds.twitterId,
+                tvdbId = show.externalIds?.tvdbId,
+                facebookId = show.externalIds?.facebookId,
+                instagramId = show.externalIds?.instagramId,
+                twitterId = show.externalIds?.twitterId,
                 name = show.name.orEmpty(),
                 overview = show.overview.orEmpty(),
                 year = show.year,
@@ -71,11 +70,9 @@ class MyShowsRepository(
 
     fun upcomingShows(): List<MyShowsListItem.UpcomingShowViewModel> {
         return db.myShowQueries.upcomingShows { id, name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
-            log("$name. airDate: $airDateMillis")
             val daysLeft: String = if (airDateMillis != null) {
                 val now = GMTDate().timestamp
                 val millisLeft = airDateMillis - now
-                log("Millis left: $millisLeft")
                 val days =
                     millisToDays(millisLeft)
                 "$days days"
