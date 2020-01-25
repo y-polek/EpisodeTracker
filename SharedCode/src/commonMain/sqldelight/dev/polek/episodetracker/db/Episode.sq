@@ -16,6 +16,9 @@ insert:
 INSERT INTO Episode(tmdbId, showTmdbId, name, episodeNumber, seasonNumber, airDateMillis, imageUrl)
 VALUES (?, ?, ?, ?, ?, ?, ?);
 
+deleteByTmdbId:
+DELETE FROM Episode WHERE showTmdbId = ?;
+
 lastInsertRowId:
 SELECT last_insert_rowid();
 

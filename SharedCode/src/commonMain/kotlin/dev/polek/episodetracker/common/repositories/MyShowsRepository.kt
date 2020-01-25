@@ -64,7 +64,10 @@ class MyShowsRepository(
     }
 
     fun removeShow(tmdbId: Int) {
-        db.myShowQueries.deleteByTmdbId(tmdbId)
+        db.transaction {
+            db.episodeQueries.deleteByTmdbId(tmdbId)
+            db.myShowQueries.deleteByTmdbId(tmdbId)
+        }
     }
 
     fun isInMyShows(tmdbId: Int): Boolean {
