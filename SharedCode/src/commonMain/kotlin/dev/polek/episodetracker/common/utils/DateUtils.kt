@@ -1,6 +1,5 @@
 package dev.polek.episodetracker.common.utils
 
-import dev.polek.episodetracker.common.logging.log
 import io.ktor.util.InternalAPI
 import io.ktor.util.date.GMTDate
 import io.ktor.util.date.Month
@@ -18,15 +17,13 @@ fun parseDate(dateStr: String): GMTDate? {
         val year = groups[1]?.value?.toIntOrNull() ?: return null
         val month = groups[2]?.value?.toIntOrNull() ?: return null
         val day = groups[3]?.value?.toIntOrNull() ?: return null
-        val date = GMTDate(
+        return GMTDate(
             year = year,
             month = Month.from(month - 1),
             dayOfMonth = day,
             hours = 0,
             minutes = 0,
             seconds = 0)
-        log("$dateStr = $date")
-        return date
     }
     return null
 }
