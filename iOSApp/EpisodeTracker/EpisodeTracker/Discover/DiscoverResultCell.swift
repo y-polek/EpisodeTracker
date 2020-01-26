@@ -1,5 +1,5 @@
 import UIKit
-import MaterialComponents.MaterialInk
+import MaterialComponents.MaterialRipple
 import SharedCode
 
 class DiscoverResultCell: RippleTableViewCell {
