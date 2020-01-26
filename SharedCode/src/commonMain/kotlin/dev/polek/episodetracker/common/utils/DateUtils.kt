@@ -3,9 +3,6 @@ package dev.polek.episodetracker.common.utils
 import io.ktor.util.InternalAPI
 import io.ktor.util.date.GMTDate
 import io.ktor.util.date.Month
-import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
-import kotlin.time.toDuration
 
 private val dateRegex = "^([\\d]{4})-([\\d]{1,2})-([\\d]{1,2})$".toRegex()
 
@@ -26,11 +23,4 @@ fun parseDate(dateStr: String): GMTDate? {
             seconds = 0)
     }
     return null
-}
-
-fun Long.millisToDate(): GMTDate = GMTDate(this)
-
-@UseExperimental(ExperimentalTime::class)
-fun millisToDays(millis: Long): Long {
-    return millis.toDuration(DurationUnit.MILLISECONDS).inDays.toLong()
 }

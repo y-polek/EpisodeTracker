@@ -60,6 +60,10 @@ kotlin {
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
         }
+        commonTest.dependencies {
+            implementation 'org.jetbrains.kotlin:kotlin-test-common'
+            implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common'
+        }
 
         androidMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib'
@@ -79,6 +83,11 @@ kotlin {
 
             // SQLDelight
             implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
+        }
+
+        androidTest.dependencies {
+            implementation 'org.jetbrains.kotlin:kotlin-test'
+            implementation 'org.jetbrains.kotlin:kotlin-test-junit'
         }
 
         iosMain.dependencies {

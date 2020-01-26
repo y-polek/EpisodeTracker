@@ -7,7 +7,7 @@ import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEnt
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.common.utils.formatEpisodeNumber
-import dev.polek.episodetracker.common.utils.millisToDays
+import dev.polek.episodetracker.common.utils.formatTimeBetween
 import dev.polek.episodetracker.db.Database
 import io.ktor.util.date.GMTDate
 
@@ -79,12 +79,10 @@ class MyShowsRepository(
     }
 
     fun upcomingShows(): List<MyShowsListItem.UpcomingShowViewModel> {
+        val now = GMTDate()
         return db.myShowQueries.upcomingShows { id, name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
             val daysLeft: String = if (airDateMillis != null) {
-                val now = GMTDate().timestamp
-                val millisLeft = airDateMillis - now
-                val days = millisToDays(millisLeft)
-                "$days days"
+                formatTimeBetween(now, GMTDate(airDateMillis))
             } else {
                 "N/A"
             }
