@@ -3,6 +3,7 @@ package dev.polek.episodetracker.common.repositories
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.stillImageUrl
+import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEntity
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.common.utils.formatEpisodeNumber
@@ -26,16 +27,18 @@ class MyShowsRepository(
         }
 
         db.transaction {
-            seasons.flatMap { it.episodes.orEmpty() }.forEach { episode ->
-                db.episodeQueries.insert(
-                    tmdbId = episode.tmdbId,
-                    showTmdbId = tmdbId,
-                    name = episode.name.orEmpty(),
-                    episodeNumber = episode.episodeNumber ?: -1,
-                    seasonNumber = episode.seasonNumber ?: -1,
-                    airDateMillis = episode.airDateMillis,
-                    imageUrl = episode.stillPath?.let(::stillImageUrl))
-            }
+            seasons.flatMap { it.episodes.orEmpty() }
+                .filter(EpisodeEntity::isValid)
+                .forEach { episode ->
+                    db.episodeQueries.insert(
+                        tmdbId = episode.tmdbId,
+                        showTmdbId = tmdbId,
+                        name = episode.name.orEmpty(),
+                        episodeNumber = requireNotNull(episode.episodeNumber),
+                        seasonNumber = requireNotNull(episode.seasonNumber),
+                        airDateMillis = episode.airDateMillis,
+                        imageUrl = episode.stillPath?.let(::stillImageUrl))
+                }
 
             val nextEpisodeNumber = show.nextEpisodeNumber
             val nextEpisodeId = when {
