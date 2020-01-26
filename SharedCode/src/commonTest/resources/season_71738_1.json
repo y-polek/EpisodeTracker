@@ -1,0 +1,1357 @@
+{
+  "_id": "591a39849251415723061b3f",
+  "air_date": "2017-09-10",
+  "episodes": [
+    {
+      "air_date": "2017-09-10",
+      "episode_number": 1,
+      "id": 1332480,
+      "name": "Old Wounds",
+      "overview": "It's 2417, and the Planetary Union promotes Ed Mercer to Captain of the exploratory vessel The U.S.S. Orville. Ed's enthusiasm for his new position is dampened when his ex-wife, Kelly Grayson, is assigned to be his First Officer. While on their first routine mission, the Orville crew is ambushed by the Krill, a vicious alien race, who are bent on stealing a device that can cause time to accelerate.",
+      "production_code": "1LAB01",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/36zHTDmGqXgVWgDFIakuOJhUU0J.jpg",
+      "vote_average": 6.813,
+      "vote_count": 16,
+      "crew": [
+        {
+          "id": 15277,
+          "credit_id": "591a3a8cc3a368423c061074",
+          "name": "Jon Favreau",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/rOVBKURoR7TrG8MYxTuNUFj3E68.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 20897,
+          "credit_id": "5bb30f4ec3a3681e160059fe",
+          "name": "Bruce Broughton",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/3AKoSkgWDbtbBPyva4cZ8GD5Fr6.jpg"
+        },
+        {
+          "id": 1627405,
+          "credit_id": "5bb30fb00e0a263dff005a74",
+          "name": "Tom Costantino",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1457949,
+          "credit_id": "5bb30fd3c3a3681e390065d6",
+          "name": "Bryan Felty",
+          "department": "Art",
+          "job": "Art Direction",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 8536,
+          "name": "Victor Garber",
+          "credit_id": "59b04b1d9251410707072db3",
+          "character": "Admiral Halsey",
+          "order": 1,
+          "gender": 2,
+          "profile_path": "/127afV11FFwJJMochlUIoK8uqeY.jpg"
+        },
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "59b04b47925141072f07478f",
+          "character": "Yaphit (voice)",
+          "order": 2,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 1301187,
+          "name": "Patrick Cox",
+          "credit_id": "59b04b609251410723071a84",
+          "character": "Ogre",
+          "order": 3,
+          "gender": 2,
+          "profile_path": "/9lKuRkqi571TImeqs4iizrkmHUp.jpg"
+        },
+        {
+          "id": 58511,
+          "name": "Brian George",
+          "credit_id": "59b04b799251410723071a9c",
+          "character": "Dr. Aronov",
+          "order": 4,
+          "gender": 2,
+          "profile_path": "/g0bVyXsHDhRhd5WuQwRQDv2TkG9.jpg"
+        },
+        {
+          "id": 1445756,
+          "name": "Christine Corpuz",
+          "credit_id": "59b04b919251417e4001e557",
+          "character": "Janice Lee",
+          "order": 5,
+          "gender": 0,
+          "profile_path": "/jRJeFfqJHc9p4tqISOUZHw2Tvi4.jpg"
+        },
+        {
+          "id": 222532,
+          "name": "Sean Cook",
+          "credit_id": "59b04babc3a368244301b9a5",
+          "character": "Derek",
+          "order": 6,
+          "gender": 2,
+          "profile_path": "/ePXmQyoOW1QBSw7Wq3Y8V1DowsH.jpg"
+        },
+        {
+          "id": 156136,
+          "name": "Joel Swetow",
+          "credit_id": "59b04bc49251410707072e61",
+          "character": "Krill Captain",
+          "order": 7,
+          "gender": 2,
+          "profile_path": "/grAzwmiFh08MRfzutbsiQZfoCFZ.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2017-09-17",
+      "episode_number": 2,
+      "id": 1361359,
+      "name": "Command Performance",
+      "overview": "When Ed and Kelly are tricked by a hologram of a ship in distress and find themselves prisoners in a replica of their former home, Alara must step up in her first command of the Orville and attempt a heroic rescue. Meanwhile, Bortus and Klyden receive some happy, yet unexpected news.",
+      "production_code": "1LAB03",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/nZ5Xuz47Cog4VZ5NYhJfybLXyii.jpg",
+      "vote_average": 7.429,
+      "vote_count": 14,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 74065,
+          "credit_id": "59b051bfc3a3682c4806c390",
+          "name": "Robert Duncan McNeill",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/4tNpbGvIj2MFBtP2iiUp2XbH8Lj.jpg"
+        },
+        {
+          "id": 4500,
+          "credit_id": "5bb3101e9251411cb90054b3",
+          "name": "John Debney",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/hTrlvZlDXQk49nfc2BM9sjKfJv.jpg"
+        },
+        {
+          "id": 1325041,
+          "credit_id": "5bb310340e0a263e050057c3",
+          "name": "Scott Powell",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "59b04b47925141072f07478f",
+          "character": "Yaphit (voice)",
+          "order": 2,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 4175,
+          "name": "Jeffrey Tambor",
+          "credit_id": "59b052e9925141072f075058",
+          "character": "Bert Mercer",
+          "order": 8,
+          "gender": 2,
+          "profile_path": "/csB350am07xyRL5Ik1BWuSY12tH.jpg"
+        },
+        {
+          "id": 11318,
+          "name": "Holland Taylor",
+          "credit_id": "59b052fdc3a3682cc8074a76",
+          "character": "Jeannie Mercer",
+          "order": 9,
+          "gender": 1,
+          "profile_path": "/jt9yFB3nLfZQ0c1DcnvvcfA11gB.jpg"
+        },
+        {
+          "id": 118590,
+          "name": "Larry Joe Campbell",
+          "credit_id": "59b0532492514107af074070",
+          "character": "Steve Newton",
+          "order": 10,
+          "gender": 2,
+          "profile_path": "/91kXO2XCIv8B9bP3720QIrTJNfs.jpg"
+        },
+        {
+          "id": 14839,
+          "name": "Mike Gray",
+          "credit_id": "59b053379251410723072373",
+          "character": "Ensign Parker",
+          "order": 11,
+          "gender": 2,
+          "profile_path": null
+        },
+        {
+          "id": 12797,
+          "name": "Glenn Morshower",
+          "credit_id": "59b05349c3a3682c2206fde7",
+          "character": "Admiral Tucker",
+          "order": 12,
+          "gender": 2,
+          "profile_path": "/ighVr61WoYsMVGvKeRXvubI0AkF.jpg"
+        },
+        {
+          "id": 1184011,
+          "name": "JD Cullum",
+          "credit_id": "59b05358c3a3682d8701f6d1",
+          "character": "Calivon Zoo Administrator",
+          "order": 13,
+          "gender": 2,
+          "profile_path": "/1K6hRv9Y0QicjazSThUYm7wdXDG.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2017-09-21",
+      "episode_number": 3,
+      "id": 1361360,
+      "name": "About a Girl",
+      "overview": "The Orville crew is divided between cultures when Bortus and Klyden debate if their newly born offspring should receive a controversial surgery.",
+      "production_code": "1LAB04",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/1Jh3ZXTsfr4B2X3CZpmktRAETp8.jpg",
+      "vote_average": 6.462,
+      "vote_count": 13,
+      "crew": [
+        {
+          "id": 2386,
+          "credit_id": "591a3a7bc3a368423c061062",
+          "name": "Brannon Braga",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/fK2Royl7xqybSpK3OED0wI9upOp.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 49285,
+          "credit_id": "5bb310a0c3a3681e130052b6",
+          "name": "Joel McNeely",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/6wMGJHDe1F0UWc3p7BZapekbpqw.jpg"
+        },
+        {
+          "id": 1448527,
+          "credit_id": "5bb310b20e0a263dff005b78",
+          "name": "Shon Hedges",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "59b04b47925141072f07478f",
+          "character": "Yaphit (voice)",
+          "order": 2,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 1883124,
+          "name": "Lamont Thomspon",
+          "credit_id": "59b053b2c3a3682c2206fe66",
+          "character": "Kaybrak",
+          "order": 14,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 58758,
+          "name": "Deobia Oparei",
+          "credit_id": "59b053c59251410723072414",
+          "character": "Captain Vorak",
+          "order": 15,
+          "gender": 2,
+          "profile_path": "/w4gidsff3WG5WjsSu9spcHxh2uE.jpg"
+        },
+        {
+          "id": 92611,
+          "name": "Antonio D. Charity",
+          "credit_id": "59b053e8c3a3682c4806c5c5",
+          "character": "Advocate Kagus",
+          "order": 16,
+          "gender": 2,
+          "profile_path": "/S8T0ABox1qJYbl84GWkQNU7wvZ.jpg"
+        },
+        {
+          "id": 7241,
+          "name": "Rena Owen",
+          "credit_id": "59b053f89251410723072453",
+          "character": "Heveena",
+          "order": 17,
+          "gender": 1,
+          "profile_path": "/vEVLQ9BvpxcbNkR8y13ml3mCY1i.jpg"
+        },
+        {
+          "id": 13477,
+          "name": "Jonathan Adams",
+          "credit_id": "59b05414c3a3682cc8074bb5",
+          "character": "Moclan Arbitrator",
+          "order": 18,
+          "gender": 2,
+          "profile_path": "/iz0BqE9y5NAgMxjOjwrB1BuLHFl.jpg"
+        },
+        {
+          "id": 170889,
+          "name": "D. Elliot Woods",
+          "credit_id": "59b05427c3a3682c62077093",
+          "character": "Moclan Council Foreman",
+          "order": 19,
+          "gender": 2,
+          "profile_path": null
+        }
+      ]
+    },
+    {
+      "air_date": "2017-09-28",
+      "episode_number": 4,
+      "id": 1362071,
+      "name": "If the Stars Should Appear",
+      "overview": "Ed and the Orville crew encounter a massive vessel adrift in space, which is in danger of colliding with a star. While some of the crew set out to help the ship's inhabitants, Bortus, Gordon, and John stay behind and fend off a Krill attack on another Union ship",
+      "production_code": "1LAB02",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/hdCeCrNByCX0EfJRNOn0pIQDrjZ.jpg",
+      "vote_average": 7.167,
+      "vote_count": 12,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 177876,
+          "credit_id": "59b1f1409251410765095319",
+          "name": "James L. Conway",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/7gfoRbOunYoA3BiPRnC73xG6mvQ.jpg"
+        },
+        {
+          "id": 1627405,
+          "credit_id": "5bb30fb00e0a263dff005a74",
+          "name": "Tom Costantino",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 49285,
+          "credit_id": "5bb310a0c3a3681e130052b6",
+          "name": "Joel McNeely",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/6wMGJHDe1F0UWc3p7BZapekbpqw.jpg"
+        },
+        {
+          "id": 1448527,
+          "credit_id": "5bb310b20e0a263dff005b78",
+          "name": "Shon Hedges",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "59b04b47925141072f07478f",
+          "character": "Yaphit (voice)",
+          "order": 2,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 17343,
+          "name": "Robert Knepper",
+          "credit_id": "59b1f181c3a3682c62094b2f",
+          "character": "Hamelac",
+          "order": 21,
+          "gender": 2,
+          "profile_path": "/w40AttR4OPQvjYyTVanq5Rm5iOb.jpg"
+        },
+        {
+          "id": 1155612,
+          "name": "James Morrison",
+          "credit_id": "59b1f1e5c3a3681fcc03ad62",
+          "character": "Kemka",
+          "order": 22,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 81083,
+          "name": "Max Burkholder",
+          "credit_id": "59b1f20ac3a3682d8703e7f9",
+          "character": "Tomilin",
+          "order": 23,
+          "gender": 2,
+          "profile_path": "/8uNNDZPSxLsNetHPl1zxMwKULTC.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2017-10-05",
+      "episode_number": 5,
+      "id": 1370223,
+      "name": "Pria",
+      "overview": "After the crew saves a stranded ship and its attractive captain, Ed becomes smitten with the Orville’s new guest, while Kelly suspects all is not what it seems. Meanwhile, Gordon attempts to teach Isaac the art of pulling off a practical joke.",
+      "production_code": "1LAB05",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/q8Xsl2FBs8DzbjCywydDm3TUssq.jpg",
+      "vote_average": 7.167,
+      "vote_count": 12,
+      "crew": [
+        {
+          "id": 2388,
+          "credit_id": "591a3a99c3a368423c06107f",
+          "name": "Jonathan Frakes",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/51Z5EbZxtVPm6GiN0Wc9CLP4z3s.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 1627405,
+          "credit_id": "5bb30fb00e0a263dff005a74",
+          "name": "Tom Costantino",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 4500,
+          "credit_id": "5bb3101e9251411cb90054b3",
+          "name": "John Debney",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/hTrlvZlDXQk49nfc2BM9sjKfJv.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "59b04b47925141072f07478f",
+          "character": "Yaphit (voice)",
+          "order": 2,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 118590,
+          "name": "Larry Joe Campbell",
+          "credit_id": "59b0532492514107af074070",
+          "character": "Steve Newton",
+          "order": 10,
+          "gender": 2,
+          "profile_path": "/91kXO2XCIv8B9bP3720QIrTJNfs.jpg"
+        },
+        {
+          "id": 6885,
+          "name": "Charlize Theron",
+          "credit_id": "59c9b0a3c3a368031f001d1a",
+          "character": "Pria Lavesque",
+          "order": 23,
+          "gender": 1,
+          "profile_path": "/k5Xt2mNlraX7yHYaPy9gvayCaKV.jpg"
+        },
+        {
+          "id": 81668,
+          "name": "Rachael MacFarlane",
+          "credit_id": "59c9b0f7925141240a001bd0",
+          "character": "Computer Voice (V.O.) (voice)",
+          "order": 24,
+          "gender": 1,
+          "profile_path": "/itaeAPOWA6SSn2mz2SUdgeEEuI9.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2017-10-12",
+      "episode_number": 6,
+      "id": 1370224,
+      "name": "Krill",
+      "overview": "After the Orville crew defeats a Krill attack on a brand-new colony, the Union sends Ed and Gordon on a dangerous undercover mission to infiltrate a Krill ship and obtain a copy of the Krill bible, the \"Anhkana,\" to better understand the enemy.",
+      "production_code": "1LAB06",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/ucZ0NMxi36AjyTLIxiueYZiW8Cj.jpg",
+      "vote_average": 7.455,
+      "vote_count": 11,
+      "crew": [
+        {
+          "id": 25873,
+          "credit_id": "59cf8e51c3a3681eb101c0ca",
+          "name": "Jon Cassar",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/jDiVSUWBoKsslp1y0tnQJ50fws2.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 96342,
+          "credit_id": "59ead03c925141628b00bc93",
+          "name": "David A. Goodman",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/5prZa5BqZoz2q0O0OU6cBsWay5v.jpg"
+        },
+        {
+          "id": 1325041,
+          "credit_id": "5bb310340e0a263e050057c3",
+          "name": "Scott Powell",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 49285,
+          "credit_id": "5bb310a0c3a3681e130052b6",
+          "name": "Joel McNeely",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/6wMGJHDe1F0UWc3p7BZapekbpqw.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 85419,
+          "name": "Dylan Kenin",
+          "credit_id": "59eacb25c3a368249b00dbb5",
+          "character": "Captain Haros",
+          "order": 26,
+          "gender": 2,
+          "profile_path": "/1lVPWxGyXDsYhkXGHybeyN5Eyd8.jpg"
+        },
+        {
+          "id": 210126,
+          "name": "Michaela McManus",
+          "credit_id": "59eacb3f9251415544005ed0",
+          "character": "Teleya",
+          "order": 27,
+          "gender": 1,
+          "profile_path": "/bgUdMdXoC917QHmcyjqJ9MaU2iT.jpg"
+        },
+        {
+          "id": 94926,
+          "name": "James Horan",
+          "credit_id": "59eacb4f9251415c3a0054f1",
+          "character": "High Priest Sazeron",
+          "order": 28,
+          "gender": 2,
+          "profile_path": "/jDYotaLeffsHv4WxTbb4vo5zrRm.jpg"
+        },
+        {
+          "id": 11024,
+          "name": "Kelly Hu",
+          "credit_id": "59eacb129251415c3a005469",
+          "character": "Admiral Ozawa",
+          "order": 51,
+          "gender": 1,
+          "profile_path": "/22dMGywe7xDJHVIWuMqiszRMybW.jpg"
+        },
+        {
+          "id": 2243090,
+          "name": "Gabriella Graves",
+          "credit_id": "5ca7e84d0e0a264c7df0cf20",
+          "character": "Krill Girl Student",
+          "order": 70,
+          "gender": 1,
+          "profile_path": "/kaCOvWyMbqih88KgDe4veo1hnnx.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2017-10-26",
+      "episode_number": 7,
+      "id": 1379092,
+      "name": "Majority Rule",
+      "overview": "When two Union anthropologists go missing on a planet similar to 21st century Earth, Ed sends a team led by Kelly to find them, but the mission quickly goes awry when they realize the society’s government is completely based on a public voting system to determine punishment.",
+      "production_code": "1LAB07",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/e2ypuZNmiuFqpdQsXrRfi7Q3lbQ.jpg",
+      "vote_average": 7.778,
+      "vote_count": 9,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 1212609,
+          "credit_id": "59ead01f9251415a8e005c61",
+          "name": "Tucker Gates",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": null
+        },
+        {
+          "id": 4500,
+          "credit_id": "5bb3101e9251411cb90054b3",
+          "name": "John Debney",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/hTrlvZlDXQk49nfc2BM9sjKfJv.jpg"
+        },
+        {
+          "id": 1448527,
+          "credit_id": "5bb310b20e0a263dff005b78",
+          "name": "Shon Hedges",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 85170,
+          "name": "Ron Canada",
+          "credit_id": "59eacbf392514155e7005963",
+          "character": "Fleet Admiral Tucker",
+          "order": 29,
+          "gender": 2,
+          "profile_path": "/deOASrl3c0zYKGl7pV3OZYrznxQ.jpg"
+        },
+        {
+          "id": 63544,
+          "name": "Steven Culp",
+          "credit_id": "59eacc02c3a368638e004f93",
+          "character": "Willks",
+          "order": 30,
+          "gender": 2,
+          "profile_path": "/jMW07MckDeKbGs6QBwYyA8qCjRA.jpg"
+        },
+        {
+          "id": 1909343,
+          "name": "Giorgia Whigham",
+          "credit_id": "59eacc0ec3a36824de00c8b9",
+          "character": "Lysella",
+          "order": 31,
+          "gender": 1,
+          "profile_path": "/oWcGJQ0vqDws24acdxQzPB41hGV.jpg"
+        },
+        {
+          "id": 75344,
+          "name": "Barry Livingston",
+          "credit_id": "59eacc1ec3a368638e004fcb",
+          "character": "Tom",
+          "order": 32,
+          "gender": 2,
+          "profile_path": "/4a7hU3cJZb9ZXUuHQ3W2kejHbAN.jpg"
+        },
+        {
+          "id": 34979,
+          "name": "Loren Lester",
+          "credit_id": "59eacc2cc3a36824de00c909",
+          "character": "Lewis",
+          "order": 33,
+          "gender": 2,
+          "profile_path": "/9X2b77dNQhfZmpdgnK9H5KzQLf1.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2017-11-02",
+      "episode_number": 8,
+      "id": 1382241,
+      "name": "Into the Fold",
+      "overview": "Ed and the crew set out to save Dr. Finn, her two sons and Isaac after their shuttle gets thrown into uncharted space and they crash-land on a moon that is light years from the Orville.",
+      "production_code": "1LAB08",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/1TDBeI7OZOuihFYPfaCIL1QwgcW.jpg",
+      "vote_average": 6.143,
+      "vote_count": 7,
+      "crew": [
+        {
+          "id": 2386,
+          "credit_id": "591a3a7bc3a368423c061062",
+          "name": "Brannon Braga",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/fK2Royl7xqybSpK3OED0wI9upOp.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "591a3aa9c3a3684269064a33",
+          "name": "Seth MacFarlane",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 1627405,
+          "credit_id": "5bb30fb00e0a263dff005a74",
+          "name": "Tom Costantino",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 49285,
+          "credit_id": "5bb310a0c3a3681e130052b6",
+          "name": "Joel McNeely",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/6wMGJHDe1F0UWc3p7BZapekbpqw.jpg"
+        },
+        {
+          "id": 1919334,
+          "credit_id": "5bb31272c3a3681e39006815",
+          "name": "Robert Strohmaier",
+          "department": "Art",
+          "job": "Art Direction",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "59b04b47925141072f07478f",
+          "character": "Yaphit (voice)",
+          "order": 2,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 118590,
+          "name": "Larry Joe Campbell",
+          "credit_id": "59b0532492514107af074070",
+          "character": "Steve Newton",
+          "order": 10,
+          "gender": 2,
+          "profile_path": "/91kXO2XCIv8B9bP3720QIrTJNfs.jpg"
+        },
+        {
+          "id": 2719,
+          "name": "Brian Thompson",
+          "credit_id": "59eacc8a9251415a6000591e",
+          "character": "Drogen",
+          "order": 35,
+          "gender": 2,
+          "profile_path": "/bjBHdq7uPEzrjDk96nNlbDBNKo6.jpg"
+        },
+        {
+          "id": 1477243,
+          "name": "BJ Tanner",
+          "credit_id": "59eacc7dc3a368638e00509a",
+          "character": "Marcus Finn",
+          "order": 55,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1909344,
+          "name": "Kai Wener",
+          "credit_id": "59eacc979251415c3a00579b",
+          "character": "Ty Finn",
+          "order": 55,
+          "gender": 0,
+          "profile_path": null
+        }
+      ]
+    },
+    {
+      "air_date": "2017-11-09",
+      "episode_number": 9,
+      "id": 1382242,
+      "name": "Cupid's Dagger",
+      "overview": "The Orville is called to mediate a peace treaty between two warring cultures, but tensions run even higher between Ed and Kelly when a familiar face boards the ship. Meanwhile Yaphit declares his love for Dr. Finn with surprising results.",
+      "production_code": "1LAB09",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/8vpHQYCYBDRNegCeKDbJKnIAtB7.jpg",
+      "vote_average": 5.625,
+      "vote_count": 8,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 59466,
+          "credit_id": "59eacff6c3a368638e00556d",
+          "name": "Jamie Babbit",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 1,
+          "profile_path": "/6RacsuB5pCLuy4qcIA7FeTxhYZM.jpg"
+        },
+        {
+          "id": 4500,
+          "credit_id": "5bb3101e9251411cb90054b3",
+          "name": "John Debney",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/hTrlvZlDXQk49nfc2BM9sjKfJv.jpg"
+        },
+        {
+          "id": 1325041,
+          "credit_id": "5bb310340e0a263e050057c3",
+          "name": "Scott Powell",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1919334,
+          "credit_id": "5bb31272c3a3681e39006815",
+          "name": "Robert Strohmaier",
+          "department": "Art",
+          "job": "Art Direction",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1752275,
+          "credit_id": "5bb312cc9251411cb0005354",
+          "name": "Bart Rachmil",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 2,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 8536,
+          "name": "Victor Garber",
+          "credit_id": "59b04b1d9251410707072db3",
+          "character": "Admiral Halsey",
+          "order": 1,
+          "gender": 2,
+          "profile_path": "/127afV11FFwJJMochlUIoK8uqeY.jpg"
+        },
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "59b04b47925141072f07478f",
+          "character": "Yaphit (voice)",
+          "order": 2,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 118590,
+          "name": "Larry Joe Campbell",
+          "credit_id": "59b0532492514107af074070",
+          "character": "Steve Newton",
+          "order": 10,
+          "gender": 2,
+          "profile_path": "/91kXO2XCIv8B9bP3720QIrTJNfs.jpg"
+        },
+        {
+          "id": 1457203,
+          "name": "Gavin Lee",
+          "credit_id": "59eacd029251415a8e005846",
+          "character": "Henry Park",
+          "order": 37,
+          "gender": 2,
+          "profile_path": null
+        },
+        {
+          "id": 128630,
+          "name": "J. Paul Boehmer",
+          "credit_id": "59eacd3092514155440062ec",
+          "character": "Navarian Ambassador",
+          "order": 38,
+          "gender": 2,
+          "profile_path": "/ivatzHFemBYmmrwH9eB5UohmGRN.jpg"
+        },
+        {
+          "id": 60286,
+          "name": "Ralph Garman",
+          "credit_id": "59eacd3e92514155e7005bbd",
+          "character": "Kanoot",
+          "order": 39,
+          "gender": 2,
+          "profile_path": "/vMzb4yCslLhJb7CQkS3R1jbyCO6.jpg"
+        },
+        {
+          "id": 2879,
+          "name": "Rob Lowe",
+          "credit_id": "5a05fe3d925141561d0020f7",
+          "character": "Darulio",
+          "order": 40,
+          "gender": 2,
+          "profile_path": "/yt6vMZVBXGCJL0xRE4jFa4SjzcQ.jpg"
+        },
+        {
+          "id": 1477243,
+          "name": "BJ Tanner",
+          "credit_id": "59eacc7dc3a368638e00509a",
+          "character": "Marcus Finn",
+          "order": 55,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1909344,
+          "name": "Kai Wener",
+          "credit_id": "59eacc979251415c3a00579b",
+          "character": "Ty Finn",
+          "order": 55,
+          "gender": 0,
+          "profile_path": null
+        }
+      ]
+    },
+    {
+      "air_date": "2017-11-16",
+      "episode_number": 10,
+      "id": 1385438,
+      "name": "Firestorm",
+      "overview": "When a fire breaks out on The Orville and a crew member dies, Alara begins to question if she is fit for her job, just as unusual and terrifying things start happening on the ship.",
+      "production_code": "1LAB10",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/b1kObIltpeTCIBp77HoWWGS0Vul.jpg",
+      "vote_average": 6.429,
+      "vote_count": 7,
+      "crew": [
+        {
+          "id": 2386,
+          "credit_id": "591a3a7bc3a368423c061062",
+          "name": "Brannon Braga",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/fK2Royl7xqybSpK3OED0wI9upOp.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 4500,
+          "credit_id": "5bb3101e9251411cb90054b3",
+          "name": "John Debney",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/hTrlvZlDXQk49nfc2BM9sjKfJv.jpg"
+        },
+        {
+          "id": 1325041,
+          "credit_id": "5bb310340e0a263e050057c3",
+          "name": "Scott Powell",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1448527,
+          "credit_id": "5bb310b20e0a263dff005b78",
+          "name": "Shon Hedges",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1919334,
+          "credit_id": "5bb31272c3a3681e39006815",
+          "name": "Robert Strohmaier",
+          "department": "Art",
+          "job": "Art Direction",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2017-11-30",
+      "episode_number": 11,
+      "id": 1399560,
+      "name": "New Dimensions",
+      "overview": "Kelly discovers that Lt. John Lamarr is smarter than he lets on. So, she pushes Ed to consider him for a key leadership position on the ship after The Orville gets damaged by a mysterious spatial anomaly causing harrowing effects to all things living.",
+      "production_code": "1LAB11",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/1keja0nI5MM1QdULSLI5vTOiYq.jpg",
+      "vote_average": 7.5,
+      "vote_count": 8,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 1367679,
+          "credit_id": "5a95c4050e0a262f01006467",
+          "name": "Kelly Cronin",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 1,
+          "profile_path": null
+        },
+        {
+          "id": 1627405,
+          "credit_id": "5bb30fb00e0a263dff005a74",
+          "name": "Tom Costantino",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1325041,
+          "credit_id": "5bb310340e0a263e050057c3",
+          "name": "Scott Powell",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1448527,
+          "credit_id": "5bb310b20e0a263dff005b78",
+          "name": "Shon Hedges",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1919334,
+          "credit_id": "5bb31272c3a3681e39006815",
+          "name": "Robert Strohmaier",
+          "department": "Art",
+          "job": "Art Direction",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 2139793,
+          "credit_id": "5bb313839251411ca80062ee",
+          "name": "Andrew Cottee",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 8536,
+          "name": "Victor Garber",
+          "credit_id": "59b04b1d9251410707072db3",
+          "character": "Admiral Halsey",
+          "order": 1,
+          "gender": 2,
+          "profile_path": "/127afV11FFwJJMochlUIoK8uqeY.jpg"
+        },
+        {
+          "id": 118590,
+          "name": "Larry Joe Campbell",
+          "credit_id": "59b0532492514107af074070",
+          "character": "Steve Newton",
+          "order": 10,
+          "gender": 2,
+          "profile_path": "/91kXO2XCIv8B9bP3720QIrTJNfs.jpg"
+        },
+        {
+          "id": 77075,
+          "name": "Norm Macdonald",
+          "credit_id": "5a95c4b192514154f7006169",
+          "character": "Yaphit",
+          "order": 47,
+          "gender": 2,
+          "profile_path": "/pGOpdt9Xy9YO2nUEWgp8G89KC5r.jpg"
+        },
+        {
+          "id": 155403,
+          "name": "Paul Vogt",
+          "credit_id": "5a95c4eb0e0a262f01006542",
+          "character": "Horbalak Captain",
+          "order": 48,
+          "gender": 2,
+          "profile_path": "/ntZMdGgmIFEP4kPxBfSLOPIDQ0x.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2017-12-07",
+      "episode_number": 12,
+      "id": 1399579,
+      "name": "Mad Idolatry",
+      "overview": "Ed and Kelly consider the possibility of reforging their relationship, but Kelly soon crash-lands on a planet in another universe with Isaac and Gordon.",
+      "production_code": "1LAB13",
+      "season_number": 1,
+      "show_id": 71738,
+      "still_path": "/6F52TF09EnS5v5fOiV3WHlCbvD6.jpg",
+      "vote_average": 8,
+      "vote_count": 9,
+      "crew": [
+        {
+          "id": 2386,
+          "credit_id": "591a3a7bc3a368423c061062",
+          "name": "Brannon Braga",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/fK2Royl7xqybSpK3OED0wI9upOp.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 1627405,
+          "credit_id": "5bb30fb00e0a263dff005a74",
+          "name": "Tom Costantino",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1325041,
+          "credit_id": "5bb310340e0a263e050057c3",
+          "name": "Scott Powell",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 49285,
+          "credit_id": "5bb310a0c3a3681e130052b6",
+          "name": "Joel McNeely",
+          "department": "Sound",
+          "job": "Music",
+          "gender": 2,
+          "profile_path": "/6wMGJHDe1F0UWc3p7BZapekbpqw.jpg"
+        },
+        {
+          "id": 1448527,
+          "credit_id": "5bb310b20e0a263dff005b78",
+          "name": "Shon Hedges",
+          "department": "Editing",
+          "job": "Editor",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1919334,
+          "credit_id": "5bb31272c3a3681e39006815",
+          "name": "Robert Strohmaier",
+          "department": "Art",
+          "job": "Art Direction",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 1937589,
+          "name": "Kyra Santoro",
+          "credit_id": "5a2b6fe10e0a264cbc13a08c",
+          "character": "Ensign Turco",
+          "order": 41,
+          "gender": 1,
+          "profile_path": "/pfRJOB845e9PYA5rhOMp6HHYPIO.jpg"
+        },
+        {
+          "id": 15799,
+          "name": "Lenny Von Dohlen",
+          "credit_id": "5a2b701ac3a3680b9d124d84",
+          "character": "Valondis",
+          "order": 42,
+          "gender": 0,
+          "profile_path": "/7duYOdfUgAX7JL1zsXaKZEhuEVY.jpg"
+        },
+        {
+          "id": 1224565,
+          "name": "Erica Tazel",
+          "credit_id": "5a2b7026c3a3680b9a1440d9",
+          "character": "Baleth",
+          "order": 43,
+          "gender": 1,
+          "profile_path": "/iUnhoKIvVwSItaI5XpT0XydfNqH.jpg"
+        },
+        {
+          "id": 1215388,
+          "name": "Philip Anthony-Rodriguez",
+          "credit_id": "5a2b7034c3a3680b96132d6b",
+          "character": "Fadolin",
+          "order": 44,
+          "gender": 2,
+          "profile_path": "/5FWerjOx4MIV19ClhD8ecB2H8FW.jpg"
+        },
+        {
+          "id": 1937590,
+          "name": "Jasper McPherson",
+          "credit_id": "5a2b70400e0a264cd01342ab",
+          "character": "Little Girl",
+          "order": 45,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1093709,
+          "name": "Jay Jackson",
+          "credit_id": "5a2b70580e0a264cbe1307a4",
+          "character": "Reporter",
+          "order": 46,
+          "gender": 0,
+          "profile_path": "/xudGrbxeRjngwGZFubQ02kKQmNr.jpg"
+        },
+        {
+          "id": 2101913,
+          "name": "Gordy De St. Jeor",
+          "credit_id": "5b69fa6bc3a368189412cef7",
+          "character": "Teenage Boy",
+          "order": 49,
+          "gender": 2,
+          "profile_path": "/xDlVfqRsbvNPBxbTikW5lflNya0.jpg"
+        },
+        {
+          "id": 11024,
+          "name": "Kelly Hu",
+          "credit_id": "59eacb129251415c3a005469",
+          "character": "Admiral Ozawa",
+          "order": 51,
+          "gender": 1,
+          "profile_path": "/22dMGywe7xDJHVIWuMqiszRMybW.jpg"
+        }
+      ]
+    }
+  ],
+  "name": "Season 1",
+  "overview": "",
+  "id": 88414,
+  "poster_path": "/51ZCOrM7yh7nnH5WGG4NNQlVxaW.jpg",
+  "season_number": 1
+}

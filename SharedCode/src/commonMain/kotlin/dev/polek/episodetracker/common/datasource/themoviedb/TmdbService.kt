@@ -13,21 +13,7 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
 
-class TmdbService {
-
-    private val client = HttpClient {
-        install(Auth) {
-            bearer {
-                token = THE_MOVIE_DB_API_ACCESS_TOKEN
-            }
-        }
-        install(Logging) {
-            level = LogLevel.ALL
-        }
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(json = Json.nonstrict)
-        }
-    }
+class TmdbService(private val client: HttpClient = defaultHttpClient) {
 
     private var genresMap: Map<Int, String>? = null
 
@@ -64,8 +50,22 @@ class TmdbService {
     }
 
     companion object {
-        private const val BASE_URL = "https://api.themoviedb.org/3"
+        const val BASE_URL = "https://api.themoviedb.org/3"
         private const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p"
+
+        private val defaultHttpClient = HttpClient {
+            install(Auth) {
+                bearer {
+                    token = THE_MOVIE_DB_API_ACCESS_TOKEN
+                }
+            }
+            install(Logging) {
+                level = LogLevel.ALL
+            }
+            install(JsonFeature) {
+                serializer = KotlinxSerializer(json = Json.nonstrict)
+            }
+        }
 
         fun posterImageUrl(path: String): String {
             return "$BASE_IMAGE_URL/w500$path"

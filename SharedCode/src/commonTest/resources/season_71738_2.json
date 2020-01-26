@@ -1,0 +1,763 @@
+{
+  "_id": "5b4e700bc3a368305e001bcc",
+  "air_date": "2018-12-30",
+  "episodes": [
+    {
+      "air_date": "2018-12-30",
+      "episode_number": 1,
+      "id": 1640184,
+      "name": "Ja'loja",
+      "overview": "As The Orville heads towards Moclus for Bortus' special once-a-year ceremony, Ed discovers Kelly has moved on and has started dating. Meanwhile, Gordon asks for John's help in getting game, and Claire turns to Isaac for parenting advice.",
+      "production_code": "2LAB01",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/poBrT3HUYP7O5cWlUHW9NxT7nVq.jpg",
+      "vote_average": 5,
+      "vote_count": 5,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "591a3aa9c3a3684269064a33",
+          "name": "Seth MacFarlane",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 39125,
+          "name": "Will Sasso",
+          "credit_id": "5c4068119251417ba0ac2dce",
+          "character": "Mooska",
+          "order": 52,
+          "gender": 2,
+          "profile_path": "/5Lz3WLWkgU04Fy4Xa0pjE5U53Wi.jpg"
+        },
+        {
+          "id": 1219665,
+          "name": "Mike Henry",
+          "credit_id": "5c0bcf3892514147b00744f1",
+          "character": "Dann",
+          "order": 53,
+          "gender": 2,
+          "profile_path": "/iYNPvFjsx07iYE1WRp4EIDnxDhH.jpg"
+        },
+        {
+          "id": 1477243,
+          "name": "BJ Tanner",
+          "credit_id": "59eacc7dc3a368638e00509a",
+          "character": "Marcus Finn",
+          "order": 55,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1909344,
+          "name": "Kai Wener",
+          "credit_id": "59eacc979251415c3a00579b",
+          "character": "Ty Finn",
+          "order": 55,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 124645,
+          "name": "Chad L. Coleman",
+          "credit_id": "5c4068069251416e06b05e01",
+          "character": "Klyden",
+          "order": 65,
+          "gender": 2,
+          "profile_path": "/3sktDHA5N5VA9rQujz6F8C0jSxT.jpg"
+        },
+        {
+          "id": 76795,
+          "name": "Chris Johnson",
+          "credit_id": "5c40682ec3a3682162419201",
+          "character": "Cassius",
+          "order": 65,
+          "gender": 2,
+          "profile_path": "/2CCEdfXUZoCaJY0nj5feDm4DuYj.jpg"
+        },
+        {
+          "id": 1206,
+          "name": "Jason Alexander",
+          "credit_id": "5c4068409251416e06b05e40",
+          "character": "Olix",
+          "order": 65,
+          "gender": 2,
+          "profile_path": "/ernpSXp2RnkzeV14OEEKXRq1yND.jpg"
+        },
+        {
+          "id": 934243,
+          "name": "Halston Sage",
+          "credit_id": "591a3b9a9251415852060ecb",
+          "character": "Alara Kitan",
+          "order": 72,
+          "gender": 1,
+          "profile_path": "/7BYb7GIry4wbHTNSFCfuCkMexuH.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2019-01-03",
+      "episode_number": 2,
+      "id": 1527952,
+      "name": "Primal Urges",
+      "overview": "Ed and the crew race to save a small group of survivors on a planet about to be destroyed by its sun. Meanwhile, Bortus and Klyden start marriage counseling when Bortus' obsession with the ship's simulation room gets out of hand.",
+      "production_code": "1LAB12",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/anPyr3a2h2neiokbrcHY8UOkQc5.jpg",
+      "vote_average": 4.75,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 40230,
+          "credit_id": "5c15b143c3a36866ce3719b1",
+          "name": "Kevin Hooks",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/xqzV7byaH95GSvR86JjGzHceIY4.jpg"
+        },
+        {
+          "id": 1224494,
+          "credit_id": "5c2ec26cc3a3682913a67d89",
+          "name": "Wellesley Wild",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 0,
+          "profile_path": "/cUIGlHc5hwLqJNEB60ja5NMHdtn.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 11024,
+          "name": "Kelly Hu",
+          "credit_id": "59eacb129251415c3a005469",
+          "character": "Admiral Ozawa",
+          "order": 51,
+          "gender": 1,
+          "profile_path": "/22dMGywe7xDJHVIWuMqiszRMybW.jpg"
+        },
+        {
+          "id": 1219665,
+          "name": "Mike Henry",
+          "credit_id": "5c0bcf3892514147b00744f1",
+          "character": "Dann",
+          "order": 53,
+          "gender": 2,
+          "profile_path": "/iYNPvFjsx07iYE1WRp4EIDnxDhH.jpg"
+        },
+        {
+          "id": 1251570,
+          "name": "Lesley Fera",
+          "credit_id": "5c4068829251417a60aebe20",
+          "character": "Minister Theece",
+          "order": 55,
+          "gender": 1,
+          "profile_path": "/coA844itjYAVLJzVO0YD9TFc44r.jpg"
+        },
+        {
+          "id": 1392535,
+          "name": "Michael C. Mahon",
+          "credit_id": "5c4068929251417ba0ac2e3f",
+          "character": "Altox",
+          "order": 56,
+          "gender": 2,
+          "profile_path": "/k0ZJ5AdIsLOcireMfduMtOYJ9UO.jpg"
+        },
+        {
+          "id": 1055673,
+          "name": "Darren Dupree Washington",
+          "credit_id": "5c4068a6c3a36859f541d189",
+          "character": "Simulated Moclan",
+          "order": 57,
+          "gender": 2,
+          "profile_path": "/yJz38KcawEQMG9ijfwPtRMJrK3z.jpg"
+        },
+        {
+          "id": 1267809,
+          "name": "Jude Lanston",
+          "credit_id": "5c4068b20e0a26386791e4af",
+          "character": "Moclan Prison Guard",
+          "order": 58,
+          "gender": 2,
+          "profile_path": "/us1KnP91pSRfXdsoImwdZCmrwW4.jpg"
+        },
+        {
+          "id": 934243,
+          "name": "Halston Sage",
+          "credit_id": "591a3b9a9251415852060ecb",
+          "character": "Alara Kitan",
+          "order": 72,
+          "gender": 1,
+          "profile_path": "/7BYb7GIry4wbHTNSFCfuCkMexuH.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2019-01-10",
+      "episode_number": 3,
+      "id": 1629368,
+      "name": "Home",
+      "overview": "Ed, Gordon and Alara visit Alara's home planet of Xelayah.",
+      "production_code": "2LAB02",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/lt4fFdUM44LaTRtIFqFCI6GZ7le.jpg",
+      "vote_average": 4.5,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 25873,
+          "credit_id": "59cf8e51c3a3681eb101c0ca",
+          "name": "Jon Cassar",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/jDiVSUWBoKsslp1y0tnQJ50fws2.jpg"
+        },
+        {
+          "id": 1224498,
+          "credit_id": "5c15b15bc3a36866c7370fd7",
+          "name": "Cherry Chevapravatdumrong",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 1,
+          "profile_path": "/h0tm976SHGp7c6WA7FHISrVclpE.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 16180,
+          "name": "Robert Picardo",
+          "credit_id": "5c4068d90e0a26386791e4c3",
+          "character": "Ildis Kitan",
+          "order": 59,
+          "gender": 2,
+          "profile_path": "/5L0WCl3TzjeWdP8TqXfQ1n9uaOn.jpg"
+        },
+        {
+          "id": 58045,
+          "name": "Molly Hagan",
+          "credit_id": "5c4068e4c3a368638a41b926",
+          "character": "Drenala Kitan",
+          "order": 60,
+          "gender": 1,
+          "profile_path": "/m5pL170dlh7ex4lTESAK5kKARde.jpg"
+        },
+        {
+          "id": 85144,
+          "name": "Candice King",
+          "credit_id": "5c4068f00e0a261554905803",
+          "character": "Solana Kitan",
+          "order": 61,
+          "gender": 1,
+          "profile_path": "/cd3IguIkjP9R1WftnwY86zCq76c.jpg"
+        },
+        {
+          "id": 21722,
+          "name": "John Billingsley",
+          "credit_id": "5c4068fac3a36853ce418bfc",
+          "character": "Cambis Borrin",
+          "order": 62,
+          "gender": 2,
+          "profile_path": "/fHQ6ecMufxLwUAbN3dX3yxFAn5d.jpg"
+        },
+        {
+          "id": 100567,
+          "name": "Kerry O'Malley",
+          "credit_id": "5c4069070e0a2646a2918f6b",
+          "character": "Floratta",
+          "order": 63,
+          "gender": 1,
+          "profile_path": "/8a1wpq7lC8S3XiokACHkJOqJv5v.jpg"
+        },
+        {
+          "id": 9657,
+          "name": "Patrick Warburton",
+          "credit_id": "5c406913c3a36853ce418c03",
+          "character": "Lt. Tharl",
+          "order": 64,
+          "gender": 2,
+          "profile_path": "/cq8zZ6YfBrq2k4F4aHYLSP9QOJS.jpg"
+        },
+        {
+          "id": 1206,
+          "name": "Jason Alexander",
+          "credit_id": "5c4068409251416e06b05e40",
+          "character": "Olix",
+          "order": 65,
+          "gender": 2,
+          "profile_path": "/ernpSXp2RnkzeV14OEEKXRq1yND.jpg"
+        },
+        {
+          "id": 934243,
+          "name": "Halston Sage",
+          "credit_id": "591a3b9a9251415852060ecb",
+          "character": "Alara Kitan",
+          "order": 72,
+          "gender": 1,
+          "profile_path": "/7BYb7GIry4wbHTNSFCfuCkMexuH.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2019-01-17",
+      "episode_number": 4,
+      "id": 1656197,
+      "name": "Nothing Left on Earth Excepting Fishes",
+      "overview": "Ed finds himself behind enemy lines when he crash-lands on a mysterious planet. Meanwhile, Kelly questions why Gordon wants to take the Command Test.",
+      "production_code": "2LAB03",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/mpkwLmnjjgYuaODgTtNtpfhSMhd.jpg",
+      "vote_average": 6.75,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 74065,
+          "credit_id": "59b051bfc3a3682c4806c390",
+          "name": "Robert Duncan McNeill",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/4tNpbGvIj2MFBtP2iiUp2XbH8Lj.jpg"
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2019-01-24",
+      "episode_number": 5,
+      "id": 1656595,
+      "name": "All the World is Birthday Cake",
+      "overview": "The Orville makes First Contact and a new crew member joins the ship.",
+      "production_code": "2LAB04",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/uFhYsrHCqDcDeq1yqd6s4nKdFWu.jpg",
+      "vote_average": 5,
+      "vote_count": 5,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 74065,
+          "credit_id": "59b051bfc3a3682c4806c390",
+          "name": "Robert Duncan McNeill",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/4tNpbGvIj2MFBtP2iiUp2XbH8Lj.jpg"
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2019-01-31",
+      "episode_number": 6,
+      "id": 1656596,
+      "name": "A Happy Refrain",
+      "overview": "The Orville crew is surprised when Claire's personal life takes an unexpected turn, and Gordon makes an unusual grooming suggestion to Bortus.",
+      "production_code": "2LAB05",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/gYVA52V2NDk7ZjINzcEDDbiwn1P.jpg",
+      "vote_average": 7.5,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "591a3aa9c3a3684269064a33",
+          "name": "Seth MacFarlane",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2019-02-14",
+      "episode_number": 7,
+      "id": 1656597,
+      "name": "Deflectors",
+      "overview": "One of Bortus's old lovers is assigned to help upgrade the ships defences and makes a surprising admission to Talia.",
+      "production_code": "2LAB06",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/u04rhsCXLcWT5O1vCHMXl38GA9n.jpg",
+      "vote_average": 6.333,
+      "vote_count": 3,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "591a3aa9c3a3684269064a33",
+          "name": "Seth MacFarlane",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 96342,
+          "credit_id": "59ead03c925141628b00bc93",
+          "name": "David A. Goodman",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/5prZa5BqZoz2q0O0OU6cBsWay5v.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 124645,
+          "name": "Chad L. Coleman",
+          "credit_id": "5c4068069251416e06b05e01",
+          "character": "Klyden",
+          "order": 65,
+          "gender": 2,
+          "profile_path": "/3sktDHA5N5VA9rQujz6F8C0jSxT.jpg"
+        },
+        {
+          "id": 76795,
+          "name": "Chris Johnson",
+          "credit_id": "5c40682ec3a3682162419201",
+          "character": "Cassius",
+          "order": 65,
+          "gender": 2,
+          "profile_path": "/2CCEdfXUZoCaJY0nj5feDm4DuYj.jpg"
+        },
+        {
+          "id": 104785,
+          "name": "Kevin Daniels",
+          "credit_id": "5c69e7430e0a262b34980cb6",
+          "character": "Locar",
+          "order": 65,
+          "gender": 2,
+          "profile_path": "/oBFjroVs6jUSHkpMx8ruDD9ftz.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2019-02-21",
+      "episode_number": 8,
+      "id": 1659612,
+      "name": "Identity, Pt. 1 (1)",
+      "overview": "Ed and the crew travel to Isaac's home planet, Kaylon.",
+      "production_code": "2LAB07",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/8LLlk1hQOq3TubSfXhptneA7qaX.jpg",
+      "vote_average": 8.167,
+      "vote_count": 6,
+      "crew": [
+        {
+          "id": 25873,
+          "credit_id": "59cf8e51c3a3681eb101c0ca",
+          "name": "Jon Cassar",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/jDiVSUWBoKsslp1y0tnQJ50fws2.jpg"
+        },
+        {
+          "id": 2386,
+          "credit_id": "5c6f55d4c3a3685a34d3d1ff",
+          "name": "Brannon Braga",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/fK2Royl7xqybSpK3OED0wI9upOp.jpg"
+        },
+        {
+          "id": 1215376,
+          "credit_id": "5c6f55e39251410dae7c244f",
+          "name": "André Bormanis",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2019-02-28",
+      "episode_number": 9,
+      "id": 1659613,
+      "name": "Identity, Pt. 2 (2)",
+      "overview": "The Kaylons take control of the Orville with the intention of destroying all biological lifeforms",
+      "production_code": "2LAB08",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/sfMIqEqT0qfazjLReuWzYLN09nN.jpg",
+      "vote_average": 8.286,
+      "vote_count": 7,
+      "crew": [
+        {
+          "id": 25873,
+          "credit_id": "59cf8e51c3a3681eb101c0ca",
+          "name": "Jon Cassar",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/jDiVSUWBoKsslp1y0tnQJ50fws2.jpg"
+        },
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2019-03-07",
+      "episode_number": 10,
+      "id": 1712584,
+      "name": "Blood of Patriots",
+      "overview": "Ed must initiate peace talks with the Krill.",
+      "production_code": "2LAB09",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/irf7bplsoiS3SHSL3TNL9CYj3rs.jpg",
+      "vote_average": 5.8,
+      "vote_count": 5,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 72030,
+          "credit_id": "5c6f567bc3a3685a28d3ce78",
+          "name": "Rebecca Rodriguez",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 1,
+          "profile_path": "/jgKZ30oqKKG1yka03dl6TbzMOFa.jpg"
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 60060,
+          "name": "Mackenzie Astin",
+          "credit_id": "5c86edd20e0a264301689bac",
+          "character": "Orrin Channing",
+          "order": 66,
+          "gender": 2,
+          "profile_path": "/vmcRaz9K4cX4iOUcMSHsLcw0Two.jpg"
+        },
+        {
+          "id": 2263431,
+          "name": "Aily Kei",
+          "credit_id": "5c86ee40c3a3682ceed22ed7",
+          "character": "Leyna Channing",
+          "order": 67,
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 12836,
+          "name": "Ted Danson",
+          "credit_id": "5c86f1bec3a36813c2d420ca",
+          "character": "Admiral Perry",
+          "order": 68,
+          "gender": 2,
+          "profile_path": "/wWm9eDLuPDw29R76KAjg6gIE9dS.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2019-03-21",
+      "episode_number": 11,
+      "id": 1717543,
+      "name": "Lasting Impressions",
+      "overview": "The Orville crew members open a time capsule from 2015.",
+      "production_code": "2LAB10",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/8fChEqkdxKod5Oq5RCnclhRQ81S.jpg",
+      "vote_average": 6.75,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 52139,
+          "credit_id": "59b04ab292514107230719bb",
+          "name": "Seth MacFarlane",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/4N0P6CN6HfnswVBIXzdUWPQ1cRN.jpg"
+        },
+        {
+          "id": 1367679,
+          "credit_id": "5a95c4050e0a262f01006467",
+          "name": "Kelly Cronin",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 1,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": [
+        {
+          "id": 85825,
+          "name": "Leighton Meester",
+          "credit_id": "5c8e80190e0a2612ef56914c",
+          "character": "Laura",
+          "order": 69,
+          "gender": 1,
+          "profile_path": "/t4wEyg0f1hZbS38419RY7iNoOt7.jpg"
+        }
+      ]
+    },
+    {
+      "air_date": "2019-04-11",
+      "episode_number": 12,
+      "id": 1722541,
+      "name": "Sanctuary",
+      "overview": "Ed discovers that Moclans aboard The Orville are harboring a secret.",
+      "production_code": "2LAB11",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/9a8Y2xAAmIMAMpObimH9mDIUnnJ.jpg",
+      "vote_average": 5.75,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 2388,
+          "credit_id": "591a3a99c3a368423c06107f",
+          "name": "Jonathan Frakes",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 2,
+          "profile_path": "/51Z5EbZxtVPm6GiN0Wc9CLP4z3s.jpg"
+        },
+        {
+          "id": 1219351,
+          "credit_id": "5cb5e2ab92514108cef3ea48",
+          "name": "Joe Menosky",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2019-04-18",
+      "episode_number": 13,
+      "id": 1722542,
+      "name": "Tomorrow, and Tomorrow, and Tomorrow",
+      "overview": "A time distortion affects Ed and Kelly's relationship.",
+      "production_code": "2LAB12",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/zw1ekulO8E7jclr46KvA7bk4wg0.jpg",
+      "vote_average": 5.25,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 2259964,
+          "credit_id": "5c81b3150e0a2643055eff0a",
+          "name": "Gary S. Rake",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 0,
+          "profile_path": null
+        },
+        {
+          "id": 1367537,
+          "credit_id": "5cbc8f31c3a3683abf89a52d",
+          "name": "Janet Lin",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": []
+    },
+    {
+      "air_date": "2019-04-25",
+      "episode_number": 14,
+      "id": 1722543,
+      "name": "The Road Not Taken",
+      "overview": "The crew must contend with the disastrous fallout from Kelly's decision.",
+      "production_code": "2LAB13",
+      "season_number": 2,
+      "show_id": 71738,
+      "still_path": "/qM05eIwh3vyWSbpDpdgYn6cFcvC.jpg",
+      "vote_average": 5,
+      "vote_count": 4,
+      "crew": [
+        {
+          "id": 96342,
+          "credit_id": "59ead03c925141628b00bc93",
+          "name": "David A. Goodman",
+          "department": "Writing",
+          "job": "Writer",
+          "gender": 2,
+          "profile_path": "/5prZa5BqZoz2q0O0OU6cBsWay5v.jpg"
+        },
+        {
+          "id": 2259964,
+          "credit_id": "5c81b3150e0a2643055eff0a",
+          "name": "Gary S. Rake",
+          "department": "Directing",
+          "job": "Director",
+          "gender": 0,
+          "profile_path": null
+        }
+      ],
+      "guest_stars": []
+    }
+  ],
+  "name": "Season 2",
+  "overview": "",
+  "id": 106463,
+  "poster_path": "/8gB4zeP5OEU5r2dnXw9P87qJ1Di.jpg",
+  "season_number": 2
+}

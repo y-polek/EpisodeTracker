@@ -63,6 +63,8 @@ kotlin {
         commonTest.dependencies {
             implementation 'org.jetbrains.kotlin:kotlin-test-common'
             implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common'
+            implementation "io.ktor:ktor-client-mock:$ktor_version"
+            implementation "com.willowtreeapps.assertk:assertk:$assertk_version"
         }
 
         androidMain.dependencies {
@@ -89,6 +91,8 @@ kotlin {
             implementation 'org.jetbrains.kotlin:kotlin-test'
             implementation 'org.jetbrains.kotlin:kotlin-test-junit'
             implementation "com.squareup.sqldelight:sqlite-driver:$sqldelight_version"
+            implementation "io.ktor:ktor-client-mock-jvm:$ktor_version"
+            implementation "io.ktor:ktor-client-serialization-jvm:$ktor_version"
         }
 
         iosMain.dependencies {
