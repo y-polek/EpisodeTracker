@@ -10,8 +10,8 @@ class ToWatchRepository(private val db: Database) {
         return db.myShowQueries.toWatchShows(mapper = ::mapToWatchShow).executeAsList()
     }
 
-    fun toWatchShow(showId: Long): ToWatchShowViewModel? {
-        return db.myShowQueries.toWatchShow(id = showId, mapper = ::mapToWatchShow).executeAsList().firstOrNull()
+    fun toWatchShow(tmdbId: Int): ToWatchShowViewModel? {
+        return db.myShowQueries.toWatchShow(tmdbId = tmdbId, mapper = ::mapToWatchShow).executeAsList().firstOrNull()
     }
 
     fun markEpisodeWatched(episodeId: Long) {
@@ -20,7 +20,7 @@ class ToWatchRepository(private val db: Database) {
 
     companion object {
         fun mapToWatchShow(
-            showId: Long?,
+            showTmdbId: Int,
             showName: String,
             episodeId: Long?,
             seasonNumber: Int,
@@ -30,7 +30,7 @@ class ToWatchRepository(private val db: Database) {
             notWatchedEpisodesCount: Long): ToWatchShowViewModel
         {
             return ToWatchShowViewModel(
-                id = showId!!,
+                id = showTmdbId,
                 name = showName,
                 episodeId = episodeId!!,
                 episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),

@@ -1,7 +1,6 @@
 CREATE TABLE MyShow (
-    id INTEGER,
+    tmdbId INTEGER AS Int NOT NULL,
     imdbId TEXT,
-    tmdbId INTEGER AS Int,
     tvdbId INTEGER AS Int,
     facebookId TEXT,
     instagramId TEXT,
@@ -13,7 +12,7 @@ CREATE TABLE MyShow (
     isEnded INTEGER AS Boolean NOT NULL,
     nextEpisodeId INTEGER,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (tmdbId)
 );
 
 insert:
@@ -29,22 +28,22 @@ FROM MyShow
 WHERE tmdbId = ?;
 
 upcomingShows:
-SELECT MyShow.id, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
+SELECT MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
 FROM MyShow
 INNER JOIN Episode ON Episode.id = MyShow.nextEpisodeId;
 
 toBeAnnouncedShows:
-SELECT id, name, imageUrl
+SELECT name, imageUrl
 FROM MyShow
 WHERE isEnded = 0 AND nextEpisodeId IS NULL;
 
 endedShows:
-SELECT id, name, imageUrl
+SELECT name, imageUrl
 FROM MyShow
 WHERE isEnded = 1;
 
 toWatchShows:
-SELECT MyShow.id, MyShow.name, Episode.id, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
+SELECT MyShow.tmdbId, MyShow.name, Episode.id, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow
 INNER JOIN (
         SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
@@ -55,7 +54,7 @@ INNER JOIN (
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = NotWatchedEpisodes.firstNotWatchedEpisodeIndex;
 
 toWatchShow:
-SELECT MyShow.id, MyShow.name, Episode.id, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
+SELECT MyShow.tmdbId, MyShow.name, Episode.id, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow
 INNER JOIN (
         SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
@@ -64,4 +63,4 @@ INNER JOIN (
         GROUP BY showTmdbId
     ) AS NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = NotWatchedEpisodes.firstNotWatchedEpisodeIndex
-WHERE MyShow.id = ?;
+WHERE MyShow.tmdbId = ?;

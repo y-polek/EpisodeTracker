@@ -1,7 +1,7 @@
 package dev.polek.episodetracker.common.presentation.towatch
 
 data class ToWatchShowViewModel(
-    val id: Long,
+    val id: Int,
     val name: String,
     val episodeId: Long,
     val episodeNumber: String,
