@@ -31,7 +31,6 @@ class MyShowsRepository(
                 .filter(EpisodeEntity::isValid)
                 .forEach { episode ->
                     db.episodeQueries.insert(
-                        tmdbId = episode.tmdbId,
                         showTmdbId = tmdbId,
                         name = episode.name.orEmpty(),
                         episodeNumber = requireNotNull(episode.episodeNumber),
@@ -39,17 +38,6 @@ class MyShowsRepository(
                         airDateMillis = episode.airDateMillis,
                         imageUrl = episode.stillPath?.let(::stillImageUrl))
                 }
-
-            val nextEpisodeNumber = show.nextEpisodeNumber
-            val nextEpisodeId = when {
-                nextEpisodeNumber != null -> {
-                    db.episodeQueries.episode(
-                        showTmdbId = tmdbId,
-                        seasonNumber = nextEpisodeNumber.season,
-                        episodeNumber = nextEpisodeNumber.episode).executeAsOneOrNull()?.id
-                }
-                else -> null
-            }
 
             db.myShowQueries.insert(
                 tmdbId = tmdbId,
@@ -63,7 +51,8 @@ class MyShowsRepository(
                 year = show.year,
                 imageUrl = show.backdropPath?.let(::backdropImageUrl),
                 isEnded = show.isEnded,
-                nextEpisodeId = nextEpisodeId)
+                nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
+                nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
         }
     }
 

@@ -1,6 +1,5 @@
 package dev.polek.episodetracker.common.utils
 
-import dev.polek.episodetracker.common.model.EpisodeNumber
 import io.ktor.util.date.GMTDate
 import kotlin.math.ceil
 import kotlin.math.floor
@@ -13,9 +12,6 @@ fun formatEpisodeNumber(season: Int, episode: Int): String {
     val episodeStr = if (episode < 10) "0$episode" else episode.toString()
     return "S$seasonStr E$episodeStr"
 }
-
-fun EpisodeNumber.format(): String = formatEpisodeNumber(season = this.season, episode = this.episode)
-
 
 @UseExperimental(ExperimentalTime::class)
 fun formatTimeBetween(startDate: GMTDate, endDate: GMTDate): String {

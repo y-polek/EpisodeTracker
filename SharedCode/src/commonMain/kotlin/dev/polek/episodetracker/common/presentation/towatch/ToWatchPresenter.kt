@@ -10,7 +10,7 @@ class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresente
     }
 
     fun onWatchedButtonClicked(show: ToWatchShowViewModel) {
-        repository.markEpisodeWatched(show.episodeId)
+        repository.markNextEpisodeWatched(showTmdbId = show.id)
         val updatedShow = repository.toWatchShow(tmdbId = show.id)
         if (updatedShow != null) {
             view?.updateShow(updatedShow)

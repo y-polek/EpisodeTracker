@@ -10,14 +10,15 @@ CREATE TABLE MyShow (
     year INTEGER as Int,
     imageUrl TEXT,
     isEnded INTEGER AS Boolean NOT NULL,
-    nextEpisodeId INTEGER,
+    nextEpisodeSeason INTEGER AS Int,
+    nextEpisodeNumber INTEGER AS Int,
 
     PRIMARY KEY (tmdbId)
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeId)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeSeason, nextEpisodeNumber)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;
@@ -30,12 +31,15 @@ WHERE tmdbId = ?;
 upcomingShows:
 SELECT MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
 FROM MyShow
-INNER JOIN Episode ON Episode.id = MyShow.nextEpisodeId;
+INNER JOIN Episode
+ ON Episode.showTmdbId = MyShow.tmdbId
+ AND Episode.seasonNumber = MyShow.nextEpisodeSeason
+ AND Episode.episodeNumber = MyShow.nextEpisodeNumber;
 
 toBeAnnouncedShows:
 SELECT name, imageUrl
 FROM MyShow
-WHERE isEnded = 0 AND nextEpisodeId IS NULL;
+WHERE isEnded = 0 AND nextEpisodeNumber IS NULL;
 
 endedShows:
 SELECT name, imageUrl
@@ -43,7 +47,7 @@ FROM MyShow
 WHERE isEnded = 1;
 
 toWatchShows:
-SELECT MyShow.tmdbId, MyShow.name, Episode.id, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
+SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow
 INNER JOIN (
         SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
@@ -54,7 +58,7 @@ INNER JOIN (
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = NotWatchedEpisodes.firstNotWatchedEpisodeIndex;
 
 toWatchShow:
-SELECT MyShow.tmdbId, MyShow.name, Episode.id, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
+SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow
 INNER JOIN (
         SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex

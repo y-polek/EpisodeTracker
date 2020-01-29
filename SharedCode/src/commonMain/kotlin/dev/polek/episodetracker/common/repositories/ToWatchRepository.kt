@@ -14,15 +14,32 @@ class ToWatchRepository(private val db: Database) {
         return db.myShowQueries.toWatchShow(tmdbId = tmdbId, mapper = ::mapToWatchShow).executeAsList().firstOrNull()
     }
 
-    fun markEpisodeWatched(episodeId: Long) {
-        db.episodeQueries.setEpisodeWatched(id = episodeId, isWatched = true)
+    fun markEpisodeWatched(showTmdbId: Int, seasonNumber: Int, episodeNumber: Int) {
+        db.episodeQueries.setEpisodeWatched(
+            showTmdbId = showTmdbId,
+            seasonNumber = seasonNumber,
+            episodeNumber = episodeNumber,
+            isWatched = true)
+    }
+
+    fun markNextEpisodeWatched(showTmdbId: Int) {
+        db.transaction {
+            val nextEpisode = db.episodeQueries.nextNotWatchedEpisode(showTmdbId)
+                .executeAsOneOrNull()
+                ?: return@transaction
+
+            db.episodeQueries.setEpisodeWatched(
+                showTmdbId = showTmdbId,
+                seasonNumber = nextEpisode.seasonNumber,
+                episodeNumber = nextEpisode.episodeNumber,
+                isWatched = true)
+        }
     }
 
     companion object {
         fun mapToWatchShow(
             showTmdbId: Int,
             showName: String,
-            episodeId: Long?,
             seasonNumber: Int,
             episodeNumber: Int,
             episodeName: String,
@@ -32,7 +49,6 @@ class ToWatchRepository(private val db: Database) {
             return ToWatchShowViewModel(
                 id = showTmdbId,
                 name = showName,
-                episodeId = episodeId!!,
                 episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),
                 episodeName = episodeName,
                 episodeCount = notWatchedEpisodesCount.toInt(),

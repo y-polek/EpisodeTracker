@@ -1,20 +1,18 @@
 CREATE TABLE Episode(
-    id INTEGER,
-    tmdbId INTEGER AS Int,
     showTmdbId INTEGER As Int NOT NULL,
-    name TEXT NOT NULL,
-    episodeNumber INTEGER AS Int NOT NULL,
     seasonNumber INTEGER AS Int NOT NULL,
+    episodeNumber INTEGER AS Int NOT NULL,
+    name TEXT NOT NULL,
     airDateMillis INTEGER,
     imageUrl TEXT,
     isWatched INTEGER AS Boolean NOT NULL DEFAULT 0,
 
-    PRIMARY KEY(id)
+    PRIMARY KEY(showTmdbId, seasonNumber, episodeNumber)
 );
 
 insert:
-INSERT INTO Episode(tmdbId, showTmdbId, name, episodeNumber, seasonNumber, airDateMillis, imageUrl)
-VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT INTO Episode(showTmdbId, episodeNumber, seasonNumber, name, airDateMillis, imageUrl)
+VALUES (?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
 DELETE FROM Episode WHERE showTmdbId = ?;
@@ -30,7 +28,14 @@ WHERE showTmdbId = ? AND seasonNumber = ? AND episodeNumber = ?;
 setEpisodeWatched:
 UPDATE Episode
 SET isWatched = ?
-WHERE id = ?;
+WHERE showTmdbId = ? AND seasonNumber = ? AND episodeNumber = ?;
+
+nextNotWatchedEpisode:
+SELECT seasonNumber, episodeNumber
+FROM Episode
+WHERE showTmdbId = ? AND isWatched = 0
+ORDER BY seasonNumber, episodeNumber
+LIMIT 1;
 
 allEpisodes:
 SELECT name, seasonNumber, episodeNumber, isWatched, airDateMillis
