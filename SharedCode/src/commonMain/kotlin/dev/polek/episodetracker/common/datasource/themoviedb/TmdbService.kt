@@ -13,9 +13,11 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
 
-class TmdbService(private val client: HttpClient = defaultHttpClient) {
+class TmdbService(private val client: HttpClient) {
 
     private var genresMap: Map<Int, String>? = null
+
+    constructor() : this(defaultHttpClient)
 
     suspend fun search(query: String, page: Int = 1): List<DiscoverResult> {
         require(page >= 1) { "Page number must be >= 1" }
