@@ -10,6 +10,12 @@ CREATE TABLE Episode(
     PRIMARY KEY(showTmdbId, seasonNumber, episodeNumber)
 );
 
+CREATE VIEW NotWatchedEpisodes AS
+SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
+FROM Episode
+WHERE isWatched = 0
+GROUP BY showTmdbId;
+
 insert:
 INSERT INTO Episode(showTmdbId, episodeNumber, seasonNumber, name, airDateMillis, imageUrl)
 VALUES (?, ?, ?, ?, ?, ?);

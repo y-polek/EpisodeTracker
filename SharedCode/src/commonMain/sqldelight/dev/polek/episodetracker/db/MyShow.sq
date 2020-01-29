@@ -49,22 +49,12 @@ WHERE isEnded = 1;
 toWatchShows:
 SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow
-INNER JOIN (
-        SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
-        FROM Episode
-        WHERE isWatched = 0
-        GROUP BY showTmdbId
-    ) AS NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
+INNER JOIN NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = NotWatchedEpisodes.firstNotWatchedEpisodeIndex;
 
 toWatchShow:
 SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow
-INNER JOIN (
-        SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
-        FROM Episode
-        WHERE isWatched = 0
-        GROUP BY showTmdbId
-    ) AS NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
+INNER JOIN NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = NotWatchedEpisodes.firstNotWatchedEpisodeIndex
 WHERE MyShow.tmdbId = ?;
