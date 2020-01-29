@@ -13,7 +13,7 @@ CREATE TABLE Episode(
 CREATE VIEW NotWatchedEpisodes AS
 SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
 FROM Episode
-WHERE isWatched = 0
+WHERE isWatched = 0 AND airDateMillis < (STRFTIME('%s', 'now') * 1000)
 GROUP BY showTmdbId;
 
 insert:
