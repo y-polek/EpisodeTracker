@@ -17,4 +17,4 @@ private val configuration = DatabaseConfiguration(
     }
 )
 
-actual val sqlDriver: SqlDriver = NativeSqliteDriver(configuration)
+actual fun createInMemorySqlDriver(): SqlDriver = NativeSqliteDriver(configuration)
