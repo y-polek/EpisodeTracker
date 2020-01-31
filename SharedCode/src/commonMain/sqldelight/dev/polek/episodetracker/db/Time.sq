@@ -1,0 +1,13 @@
+CREATE TABLE MockTime(
+    mockNowMillis INTEGER
+);
+
+INSERT INTO MockTime(mockNowMillis) VALUES (NULL);
+
+CREATE VIEW Time AS
+SELECT IFNULL(mockNowMillis, (STRFTIME('%s', 'now') * 1000)) AS currentTimeMillis
+FROM MockTime;
+
+mockCurrentTimeMillis:
+UPDATE MockTime
+SET mockNowMillis = ?;
