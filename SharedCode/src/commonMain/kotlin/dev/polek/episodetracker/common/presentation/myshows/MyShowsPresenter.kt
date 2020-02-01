@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.common.presentation.myshows
 
 import dev.polek.episodetracker.common.presentation.BasePresenter
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 
@@ -20,5 +21,9 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
             )
 
         view.updateShows(model)
+    }
+
+    fun onShowClicked(show: ShowViewModel) {
+        view?.openMyShowDetails(show.id)
     }
 }

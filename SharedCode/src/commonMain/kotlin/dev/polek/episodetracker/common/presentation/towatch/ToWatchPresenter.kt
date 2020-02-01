@@ -19,6 +19,10 @@ class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresente
         }
     }
 
+    fun onShowClicked(show: ToWatchShowViewModel) {
+        view?.openToWatchShowDetails(show.id)
+    }
+
     private fun loadShows() {
         val shows = repository.toWatchShows()
         view?.displayShows(shows)

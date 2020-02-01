@@ -69,7 +69,7 @@ class MyShowsRepository(
 
     fun upcomingShows(): List<MyShowsListItem.UpcomingShowViewModel> {
         val now = GMTDate()
-        return db.myShowQueries.upcomingShows { name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
+        return db.myShowQueries.upcomingShows { tmdbId, name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
             val daysLeft: String = if (airDateMillis != null) {
                 formatTimeBetween(now, GMTDate(airDateMillis))
             } else {
@@ -77,6 +77,7 @@ class MyShowsRepository(
             }
 
             val show = MyShowsListItem.UpcomingShowViewModel(
+                id = tmdbId,
                 name = name,
                 backdropUrl = imageUrl,
                 episodeName = episodeName,
@@ -87,8 +88,9 @@ class MyShowsRepository(
     }
 
     fun toBeAnnouncedShows(): List<MyShowsListItem.ShowViewModel> {
-        return db.myShowQueries.toBeAnnouncedShows { name, imageUrl ->
+        return db.myShowQueries.toBeAnnouncedShows { tmdbId, name, imageUrl ->
             val show = MyShowsListItem.ShowViewModel(
+                id = tmdbId,
                 name = name,
                 backdropUrl = imageUrl)
             show
@@ -96,8 +98,9 @@ class MyShowsRepository(
     }
 
     fun endedShows(): List<MyShowsListItem.ShowViewModel> {
-        return db.myShowQueries.endedShows { name, imageUrl ->
+        return db.myShowQueries.endedShows { tmdbId, name, imageUrl ->
             val show = MyShowsListItem.ShowViewModel(
+                id = tmdbId,
                 name = name,
                 backdropUrl = imageUrl)
             show

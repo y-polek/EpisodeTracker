@@ -4,4 +4,5 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewMod
 
 interface MyShowsView {
     fun updateShows(model: MyShowsViewModel)
+    fun openMyShowDetails(showId: Int)
 }

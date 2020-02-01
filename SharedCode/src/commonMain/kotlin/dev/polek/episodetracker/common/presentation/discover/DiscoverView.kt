@@ -11,4 +11,5 @@ interface DiscoverView {
     fun updateSearchResult(result: DiscoverResultViewModel)
     fun showEmptyMessage()
     fun hideEmptyMessage()
+    fun openDiscoverShow(showId: Int)
 }

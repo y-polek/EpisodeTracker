@@ -19,12 +19,31 @@ class MyShowsViewController: UIViewController {
         super.viewWillDisappear(animated)
         presenter.detachView()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "show_details":
+            guard let showId = sender as? Int else {
+                fatalError("'sender' must be of type Int for 'show_details' segue")
+            }
+            segue.setShowDetailsParameters(showId, openEpisodesTabOnStart: false)
+        default:
+            break
+        }
+    }
 }
 
 extension MyShowsViewController: MyShowsView {
+    
     func updateShows(model: MyShowsViewModel) {
         self.model = model
         tableView.reloadData()
+    }
+    
+    func openMyShowDetails(showId: Int32) {
+        performSegue(withIdentifier: "show_details", sender: Int(showId))
     }
 }
 
@@ -97,6 +116,22 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        var show: MyShowsListItem.ShowViewModel
+        switch section {
+        case upcomingSectionIndex():
+            show = model.upcomingShows[row]
+        case toBeAnnouncedSectionIndex():
+            show = model.toBeAnnouncedShows[row]
+        case endedSectionIndex():
+            show = model.endedShows[row]
+        default:
+            fatalError("Unknown section #\(indexPath.section)")
+        }
+        presenter.onShowClicked(show: show)
     }
     
     private func upcomingSectionIndex() -> Int {

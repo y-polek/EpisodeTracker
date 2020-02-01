@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		142614C68DBC5A7FC08FD273 /* Pods_EpisodeTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */; };
 		D23408CA23D3AEB700FFCA37 /* ToWatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23408C923D3AEB700FFCA37 /* ToWatchCell.swift */; };
+		D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238771523E5745300688E01 /* ShowDetailsViewController.swift */; };
+		D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238771823E5796200688E01 /* ShowDetails.storyboard */; };
+		D238771B23E5889300688E01 /* ShowDetailsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238771A23E5889300688E01 /* ShowDetailsSegue.swift */; };
 		D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; };
 		D29D7AF023A24D4400B2832D /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D29D7AFA23A274E300B2832D /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29D7AF923A274E300B2832D /* HeaderView.xib */; };
@@ -53,6 +56,9 @@
 		A998D3B20E585233F3757CC8 /* Pods-EpisodeTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpisodeTracker.debug.xcconfig"; path = "Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpisodeTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23408C923D3AEB700FFCA37 /* ToWatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToWatchCell.swift; sourceTree = "<group>"; };
+		D238771523E5745300688E01 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
+		D238771823E5796200688E01 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
+		D238771A23E5889300688E01 /* ShowDetailsSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsSegue.swift; sourceTree = "<group>"; };
 		D29D7AEE23A24D4400B2832D /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
 		D29D7AF923A274E300B2832D /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		D29D7AFB23A2781700B2832D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -108,6 +114,16 @@
 				227D1BA30C42A7A3281315FF /* Pods-EpisodeTracker.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D238771423E5742B00688E01 /* ShowDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D238771523E5745300688E01 /* ShowDetailsViewController.swift */,
+				D238771823E5796200688E01 /* ShowDetails.storyboard */,
+				D238771A23E5889300688E01 /* ShowDetailsSegue.swift */,
+			);
+			path = ShowDetails;
 			sourceTree = "<group>";
 		};
 		D29D7AF823A274D200B2832D /* HeaderView */ = {
@@ -183,6 +199,7 @@
 				D2BEEF2C23A249F70077F125 /* MyShows */,
 				D29D7B0B23A3BC5800B2832D /* ToWatch */,
 				D29D7B1223A44F6000B2832D /* Discover */,
+				D238771423E5742B00688E01 /* ShowDetails */,
 				D29D7B0123A2A92500B2832D /* Views */,
 				D29D7B0423A2CCEE00B2832D /* Utils */,
 				D2BEEF1823A248820077F125 /* AppDelegate.swift */,
@@ -276,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */,
 				D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */,
 				D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */,
 				D2BEEF2023A248820077F125 /* Main.storyboard in Resources */,
@@ -365,7 +383,9 @@
 				D29D7B1123A3E00700B2832D /* Fonts.swift in Sources */,
 				D29D7B1423A44F9A00B2832D /* DiscoverViewController.swift in Sources */,
 				D29D7B0823A2D47D00B2832D /* Divider.swift in Sources */,
+				D238771B23E5889300688E01 /* ShowDetailsSegue.swift in Sources */,
 				D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */,
+				D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */,
 				D29D7B0D23A3BF3A00B2832D /* ToWatchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

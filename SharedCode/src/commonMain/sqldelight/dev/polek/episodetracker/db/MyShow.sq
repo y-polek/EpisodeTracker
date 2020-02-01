@@ -29,7 +29,7 @@ FROM MyShow
 WHERE tmdbId = ?;
 
 upcomingShows:
-SELECT MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
+SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
 FROM MyShow
 INNER JOIN Episode
  ON Episode.showTmdbId = MyShow.tmdbId
@@ -37,12 +37,12 @@ INNER JOIN Episode
  AND Episode.episodeNumber = MyShow.nextEpisodeNumber;
 
 toBeAnnouncedShows:
-SELECT name, imageUrl
+SELECT tmdbId, name, imageUrl
 FROM MyShow
 WHERE isEnded = 0 AND nextEpisodeNumber IS NULL;
 
 endedShows:
-SELECT name, imageUrl
+SELECT tmdbId, name, imageUrl
 FROM MyShow
 WHERE isEnded = 1;
 

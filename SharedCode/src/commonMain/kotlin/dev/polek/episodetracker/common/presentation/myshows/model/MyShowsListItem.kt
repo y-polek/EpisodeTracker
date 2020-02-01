@@ -10,17 +10,18 @@ sealed class MyShowsListItem {
         class EndedGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
     }
 
-    data class ShowViewModel(
+    open class ShowViewModel(
+        val id: Int,
         val name: String,
         val backdropUrl: String?
     ): MyShowsListItem()
 
-    data class UpcomingShowViewModel(
-        val name: String,
-        val backdropUrl: String?,
+    class UpcomingShowViewModel(
+        id: Int,
+        name: String,
+        backdropUrl: String?,
         val episodeNumber: String,
         val episodeName: String,
         val timeLeft: String
-    ): MyShowsListItem()
-
+    ): ShowViewModel(id, name, backdropUrl)
 }

@@ -5,4 +5,5 @@ interface ToWatchView {
     fun displayShows(shows: List<ToWatchShowViewModel>)
     fun updateShow(show: ToWatchShowViewModel)
     fun removeShow(show: ToWatchShowViewModel)
+    fun openToWatchShowDetails(showId: Int)
 }

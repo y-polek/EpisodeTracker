@@ -15,6 +15,20 @@ class DiscoverViewController: UIViewController {
         super.viewDidLoad()
         presenter.attachView(view: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "show_details":
+            guard let showId = sender as? Int else {
+                fatalError("'sender' must be of type Int for 'show_details' segue")
+            }
+            segue.setShowDetailsParameters(showId, openEpisodesTabOnStart: false)
+        default:
+            break
+        }
+    }
 }
 
 extension DiscoverViewController: DiscoverView {
@@ -42,7 +56,7 @@ extension DiscoverViewController: DiscoverView {
     }
     
     func updateSearchResult(result: DiscoverResultViewModel) {
-        if let row = self.results.firstIndex(where: { $0.tmdbId == result.tmdbId }) {
+        if let row = self.results.firstIndex(where: { $0.id == result.id }) {
             self.results[row] = result
             tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
         }
@@ -54,6 +68,10 @@ extension DiscoverViewController: DiscoverView {
     
     func hideEmptyMessage() {
         tableView.hideEmptyView()
+    }
+    
+    func openDiscoverShow(showId: Int32) {
+        performSegue(withIdentifier: "show_details", sender: Int(showId))
     }
 }
 
@@ -85,6 +103,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        presenter.onShowClicked(show: results[indexPath.row])
     }
 }
 

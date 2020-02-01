@@ -1,9 +1,9 @@
 package dev.polek.episodetracker.common.presentation.discover
 
 import dev.polek.episodetracker.common.presentation.BasePresenter
+import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.common.repositories.DiscoverRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
-import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import kotlinx.coroutines.launch
 
 class DiscoverPresenter(
@@ -24,7 +24,7 @@ class DiscoverPresenter(
         launch {
             val results = discoverRepository.search(query).map {
                 DiscoverResultViewModel(
-                    tmdbId = it.tmdbId,
+                    id = it.tmdbId,
                     name = it.name,
                     year = it.year,
                     posterUrl = it.posterUrl,
@@ -47,7 +47,7 @@ class DiscoverPresenter(
         view?.updateSearchResult(show)
 
         launch {
-            myShowsRepository.addShow(show.tmdbId)
+            myShowsRepository.addShow(show.id)
             show.isInMyShows = true
             show.isAddInProgress = false
             view?.updateSearchResult(show)
@@ -61,7 +61,11 @@ class DiscoverPresenter(
         view?.updateSearchResult(show)
 
         launch {
-            myShowsRepository.removeShow(show.tmdbId)
+            myShowsRepository.removeShow(show.id)
         }
+    }
+
+    fun onShowClicked(show: DiscoverResultViewModel) {
+        view?.openDiscoverShow(show.id)
     }
 }

@@ -22,9 +22,24 @@ class ToWatchViewController: UIViewController {
         super.viewWillDisappear(animated)
         presenter.onViewDisappeared()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "show_details":
+            guard let showId = sender as? Int else {
+                fatalError("'sender' must be of type Int for 'show_details' segue")
+            }
+            segue.setShowDetailsParameters(showId, openEpisodesTabOnStart: true)
+        default:
+            break
+        }
+    }
 }
 
 extension ToWatchViewController: ToWatchView {
+    
     func displayShows(shows: [ToWatchShowViewModel]) {
         self.shows = shows
         tableView.reloadData()
@@ -43,9 +58,14 @@ extension ToWatchViewController: ToWatchView {
             tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .none)
         }
     }
+    
+    func openToWatchShowDetails(showId: Int32) {
+        performSegue(withIdentifier: "show_details", sender: Int(showId))
+    }
 }
 
 extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shows.count
     }
@@ -60,5 +80,10 @@ extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let show = shows[indexPath.row]
+        presenter.onShowClicked(show: show)
+    }
 }
