@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7qu-An-85M">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tEa-da-BcR">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -17,9 +17,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="htr-Op-cRr" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="Bky-Ze-fhD"/>
+                                    <constraint firstAttribute="width" secondItem="htr-Op-cRr" secondAttribute="height" multiplier="1.8:1" id="tjm-Gn-b4N"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="overlayColor">
@@ -31,7 +31,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fkf-Zv-uKT">
-                                <rect key="frame" x="16" y="158" width="382" height="50"/>
+                                <rect key="frame" x="16" y="164" width="382" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNc-d1-kap">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="25.5"/>
@@ -64,12 +64,20 @@
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" id="68W-Mh-LPr"/>
                             <constraint firstItem="fkf-Zv-uKT" firstAttribute="leading" secondItem="htr-Op-cRr" secondAttribute="leading" constant="16" id="A6r-kO-6sO"/>
                             <constraint firstItem="fkf-Zv-uKT" firstAttribute="bottom" secondItem="htr-Op-cRr" secondAttribute="bottom" constant="-16" id="HMH-5D-imK"/>
-                            <constraint firstItem="htr-Op-cRr" firstAttribute="top" secondItem="sue-Vb-FUr" secondAttribute="top" id="Ysx-B9-bKh"/>
+                            <constraint firstItem="htr-Op-cRr" firstAttribute="top" secondItem="8Mg-ED-3gF" secondAttribute="top" id="Ysx-B9-bKh"/>
                             <constraint firstItem="htr-Op-cRr" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="gah-YB-JdM"/>
                             <constraint firstItem="fkf-Zv-uKT" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" constant="-16" id="rJE-vf-sDr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sue-Vb-FUr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="TcB-1I-faz">
+                        <barButtonItem key="leftBarButtonItem" image="ic-chevron-down" id="N2u-1T-NQy">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onBackTapped:" destination="7qu-An-85M" id="ti9-oP-ZXM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="htr-Op-cRr" id="qEj-y2-f5o"/>
                         <outlet property="nameLabel" destination="zNc-d1-kap" id="3zp-pU-ff5"/>
@@ -79,7 +87,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rV-xA-Kmr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51" y="102"/>
+            <point key="canvasLocation" x="857.97101449275374" y="101.78571428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iRl-N3-ITe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tEa-da-BcR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="PRh-3s-Cvj">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7qu-An-85M" kind="relationship" relationship="rootViewController" id="Gl2-QM-gz4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Saw-bo-XN7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-52.173913043478265" y="101.78571428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic-chevron-down" width="24" height="24"/>
+    </resources>
 </document>

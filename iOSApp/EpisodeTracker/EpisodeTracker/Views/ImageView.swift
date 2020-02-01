@@ -5,24 +5,20 @@ import Kingfisher
 class ImageView: UIImageView {
     
     var imageUrl: String? {
-        didSet {
-            updateImage()
-        }
+        didSet { updateImage() }
     }
     
     @IBInspectable
     var overlayColor: UIColor? {
-        didSet {
-            updateOverlay()
-        }
+        didSet { updateOverlay() }
     }
     
     @IBInspectable
     var cornerRadius: CGFloat = 8 {
-        didSet {
-            layer.cornerRadius = self.cornerRadius
-        }
+        didSet { layer.cornerRadius = self.cornerRadius }
     }
+    
+    var overlayOpacity: [CGFloat] = [0.0, 0.8]
     
     private let overlayLayer = CAGradientLayer()
     
@@ -62,7 +58,9 @@ class ImageView: UIImageView {
         overlayLayer.frame = bounds
         
         if let color = overlayColor {
-            overlayLayer.colors = [color.withAlphaComponent(0), color.withAlphaComponent(0.8).cgColor]
+            overlayLayer.colors = overlayOpacity.map {
+                color.withAlphaComponent($0).cgColor
+            }
         } else {
             overlayLayer.colors = [UIColor.transparent.cgColor, UIColor.transparent.cgColor]
         }

@@ -168,7 +168,7 @@
                     <tabBarItem key="tabBarItem" title="To Watch" image="ic-eye" id="tRe-tF-hsg"/>
                     <connections>
                         <outlet property="tableView" destination="CFA-rV-z88" id="b7G-Bj-e6Y"/>
-                        <segue destination="zLY-C0-u8L" kind="showDetail" identifier="show_details" id="xOp-Rq-w4P"/>
+                        <segue destination="zLY-C0-u8L" kind="presentation" identifier="show_details" modalPresentationStyle="fullScreen" id="xOp-Rq-w4P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0n-p6-uCR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -337,7 +337,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="QqJ-tf-7WG" id="8gb-Le-lRe"/>
-                        <segue destination="6vC-WO-Im3" kind="showDetail" identifier="show_details" id="Igi-mY-4el"/>
+                        <segue destination="6vC-WO-Im3" kind="presentation" identifier="show_details" modalPresentationStyle="fullScreen" id="Igi-mY-4el"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Va9-rp-8ic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -553,7 +553,7 @@
                     <connections>
                         <outlet property="searchBar" destination="yae-Wp-ms9" id="kTh-nt-fOt"/>
                         <outlet property="tableView" destination="AjS-qA-CoM" id="YG0-MS-ZDa"/>
-                        <segue destination="66M-LF-Lo9" kind="showDetail" identifier="show_details" id="a24-6A-tZ5"/>
+                        <segue destination="66M-LF-Lo9" kind="presentation" identifier="show_details" modalPresentationStyle="fullScreen" id="a24-6A-tZ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXc-oO-vnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

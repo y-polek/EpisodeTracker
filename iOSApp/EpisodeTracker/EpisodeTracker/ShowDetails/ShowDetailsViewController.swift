@@ -14,6 +14,15 @@ class ShowDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+            navigationBar.isTranslucent = true
+        }
+        
+        imageView.overlayOpacity = [0.6, 0.2, 0.4, 0.6]
+        
         presenter = ShowDetailsPresenter(showId: Int32(showId), repository: AppDelegate.instance().myShowsRepository)
         presenter.attachView(view: self)
     }
@@ -26,6 +35,10 @@ class ShowDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.onViewDisappeared()
+    }
+    
+    @IBAction func onBackTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
