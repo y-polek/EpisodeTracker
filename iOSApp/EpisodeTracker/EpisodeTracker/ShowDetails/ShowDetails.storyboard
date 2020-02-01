@@ -15,9 +15,67 @@
                     <view key="view" contentMode="scaleToFill" id="8Mg-ED-3gF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="htr-Op-cRr" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="Bky-Ze-fhD"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="overlayColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fkf-Zv-uKT">
+                                <rect key="frame" x="16" y="158" width="382" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNc-d1-kap">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2GK-WD-zvl">
+                                        <rect key="frame" x="0.0" y="29.5" width="382" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="2017 - Present" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-vg-dud">
+                                                <rect key="frame" x="0.0" y="0.0" width="112.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="TV-14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfq-HF-cNm">
+                                                <rect key="frame" x="335.5" y="0.0" width="46.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" id="68W-Mh-LPr"/>
+                            <constraint firstItem="fkf-Zv-uKT" firstAttribute="leading" secondItem="htr-Op-cRr" secondAttribute="leading" constant="16" id="A6r-kO-6sO"/>
+                            <constraint firstItem="fkf-Zv-uKT" firstAttribute="bottom" secondItem="htr-Op-cRr" secondAttribute="bottom" constant="-16" id="HMH-5D-imK"/>
+                            <constraint firstItem="htr-Op-cRr" firstAttribute="top" secondItem="sue-Vb-FUr" secondAttribute="top" id="Ysx-B9-bKh"/>
+                            <constraint firstItem="htr-Op-cRr" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="gah-YB-JdM"/>
+                            <constraint firstItem="fkf-Zv-uKT" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" constant="-16" id="rJE-vf-sDr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sue-Vb-FUr"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="htr-Op-cRr" id="qEj-y2-f5o"/>
+                        <outlet property="nameLabel" destination="zNc-d1-kap" id="3zp-pU-ff5"/>
+                        <outlet property="ratingLabel" destination="mfq-HF-cNm" id="ILN-pL-AhI"/>
+                        <outlet property="yearsLabel" destination="DZ1-vg-dud" id="2j3-53-fef"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rV-xA-Kmr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

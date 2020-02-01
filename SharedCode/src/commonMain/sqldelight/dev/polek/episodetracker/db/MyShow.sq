@@ -8,7 +8,9 @@ CREATE TABLE MyShow (
     name TEXT NOT NULL,
     overview TEXT NOT NULL,
     year INTEGER as Int,
+    lastYear INTEGER as Int,
     imageUrl TEXT,
+    contentRating TEXT,
     isEnded INTEGER AS Boolean NOT NULL,
     nextEpisodeSeason INTEGER AS Int,
     nextEpisodeNumber INTEGER AS Int,
@@ -17,8 +19,8 @@ CREATE TABLE MyShow (
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, imageUrl, isEnded, nextEpisodeSeason, nextEpisodeNumber)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;
@@ -58,3 +60,8 @@ FROM MyShow
 INNER JOIN NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = NotWatchedEpisodes.firstNotWatchedEpisodeIndex
 WHERE MyShow.tmdbId = ?;
+
+showDetails:
+SELECT name, imageUrl, year, lastYear, isEnded, contentRating
+FROM MyShow
+WHERE tmdbId = ?;

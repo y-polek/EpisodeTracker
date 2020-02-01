@@ -17,6 +17,13 @@ class ImageView: UIImageView {
         }
     }
     
+    @IBInspectable
+    var cornerRadius: CGFloat = 8 {
+        didSet {
+            layer.cornerRadius = self.cornerRadius
+        }
+    }
+    
     private let overlayLayer = CAGradientLayer()
     
     override init(frame: CGRect) {
@@ -37,7 +44,7 @@ class ImageView: UIImageView {
     private func setup() {
         contentMode = .scaleAspectFill
         
-        layer.cornerRadius = 8
+        layer.cornerRadius = cornerRadius
         layer.masksToBounds = true
         
         layer.insertSublayer(overlayLayer, at: 0)

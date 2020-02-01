@@ -9,6 +9,7 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.common.utils.formatEpisodeNumber
 import dev.polek.episodetracker.common.utils.formatTimeBetween
 import dev.polek.episodetracker.db.Database
+import dev.polek.episodetracker.db.ShowDetails
 import io.ktor.util.date.GMTDate
 
 class MyShowsRepository(
@@ -49,7 +50,9 @@ class MyShowsRepository(
                 name = show.name.orEmpty(),
                 overview = show.overview.orEmpty(),
                 year = show.year,
+                lastYear = show.lastYear,
                 imageUrl = show.backdropPath?.let(::backdropImageUrl),
+                contentRating = show.contentRating,
                 isEnded = show.isEnded,
                 nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
                 nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
@@ -105,5 +108,9 @@ class MyShowsRepository(
                 backdropUrl = imageUrl)
             show
         }.executeAsList()
+    }
+
+    fun showDetails(tmdbId: Int): ShowDetails? {
+        return db.myShowQueries.showDetails(tmdbId).executeAsOneOrNull()
     }
 }
