@@ -7,5 +7,6 @@ target 'EpisodeTracker' do
   # Pods for EpisodeTracker
   pod 'Kingfisher', '5.11.0'
   pod 'MaterialComponents/Ripple', '100.0.0'
+  pod 'MaterialComponents/Tabs', '100.0.0'
 
 end

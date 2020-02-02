@@ -3,26 +3,55 @@ PODS:
     - Kingfisher/Core (= 5.11.0)
   - Kingfisher/Core (5.11.0)
   - MaterialComponents/AnimationTiming (100.0.0)
+  - MaterialComponents/Elevation (100.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (100.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (100.0.0)
+  - MaterialComponents/private/Application (100.0.0)
   - MaterialComponents/private/Color (100.0.0)
   - MaterialComponents/private/Math (100.0.0)
   - MaterialComponents/Ripple (100.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (100.0.0)
+  - MaterialComponents/ShadowLayer (100.0.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Tabs (100.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (100.0.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
 
 DEPENDENCIES:
   - Kingfisher (= 5.11.0)
   - MaterialComponents/Ripple (= 100.0.0)
+  - MaterialComponents/Tabs (= 100.0.0)
 
 SPEC REPOS:
   trunk:
     - Kingfisher
     - MaterialComponents
+    - MDFInternationalization
 
 SPEC CHECKSUMS:
   Kingfisher: 4569606189149e19c7d9439f47e885d0679b7a90
   MaterialComponents: b4cc6c1649a566d70bd72096f3e1aae2c3701e4f
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
 
-PODFILE CHECKSUM: 0456aa328576c158eb0011121265658c19fc88ea
+PODFILE CHECKSUM: 300ecece8aa2527d39c13ef3b619dc42d2a588fa
 
 COCOAPODS: 1.8.4
