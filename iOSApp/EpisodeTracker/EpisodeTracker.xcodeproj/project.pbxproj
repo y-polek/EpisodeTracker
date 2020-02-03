@@ -119,8 +119,8 @@
 		D238771423E5742B00688E01 /* ShowDetails */ = {
 			isa = PBXGroup;
 			children = (
-				D238771523E5745300688E01 /* ShowDetailsViewController.swift */,
 				D238771823E5796200688E01 /* ShowDetails.storyboard */,
+				D238771523E5745300688E01 /* ShowDetailsViewController.swift */,
 				D238771A23E5889300688E01 /* ShowDetailsSegue.swift */,
 			);
 			path = ShowDetails;
