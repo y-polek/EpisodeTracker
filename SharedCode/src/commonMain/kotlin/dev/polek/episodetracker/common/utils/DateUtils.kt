@@ -3,6 +3,7 @@ package dev.polek.episodetracker.common.utils
 import io.ktor.util.InternalAPI
 import io.ktor.util.date.GMTDate
 import io.ktor.util.date.Month
+import io.ktor.util.date.Month.*
 
 private val dateRegex = "^([\\d]{4})-([\\d]{1,2})-([\\d]{1,2})$".toRegex()
 
@@ -24,3 +25,27 @@ fun parseDate(dateStr: String): GMTDate? {
     }
     return null
 }
+
+fun formatDate(date: GMTDate): String {
+    val year = date.year
+    val month = date.month.fullName
+    val day = date.dayOfMonth
+
+    return "$month $day, $year"
+}
+
+val Month.fullName: String
+    get() = when (this) {
+        JANUARY -> "January"
+        FEBRUARY -> "February"
+        MARCH -> "March"
+        APRIL -> "April"
+        MAY -> "May"
+        JUNE -> "June"
+        JULY -> "July"
+        AUGUST -> "August"
+        SEPTEMBER -> "September"
+        OCTOBER -> "October"
+        NOVEMBER -> "November"
+        DECEMBER -> "December"
+    }

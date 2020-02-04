@@ -1,4 +1,5 @@
 import UIKit
+import MaterialComponents.MDCTabBar
 import SharedCode
 
 class ShowDetailsViewController: UIViewController {
@@ -11,6 +12,9 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var tabBar: MDCTabBar!
+    @IBOutlet weak var aboutView: UIView!
+    @IBOutlet weak var episodesView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,23 @@ class ShowDetailsViewController: UIViewController {
         }
         
         imageView.overlayOpacity = [0.6, 0.2, 0.4, 0.6]
+        
+        tabBar.items = [
+            UITabBarItem(title: "About", image: nil, tag: 0),
+            UITabBarItem(title: "Episodes", image: nil, tag: 1)
+        ]
+        tabBar.itemAppearance = .titles
+        tabBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        tabBar.sizeToFit()
+        tabBar.setTitleColor(.textColorSecondary, for: .normal)
+        tabBar.setTitleColor(.textColorPrimary, for: .selected)
+        tabBar.displaysUppercaseTitles = false
+        tabBar.tintColor = .accent
+        tabBar.inkColor = .transparent
+        tabBar.alignment = .justified
+        tabBar.delegate = self
+        
+        showAboutTab()
         
         presenter = ShowDetailsPresenter(showId: Int32(showId), repository: AppDelegate.instance().myShowsRepository)
         presenter.attachView(view: self)
@@ -37,8 +58,30 @@ class ShowDetailsViewController: UIViewController {
         presenter.onViewDisappeared()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "about_view":
+            break
+        case "episodes_view":
+            (segue.destination as! EpisodesViewController).showId = showId
+            break
+        default:
+            break
+        }
+    }
+    
     @IBAction func onBackTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func showAboutTab() {
+        aboutView.isHidden = false
+        episodesView.isHidden = true
+    }
+    
+    private func showEpisodesTab() {
+        episodesView.isHidden = false
+        aboutView.isHidden = true
     }
 }
 
@@ -54,4 +97,19 @@ extension ShowDetailsViewController: ShowDetailsView {
     func close() {
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension ShowDetailsViewController: MDCTabBarDelegate {
+    
+    func tabBar(_ tabBar: MDCTabBar, didSelect item: UITabBarItem) {
+        switch item.tag {
+        case 0:
+            showAboutTab()
+        case 1:
+            showEpisodesTab()
+        default:
+            break
+        }
+    }
+    
 }
