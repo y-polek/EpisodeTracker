@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -149,25 +150,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="519.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="519.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episode_cell" rowHeight="60" id="1bN-42-tSl">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episode_cell" rowHeight="80" id="1bN-42-tSl" customClass="EpisodeCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1bN-42-tSl" id="hnL-W1-dqp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-Y4-xqs">
-                                                    <rect key="frame" x="16" y="5" width="96" height="50"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-Y4-xqs" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="10" width="120" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="g1u-z0-P6k"/>
+                                                        <constraint firstAttribute="height" constant="60" id="g1u-z0-P6k"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8G-Uc-Hg8" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
-                                                    <rect key="frame" x="329" y="15" width="30" height="30"/>
+                                                    <rect key="frame" x="329" y="25" width="30" height="30"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="c8G-Uc-Hg8" secondAttribute="height" multiplier="1:1" id="N6c-Xb-OBR"/>
@@ -178,23 +179,80 @@
                                                         <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-check"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KlR-DL-Ubu">
-                                                    <rect key="frame" x="128" y="0.0" width="185" height="60"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="KlR-DL-Ubu">
+                                                    <rect key="frame" x="152" y="0.0" width="161" height="80"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dou-2R-apT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="161" height="68.666666666666671"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="1. Episode Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3W-Kc-olC">
+                                                                    <rect key="frame" x="0.0" y="5" width="79.333333333333329" height="40.666666666666664"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                    <color key="textColor" name="TextColorPrimary"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January 1, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXa-7v-bAH">
+                                                                    <rect key="frame" x="0.0" y="50.666666666666664" width="109.33333333333333" height="17.999999999999993"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="5" left="0.0" bottom="0.0" right="0.0"/>
+                                                        </stackView>
+                                                    </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khU-wx-ewX" userLabel="Middle Divider" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
+                                                    <rect key="frame" x="152" y="79" width="207" height="1"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="xLb-Wh-ntL"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" name="DividerPrimary"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbV-Hj-Nv7" userLabel="Full Divider" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="79" width="375" height="1"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="uoN-pe-CPo"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" name="DividerPrimary"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eRq-Y4-xqs" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" constant="16" id="4pt-Wl-sx9"/>
-                                                <constraint firstAttribute="bottom" secondItem="eRq-Y4-xqs" secondAttribute="bottom" constant="5" id="4tG-XK-K4F"/>
-                                                <constraint firstItem="eRq-Y4-xqs" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" constant="5" id="SnO-zA-7je"/>
+                                                <constraint firstAttribute="bottom" secondItem="khU-wx-ewX" secondAttribute="bottom" id="GFJ-HY-qD5"/>
+                                                <constraint firstItem="eRq-Y4-xqs" firstAttribute="centerY" secondItem="hnL-W1-dqp" secondAttribute="centerY" id="I6y-fU-RfR"/>
+                                                <constraint firstItem="zbV-Hj-Nv7" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" id="WvF-6L-VSf"/>
                                                 <constraint firstItem="c8G-Uc-Hg8" firstAttribute="centerY" secondItem="hnL-W1-dqp" secondAttribute="centerY" id="Zk3-f5-zT8"/>
                                                 <constraint firstItem="c8G-Uc-Hg8" firstAttribute="leading" secondItem="KlR-DL-Ubu" secondAttribute="trailing" constant="16" id="Zoj-ib-g72"/>
                                                 <constraint firstItem="KlR-DL-Ubu" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" id="cDu-52-y3b"/>
                                                 <constraint firstItem="KlR-DL-Ubu" firstAttribute="leading" secondItem="eRq-Y4-xqs" secondAttribute="trailing" constant="16" id="foc-qg-gVl"/>
+                                                <constraint firstAttribute="trailing" secondItem="zbV-Hj-Nv7" secondAttribute="trailing" id="gJE-rF-6mH"/>
+                                                <constraint firstAttribute="bottom" secondItem="zbV-Hj-Nv7" secondAttribute="bottom" id="hTv-58-zmV"/>
                                                 <constraint firstAttribute="trailing" secondItem="c8G-Uc-Hg8" secondAttribute="trailing" constant="16" id="jSz-7k-Jz1"/>
-                                                <constraint firstItem="eRq-Y4-xqs" firstAttribute="width" secondItem="hnL-W1-dqp" secondAttribute="height" multiplier="1.6:1" id="lX1-WZ-jgF"/>
+                                                <constraint firstItem="eRq-Y4-xqs" firstAttribute="width" secondItem="hnL-W1-dqp" secondAttribute="height" multiplier="1.5:1" id="lX1-WZ-jgF"/>
                                                 <constraint firstAttribute="bottom" secondItem="KlR-DL-Ubu" secondAttribute="bottom" id="t7o-EX-KWD"/>
+                                                <constraint firstItem="khU-wx-ewX" firstAttribute="trailing" secondItem="c8G-Uc-Hg8" secondAttribute="trailing" id="uNQ-r9-vMA"/>
+                                                <constraint firstItem="khU-wx-ewX" firstAttribute="leading" secondItem="KlR-DL-Ubu" secondAttribute="leading" id="xua-52-9Oz"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkbox" destination="c8G-Uc-Hg8" id="Oaz-2X-1N3"/>
+                                            <outlet property="dateLabel" destination="wXa-7v-bAH" id="HC8-x8-JMf"/>
+                                            <outlet property="episodeImage" destination="eRq-Y4-xqs" id="t5c-Vt-NPp"/>
+                                            <outlet property="fullDivider" destination="zbV-Hj-Nv7" id="2SU-8L-8e5"/>
+                                            <outlet property="middleDivider" destination="khU-wx-ewX" id="NKw-M9-M71"/>
+                                            <outlet property="nameLabel" destination="s3W-Kc-olC" id="lFu-mw-7F9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -218,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pkc-iK-NNb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1286" y="757"/>
+            <point key="canvasLocation" x="1285.5999999999999" y="755.9113300492611"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="T23-zu-Cb6">
@@ -251,5 +309,11 @@
     <resources>
         <image name="ic-check" width="24" height="24"/>
         <image name="ic-chevron-down" width="24" height="24"/>
+        <namedColor name="DividerPrimary">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColorPrimary">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

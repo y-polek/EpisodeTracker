@@ -34,6 +34,7 @@
 		D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */; };
 		D2C283C323E9F380002BEE91 /* SeasonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C283C223E9F380002BEE91 /* SeasonHeaderView.xib */; };
 		D2C283C523E9F648002BEE91 /* SeasonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */; };
+		D2C283C723EA1D9A002BEE91 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */; };
 		D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */; };
 		D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CA23A8F89A00E45753 /* TableView.swift */; };
 		D2D905CE23A96A6E00E45753 /* ImageButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D905CD23A96A6E00E45753 /* ImageButton.xib */; };
@@ -85,6 +86,7 @@
 		D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsViewController.swift; sourceTree = "<group>"; };
 		D2C283C223E9F380002BEE91 /* SeasonHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonHeaderView.xib; sourceTree = "<group>"; };
 		D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonHeaderView.swift; sourceTree = "<group>"; };
+		D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleTableViewCell.swift; sourceTree = "<group>"; };
 		D2D905CA23A8F89A00E45753 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		D2D905CD23A96A6E00E45753 /* ImageButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageButton.xib; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				D2C283C123E9F36A002BEE91 /* SeasonHeaderView */,
 				D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */,
+				D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				D29D7AFC23A2781700B2832D /* HeaderView.swift in Sources */,
 				D29D7B1123A3E00700B2832D /* Fonts.swift in Sources */,
 				D29D7B1423A44F9A00B2832D /* DiscoverViewController.swift in Sources */,
+				D2C283C723EA1D9A002BEE91 /* EpisodeCell.swift in Sources */,
 				D29D7B0823A2D47D00B2832D /* Divider.swift in Sources */,
 				D238771B23E5889300688E01 /* ShowDetailsSegue.swift in Sources */,
 				D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */,

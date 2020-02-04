@@ -51,7 +51,20 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "episode_cell", for: indexPath)
+        let section = indexPath.section
+        let row = indexPath.row
+        let season = seasons[section]
+        let episode = season.episodes[row]
+        let isLastInSeason = row == (season.episodes.count - 1)
+        let isLast = section == (seasons.count - 1) && isLastInSeason
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "episode_cell", for: indexPath) as! EpisodeCell
+        cell.bind(episode: episode)
+        
+        cell.middleDivider.isHidden = isLastInSeason
+        cell.fullDivider.isHidden = !isLastInSeason || isLast
+        
+        return cell
     }
     
     
