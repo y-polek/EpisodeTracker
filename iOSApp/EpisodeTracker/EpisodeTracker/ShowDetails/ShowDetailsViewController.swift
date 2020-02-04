@@ -58,6 +58,18 @@ class ShowDetailsViewController: UIViewController {
         presenter.onViewDisappeared()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "about_view":
+            break
+        case "episodes_view":
+            (segue.destination as! EpisodesViewController).showId = showId
+            break
+        default:
+            break
+        }
+    }
+    
     @IBAction func onBackTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

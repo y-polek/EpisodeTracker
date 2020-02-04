@@ -45,5 +45,10 @@ ORDER BY seasonNumber, episodeNumber
 LIMIT 1;
 
 allEpisodes:
-SELECT name, seasonNumber, episodeNumber, isWatched, airDateMillis
+SELECT name, seasonNumber, episodeNumber, isWatched, airDateMillis, imageUrl
 FROM Episode;
+
+episodes:
+SELECT name, seasonNumber, episodeNumber, isWatched, airDateMillis, imageUrl
+FROM Episode
+WHERE showTmdbId = ?;

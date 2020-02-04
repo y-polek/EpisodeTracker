@@ -1,7 +1,8 @@
-package dev.polek.episodetracker.common.presentation.showdetails
+package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.BasePresenter
+import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetailsView
 import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 

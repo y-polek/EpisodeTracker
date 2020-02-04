@@ -12,6 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var myShowsRepository: MyShowsRepository = MyShowsRepository(db: database, tmdbService: tmdbService)
     lazy var discoverRepository: DiscoverRepository = DiscoverRepository(tmdbService: tmdbService)
     lazy var toWatchRepository: ToWatchRepository = ToWatchRepository(db: database)
+    lazy var episodesRepository: EpisodesRepository = EpisodesRepository(db: database)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

@@ -68,13 +68,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-2k-LBz" userLabel="Episodes Container View">
                                 <rect key="frame" x="0.0" y="258.33333333333331" width="375" height="519.66666666666674"/>
                                 <connections>
-                                    <segue destination="0Ml-vF-CVD" kind="embed" id="aSF-Fh-iTK"/>
+                                    <segue destination="0Ml-vF-CVD" kind="embed" identifier="episodes_view" id="aSF-Fh-iTK"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXG-qH-y9d" userLabel="About Container View">
                                 <rect key="frame" x="0.0" y="258.33333333333331" width="375" height="519.66666666666674"/>
                                 <connections>
-                                    <segue destination="xfS-HR-d5L" kind="embed" id="7C6-0F-U0C"/>
+                                    <segue destination="xfS-HR-d5L" kind="embed" identifier="about_view" id="7C6-0F-U0C"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -141,17 +141,66 @@
             </objects>
             <point key="canvasLocation" x="-52.173913043478265" y="101.78571428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Episodes View Controller-->
         <scene sceneID="1Zo-h7-bgG">
             <objects>
-                <viewController id="0Ml-vF-CVD" sceneMemberID="viewController">
+                <viewController id="0Ml-vF-CVD" customClass="EpisodesViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dG3-MJ-sdx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="519.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="519.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episode_cell" rowHeight="60" id="1bN-42-tSl">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1bN-42-tSl" id="hnL-W1-dqp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-Y4-xqs">
+                                                    <rect key="frame" x="16" y="5" width="96" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="g1u-z0-P6k"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8G-Uc-Hg8" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                    <rect key="frame" x="329" y="15" width="30" height="30"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="c8G-Uc-Hg8" secondAttribute="height" multiplier="1:1" id="N6c-Xb-OBR"/>
+                                                        <constraint firstAttribute="height" constant="30" id="W5m-MV-Rg3"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircular" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-check"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KlR-DL-Ubu">
+                                                    <rect key="frame" x="128" y="0.0" width="185" height="60"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eRq-Y4-xqs" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" constant="16" id="4pt-Wl-sx9"/>
+                                                <constraint firstAttribute="bottom" secondItem="eRq-Y4-xqs" secondAttribute="bottom" constant="5" id="4tG-XK-K4F"/>
+                                                <constraint firstItem="eRq-Y4-xqs" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" constant="5" id="SnO-zA-7je"/>
+                                                <constraint firstItem="c8G-Uc-Hg8" firstAttribute="centerY" secondItem="hnL-W1-dqp" secondAttribute="centerY" id="Zk3-f5-zT8"/>
+                                                <constraint firstItem="c8G-Uc-Hg8" firstAttribute="leading" secondItem="KlR-DL-Ubu" secondAttribute="trailing" constant="16" id="Zoj-ib-g72"/>
+                                                <constraint firstItem="KlR-DL-Ubu" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" id="cDu-52-y3b"/>
+                                                <constraint firstItem="KlR-DL-Ubu" firstAttribute="leading" secondItem="eRq-Y4-xqs" secondAttribute="trailing" constant="16" id="foc-qg-gVl"/>
+                                                <constraint firstAttribute="trailing" secondItem="c8G-Uc-Hg8" secondAttribute="trailing" constant="16" id="jSz-7k-Jz1"/>
+                                                <constraint firstItem="eRq-Y4-xqs" firstAttribute="width" secondItem="hnL-W1-dqp" secondAttribute="height" multiplier="1.6:1" id="lX1-WZ-jgF"/>
+                                                <constraint firstAttribute="bottom" secondItem="KlR-DL-Ubu" secondAttribute="bottom" id="t7o-EX-KWD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="0Ml-vF-CVD" id="nYd-Pw-nWd"/>
+                                    <outlet property="delegate" destination="0Ml-vF-CVD" id="OTY-Te-BGS"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -163,6 +212,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4hU-yf-Gas"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="AY8-QQ-vgY" id="rg5-BF-ucJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pkc-iK-NNb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,6 +249,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic-check" width="24" height="24"/>
         <image name="ic-chevron-down" width="24" height="24"/>
     </resources>
 </document>
