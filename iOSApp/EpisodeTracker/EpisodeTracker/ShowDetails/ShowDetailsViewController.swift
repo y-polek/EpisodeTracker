@@ -36,6 +36,8 @@ class ShowDetailsViewController: UIViewController {
         tabBar.sizeToFit()
         tabBar.setTitleColor(.textColorSecondary, for: .normal)
         tabBar.setTitleColor(.textColorPrimary, for: .selected)
+        tabBar.selectedItemTitleFont = .systemFont(ofSize: 17)
+        tabBar.unselectedItemTitleFont = .systemFont(ofSize: 17)
         tabBar.displaysUppercaseTitles = false
         tabBar.tintColor = .accent
         tabBar.inkColor = .transparent
