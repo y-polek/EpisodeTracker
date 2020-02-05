@@ -34,6 +34,7 @@ class ShowDetailsViewController: UIViewController {
         tabBar.itemAppearance = .titles
         tabBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
         tabBar.sizeToFit()
+        tabBar.bottomDividerColor = .dividerPrimary
         tabBar.setTitleColor(.textColorSecondary, for: .normal)
         tabBar.setTitleColor(.textColorPrimary, for: .selected)
         tabBar.selectedItemTitleFont = .systemFont(ofSize: 17)
