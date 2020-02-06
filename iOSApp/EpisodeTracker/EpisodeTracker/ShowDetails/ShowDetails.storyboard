@@ -147,11 +147,11 @@
             <objects>
                 <viewController id="0Ml-vF-CVD" customClass="EpisodesViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dG3-MJ-sdx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="519.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="520.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="519.66666666666663"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="520.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episode_cell" rowHeight="80" id="1bN-42-tSl" customClass="EpisodeCell" customModule="EpisodeTracker" customModuleProvider="target">
@@ -167,17 +167,14 @@
                                                         <constraint firstAttribute="height" constant="60" id="g1u-z0-P6k"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8G-Uc-Hg8" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8G-Uc-Hg8" customClass="Checkbox" customModule="EpisodeTracker" customModuleProvider="target">
                                                     <rect key="frame" x="329" y="25" width="30" height="30"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="tintColor" name="Accent"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="c8G-Uc-Hg8" secondAttribute="height" multiplier="1:1" id="N6c-Xb-OBR"/>
                                                         <constraint firstAttribute="height" constant="30" id="W5m-MV-Rg3"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircular" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-check"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="KlR-DL-Ubu">
                                                     <rect key="frame" x="152" y="0.0" width="161" height="80"/>
@@ -283,11 +280,11 @@
             <objects>
                 <viewController id="xfS-HR-d5L" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xlu-S1-cgV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="519.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="520.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woq-MX-JY6">
-                                <rect key="frame" x="164" y="271.33333333333331" width="47" height="21"/>
+                                <rect key="frame" x="164" y="272" width="47" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -307,8 +304,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic-check" width="24" height="24"/>
         <image name="ic-chevron-down" width="24" height="24"/>
+        <namedColor name="Accent">
+            <color red="0.0" green="0.34999999403953552" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DividerPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -6,7 +6,7 @@ class SeasonHeaderView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var checkbox: ImageButton!
+    @IBOutlet weak var checkbox: Checkbox!
     
     
     var title: String = "" {

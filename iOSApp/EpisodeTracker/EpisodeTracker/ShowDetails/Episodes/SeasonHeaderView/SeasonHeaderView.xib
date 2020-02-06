@@ -31,28 +31,25 @@
                             <color key="tintColor" name="TextColorPrimary"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Season 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnb-UO-CuO">
-                            <rect key="frame" x="64" y="39" width="213" height="20.5"/>
+                            <rect key="frame" x="64" y="39" width="215" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="10/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2y-jb-2Et">
-                            <rect key="frame" x="293" y="39" width="43" height="20.5"/>
+                            <rect key="frame" x="295" y="39" width="43" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n34-Qa-jbh" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
-                            <rect key="frame" x="352" y="34" width="30" height="30"/>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n34-Qa-jbh" customClass="Checkbox" customModule="EpisodeTracker" customModuleProvider="target">
+                            <rect key="frame" x="354" y="35" width="28" height="28"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="tintColor" name="Accent"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="n34-Qa-jbh" secondAttribute="height" multiplier="1:1" id="4nO-Gw-CxZ"/>
-                                <constraint firstAttribute="height" constant="30" id="Hvm-86-udY"/>
+                                <constraint firstAttribute="height" constant="28" id="Hvm-86-udY"/>
                             </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCircular" value="YES"/>
-                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-check"/>
-                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                 </stackView>
@@ -85,13 +82,15 @@
         </view>
     </objects>
     <resources>
-        <image name="ic-check" width="24" height="24"/>
         <image name="ic-chevron-down" width="24" height="24"/>
+        <namedColor name="Accent">
+            <color red="0.0" green="0.34999999403953552" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DividerPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="HeaderBackground">
-            <color red="0.97999999999999998" green="0.97999999999999998" blue="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextColorPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

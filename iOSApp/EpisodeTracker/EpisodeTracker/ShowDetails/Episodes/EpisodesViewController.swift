@@ -41,6 +41,7 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
         let season = seasons[section]
         header.title = "Season \(season.number)"
         header.episodeCount = season.watchedEpisodes
+        header.checkbox.isChecked = season.isWatched
         header.isExpanded = season.isExpanded
         header.tapCallback = {
             season.isExpanded = !season.isExpanded
