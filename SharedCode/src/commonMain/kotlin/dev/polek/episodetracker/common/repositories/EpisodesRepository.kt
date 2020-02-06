@@ -27,4 +27,19 @@ class EpisodesRepository(private val db: Database) {
             }
             .sortedBy(SeasonViewModel::number)
     }
+
+    fun setEpisodeWatched(showTmdbId: Int, seasonNumber: Int, episodeNumber: Int, isWatched: Boolean) {
+        db.episodeQueries.setEpisodeWatched(
+            showTmdbId = showTmdbId,
+            seasonNumber = seasonNumber,
+            episodeNumber = episodeNumber,
+            isWatched = isWatched)
+    }
+
+    fun setSeasonWatched(showTmdbId: Int, seasonNumber: Int, isWatched: Boolean) {
+        db.episodeQueries.setSeasonWatched(
+            showTmdbId = showTmdbId,
+            seasonNumber = seasonNumber,
+            isWatched = isWatched)
+    }
 }

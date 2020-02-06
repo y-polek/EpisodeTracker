@@ -10,7 +10,11 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var middleDivider: Divider!
     @IBOutlet weak var fullDivider: Divider!
     
+    var episode: EpisodeViewModel?
+    
     func bind(episode: EpisodeViewModel) {
+        self.episode = episode
+        
         episodeImage.imageUrl = episode.imageUrl
         nameLabel.text = "\(episode.number). \(episode.name)"
         dateLabel.text = episode.airDate

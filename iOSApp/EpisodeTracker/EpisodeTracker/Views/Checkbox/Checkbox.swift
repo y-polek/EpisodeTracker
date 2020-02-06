@@ -14,6 +14,7 @@ class Checkbox: UIView {
         didSet { updateCheckedState() }
     }
     
+    var checkedChangeCallback: ((Bool) -> Void)?
     
     private let rippleController = MDCRippleTouchController()
     
@@ -57,6 +58,8 @@ class Checkbox: UIView {
         
         imageView.image = Checkbox.IMAGE
         imageView.tintColor = tintColor
+        
+        updateCheckedState()
     }
     
     private func updateCheckedState() {
@@ -66,5 +69,6 @@ class Checkbox: UIView {
     
     @objc private func onTapped(gesture: UIGestureRecognizer) {
         toggle()
+        checkedChangeCallback?(isChecked)
     }
 }

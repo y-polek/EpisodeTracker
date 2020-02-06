@@ -14,14 +14,6 @@ class ToWatchRepository(private val db: Database) {
         return db.myShowQueries.toWatchShow(tmdbId = tmdbId, mapper = ::mapToWatchShow).executeAsList().firstOrNull()
     }
 
-    fun markEpisodeWatched(showTmdbId: Int, seasonNumber: Int, episodeNumber: Int) {
-        db.episodeQueries.setEpisodeWatched(
-            showTmdbId = showTmdbId,
-            seasonNumber = seasonNumber,
-            episodeNumber = episodeNumber,
-            isWatched = true)
-    }
-
     fun markNextEpisodeWatched(showTmdbId: Int) {
         db.transaction {
             val nextEpisode = db.episodeQueries.nextNotWatchedEpisode(showTmdbId)

@@ -44,6 +44,11 @@ WHERE showTmdbId = ? AND isWatched = 0
 ORDER BY seasonNumber, episodeNumber
 LIMIT 1;
 
+setSeasonWatched:
+UPDATE Episode
+SET isWatched = ?
+WHERE showTmdbId = ? AND seasonNumber = ?;
+
 allEpisodes:
 SELECT name, seasonNumber, episodeNumber, isWatched, airDateMillis, imageUrl
 FROM Episode;

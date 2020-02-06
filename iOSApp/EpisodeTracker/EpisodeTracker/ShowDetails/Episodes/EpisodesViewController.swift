@@ -45,7 +45,15 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
         header.isExpanded = season.isExpanded
         header.tapCallback = {
             season.isExpanded = !season.isExpanded
-            tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
+            self.reloadSection(section)
+        }
+        header.checkbox.checkedChangeCallback = { isChecked in
+            if season.isWatched == isChecked {
+                return
+            }
+            season.isWatched = isChecked
+            self.reloadSection(section)
+            self.presenter.onSeasonWatchedStateChanged(season: season)
         }
         
         return header
@@ -65,8 +73,19 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.middleDivider.isHidden = isLastInSeason
         cell.fullDivider.isHidden = !isLastInSeason || isLast
         
+        cell.checkbox.checkedChangeCallback = { isChecked in
+            if episode.isWatched == isChecked {
+                return
+            }
+            episode.isWatched = isChecked
+            self.reloadSection(section)
+            self.presenter.onEpisodeWatchedStateChanged(episode: episode)
+        }
+        
         return cell
     }
     
-    
+    private func reloadSection(_ section: Int, animated: Bool = false) {
+        tableView.reloadSections(IndexSet(arrayLiteral: section), with: animated ? .automatic : .none)
+    }
 }
