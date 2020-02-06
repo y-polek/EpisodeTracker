@@ -12,6 +12,8 @@ class EpisodesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(SeasonHeaderView.nib, forHeaderFooterViewReuseIdentifier: SeasonHeaderView.reuseIdentifier)
+        
         presenter = EpisodesPresenter(showId: Int32(showId), repository: AppDelegate.instance().episodesRepository)
         presenter.attachView(view: self)
     }
@@ -36,7 +38,7 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = SeasonHeaderView()
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SeasonHeaderView.reuseIdentifier) as! SeasonHeaderView
         
         let season = seasons[section]
         header.title = "Season \(season.number)"

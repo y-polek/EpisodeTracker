@@ -1,13 +1,16 @@
 import UIKit
 
-class SeasonHeaderView: UIView {
+class SeasonHeaderView: UITableViewHeaderFooterView {
     
-    @IBOutlet var contentView: UIView!
+    static let reuseIdentifier = String(describing: self)
+    static var nib: UINib {
+        return UINib(nibName: String(describing: self), bundle: Bundle.main)
+    }
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var checkbox: Checkbox!
-    
     
     var title: String = "" {
         didSet { updateTitle() }
@@ -26,8 +29,8 @@ class SeasonHeaderView: UIView {
     private let expandedImage = UIImage(named: "ic-chevron-up")
     private let collapsedImage = UIImage(named: "ic-chevron-down")
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setup()
     }
     
@@ -37,16 +40,7 @@ class SeasonHeaderView: UIView {
     }
     
     private func setup() {
-        Bundle.main.loadNibNamed("SeasonHeaderView", owner: self, options: nil)
-        addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        updateTitle()
-        updateEpisodeCount()
-        updateEpisodeCount()
-        
-        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
     }
     
     private func updateTitle() {
