@@ -45,7 +45,11 @@ class ShowDetailsViewController: UIViewController {
         tabBar.alignment = .justified
         tabBar.delegate = self
         
-        showAboutTab()
+        if openEpisodesTabOnStart {
+            showEpisodesTab()
+        } else {
+            showAboutTab()
+        }
         
         presenter = ShowDetailsPresenter(showId: Int32(showId), repository: AppDelegate.instance().myShowsRepository)
         presenter.attachView(view: self)
@@ -78,11 +82,13 @@ class ShowDetailsViewController: UIViewController {
     }
     
     private func showAboutTab() {
+        tabBar.setSelectedItem(tabBar.items[0], animated: false)
         aboutView.isHidden = false
         episodesView.isHidden = true
     }
     
     private func showEpisodesTab() {
+        tabBar.setSelectedItem(tabBar.items[1], animated: false)
         episodesView.isHidden = false
         aboutView.isHidden = true
     }
