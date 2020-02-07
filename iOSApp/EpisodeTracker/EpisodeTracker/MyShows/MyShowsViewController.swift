@@ -10,6 +10,12 @@ class MyShowsViewController: UIViewController {
     
     private let presenter = MyShowsPresenter(repository: AppDelegate.instance().myShowsRepository)
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.register(MyShowsHeaderView.nib, forHeaderFooterViewReuseIdentifier: MyShowsHeaderView.reuseIdentifier)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.attachView(view: self)
@@ -70,7 +76,15 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = HeaderView()
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyShowsHeaderView.reuseIdentifier) as? MyShowsHeaderView
+        
+        if view == nil {
+            return nil
+        }
+        
+        
+        let header = view!
+        
         
         switch section {
         case upcomingSectionIndex():
