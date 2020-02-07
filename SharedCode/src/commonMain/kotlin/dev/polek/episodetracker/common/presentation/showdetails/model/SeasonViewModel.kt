@@ -8,7 +8,11 @@ data class SeasonViewModel(
 
     var isWatched: Boolean
         get() = episodes.all(EpisodeViewModel::isWatched)
-        set(value) = episodes.forEach { it.isWatched = value }
+        set(value) = episodes.forEach { episode ->
+            if (episode.isAired) {
+                episode.isWatched = value
+            }
+        }
 
     val watchedEpisodes: String
         get() {

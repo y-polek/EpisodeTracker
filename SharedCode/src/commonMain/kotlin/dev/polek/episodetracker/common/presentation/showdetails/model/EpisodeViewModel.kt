@@ -6,4 +6,7 @@ data class EpisodeViewModel(
     val name: String,
     val airDate: String,
     val imageUrl: String?,
-    var isWatched: Boolean)
+    var isWatched: Boolean,
+    val isAired: Boolean,
+    val timeLeftToRelease: String
+)
