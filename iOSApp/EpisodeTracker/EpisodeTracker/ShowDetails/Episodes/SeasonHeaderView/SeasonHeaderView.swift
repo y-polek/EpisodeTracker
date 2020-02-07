@@ -1,4 +1,5 @@
 import UIKit
+import MaterialComponents.MaterialRipple
 
 class SeasonHeaderView: UITableViewHeaderFooterView {
     
@@ -29,6 +30,8 @@ class SeasonHeaderView: UITableViewHeaderFooterView {
     private let expandedImage = UIImage(named: "ic-chevron-up")
     private let collapsedImage = UIImage(named: "ic-chevron-down")
     
+    private let rippleController = MDCRippleTouchController()
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setup()
@@ -40,6 +43,9 @@ class SeasonHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setup() {
+        rippleController.delegate = self
+        rippleController.addRipple(to: self)
+        
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
     }
     
@@ -57,5 +63,12 @@ class SeasonHeaderView: UITableViewHeaderFooterView {
     
     @objc func onTap(_ recognizer: UITapGestureRecognizer) {
         tapCallback?()
+    }
+}
+
+extension SeasonHeaderView: MDCRippleTouchControllerDelegate {
+    
+    func rippleTouchController(_ rippleTouchController: MDCRippleTouchController, shouldProcessRippleTouchesAtTouchLocation location: CGPoint) -> Bool {
+        return !checkbox.frame.contains(location)
     }
 }
