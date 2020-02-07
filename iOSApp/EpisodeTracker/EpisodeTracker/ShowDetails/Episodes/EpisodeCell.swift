@@ -1,7 +1,8 @@
 import UIKit
+import MaterialComponents.MaterialRipple
 import SharedCode
 
-class EpisodeCell: UITableViewCell {
+class EpisodeCell: RippleTableViewCell {
     
     @IBOutlet weak var episodeImage: ImageView!
     @IBOutlet weak var nameLabel: UILabel!

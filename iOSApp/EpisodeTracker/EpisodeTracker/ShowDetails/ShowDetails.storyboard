@@ -147,7 +147,7 @@
             <objects>
                 <viewController id="0Ml-vF-CVD" customClass="EpisodesViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dG3-MJ-sdx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="520.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
@@ -161,6 +161,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZt-8U-y1y" customClass="MDCRippleView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-Y4-xqs" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="10" width="104" height="60"/>
                                                     <constraints>
@@ -234,11 +238,15 @@
                                                 <constraint firstItem="eRq-Y4-xqs" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" constant="16" id="4pt-Wl-sx9"/>
                                                 <constraint firstAttribute="bottom" secondItem="khU-wx-ewX" secondAttribute="bottom" id="GFJ-HY-qD5"/>
                                                 <constraint firstItem="eRq-Y4-xqs" firstAttribute="centerY" secondItem="hnL-W1-dqp" secondAttribute="centerY" id="I6y-fU-RfR"/>
+                                                <constraint firstItem="JZt-8U-y1y" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" id="LJf-3Z-pZN"/>
+                                                <constraint firstAttribute="bottom" secondItem="JZt-8U-y1y" secondAttribute="bottom" id="NfW-xO-xuz"/>
                                                 <constraint firstItem="zbV-Hj-Nv7" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" id="WvF-6L-VSf"/>
                                                 <constraint firstItem="c8G-Uc-Hg8" firstAttribute="centerY" secondItem="hnL-W1-dqp" secondAttribute="centerY" id="Zk3-f5-zT8"/>
                                                 <constraint firstItem="c8G-Uc-Hg8" firstAttribute="leading" secondItem="KlR-DL-Ubu" secondAttribute="trailing" constant="16" id="Zoj-ib-g72"/>
+                                                <constraint firstItem="JZt-8U-y1y" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" id="ai9-0K-eFo"/>
                                                 <constraint firstItem="KlR-DL-Ubu" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" id="cDu-52-y3b"/>
                                                 <constraint firstItem="KlR-DL-Ubu" firstAttribute="leading" secondItem="eRq-Y4-xqs" secondAttribute="trailing" constant="16" id="foc-qg-gVl"/>
+                                                <constraint firstAttribute="trailing" secondItem="JZt-8U-y1y" secondAttribute="trailing" id="g65-5x-CiM"/>
                                                 <constraint firstAttribute="trailing" secondItem="zbV-Hj-Nv7" secondAttribute="trailing" id="gJE-rF-6mH"/>
                                                 <constraint firstAttribute="bottom" secondItem="zbV-Hj-Nv7" secondAttribute="bottom" id="hTv-58-zmV"/>
                                                 <constraint firstAttribute="trailing" secondItem="c8G-Uc-Hg8" secondAttribute="trailing" constant="16" id="jSz-7k-Jz1"/>
@@ -257,6 +265,7 @@
                                             <outlet property="fullDivider" destination="zbV-Hj-Nv7" id="2SU-8L-8e5"/>
                                             <outlet property="middleDivider" destination="khU-wx-ewX" id="NKw-M9-M71"/>
                                             <outlet property="nameLabel" destination="s3W-Kc-olC" id="lFu-mw-7F9"/>
+                                            <outlet property="rippleView" destination="JZt-8U-y1y" id="gE6-wa-ee7"/>
                                             <outlet property="timeLeftLabel" destination="BCX-i6-jfs" id="a2Y-9P-5lr"/>
                                         </connections>
                                     </tableViewCell>
