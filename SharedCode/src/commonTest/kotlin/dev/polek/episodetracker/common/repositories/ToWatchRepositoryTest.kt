@@ -12,6 +12,7 @@ import dev.polek.episodetracker.common.utils.parseDate
 import dev.polek.episodetracker.db.Database
 import kotlin.test.*
 
+@Ignore
 class ToWatchRepositoryTest {
 
     private lateinit var sqlDriver: SqlDriver

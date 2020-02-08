@@ -5,4 +5,6 @@ import dev.polek.episodetracker.common.presentation.showdetails.model.SeasonView
 interface EpisodesView {
 
     fun displaySeasons(seasons: List<SeasonViewModel>)
+    fun showCheckAllPreviousEpisodesPrompt(callback: (checkAllPreviousEpisodes: Boolean) -> Unit)
+    fun reloadSeason(season: Int)
 }

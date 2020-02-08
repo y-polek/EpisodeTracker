@@ -18,7 +18,7 @@ class EpisodeCell: RippleTableViewCell {
         self.episode = episode
         
         episodeImage.imageUrl = episode.imageUrl
-        nameLabel.text = "\(episode.number). \(episode.name)"
+        nameLabel.text = "\(episode.number.episode). \(episode.name)"
         dateLabel.text = episode.airDate
         checkbox.isChecked = episode.isWatched
         timeLeftLabel.text = episode.timeLeftToRelease

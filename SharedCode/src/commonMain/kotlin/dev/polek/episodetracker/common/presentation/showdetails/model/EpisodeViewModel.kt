@@ -1,12 +1,16 @@
 package dev.polek.episodetracker.common.presentation.showdetails.model
 
-data class EpisodeViewModel(
-    val number: Int,
-    val season: Int,
+import dev.polek.episodetracker.common.model.EpisodeNumber
+
+class EpisodeViewModel(
+    episodeNumber: Int,
+    seasonNumber: Int,
     val name: String,
     val airDate: String,
     val imageUrl: String?,
     var isWatched: Boolean,
     val isAired: Boolean,
-    val timeLeftToRelease: String
-)
+    val timeLeftToRelease: String)
+{
+    val number = EpisodeNumber(season = seasonNumber, episode = episodeNumber)
+}

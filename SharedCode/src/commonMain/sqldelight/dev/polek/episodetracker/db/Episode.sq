@@ -37,6 +37,16 @@ UPDATE Episode
 SET isWatched = ?
 WHERE showTmdbId = ? AND seasonNumber = ? AND episodeNumber = ?;
 
+markAllWatchedUpTo:
+UPDATE  Episode
+SET isWatched = 1
+WHERE showTmdbId = ? AND (seasonNumber < :season OR (seasonNumber == :season AND episodeNumber <= :episode));
+
+markAllWatchedUpToSeason:
+UPDATE  Episode
+SET isWatched = 1
+WHERE showTmdbId = ? AND seasonNumber <= :season;
+
 nextNotWatchedEpisode:
 SELECT seasonNumber, episodeNumber
 FROM Episode

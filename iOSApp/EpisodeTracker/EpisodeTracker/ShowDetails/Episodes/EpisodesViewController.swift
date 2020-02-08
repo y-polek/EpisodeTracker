@@ -24,6 +24,22 @@ extension EpisodesViewController: EpisodesView {
     func displaySeasons(seasons: [SeasonViewModel]) {
         self.seasons = seasons
     }
+    
+    func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
+        let alert = UIAlertController(title: nil, message: "Check all previous episodes as watched?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Check One", style: .default, handler: { action in
+            callback(false)
+        }))
+        alert.addAction(UIAlertAction(title: "Check All", style: .default, handler: { action in
+            callback(true)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func reloadSeason(season: Int32) {
+        let section = Int(season) - 1
+        reloadSection(section)
+    }
 }
 
 extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -53,9 +69,7 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
             if season.isWatched == isChecked {
                 return
             }
-            season.isWatched = isChecked
-            self.reloadSection(section)
-            self.presenter.onSeasonWatchedStateChanged(season: season)
+            self.presenter.onSeasonWatchedStateToggled(season: season)
         }
         
         return header
@@ -79,9 +93,7 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
             if episode.isWatched == isChecked {
                 return
             }
-            episode.isWatched = isChecked
-            self.reloadSection(section)
-            self.presenter.onEpisodeWatchedStateChanged(episode: episode)
+            self.presenter.onEpisodeWatchedStateToggled(episode: episode)
         }
         
         return cell
