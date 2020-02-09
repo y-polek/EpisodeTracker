@@ -27,6 +27,18 @@ class SeasonHeaderView: UITableViewHeaderFooterView {
     
     var tapCallback: (() -> Void)?
     
+    /**
+     Fixes "[LayoutConstraints] Unable to simultaneously satisfy constraints" error.
+     See: https://stackoverflow.com/a/35053234/2137020
+     */
+    override var frame: CGRect {
+        get { return super.frame }
+        set {
+            if newValue.width == 0 { return }
+            super.frame = newValue
+        }
+    }
+    
     private let expandedImage = UIImage(named: "ic-chevron-up")
     private let collapsedImage = UIImage(named: "ic-chevron-down")
     

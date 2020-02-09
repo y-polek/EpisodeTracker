@@ -24,6 +24,18 @@ class MyShowsHeaderView: UITableViewHeaderFooterView {
     
     var tapCallback: (() -> Void)?
     
+    /**
+     Fixes "[LayoutConstraints] Unable to simultaneously satisfy constraints" error.
+     See: https://stackoverflow.com/a/35053234/2137020
+     */
+    override var frame: CGRect {
+        get { return super.frame }
+        set {
+            if newValue.width == 0 { return }
+            super.frame = newValue
+        }
+    }
+    
     private let rippleController = MDCRippleTouchController()
     
     override init(reuseIdentifier: String?) {
