@@ -48,7 +48,7 @@ class ImageView: UIImageView {
     
     private func updateImage() {
         if imageUrl != nil {
-            kf.setImage(with: URL(string: imageUrl!))
+            kf.setImage(with: URL(string: imageUrl!), options: [.backgroundDecode])
         } else {
             image = nil
         }
