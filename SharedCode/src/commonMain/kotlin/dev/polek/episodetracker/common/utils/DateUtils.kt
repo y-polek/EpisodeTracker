@@ -28,7 +28,7 @@ fun parseDate(dateStr: String): GMTDate? {
 
 fun formatDate(date: GMTDate): String {
     val year = date.year
-    val month = date.month.fullName
+    val month = date.month.value
     val day = date.dayOfMonth
 
     return "$month $day, $year"
