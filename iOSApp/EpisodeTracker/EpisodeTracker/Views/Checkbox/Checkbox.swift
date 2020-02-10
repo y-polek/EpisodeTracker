@@ -14,6 +14,8 @@ class Checkbox: UIView {
         didSet { updateCheckedState() }
     }
     
+    var padding: CGFloat = 10
+    
     var checkedChangeCallback: ((Bool) -> Void)?
     
     private let rippleController = MDCRippleTouchController()
@@ -65,6 +67,14 @@ class Checkbox: UIView {
     private func updateCheckedState() {
         contentView.backgroundColor = isChecked ? tintColor : nil
         imageView.tintColor = isChecked ? .white : tintColor
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if superview is PadView {
+            return true
+        } else {
+            return super.point(inside: point, with: event)
+        }
     }
     
     @objc private func onTapped(gesture: UIGestureRecognizer) {
