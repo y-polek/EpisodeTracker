@@ -11,6 +11,7 @@
 		D205221F23ECA5D4003F9F6B /* SeasonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205221E23ECA5D4003F9F6B /* SeasonHeaderView.xib */; };
 		D222456323EE12C900082162 /* MyShowsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D222456223EE12C900082162 /* MyShowsHeaderView.xib */; };
 		D222456523EE147900082162 /* MyShowsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222456423EE147900082162 /* MyShowsHeaderView.swift */; };
+		D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2242C1123F1B4F5001C8608 /* PadView.swift */; };
 		D23408CA23D3AEB700FFCA37 /* ToWatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23408C923D3AEB700FFCA37 /* ToWatchCell.swift */; };
 		D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238771523E5745300688E01 /* ShowDetailsViewController.swift */; };
 		D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238771823E5796200688E01 /* ShowDetails.storyboard */; };
@@ -64,6 +65,7 @@
 		D205221E23ECA5D4003F9F6B /* SeasonHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonHeaderView.xib; sourceTree = "<group>"; };
 		D222456223EE12C900082162 /* MyShowsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyShowsHeaderView.xib; sourceTree = "<group>"; };
 		D222456423EE147900082162 /* MyShowsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsHeaderView.swift; sourceTree = "<group>"; };
+		D2242C1123F1B4F5001C8608 /* PadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadView.swift; sourceTree = "<group>"; };
 		D23408C923D3AEB700FFCA37 /* ToWatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToWatchCell.swift; sourceTree = "<group>"; };
 		D238771523E5745300688E01 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		D238771823E5796200688E01 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				D29D7B0723A2D47D00B2832D /* Divider.swift */,
 				D2D905CA23A8F89A00E45753 /* TableView.swift */,
 				D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */,
+				D2242C1123F1B4F5001C8608 /* PadView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				D29D7B0023A299DE00B2832D /* ShowCell.swift in Sources */,
 				D29D7B0623A2CD0600B2832D /* Colors.swift in Sources */,
 				D23408CA23D3AEB700FFCA37 /* ToWatchCell.swift in Sources */,
+				D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */,
 				D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */,
 				D29D7B0F23A3DC6B00B2832D /* AttributedStrings.swift in Sources */,
 				D2D905D023A96CCB00E45753 /* ImageButton.swift in Sources */,

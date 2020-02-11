@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,32 +19,49 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYY-wB-rtz">
                     <rect key="frame" x="0.0" y="44" width="414" height="77"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="sub-iJ-Lvf">
-                            <rect key="frame" x="16" y="0.0" width="382" height="77"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sub-iJ-Lvf">
+                            <rect key="frame" x="16" y="0.0" width="398" height="77"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="ic-chevron-down" translatesAutoresizingMaskIntoConstraints="NO" id="djh-4U-MKY">
-                                    <rect key="frame" x="0.0" y="14.5" width="48" height="48"/>
-                                    <color key="tintColor" name="TextColorPrimary"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Season 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaI-Uw-d8r">
-                                    <rect key="frame" x="64" y="28.5" width="215" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="10/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-iC-elG">
-                                    <rect key="frame" x="295" y="28.5" width="43" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <view contentMode="scaleToFill" horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JKG-Rv-Kkw" customClass="Checkbox" customModule="EpisodeTracker" customModuleProvider="target">
-                                    <rect key="frame" x="354" y="24.5" width="28" height="28"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="s6O-w6-7Rr">
+                                    <rect key="frame" x="0.0" y="14.5" width="338" height="48"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="ic-chevron-down" translatesAutoresizingMaskIntoConstraints="NO" id="djh-4U-MKY">
+                                            <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                            <color key="tintColor" name="TextColorPrimary"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Season 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaI-Uw-d8r">
+                                            <rect key="frame" x="56" y="0.0" width="231" height="48"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="10/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-iC-elG">
+                                            <rect key="frame" x="295" y="0.0" width="43" height="48"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvD-DM-0y9" customClass="PadView" customModule="EpisodeTracker" customModuleProvider="target">
+                                    <rect key="frame" x="338" y="13.5" width="60" height="50"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JKG-Rv-Kkw" customClass="Checkbox" customModule="EpisodeTracker" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="11" width="28" height="28"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="tintColor" name="Accent"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="JKG-Rv-Kkw" secondAttribute="height" multiplier="1:1" id="BaS-qD-dw9"/>
+                                                <constraint firstAttribute="height" constant="28" id="OQZ-bc-eFc"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    <color key="tintColor" name="Accent"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="JKG-Rv-Kkw" secondAttribute="height" multiplier="1:1" id="BaS-qD-dw9"/>
-                                        <constraint firstAttribute="height" constant="28" id="OQZ-bc-eFc"/>
+                                        <constraint firstAttribute="width" constant="60" id="0GO-0f-81n"/>
+                                        <constraint firstItem="JKG-Rv-Kkw" firstAttribute="centerX" secondItem="DvD-DM-0y9" secondAttribute="centerX" id="djg-VQ-pjB"/>
+                                        <constraint firstItem="JKG-Rv-Kkw" firstAttribute="centerY" secondItem="DvD-DM-0y9" secondAttribute="centerY" id="ul0-DT-COK"/>
+                                        <constraint firstAttribute="height" constant="50" id="zaW-Eu-bK8"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -67,7 +85,7 @@
                         <constraint firstItem="GO7-27-YRv" firstAttribute="leading" secondItem="sYY-wB-rtz" secondAttribute="leading" id="MB0-fI-htt"/>
                         <constraint firstItem="sub-iJ-Lvf" firstAttribute="leading" secondItem="sYY-wB-rtz" secondAttribute="leading" constant="16" id="Ule-GB-iQR"/>
                         <constraint firstItem="sub-iJ-Lvf" firstAttribute="top" secondItem="sYY-wB-rtz" secondAttribute="top" id="Upo-YW-zZS"/>
-                        <constraint firstAttribute="trailing" secondItem="sub-iJ-Lvf" secondAttribute="trailing" constant="16" id="WDU-aP-4rJ"/>
+                        <constraint firstAttribute="trailing" secondItem="sub-iJ-Lvf" secondAttribute="trailing" id="WDU-aP-4rJ"/>
                         <constraint firstAttribute="trailing" secondItem="GO7-27-YRv" secondAttribute="trailing" id="iKq-3K-4pn"/>
                         <constraint firstAttribute="bottom" secondItem="GO7-27-YRv" secondAttribute="bottom" id="r7J-HM-AdE"/>
                     </constraints>
