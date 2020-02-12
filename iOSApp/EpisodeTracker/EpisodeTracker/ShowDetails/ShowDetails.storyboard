@@ -67,13 +67,13 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-2k-LBz" userLabel="Episodes Container View">
-                                <rect key="frame" x="0.0" y="257.33333333333331" width="375" height="520.66666666666674"/>
+                                <rect key="frame" x="0.0" y="257.33333333333331" width="375" height="554.66666666666674"/>
                                 <connections>
                                     <segue destination="0Ml-vF-CVD" kind="embed" identifier="episodes_view" id="aSF-Fh-iTK"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXG-qH-y9d" userLabel="About Container View">
-                                <rect key="frame" x="0.0" y="257.33333333333331" width="375" height="520.66666666666674"/>
+                                <rect key="frame" x="0.0" y="257.33333333333331" width="375" height="554.66666666666674"/>
                                 <connections>
                                     <segue destination="xfS-HR-d5L" kind="embed" identifier="about_view" id="7C6-0F-U0C"/>
                                 </connections>
@@ -100,7 +100,7 @@
                             <constraint firstItem="BOA-xL-8CE" firstAttribute="top" secondItem="sue-Vb-FUr" secondAttribute="top" id="TDl-My-iWQ"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="AXG-qH-y9d" secondAttribute="trailing" id="UZ7-ZG-CFm"/>
                             <constraint firstItem="htr-Op-cRr" firstAttribute="top" secondItem="8Mg-ED-3gF" secondAttribute="top" id="Ysx-B9-bKh"/>
-                            <constraint firstItem="sue-Vb-FUr" firstAttribute="bottom" secondItem="AXG-qH-y9d" secondAttribute="bottom" id="aM8-Zl-IDC"/>
+                            <constraint firstAttribute="bottom" secondItem="AXG-qH-y9d" secondAttribute="bottom" id="aM8-Zl-IDC"/>
                             <constraint firstItem="BOA-xL-8CE" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="eDN-Rc-JDJ"/>
                             <constraint firstItem="htr-Op-cRr" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="gah-YB-JdM"/>
                             <constraint firstItem="m6d-2k-LBz" firstAttribute="top" secondItem="bz5-Zm-oSn" secondAttribute="bottom" id="kdo-vk-wTu"/>
@@ -109,7 +109,7 @@
                             <constraint firstItem="fkf-Zv-uKT" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" constant="-16" id="rJE-vf-sDr"/>
                             <constraint firstItem="AXG-qH-y9d" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="vJx-Dv-sj5"/>
                             <constraint firstItem="bz5-Zm-oSn" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="xGM-c4-121"/>
-                            <constraint firstItem="sue-Vb-FUr" firstAttribute="bottom" secondItem="m6d-2k-LBz" secondAttribute="bottom" id="zCC-Gd-Vnz"/>
+                            <constraint firstAttribute="bottom" secondItem="m6d-2k-LBz" secondAttribute="bottom" id="zCC-Gd-Vnz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sue-Vb-FUr"/>
                     </view>
