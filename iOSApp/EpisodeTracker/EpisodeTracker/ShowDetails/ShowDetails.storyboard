@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tEa-da-BcR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7qu-An-85M">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,7 +12,7 @@
         <!--Show Details View Controller-->
         <scene sceneID="RUe-9b-luY">
             <objects>
-                <viewController id="7qu-An-85M" customClass="ShowDetailsViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="7qu-An-85M" customClass="ShowDetailsViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Mg-ED-3gF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,6 +78,16 @@
                                     <segue destination="xfS-HR-d5L" kind="embed" identifier="about_view" id="7C6-0F-U0C"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOA-xL-8CE">
+                                <rect key="frame" x="0.0" y="44" width="56" height="29"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="5"/>
+                                <state key="normal" image="ic-chevron-down">
+                                    <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDismissTapped:" destination="7qu-An-85M" eventType="touchUpInside" id="zeV-Cy-bSq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -87,9 +97,11 @@
                             <constraint firstItem="fkf-Zv-uKT" firstAttribute="leading" secondItem="htr-Op-cRr" secondAttribute="leading" constant="16" id="A6r-kO-6sO"/>
                             <constraint firstItem="fkf-Zv-uKT" firstAttribute="bottom" secondItem="htr-Op-cRr" secondAttribute="bottom" constant="-16" id="HMH-5D-imK"/>
                             <constraint firstItem="AXG-qH-y9d" firstAttribute="top" secondItem="bz5-Zm-oSn" secondAttribute="bottom" id="Qpc-ny-K4X"/>
+                            <constraint firstItem="BOA-xL-8CE" firstAttribute="top" secondItem="sue-Vb-FUr" secondAttribute="top" id="TDl-My-iWQ"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="AXG-qH-y9d" secondAttribute="trailing" id="UZ7-ZG-CFm"/>
                             <constraint firstItem="htr-Op-cRr" firstAttribute="top" secondItem="8Mg-ED-3gF" secondAttribute="top" id="Ysx-B9-bKh"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="bottom" secondItem="AXG-qH-y9d" secondAttribute="bottom" id="aM8-Zl-IDC"/>
+                            <constraint firstItem="BOA-xL-8CE" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="eDN-Rc-JDJ"/>
                             <constraint firstItem="htr-Op-cRr" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="gah-YB-JdM"/>
                             <constraint firstItem="m6d-2k-LBz" firstAttribute="top" secondItem="bz5-Zm-oSn" secondAttribute="bottom" id="kdo-vk-wTu"/>
                             <constraint firstItem="bz5-Zm-oSn" firstAttribute="top" secondItem="htr-Op-cRr" secondAttribute="bottom" id="mfl-1H-pVL"/>
@@ -101,16 +113,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sue-Vb-FUr"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TcB-1I-faz">
-                        <barButtonItem key="leftBarButtonItem" image="ic-chevron-down" id="N2u-1T-NQy">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="onBackTapped:" destination="7qu-An-85M" id="ti9-oP-ZXM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="aboutView" destination="AXG-qH-y9d" id="W6T-o8-H0X"/>
+                        <outlet property="dismissButton" destination="BOA-xL-8CE" id="bp4-mP-JWo"/>
                         <outlet property="episodesView" destination="m6d-2k-LBz" id="fHc-sV-RSp"/>
                         <outlet property="imageView" destination="htr-Op-cRr" id="qEj-y2-f5o"/>
                         <outlet property="nameLabel" destination="zNc-d1-kap" id="3zp-pU-ff5"/>
@@ -122,25 +127,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rV-xA-Kmr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857.97101449275374" y="101.78571428571428"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="iRl-N3-ITe">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tEa-da-BcR" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="PRh-3s-Cvj">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="7qu-An-85M" kind="relationship" relationship="rootViewController" id="Gl2-QM-gz4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Saw-bo-XN7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-52.173913043478265" y="101.78571428571428"/>
         </scene>
         <!--Episodes View Controller-->
         <scene sceneID="1Zo-h7-bgG">

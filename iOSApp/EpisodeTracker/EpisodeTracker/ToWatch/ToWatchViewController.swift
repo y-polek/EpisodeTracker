@@ -10,6 +10,7 @@ class ToWatchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         presenter.attachView(view: self)
     }
     
@@ -21,20 +22,6 @@ class ToWatchViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.onViewDisappeared()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        switch segue.identifier {
-        case "show_details":
-            guard let showId = sender as? Int else {
-                fatalError("'sender' must be of type Int for 'show_details' segue")
-            }
-            segue.setShowDetailsParameters(showId, openEpisodesTabOnStart: true)
-        default:
-            break
-        }
     }
 }
 
@@ -60,7 +47,8 @@ extension ToWatchViewController: ToWatchView {
     }
     
     func openToWatchShowDetails(showId: Int32) {
-        performSegue(withIdentifier: "show_details", sender: Int(showId))
+        let vc = ShowDetailsViewController.instantiate(showId: Int(showId), openEpisodesTabOnStart: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

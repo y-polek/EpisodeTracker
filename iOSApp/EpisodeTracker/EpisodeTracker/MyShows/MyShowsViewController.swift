@@ -12,7 +12,7 @@ class MyShowsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.setNavigationBarHidden(true, animated: false)
         tableView.register(MyShowsHeaderView.nib, forHeaderFooterViewReuseIdentifier: MyShowsHeaderView.reuseIdentifier)
     }
     
@@ -25,20 +25,6 @@ class MyShowsViewController: UIViewController {
         super.viewWillDisappear(animated)
         presenter.detachView()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        switch segue.identifier {
-        case "show_details":
-            guard let showId = sender as? Int else {
-                fatalError("'sender' must be of type Int for 'show_details' segue")
-            }
-            segue.setShowDetailsParameters(showId, openEpisodesTabOnStart: false)
-        default:
-            break
-        }
-    }
 }
 
 extension MyShowsViewController: MyShowsView {
@@ -49,7 +35,8 @@ extension MyShowsViewController: MyShowsView {
     }
     
     func openMyShowDetails(showId: Int32) {
-        performSegue(withIdentifier: "show_details", sender: Int(showId))
+        let vc = ShowDetailsViewController.instantiate(showId: Int(showId), openEpisodesTabOnStart: false)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

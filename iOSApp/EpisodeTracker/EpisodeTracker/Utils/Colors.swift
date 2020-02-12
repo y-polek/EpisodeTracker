@@ -6,6 +6,7 @@ extension UIColor {
     
     static let textColorPrimary = UIColor(named: "TextColorPrimary")!
     static let textColorSecondary = UIColor(named: "TextColorSecondary")!
+    static let textColorPrimaryInverse = UIColor(named: "TextColorPrimaryInverse")
     static let accent = UIColor(named: "Accent")!
     static let dividerPrimary = UIColor(named: "DividerPrimary")!
     

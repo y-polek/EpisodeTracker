@@ -13,21 +13,8 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         presenter.attachView(view: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        switch segue.identifier {
-        case "show_details":
-            guard let showId = sender as? Int else {
-                fatalError("'sender' must be of type Int for 'show_details' segue")
-            }
-            segue.setShowDetailsParameters(showId, openEpisodesTabOnStart: false)
-        default:
-            break
-        }
     }
 }
 
@@ -71,7 +58,8 @@ extension DiscoverViewController: DiscoverView {
     }
     
     func openDiscoverShow(showId: Int32) {
-        performSegue(withIdentifier: "show_details", sender: Int(showId))
+        let vc = ShowDetailsViewController.instantiate(showId: Int(showId), openEpisodesTabOnStart: false)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

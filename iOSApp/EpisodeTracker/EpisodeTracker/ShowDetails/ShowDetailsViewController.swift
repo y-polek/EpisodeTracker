@@ -4,9 +4,16 @@ import SharedCode
 
 class ShowDetailsViewController: UIViewController {
     
-    var showId: Int!
-    var openEpisodesTabOnStart: Bool!
-    var presenter: ShowDetailsPresenter!
+    static func instantiate(showId: Int, openEpisodesTabOnStart: Bool) -> ShowDetailsViewController {
+        let storyboard = UIStoryboard(name: "ShowDetails", bundle: Bundle.main)
+        let vc = storyboard.instantiateInitialViewController() as! ShowDetailsViewController
+        vc.setParameters(showId: Int(showId), openEpisodesTabOnStart: false)
+        return vc
+    }
+    
+    private var showId: Int!
+    private var openEpisodesTabOnStart: Bool!
+    private var presenter: ShowDetailsPresenter!
     
     @IBOutlet weak var imageView: ImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -15,15 +22,15 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var tabBar: MDCTabBar!
     @IBOutlet weak var aboutView: UIView!
     @IBOutlet weak var episodesView: UIView!
+    @IBOutlet weak var dismissButton: UIButton!
+    
+    public func setParameters(showId: Int, openEpisodesTabOnStart: Bool) {
+        self.showId = showId
+        self.openEpisodesTabOnStart = openEpisodesTabOnStart
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let navigationBar = navigationController?.navigationBar {
-            navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationBar.shadowImage = UIImage()
-            navigationBar.isTranslucent = true
-        }
         
         imageView.overlayOpacity = [0.6, 0.2, 0.4, 0.6]
         
@@ -45,6 +52,8 @@ class ShowDetailsViewController: UIViewController {
         tabBar.alignment = .justified
         tabBar.delegate = self
         
+        dismissButton.imageView?.tintColor = .textColorPrimaryInverse
+        
         if openEpisodesTabOnStart {
             showEpisodesTab()
         } else {
@@ -55,7 +64,7 @@ class ShowDetailsViewController: UIViewController {
         presenter.attachView(view: self)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter.onViewAppeared()
     }
@@ -63,6 +72,10 @@ class ShowDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.onViewDisappeared()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get { .lightContent }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,8 +90,8 @@ class ShowDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func onBackTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func onDismissTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     private func showAboutTab() {
