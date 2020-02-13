@@ -5,5 +5,5 @@ data class ShowHeaderViewModel(
     val imageUrl: String?,
     val years: String,
     val network: String,
-    val networkUrl: String?
+    val networkImageUrl: String?
 )

@@ -24,7 +24,6 @@ class MyShowsRepository(
         check(show.isValid) { throw RuntimeException("Trying to add invalid show: $show") }
 
         log("Adding show: $show")
-        log("Networks: ${show.networks?.map { it.name.orEmpty() }?.joinToString()}")
 
         val seasons = (1..show.numberOfSeasons).map { seasonNumber ->
             tmdbService.season(tmdbId = tmdbId, number = seasonNumber)

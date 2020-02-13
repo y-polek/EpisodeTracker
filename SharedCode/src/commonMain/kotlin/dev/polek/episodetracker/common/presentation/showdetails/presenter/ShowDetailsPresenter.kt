@@ -32,7 +32,7 @@ class ShowDetailsPresenter(
             imageUrl = show.imageUrl,
             years = "$startYear - $endYear",
             network = show.networkName.orEmpty(),
-            networkUrl = show.networkImageUrl)
+            networkImageUrl = show.networkImageUrl)
 
         view?.displayShowHeader(headerViewModel)
     }

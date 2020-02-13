@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="htr-Op-cRr" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="htr-Op-cRr" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="208.33333333333334"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="htr-Op-cRr" secondAttribute="height" multiplier="1.8:1" id="tjm-Gn-b4N"/>
@@ -26,6 +26,18 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="overlayColor">
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zbm-xo-9MZ" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                <rect key="frame" x="284" y="167.33333333333334" width="75" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="jKF-Ys-ryk"/>
+                                    <constraint firstAttribute="width" secondItem="zbm-xo-9MZ" secondAttribute="height" multiplier="3" id="llx-nM-IiG"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
@@ -92,6 +104,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="m6d-2k-LBz" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="1zt-5X-fRt"/>
+                            <constraint firstItem="zbm-xo-9MZ" firstAttribute="bottom" secondItem="htr-Op-cRr" secondAttribute="bottom" constant="-16" id="2Of-T8-npG"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" id="68W-Mh-LPr"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="bz5-Zm-oSn" secondAttribute="trailing" id="75g-N4-c41"/>
                             <constraint firstItem="fkf-Zv-uKT" firstAttribute="leading" secondItem="htr-Op-cRr" secondAttribute="leading" constant="16" id="A6r-kO-6sO"/>
@@ -101,6 +114,7 @@
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="AXG-qH-y9d" secondAttribute="trailing" id="UZ7-ZG-CFm"/>
                             <constraint firstItem="htr-Op-cRr" firstAttribute="top" secondItem="8Mg-ED-3gF" secondAttribute="top" id="Ysx-B9-bKh"/>
                             <constraint firstAttribute="bottom" secondItem="AXG-qH-y9d" secondAttribute="bottom" id="aM8-Zl-IDC"/>
+                            <constraint firstItem="zbm-xo-9MZ" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" constant="-16" id="bEC-7e-lCs"/>
                             <constraint firstItem="BOA-xL-8CE" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="eDN-Rc-JDJ"/>
                             <constraint firstItem="htr-Op-cRr" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="gah-YB-JdM"/>
                             <constraint firstItem="m6d-2k-LBz" firstAttribute="top" secondItem="bz5-Zm-oSn" secondAttribute="bottom" id="kdo-vk-wTu"/>
@@ -119,6 +133,7 @@
                         <outlet property="episodesView" destination="m6d-2k-LBz" id="fHc-sV-RSp"/>
                         <outlet property="imageView" destination="htr-Op-cRr" id="qEj-y2-f5o"/>
                         <outlet property="nameLabel" destination="zNc-d1-kap" id="3zp-pU-ff5"/>
+                        <outlet property="networkImageView" destination="zbm-xo-9MZ" id="pRd-9f-tRi"/>
                         <outlet property="networkLabel" destination="mfq-HF-cNm" id="Hzv-Wx-DAu"/>
                         <outlet property="tabBar" destination="bz5-Zm-oSn" id="2Mv-lT-gmV"/>
                         <outlet property="yearsLabel" destination="DZ1-vg-dud" id="2j3-53-fef"/>
@@ -133,7 +148,7 @@
             <objects>
                 <viewController id="0Ml-vF-CVD" customClass="EpisodesViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dG3-MJ-sdx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
@@ -151,7 +166,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-Y4-xqs" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-Y4-xqs" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="10" width="104" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="g1u-z0-P6k"/>
@@ -294,7 +309,7 @@
             <objects>
                 <viewController id="xfS-HR-d5L" customClass="AboutShowViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xlu-S1-cgV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woq-MX-JY6">

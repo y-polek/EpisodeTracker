@@ -38,8 +38,6 @@ class ImageView: UIImageView {
     }
     
     private func setup() {
-        contentMode = .scaleAspectFill
-        
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = true
         
