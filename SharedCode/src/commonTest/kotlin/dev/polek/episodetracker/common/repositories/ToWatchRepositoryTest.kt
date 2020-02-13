@@ -5,11 +5,13 @@ import assertk.assertions.isEqualTo
 import com.squareup.sqldelight.db.SqlDriver
 import dev.polek.episodetracker.common.coroutines.runBlocking
 import dev.polek.episodetracker.common.database.createInMemorySqlDriver
+import dev.polek.episodetracker.common.datasource.db.adapters.ListOfStringsAdapter
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.testutils.TmdbShows.THE_ORVILLE
 import dev.polek.episodetracker.common.testutils.mockTmdbHttpClient
 import dev.polek.episodetracker.common.utils.parseDate
 import dev.polek.episodetracker.db.Database
+import dev.polek.episodetracker.db.MyShow
 import kotlin.test.*
 
 @Ignore
@@ -23,7 +25,10 @@ class ToWatchRepositoryTest {
     @BeforeTest
     fun setup() {
         sqlDriver = createInMemorySqlDriver()
-        db = Database(sqlDriver)
+        db = Database(
+            driver = sqlDriver,
+            MyShowAdapter = MyShow.Adapter(genresAdapter = ListOfStringsAdapter)
+        )
         val tmdbService = TmdbService(client = mockTmdbHttpClient)
 
         myShowsRepository = MyShowsRepository(db, tmdbService)

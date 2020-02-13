@@ -2,8 +2,10 @@ package dev.polek.episodetracker.common.repositories
 
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
+import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.networkImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.stillImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEntity
+import dev.polek.episodetracker.common.datasource.themoviedb.entities.GenreEntity
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.common.utils.formatEpisodeNumber
@@ -22,6 +24,7 @@ class MyShowsRepository(
         check(show.isValid) { throw RuntimeException("Trying to add invalid show: $show") }
 
         log("Adding show: $show")
+        log("Networks: ${show.networks?.map { it.name.orEmpty() }?.joinToString()}")
 
         val seasons = (1..show.numberOfSeasons).map { seasonNumber ->
             tmdbService.season(tmdbId = tmdbId, number = seasonNumber)
@@ -40,6 +43,14 @@ class MyShowsRepository(
                         imageUrl = episode.stillPath?.let(::stillImageUrl))
                 }
 
+            show.network?.let { network ->
+                db.networkQueries.insertOrReplace(
+                    tmdbId = network.tmdbId ?: 0,
+                    name = network.name.orEmpty(),
+                    imageUrl = network.logoPath?.let(::networkImageUrl)
+                )
+            }
+
             db.myShowQueries.insert(
                 tmdbId = tmdbId,
                 imdbId = show.externalIds?.imdbId,
@@ -52,6 +63,8 @@ class MyShowsRepository(
                 year = show.year,
                 lastYear = show.lastYear,
                 imageUrl = show.backdropPath?.let(::backdropImageUrl),
+                genres = show.genres?.map(GenreEntity::name).orEmpty(),
+                networkTmdbId = show.network?.tmdbId,
                 contentRating = show.contentRating,
                 isEnded = show.isEnded,
                 nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,

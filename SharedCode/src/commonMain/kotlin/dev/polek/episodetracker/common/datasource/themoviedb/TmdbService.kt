@@ -80,5 +80,9 @@ class TmdbService(client: HttpClient?) {
         fun stillImageUrl(path: String): String {
             return "$BASE_IMAGE_URL/original$path"
         }
+
+        fun networkImageUrl(path: String): String {
+            return "$BASE_IMAGE_URL/w92$path"
+        }
     }
 }

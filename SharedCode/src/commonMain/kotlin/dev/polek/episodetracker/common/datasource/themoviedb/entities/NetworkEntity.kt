@@ -7,9 +7,9 @@ import kotlinx.serialization.Transient
 
 @Serializable
 data class NetworkEntity(
+    @SerialName("id") val tmdbId: Int? = null,
     @SerialName("name") val name: String? = null,
     @SerialName("logo_path") val logoPath: String? = null)
 {
-    @Transient val isValid =
-        allNotNull(name)
+    @Transient val isValid = allNotNull(tmdbId, name)
 }

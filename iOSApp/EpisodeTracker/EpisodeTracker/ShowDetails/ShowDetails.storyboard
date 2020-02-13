@@ -49,8 +49,8 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="TV-14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfq-HF-cNm">
-                                                <rect key="frame" x="296.33333333333331" y="0.0" width="46.666666666666686" height="20.333333333333332"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfq-HF-cNm">
+                                                <rect key="frame" x="293.66666666666669" y="0.0" width="49.333333333333314" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                         <outlet property="episodesView" destination="m6d-2k-LBz" id="fHc-sV-RSp"/>
                         <outlet property="imageView" destination="htr-Op-cRr" id="qEj-y2-f5o"/>
                         <outlet property="nameLabel" destination="zNc-d1-kap" id="3zp-pU-ff5"/>
-                        <outlet property="ratingLabel" destination="mfq-HF-cNm" id="ILN-pL-AhI"/>
+                        <outlet property="networkLabel" destination="mfq-HF-cNm" id="Hzv-Wx-DAu"/>
                         <outlet property="tabBar" destination="bz5-Zm-oSn" id="2Mv-lT-gmV"/>
                         <outlet property="yearsLabel" destination="DZ1-vg-dud" id="2j3-53-fef"/>
                     </connections>
@@ -133,11 +133,11 @@
             <objects>
                 <viewController id="0Ml-vF-CVD" customClass="EpisodesViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dG3-MJ-sdx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="520.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-QQ-vgY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="520.66666666666663"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episode_cell" rowHeight="80" id="1bN-42-tSl" customClass="EpisodeCell" customModule="EpisodeTracker" customModuleProvider="target">
@@ -289,16 +289,16 @@
             </objects>
             <point key="canvasLocation" x="1285.5999999999999" y="755.9113300492611"/>
         </scene>
-        <!--View Controller-->
+        <!--About Show View Controller-->
         <scene sceneID="T23-zu-Cb6">
             <objects>
-                <viewController id="xfS-HR-d5L" sceneMemberID="viewController">
+                <viewController id="xfS-HR-d5L" customClass="AboutShowViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xlu-S1-cgV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="520.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woq-MX-JY6">
-                                <rect key="frame" x="164" y="272" width="47" height="21"/>
+                                <rect key="frame" x="164" y="289" width="47" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

@@ -1,0 +1,11 @@
+CREATE TABLE Network (
+    tmdbId INTEGER AS Int NOT NULL,
+    name TEXT NOT NULL,
+    imageUrl TEXT,
+
+    PRIMARY KEY (tmdbId)
+);
+
+insertOrReplace:
+INSERT OR REPLACE INTO Network(tmdbId, name, imageUrl)
+VALUES (?, ?, ?);

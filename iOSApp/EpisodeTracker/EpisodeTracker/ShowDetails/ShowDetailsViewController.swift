@@ -18,7 +18,7 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var imageView: ImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var networkLabel: UILabel!
     @IBOutlet weak var tabBar: MDCTabBar!
     @IBOutlet weak var aboutView: UIView!
     @IBOutlet weak var episodesView: UIView!
@@ -81,7 +81,7 @@ class ShowDetailsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "about_view":
-            (segue.destination as! AboutViewController).showId = showId
+            (segue.destination as! AboutShowViewController).showId = showId
             break
         case "episodes_view":
             (segue.destination as! EpisodesViewController).showId = showId
@@ -109,12 +109,11 @@ class ShowDetailsViewController: UIViewController {
 }
 
 extension ShowDetailsViewController: ShowDetailsView {
-    
-    func displayShowDetails(show: ShowDetailsViewModel) {
+    func displayShowHeader(show: ShowHeaderViewModel) {
         nameLabel.text = show.name
         imageView.imageUrl = show.imageUrl
         yearsLabel.text = show.years
-        ratingLabel.text = show.contentRating
+        networkLabel.text = show.network
     }
     
     func close() {

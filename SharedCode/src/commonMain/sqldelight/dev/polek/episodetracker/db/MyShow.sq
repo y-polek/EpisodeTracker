@@ -1,3 +1,5 @@
+import kotlin.collections.List;
+
 CREATE TABLE MyShow (
     tmdbId INTEGER AS Int NOT NULL,
     imdbId TEXT,
@@ -10,6 +12,8 @@ CREATE TABLE MyShow (
     year INTEGER as Int,
     lastYear INTEGER as Int,
     imageUrl TEXT,
+    genres TEXT AS List<String> NOT NULL,
+    networkTmdbId INTEGER AS Int,
     contentRating TEXT,
     isEnded INTEGER AS Boolean NOT NULL,
     nextEpisodeSeason INTEGER AS Int,
@@ -19,8 +23,8 @@ CREATE TABLE MyShow (
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, genres, networkTmdbId, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;
@@ -62,6 +66,17 @@ INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10
 WHERE MyShow.tmdbId = ?;
 
 showDetails:
-SELECT name, imageUrl, year, lastYear, isEnded, contentRating
+SELECT
+ MyShow.name,
+ MyShow.imageUrl,
+ year,
+ lastYear,
+ isEnded,
+ contentRating,
+ overview,
+ genres,
+ Network.name AS networkName,
+ Network.imageUrl AS networkImageUrl
 FROM MyShow
-WHERE tmdbId = ?;
+LEFT OUTER JOIN Network ON Network.tmdbId = MyShow.networkTmdbId
+WHERE MyShow.tmdbId = ?;

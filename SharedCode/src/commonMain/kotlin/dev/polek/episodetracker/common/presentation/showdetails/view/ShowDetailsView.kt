@@ -1,9 +1,9 @@
 package dev.polek.episodetracker.common.presentation.showdetails.view
 
-import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
+import dev.polek.episodetracker.common.presentation.showdetails.model.ShowHeaderViewModel
 
 interface ShowDetailsView {
 
-    fun displayShowDetails(show: ShowDetailsViewModel)
+    fun displayShowHeader(show: ShowHeaderViewModel)
     fun close()
 }

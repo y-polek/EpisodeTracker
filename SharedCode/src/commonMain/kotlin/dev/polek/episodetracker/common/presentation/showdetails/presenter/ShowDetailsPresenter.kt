@@ -2,8 +2,8 @@ package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.BasePresenter
+import dev.polek.episodetracker.common.presentation.showdetails.model.ShowHeaderViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetailsView
-import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 
 class ShowDetailsPresenter(
@@ -27,14 +27,13 @@ class ShowDetailsPresenter(
         val startYear = show.year?.toString().orEmpty()
         val endYear = if (show.isEnded) show.lastYear?.toString().orEmpty() else "Present"
 
-        val showViewModel = ShowDetailsViewModel(
+        val headerViewModel = ShowHeaderViewModel(
             name = show.name,
             imageUrl = show.imageUrl,
             years = "$startYear - $endYear",
-            contentRating = show.contentRating.orEmpty()
-        )
+            network = show.networkName.orEmpty(),
+            networkUrl = show.networkImageUrl)
 
-
-        view?.displayShowDetails(showViewModel)
+        view?.displayShowHeader(headerViewModel)
     }
 }
