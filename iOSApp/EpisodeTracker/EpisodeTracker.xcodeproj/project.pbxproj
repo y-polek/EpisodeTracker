@@ -13,6 +13,7 @@
 		D222456523EE147900082162 /* MyShowsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222456423EE147900082162 /* MyShowsHeaderView.swift */; };
 		D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2242C1123F1B4F5001C8608 /* PadView.swift */; };
 		D232E73323F59E6300F024B9 /* AboutShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232E73223F59E6300F024B9 /* AboutShowViewController.swift */; };
+		D232E73523F5ED6E00F024B9 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232E73423F5ED6E00F024B9 /* GenreCell.swift */; };
 		D23408CA23D3AEB700FFCA37 /* ToWatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23408C923D3AEB700FFCA37 /* ToWatchCell.swift */; };
 		D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238771523E5745300688E01 /* ShowDetailsViewController.swift */; };
 		D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238771823E5796200688E01 /* ShowDetails.storyboard */; };
@@ -68,6 +69,7 @@
 		D222456423EE147900082162 /* MyShowsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsHeaderView.swift; sourceTree = "<group>"; };
 		D2242C1123F1B4F5001C8608 /* PadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadView.swift; sourceTree = "<group>"; };
 		D232E73223F59E6300F024B9 /* AboutShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutShowViewController.swift; sourceTree = "<group>"; };
+		D232E73423F5ED6E00F024B9 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		D23408C923D3AEB700FFCA37 /* ToWatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToWatchCell.swift; sourceTree = "<group>"; };
 		D238771523E5745300688E01 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		D238771823E5796200688E01 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				D232E73223F59E6300F024B9 /* AboutShowViewController.swift */,
+				D232E73423F5ED6E00F024B9 /* GenreCell.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */,
 				D29D7B0023A299DE00B2832D /* ShowCell.swift in Sources */,
 				D29D7B0623A2CD0600B2832D /* Colors.swift in Sources */,
+				D232E73523F5ED6E00F024B9 /* GenreCell.swift in Sources */,
 				D2F09F0F23F40675003BFFAA /* NavigationController.swift in Sources */,
 				D23408CA23D3AEB700FFCA37 /* ToWatchCell.swift in Sources */,
 				D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */,
