@@ -18,7 +18,7 @@ class ImageView: UIImageView {
         didSet { layer.cornerRadius = self.cornerRadius }
     }
     
-    var overlayOpacity: [CGFloat] = [0.0, 0.8]
+    var overlayOpacity: [CGFloat] = [0.0, 0.6]
     
     private let overlayLayer = CAGradientLayer()
     
