@@ -18,6 +18,11 @@ class ImageView: UIImageView {
         didSet { layer.cornerRadius = self.cornerRadius }
     }
     
+    @IBInspectable
+    var shadowColor: UIColor? = nil {
+        didSet { updateShadow() }
+    }
+    
     var overlayOpacity: [CGFloat] = [0.0, 0.6]
     
     private let overlayLayer = CAGradientLayer()
@@ -61,6 +66,18 @@ class ImageView: UIImageView {
             }
         } else {
             overlayLayer.colors = [UIColor.transparent.cgColor, UIColor.transparent.cgColor]
+        }
+    }
+    
+    private func updateShadow() {
+        layer.shadowColor = shadowColor?.cgColor
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 1
+        if shadowColor != nil {
+            clipsToBounds = false
+        } else {
+            clipsToBounds = true
         }
     }
 }
