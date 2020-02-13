@@ -82,7 +82,7 @@ class TmdbService(client: HttpClient?) {
         }
 
         fun networkImageUrl(path: String): String {
-            return "$BASE_IMAGE_URL/w92$path"
+            return "$BASE_IMAGE_URL/w300$path"
         }
     }
 }
