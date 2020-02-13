@@ -81,6 +81,7 @@ class ShowDetailsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "about_view":
+            (segue.destination as! AboutViewController).showId = showId
             break
         case "episodes_view":
             (segue.destination as! EpisodesViewController).showId = showId
@@ -91,7 +92,7 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @IBAction func onDismissTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        close()
     }
     
     private func showAboutTab() {
@@ -117,7 +118,7 @@ extension ShowDetailsViewController: ShowDetailsView {
     }
     
     func close() {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 }
 
