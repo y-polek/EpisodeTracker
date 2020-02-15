@@ -4,6 +4,8 @@ import SharedCode
 class AboutShowViewController: UIViewController {
     
     @IBOutlet weak var genresCollectionView: UICollectionView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     
     var showId: Int!
     var presenter: AboutShowPresenter!
@@ -22,6 +24,7 @@ extension AboutShowViewController: AboutShowView {
     func displayShowDetails(show: ShowDetailsViewModel) {
         genres = show.genres
         genresCollectionView.reloadData()
+        overviewLabel.text = show.overview
     }
 }
 
