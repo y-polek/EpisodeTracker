@@ -467,6 +467,10 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
+                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBp-QJ-wtb" customClass="MDCRippleView">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Official Trailer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="HXf-cj-Vbh">
                                                                             <rect key="frame" x="8" y="80.999999999999986" width="176" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -474,12 +478,21 @@
                                                                             <color key="textColor" name="TextColorPrimaryInverse"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
+                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVA-mK-bmS" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                            <rect key="frame" x="78" y="29" width="36" height="36"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCircular" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-play-bold"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </view>
                                                                     </subviews>
                                                                 </collectionViewCellContentView>
                                                                 <size key="customSize" width="192" height="108"/>
                                                                 <connections>
                                                                     <outlet property="nameLabel" destination="HXf-cj-Vbh" id="O9m-LD-lak"/>
-                                                                    <outlet property="prerviewImageView" destination="YWX-3l-HQd" id="OOv-PF-XIs"/>
+                                                                    <outlet property="previewImageView" destination="YWX-3l-HQd" id="8QH-sM-pIi"/>
+                                                                    <outlet property="rippleView" destination="wBp-QJ-wtb" id="Zsi-yj-HBc"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
@@ -541,6 +554,7 @@
     <resources>
         <image name="ic-chevron-down" width="24" height="24"/>
         <image name="ic-clock" width="24" height="24"/>
+        <image name="ic-play-bold" width="24" height="24"/>
         <namedColor name="Accent">
             <color red="0.0" green="0.34999999403953552" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

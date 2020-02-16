@@ -73,7 +73,7 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "trailer_cell", for: indexPath) as! TrailerCell
         let trailer = trailers[indexPath.row]
         
-        cell.prerviewImageView.imageUrl = trailer.previewImageUrl
+        cell.previewImageView.imageUrl = trailer.previewImageUrl
         cell.nameLabel.text = trailer.name
         
         return cell
