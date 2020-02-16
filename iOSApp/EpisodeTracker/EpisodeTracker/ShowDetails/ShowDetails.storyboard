@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7qu-An-85M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7qu-An-85M">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -314,7 +314,7 @@
             <objects>
                 <viewController id="xfS-HR-d5L" customClass="AboutShowViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xlu-S1-cgV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELm-3U-64k">
@@ -374,7 +374,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CuV-V4-49b">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="691.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="49.999999999999972" width="375" height="421.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbh-Ua-1vo" userLabel="Time Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
@@ -445,7 +445,6 @@
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="16" id="8Yj-o1-3yI">
                                                             <size key="itemSize" width="192" height="108"/>
-                                                            <size key="estimatedItemSize" width="192" height="108"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
@@ -501,7 +500,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VNE-4Q-b26" userLabel="Cast Stack View">
-                                                <rect key="frame" x="0.0" y="262.33333333333331" width="375" height="171.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="234" width="375" height="187.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9P-l7-bYY" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
@@ -516,7 +515,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjD-oR-AZv">
-                                                        <rect key="frame" x="0.0" y="1" width="375" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="8.9999999999999982" width="375" height="20.333333333333329"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjy-ti-1vQ">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="20.333333333333332"/>
@@ -528,14 +527,13 @@
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L3N-3X-QNy" userLabel="Cast Collection View">
-                                                        <rect key="frame" x="0.0" y="21.333333333333371" width="375" height="150"/>
+                                                        <rect key="frame" x="0.0" y="37.333333333333314" width="375" height="150"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="150" id="EfZ-yw-egB"/>
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="16" id="dNP-gG-BZn">
                                                             <size key="itemSize" width="100" height="150"/>
-                                                            <size key="estimatedItemSize" width="100" height="150"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
