@@ -117,7 +117,11 @@ class CastDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cast_member_cell", for: indexPath) as! CastMemberCell
         let member = castMembers[indexPath.row]
+        
         cell.portraitImageView.imageUrl = member.portraitImageUrl
+        cell.actorNameLabel.text = member.name
+        cell.characterNameLabel.text = member.character
+        
         return cell
     }
 }
