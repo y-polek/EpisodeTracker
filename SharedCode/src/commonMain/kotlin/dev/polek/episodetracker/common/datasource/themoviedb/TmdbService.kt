@@ -57,6 +57,10 @@ class TmdbService(client: HttpClient?) {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId/season/$number")
     }
 
+    suspend fun videos(showTmdbId: Int): List<VideoEntity> {
+        return client.get<VideosEntity>("$BASE_URL/tv/$showTmdbId/videos").results.orEmpty()
+    }
+
     private suspend fun findGenreById(id: Int): String? {
         if (genresMap == null) {
             genresMap = client.get<GenresEntity>("$BASE_URL/genre/tv/list").genres.map { it.id to it.name }.toMap()
