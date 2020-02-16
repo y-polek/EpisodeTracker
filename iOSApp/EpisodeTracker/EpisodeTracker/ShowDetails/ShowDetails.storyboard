@@ -374,20 +374,20 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CuV-V4-49b">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="512.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="536.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbh-Ua-1vo" userLabel="Time Stack View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-clock" translatesAutoresizingMaskIntoConstraints="NO" id="QNP-Qv-IBw">
-                                                        <rect key="frame" x="16" y="0.0" width="24" height="24"/>
+                                                        <rect key="frame" x="16" y="0.0" width="48" height="48"/>
                                                         <color key="tintColor" name="TextColorPrimary"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="QNP-Qv-IBw" secondAttribute="height" multiplier="1:1" id="3Y1-fL-hGf"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu 20:30 • 60 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-IC-olp">
-                                                        <rect key="frame" x="40" y="0.0" width="319" height="24"/>
+                                                        <rect key="frame" x="64" y="0.0" width="295" height="48"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -399,7 +399,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="GQP-1W-RU4" userLabel="Description Stack View">
-                                                <rect key="frame" x="0.0" y="31.999999999999996" width="375" height="40.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="56" width="375" height="40.666666666666657"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Etiam porta sem malesuada magna mollis euismod." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJZ-7A-bIA">
                                                         <rect key="frame" x="16" y="0.0" width="343" height="40.666666666666664"/>
@@ -411,7 +411,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kPH-Zj-lSo" userLabel="Trailers Stack View">
-                                                <rect key="frame" x="0.0" y="80.666666666666643" width="375" height="145.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="104.66666666666664" width="375" height="145.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGg-qj-mN5" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
@@ -491,6 +491,7 @@
                                                                 <size key="customSize" width="192" height="108"/>
                                                                 <connections>
                                                                     <outlet property="nameLabel" destination="HXf-cj-Vbh" id="O9m-LD-lak"/>
+                                                                    <outlet property="playButton" destination="KVA-mK-bmS" id="lBg-mH-M8w"/>
                                                                     <outlet property="previewImageView" destination="YWX-3l-HQd" id="8QH-sM-pIi"/>
                                                                     <outlet property="rippleView" destination="wBp-QJ-wtb" id="Zsi-yj-HBc"/>
                                                                 </connections>
@@ -500,13 +501,13 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGr-51-sFn">
-                                                <rect key="frame" x="0.0" y="234" width="375" height="20.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="258" width="375" height="20.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3Z-Yz-oQZ">
-                                                <rect key="frame" x="0.0" y="262.33333333333331" width="375" height="249.99999999999994"/>
+                                                <rect key="frame" x="0.0" y="286.33333333333331" width="375" height="249.99999999999994"/>
                                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="gAQ-Mb-bRV"/>

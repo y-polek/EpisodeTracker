@@ -13,6 +13,7 @@ class ShowRepository(private val tmdbService: TmdbService) {
             .map { video ->
                 Trailer(
                     name = video.name.orEmpty(),
+                    youtubeKey = video.key.orEmpty(),
                     url = "https://www.youtube.com/watch?v=${video.key}",
                     previewImageUrl = "https://img.youtube.com/vi/${video.key}/mqdefault.jpg")
             }

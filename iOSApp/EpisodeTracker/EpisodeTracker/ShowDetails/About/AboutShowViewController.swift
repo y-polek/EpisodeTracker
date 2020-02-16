@@ -19,6 +19,7 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
         
         genresCollectionView.dataSource = genresDataSource
         trailersCollectionView.dataSource = trailersDataSource
+        trailersCollectionView.delegate = trailersDataSource
         
         presenter = AboutShowPresenter(
             showId: Int32(showId),
@@ -61,7 +62,7 @@ class GenresDataSource: NSObject, UICollectionViewDataSource {
 }
 
 // MARK: - Trailers UICollectionView datasource
-class TrailersDataSource: NSObject, UICollectionViewDataSource {
+class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var trailers = [Trailer]()
     
@@ -75,7 +76,23 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource {
         
         cell.previewImageView.imageUrl = trailer.previewImageUrl
         cell.nameLabel.text = trailer.name
+        cell.playButton.tapCallback = {
+            self.openTrailer(trailer)
+        }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let trailer = trailers[indexPath.row]
+        openTrailer(trailer)
+    }
+    
+    private func openTrailer(_ trailer: Trailer) {
+        var url: URL = URL(string: "youtube://\(trailer.youtubeKey)")!
+        if !UIApplication.shared.canOpenURL(url) {
+            url = URL(string: trailer.url)!
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
