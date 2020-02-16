@@ -32,6 +32,8 @@
 		D29D7B1623A5063A00B2832D /* DiscoverResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29D7B1523A5063A00B2832D /* DiscoverResultCell.swift */; };
 		D29DCACE23F93BCE00491ACD /* RippleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29DCACD23F93BCE00491ACD /* RippleCollectionViewCell.swift */; };
 		D29DCAD023F9A68B00491ACD /* CastMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29DCACF23F9A68B00491ACD /* CastMemberCell.swift */; };
+		D2A0443D23F9FDEF00640850 /* AboutShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A0443C23F9FDEF00640850 /* AboutShow.storyboard */; };
+		D2A0443F23FA049E00640850 /* Episodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A0443E23FA049E00640850 /* Episodes.storyboard */; };
 		D2AB72F223E8B70800BA9576 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */; };
 		D2BD772223EB642D002AE94F /* Checkbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BD772123EB642D002AE94F /* Checkbox.xib */; };
 		D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD772323EB6470002AE94F /* Checkbox.swift */; };
@@ -90,6 +92,8 @@
 		D29D7B1523A5063A00B2832D /* DiscoverResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverResultCell.swift; sourceTree = "<group>"; };
 		D29DCACD23F93BCE00491ACD /* RippleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D29DCACF23F9A68B00491ACD /* CastMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastMemberCell.swift; sourceTree = "<group>"; };
+		D2A0443C23F9FDEF00640850 /* AboutShow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AboutShow.storyboard; sourceTree = "<group>"; };
+		D2A0443E23FA049E00640850 /* Episodes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Episodes.storyboard; sourceTree = "<group>"; };
 		D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		D2BD772123EB642D002AE94F /* Checkbox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Checkbox.xib; sourceTree = "<group>"; };
 		D2BD772323EB6470002AE94F /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		D232E72F23F55F2500F024B9 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				D2A0443C23F9FDEF00640850 /* AboutShow.storyboard */,
 				D232E73223F59E6300F024B9 /* AboutShowViewController.swift */,
 				D232E73423F5ED6E00F024B9 /* GenreCell.swift */,
 				D28792D423F887140071E46B /* TrailerCell.swift */,
@@ -283,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				D2C283C123E9F36A002BEE91 /* SeasonHeaderView */,
+				D2A0443E23FA049E00640850 /* Episodes.storyboard */,
 				D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */,
 				D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */,
 			);
@@ -369,7 +375,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A0443F23FA049E00640850 /* Episodes.storyboard in Resources */,
 				D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */,
+				D2A0443D23F9FDEF00640850 /* AboutShow.storyboard in Resources */,
 				D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */,
 				D222456323EE12C900082162 /* MyShowsHeaderView.xib in Resources */,
 				D205221F23ECA5D4003F9F6B /* SeasonHeaderView.xib in Resources */,
