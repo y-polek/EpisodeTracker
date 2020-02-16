@@ -8,11 +8,13 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var trailersContainer: UIView!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
+    @IBOutlet weak var castCollectionView: UICollectionView!
     
     var showId: Int!
     var presenter: AboutShowPresenter!
-    var genresDataSource = GenresDataSource()
-    var trailersDataSource = TrailersDataSource()
+    let genresDataSource = GenresDataSource()
+    let trailersDataSource = TrailersDataSource()
+    let castDataSource = CastDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,7 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
         genresCollectionView.dataSource = genresDataSource
         trailersCollectionView.dataSource = trailersDataSource
         trailersCollectionView.delegate = trailersDataSource
+        castCollectionView.dataSource = castDataSource
         
         presenter = AboutShowPresenter(
             showId: Int32(showId),
@@ -42,6 +45,11 @@ extension AboutShowViewController: AboutShowView {
         trailersDataSource.trailers = trailers
         trailersCollectionView.reloadData()
     }
+    
+    func displayCast(cast: [CastMember]) {
+        castDataSource.castMembers = cast
+        castCollectionView.reloadData()
+    }
 }
 
 // MARK: - Genres UICollectionView datasource
@@ -61,7 +69,7 @@ class GenresDataSource: NSObject, UICollectionViewDataSource {
     }
 }
 
-// MARK: - Trailers UICollectionView datasource
+// MARK: - Trailers UICollectionView datasource and delegate
 class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var trailers = [Trailer]()
@@ -96,3 +104,21 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionView
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
+
+// MARK: - Cast UICollectionView datasource
+class CastDataSource: NSObject, UICollectionViewDataSource {
+    
+    var castMembers = [CastMember]()
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return castMembers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cast_member_cell", for: indexPath) as! CastMemberCell
+        let member = castMembers[indexPath.row]
+        cell.portraitImageView.imageUrl = member.portraitImageUrl
+        return cell
+    }
+}
+

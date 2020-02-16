@@ -18,6 +18,7 @@ class AboutShowPresenter(
 
         launch {
             loadTrailers()
+            loadCast()
         }
     }
 
@@ -39,5 +40,10 @@ class AboutShowPresenter(
     private suspend fun loadTrailers() {
         val trailers = showRepository.trailers(showId)
         view?.displayTrailers(trailers)
+    }
+
+    private suspend fun loadCast() {
+        val cast = showRepository.cast(showId)
+        view?.displayCast(cast)
     }
 }

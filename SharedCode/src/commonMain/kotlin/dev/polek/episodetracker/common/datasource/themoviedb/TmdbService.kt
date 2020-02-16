@@ -61,6 +61,10 @@ class TmdbService(client: HttpClient?) {
         return client.get<VideosEntity>("$BASE_URL/tv/$showTmdbId/videos").results.orEmpty()
     }
 
+    suspend fun cast(showTmdbId: Int): List<CastMemberEntity> {
+        return client.get<CreditsEntity>("$BASE_URL/tv/$showTmdbId/credits").cast.orEmpty()
+    }
+
     private suspend fun findGenreById(id: Int): String? {
         if (genresMap == null) {
             genresMap = client.get<GenresEntity>("$BASE_URL/genre/tv/list").genres.map { it.id to it.name }.toMap()
@@ -87,6 +91,10 @@ class TmdbService(client: HttpClient?) {
 
         fun networkImageUrl(path: String): String {
             return "$BASE_IMAGE_URL/w300$path"
+        }
+
+        fun profileImageUrl(path: String): String {
+            return "$BASE_IMAGE_URL/h632$path"
         }
     }
 }

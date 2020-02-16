@@ -31,6 +31,7 @@
 		D29D7B1423A44F9A00B2832D /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29D7B1323A44F9A00B2832D /* DiscoverViewController.swift */; };
 		D29D7B1623A5063A00B2832D /* DiscoverResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29D7B1523A5063A00B2832D /* DiscoverResultCell.swift */; };
 		D29DCACE23F93BCE00491ACD /* RippleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29DCACD23F93BCE00491ACD /* RippleCollectionViewCell.swift */; };
+		D29DCAD023F9A68B00491ACD /* CastMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29DCACF23F9A68B00491ACD /* CastMemberCell.swift */; };
 		D2AB72F223E8B70800BA9576 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */; };
 		D2BD772223EB642D002AE94F /* Checkbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BD772123EB642D002AE94F /* Checkbox.xib */; };
 		D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD772323EB6470002AE94F /* Checkbox.swift */; };
@@ -88,6 +89,7 @@
 		D29D7B1323A44F9A00B2832D /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		D29D7B1523A5063A00B2832D /* DiscoverResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverResultCell.swift; sourceTree = "<group>"; };
 		D29DCACD23F93BCE00491ACD /* RippleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleCollectionViewCell.swift; sourceTree = "<group>"; };
+		D29DCACF23F9A68B00491ACD /* CastMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastMemberCell.swift; sourceTree = "<group>"; };
 		D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		D2BD772123EB642D002AE94F /* Checkbox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Checkbox.xib; sourceTree = "<group>"; };
 		D2BD772323EB6470002AE94F /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				D232E73223F59E6300F024B9 /* AboutShowViewController.swift */,
 				D232E73423F5ED6E00F024B9 /* GenreCell.swift */,
 				D28792D423F887140071E46B /* TrailerCell.swift */,
+				D29DCACF23F9A68B00491ACD /* CastMemberCell.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				D232E73523F5ED6E00F024B9 /* GenreCell.swift in Sources */,
 				D28792D523F887140071E46B /* TrailerCell.swift in Sources */,
 				D2F09F0F23F40675003BFFAA /* NavigationController.swift in Sources */,
+				D29DCAD023F9A68B00491ACD /* CastMemberCell.swift in Sources */,
 				D23408CA23D3AEB700FFCA37 /* ToWatchCell.swift in Sources */,
 				D29DCACE23F93BCE00491ACD /* RippleCollectionViewCell.swift in Sources */,
 				D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */,
