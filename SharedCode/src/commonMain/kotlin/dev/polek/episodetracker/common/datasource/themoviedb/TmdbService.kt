@@ -49,7 +49,7 @@ class TmdbService(client: HttpClient?) {
         }
     }
 
-    suspend fun showDetails(tmdbId: Int): ShowEntity {
+    suspend fun show(tmdbId: Int): ShowEntity {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId?append_to_response=external_ids,content_ratings")
     }
 
@@ -57,12 +57,8 @@ class TmdbService(client: HttpClient?) {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId/season/$number")
     }
 
-    suspend fun videos(showTmdbId: Int): List<VideoEntity> {
-        return client.get<VideosEntity>("$BASE_URL/tv/$showTmdbId/videos").results.orEmpty()
-    }
-
-    suspend fun cast(showTmdbId: Int): List<CastMemberEntity> {
-        return client.get<CreditsEntity>("$BASE_URL/tv/$showTmdbId/credits").cast.orEmpty()
+    suspend fun showDetails(showTmdbId: Int): ShowDetailsEntity {
+        return client.get(urlString = "$BASE_URL/tv/$showTmdbId?append_to_response=external_ids,content_ratings,videos,credits,recommendations")
     }
 
     private suspend fun findGenreById(id: Int): String? {

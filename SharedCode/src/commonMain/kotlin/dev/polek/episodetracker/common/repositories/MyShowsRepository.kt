@@ -20,7 +20,7 @@ class MyShowsRepository(
 {
     suspend fun addShow(tmdbId: Int) {
         if (isInMyShows(tmdbId)) return
-        val show = tmdbService.showDetails(tmdbId)
+        val show = tmdbService.show(tmdbId)
         check(show.isValid) { throw RuntimeException("Trying to add invalid show: $show") }
 
         log("Adding show: $show")

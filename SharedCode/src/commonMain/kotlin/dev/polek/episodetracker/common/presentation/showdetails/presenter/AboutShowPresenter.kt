@@ -1,7 +1,12 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
+import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
+import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.profileImageUrl
 import dev.polek.episodetracker.common.presentation.BasePresenter
+import dev.polek.episodetracker.common.presentation.showdetails.model.CastMemberViewModel
+import dev.polek.episodetracker.common.presentation.showdetails.model.RecommendationViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
+import dev.polek.episodetracker.common.presentation.showdetails.model.TrailerViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.view.AboutShowView
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
@@ -17,8 +22,7 @@ class AboutShowPresenter(
         loadShow()
 
         launch {
-            loadTrailers()
-            loadCast()
+            loadAdditionalInfo()
         }
     }
 
@@ -37,13 +41,34 @@ class AboutShowPresenter(
         view?.displayShowDetails(detailsViewModel)
     }
 
-    private suspend fun loadTrailers() {
-        val trailers = showRepository.trailers(showId)
-        view?.displayTrailers(trailers)
-    }
+    private suspend fun loadAdditionalInfo() {
+        val show = showRepository.showDetails(showId)
 
-    private suspend fun loadCast() {
-        val cast = showRepository.cast(showId)
-        view?.displayCast(cast)
+        val trailers = show.videos.map { video ->
+            TrailerViewModel(
+                name = video.name.orEmpty(),
+                youtubeKey = video.key.orEmpty(),
+                url = "https://www.youtube.com/watch?v=${video.key}",
+                previewImageUrl = "https://img.youtube.com/vi/${video.key}/mqdefault.jpg")
+        }
+        val castMembers = show.cast.map { member ->
+            CastMemberViewModel(
+                name = member.name.orEmpty(),
+                character = member.character.orEmpty(),
+                portraitImageUrl = member.profilePath?.let(::profileImageUrl))
+        }
+        val recommendations = show.recommendations.map { recommendation ->
+            RecommendationViewModel(
+                showId = recommendation.tmdbId ?: 0,
+                name = recommendation.name.orEmpty(),
+                overview = recommendation.overview.orEmpty(),
+                imageUrl = recommendation.backdropPath?.let(::backdropImageUrl),
+                year = recommendation.year,
+                network = recommendation.network?.name)
+        }
+
+        view?.displayTrailers(trailers)
+        view?.displayCast(castMembers)
+        view?.displayRecommendations(recommendations)
     }
 }

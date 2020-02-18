@@ -41,14 +41,18 @@ extension AboutShowViewController: AboutShowView {
         overviewLabel.text = show.overview
     }
     
-    func displayTrailers(trailers: [Trailer]) {
+    func displayTrailers(trailers: [TrailerViewModel]) {
         trailersDataSource.trailers = trailers
         trailersCollectionView.reloadData()
     }
     
-    func displayCast(cast: [CastMember]) {
+    func displayCast(cast: [CastMemberViewModel]) {
         castDataSource.castMembers = cast
         castCollectionView.reloadData()
+    }
+    
+    func displayRecommendations(recommendations: [RecommendationViewModel]) {
+        
     }
 }
 
@@ -72,7 +76,7 @@ class GenresDataSource: NSObject, UICollectionViewDataSource {
 // MARK: - Trailers UICollectionView datasource and delegate
 class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var trailers = [Trailer]()
+    var trailers = [TrailerViewModel]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return trailers.count
@@ -96,7 +100,7 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionView
         openTrailer(trailer)
     }
     
-    private func openTrailer(_ trailer: Trailer) {
+    private func openTrailer(_ trailer: TrailerViewModel) {
         var url: URL = URL(string: "youtube://\(trailer.youtubeKey)")!
         if !UIApplication.shared.canOpenURL(url) {
             url = URL(string: trailer.url)!
@@ -108,7 +112,7 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionView
 // MARK: - Cast UICollectionView datasource
 class CastDataSource: NSObject, UICollectionViewDataSource {
     
-    var castMembers = [CastMember]()
+    var castMembers = [CastMemberViewModel]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return castMembers.count
