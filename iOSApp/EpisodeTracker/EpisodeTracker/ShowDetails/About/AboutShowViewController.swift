@@ -9,12 +9,14 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var trailersContainer: UIView!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
     @IBOutlet weak var castCollectionView: UICollectionView!
+    @IBOutlet weak var recommendationsCollectionView: UICollectionView!
     
     var showId: Int!
     var presenter: AboutShowPresenter!
     let genresDataSource = GenresDataSource()
     let trailersDataSource = TrailersDataSource()
     let castDataSource = CastDataSource()
+    let recommendationsDataSource = RecommendationsDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,7 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
         trailersCollectionView.dataSource = trailersDataSource
         trailersCollectionView.delegate = trailersDataSource
         castCollectionView.dataSource = castDataSource
+        recommendationsCollectionView.dataSource = recommendationsDataSource
         
         presenter = AboutShowPresenter(
             showId: Int32(showId),
@@ -52,7 +55,8 @@ extension AboutShowViewController: AboutShowView {
     }
     
     func displayRecommendations(recommendations: [RecommendationViewModel]) {
-        
+        recommendationsDataSource.recommendations = recommendations
+        recommendationsCollectionView.reloadData()
     }
 }
 
@@ -130,3 +134,22 @@ class CastDataSource: NSObject, UICollectionViewDataSource {
     }
 }
 
+// MARK: - Recommendations UICollectionView datasource
+class RecommendationsDataSource: NSObject, UICollectionViewDataSource {
+    
+    var recommendations = [RecommendationViewModel]()
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return recommendations.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendation_cell", for: indexPath) as! RecommendationsCell
+        let show = recommendations[indexPath.row]
+        
+        cell.backdropImageView.imageUrl = show.imageUrl
+        cell.nameLabel.text = show.year != nil ? "\(show.name) (\(show.year ?? 0))" : show.name
+        
+        return cell
+    }
+}

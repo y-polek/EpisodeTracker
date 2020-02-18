@@ -44,6 +44,7 @@
 		D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */; };
 		D2C283C523E9F648002BEE91 /* SeasonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */; };
 		D2C283C723EA1D9A002BEE91 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */; };
+		D2C7E97923FC629100DA8C4E /* RecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7E97823FC629100DA8C4E /* RecommendationCell.swift */; };
 		D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */; };
 		D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CA23A8F89A00E45753 /* TableView.swift */; };
 		D2D905CE23A96A6E00E45753 /* ImageButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D905CD23A96A6E00E45753 /* ImageButton.xib */; };
@@ -106,6 +107,7 @@
 		D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsViewController.swift; sourceTree = "<group>"; };
 		D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonHeaderView.swift; sourceTree = "<group>"; };
 		D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		D2C7E97823FC629100DA8C4E /* RecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationCell.swift; sourceTree = "<group>"; };
 		D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleTableViewCell.swift; sourceTree = "<group>"; };
 		D2D905CA23A8F89A00E45753 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		D2D905CD23A96A6E00E45753 /* ImageButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageButton.xib; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				D232E73423F5ED6E00F024B9 /* GenreCell.swift */,
 				D28792D423F887140071E46B /* TrailerCell.swift */,
 				D29DCACF23F9A68B00491ACD /* CastMemberCell.swift */,
+				D2C7E97823FC629100DA8C4E /* RecommendationCell.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				D29D7B0823A2D47D00B2832D /* Divider.swift in Sources */,
 				D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */,
 				D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */,
+				D2C7E97923FC629100DA8C4E /* RecommendationCell.swift in Sources */,
 				D29D7B0D23A3BF3A00B2832D /* ToWatchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
