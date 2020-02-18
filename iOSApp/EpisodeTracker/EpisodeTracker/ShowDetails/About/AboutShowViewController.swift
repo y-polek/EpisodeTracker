@@ -6,10 +6,12 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var genresCollectionView: UICollectionView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var trailersContainer: UIView!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
+    @IBOutlet weak var trailersContainer: UIView!
     @IBOutlet weak var castCollectionView: UICollectionView!
+    @IBOutlet weak var castContainer: UIView!
     @IBOutlet weak var recommendationsCollectionView: UICollectionView!
+    @IBOutlet weak var recommendationsContainer: UIView!
     
     var showId: Int!
     var presenter: AboutShowPresenter!
@@ -26,6 +28,10 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
         trailersCollectionView.delegate = trailersDataSource
         castCollectionView.dataSource = castDataSource
         recommendationsCollectionView.dataSource = recommendationsDataSource
+        
+        trailersContainer.isHidden = true
+        castContainer.isHidden = true
+        recommendationsContainer.isHidden = true
         
         presenter = AboutShowPresenter(
             showId: Int32(showId),
@@ -47,16 +53,19 @@ extension AboutShowViewController: AboutShowView {
     func displayTrailers(trailers: [TrailerViewModel]) {
         trailersDataSource.trailers = trailers
         trailersCollectionView.reloadData()
+        trailersContainer.isHidden = trailers.isEmpty
     }
     
     func displayCast(cast: [CastMemberViewModel]) {
         castDataSource.castMembers = cast
         castCollectionView.reloadData()
+        castContainer.isHidden = cast.isEmpty
     }
     
     func displayRecommendations(recommendations: [RecommendationViewModel]) {
         recommendationsDataSource.recommendations = recommendations
         recommendationsCollectionView.reloadData()
+        recommendationsContainer.isHidden = recommendations.isEmpty
     }
 }
 
