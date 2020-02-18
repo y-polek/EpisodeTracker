@@ -10,7 +10,6 @@ import kotlinx.serialization.Transient
 data class RecommendationEntity(
     @SerialName("id") val tmdbId: Int? = null,
     @SerialName("name") val name: String? = null,
-    @SerialName("overview") val overview: String? = null,
     @SerialName("first_air_date") val firstAirDate: String? = null,
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("backdrop_path") val backdropPath: String? = null,

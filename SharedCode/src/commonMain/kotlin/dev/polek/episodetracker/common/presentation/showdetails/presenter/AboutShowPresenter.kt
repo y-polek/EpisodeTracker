@@ -58,13 +58,21 @@ class AboutShowPresenter(
                 portraitImageUrl = member.profilePath?.let(::profileImageUrl))
         }
         val recommendations = show.recommendations.map { recommendation ->
+            val year = recommendation.year
+            val network = recommendation.network?.name
+
+            val subhead = when {
+                year != null && network != null -> "$year ∙ $network"
+                year != null -> "$year"
+                network != null -> network
+                else -> ""
+            }
+
             RecommendationViewModel(
                 showId = recommendation.tmdbId ?: 0,
                 name = recommendation.name.orEmpty(),
-                overview = recommendation.overview.orEmpty(),
                 imageUrl = recommendation.backdropPath?.let(::backdropImageUrl),
-                year = recommendation.year,
-                network = recommendation.network?.name)
+                subhead = subhead)
         }
 
         view?.displayTrailers(trailers)

@@ -148,7 +148,9 @@ class RecommendationsDataSource: NSObject, UICollectionViewDataSource {
         let show = recommendations[indexPath.row]
         
         cell.backdropImageView.imageUrl = show.imageUrl
-        cell.nameLabel.text = show.year != nil ? "\(show.name) (\(show.year ?? 0))" : show.name
+        cell.nameLabel.text = show.name
+        cell.subheadLabel.text = show.subhead
+        cell.subheadLabel.isHidden = show.subhead.isEmpty
         
         return cell
     }

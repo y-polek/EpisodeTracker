@@ -76,20 +76,20 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CuV-V4-49b">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="599.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="575.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbh-Ua-1vo" userLabel="Time Stack View">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-clock" translatesAutoresizingMaskIntoConstraints="NO" id="QNP-Qv-IBw">
-                                                        <rect key="frame" x="16" y="0.0" width="48" height="48"/>
+                                                        <rect key="frame" x="16" y="0.0" width="24" height="24"/>
                                                         <color key="tintColor" name="TextColorPrimary"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="QNP-Qv-IBw" secondAttribute="height" multiplier="1:1" id="3Y1-fL-hGf"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu 20:30 • 60 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-IC-olp">
-                                                        <rect key="frame" x="64" y="0.0" width="334" height="48"/>
+                                                        <rect key="frame" x="40" y="0.0" width="358" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -101,7 +101,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="GQP-1W-RU4" userLabel="Description Stack View">
-                                                <rect key="frame" x="0.0" y="56" width="414" height="41"/>
+                                                <rect key="frame" x="0.0" y="32" width="414" height="41"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Etiam porta sem malesuada magna mollis euismod." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJZ-7A-bIA">
                                                         <rect key="frame" x="16" y="0.0" width="382" height="41"/>
@@ -113,7 +113,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kPH-Zj-lSo" userLabel="Trailers Stack View">
-                                                <rect key="frame" x="0.0" y="105" width="414" height="145.5"/>
+                                                <rect key="frame" x="0.0" y="81" width="414" height="145.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGg-qj-mN5" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -206,7 +206,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VNE-4Q-b26" userLabel="Cast Stack View">
-                                                <rect key="frame" x="0.0" y="258.5" width="414" height="187.5"/>
+                                                <rect key="frame" x="0.0" y="234.5" width="414" height="187.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9P-l7-bYY" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -300,7 +300,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3yd-Bk-zam" userLabel="Recommendations Stack View">
-                                                <rect key="frame" x="0.0" y="454" width="414" height="145.5"/>
+                                                <rect key="frame" x="0.0" y="430" width="414" height="145.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGo-d3-exp" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -360,16 +360,25 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Official Trailer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="fgJ-Br-n3p">
-                                                                            <rect key="frame" x="8" y="84" width="176" height="16"/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                                            <rect key="frame" x="8" y="66" width="176" height="18"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" name="TextColorPrimaryInverse"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020 ∙ Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRE-Cf-nRO">
+                                                                            <rect key="frame" x="8" y="84" width="176" height="16"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                            <color key="textColor" name="TextColorSecondaryInverse"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="fgJ-Br-n3p" firstAttribute="leading" secondItem="hyb-o1-FIT" secondAttribute="leading" constant="8" id="9s8-gF-SSc"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="fgJ-Br-n3p" secondAttribute="trailing" constant="8" id="WET-W4-7NO"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="fgJ-Br-n3p" secondAttribute="bottom" constant="8" id="Z83-Og-Zf5"/>
+                                                                        <constraint firstItem="ZRE-Cf-nRO" firstAttribute="top" secondItem="fgJ-Br-n3p" secondAttribute="bottom" id="1J4-wY-ZaW"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="ZRE-Cf-nRO" secondAttribute="bottom" constant="8" id="7GY-lt-VW5"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="fgJ-Br-n3p" secondAttribute="trailing" constant="8" id="AAZ-7Z-2PN"/>
+                                                                        <constraint firstItem="fgJ-Br-n3p" firstAttribute="leading" secondItem="hyb-o1-FIT" secondAttribute="leading" constant="8" id="KRb-CV-e90"/>
+                                                                        <constraint firstItem="ZRE-Cf-nRO" firstAttribute="leading" secondItem="hyb-o1-FIT" secondAttribute="leading" constant="8" id="mcj-i9-vIB"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="ZRE-Cf-nRO" secondAttribute="trailing" constant="8" id="ntZ-eS-9gA"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <size key="customSize" width="192" height="108"/>
@@ -377,6 +386,7 @@
                                                                     <outlet property="backdropImageView" destination="839-L2-uFK" id="nKN-6r-WmU"/>
                                                                     <outlet property="nameLabel" destination="fgJ-Br-n3p" id="9fU-EU-8qY"/>
                                                                     <outlet property="rippleView" destination="ITz-Mf-vZj" id="jZ8-uq-FHF"/>
+                                                                    <outlet property="subheadLabel" destination="ZRE-Cf-nRO" id="GQz-vf-aXZ"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
