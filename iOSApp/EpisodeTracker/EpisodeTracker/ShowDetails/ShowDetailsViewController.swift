@@ -17,9 +17,8 @@ class ShowDetailsViewController: UIViewController {
     
     @IBOutlet weak var imageView: ImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var yearsLabel: UILabel!
-    @IBOutlet weak var networkLabel: UILabel!
-    @IBOutlet weak var networkImageView: ImageView!
+    @IBOutlet weak var subheadLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var tabBar: MDCTabBar!
     @IBOutlet weak var aboutView: UIView!
     @IBOutlet weak var episodesView: UIView!
@@ -110,16 +109,12 @@ class ShowDetailsViewController: UIViewController {
 }
 
 extension ShowDetailsViewController: ShowDetailsView {
+    
     func displayShowHeader(show: ShowHeaderViewModel) {
         nameLabel.text = show.name
         imageView.imageUrl = show.imageUrl
-        yearsLabel.text = show.years
-        
-        networkLabel.text = show.network
-        networkLabel.isHidden = show.networkImageUrl != nil
-        
-        networkImageView.imageUrl = show.networkImageUrl
-        networkImageView.isHidden = show.networkImageUrl == nil
+        subheadLabel.text = show.subhead
+        ratingLabel.text = show.rating
     }
     
     func close() {

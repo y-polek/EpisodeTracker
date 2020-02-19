@@ -24,15 +24,27 @@ class ShowDetailsPresenter(
             return
         }
 
-        val startYear = show.year?.toString().orEmpty()
-        val endYear = if (show.isEnded) show.lastYear?.toString().orEmpty() else "Present"
+
+        val year = show.year
+        val endYear = if (show.isEnded) show.lastYear else null
+        val yearsText = when {
+            year != null && endYear != null -> "$year - $endYear"
+            year != null -> "$year"
+            else -> null
+        }
+        val network = show.networkName
+
+        val subhead = when {
+            yearsText != null && network != null -> "$yearsText ∙ $network"
+            yearsText != null -> "$yearsText - $endYear"
+            else -> ""
+        }
 
         val headerViewModel = ShowHeaderViewModel(
             name = show.name,
             imageUrl = show.imageUrl,
-            years = "$startYear - $endYear",
-            network = show.networkName.orEmpty(),
-            networkImageUrl = show.networkImageUrl)
+            subhead = subhead,
+            rating = show.contentRating.orEmpty())
 
         view?.displayShowHeader(headerViewModel)
     }
