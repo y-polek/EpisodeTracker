@@ -60,14 +60,12 @@ class AboutShowPresenter(
         val recommendations = show.recommendations.map { recommendation ->
             val year = recommendation.year
             val network = recommendation.network?.name
-
             val subhead = when {
                 year != null && network != null -> "$year ∙ $network"
                 year != null -> "$year"
                 network != null -> network
                 else -> ""
             }
-
             RecommendationViewModel(
                 showId = recommendation.tmdbId ?: 0,
                 name = recommendation.name.orEmpty(),
@@ -78,5 +76,13 @@ class AboutShowPresenter(
         view?.displayTrailers(trailers)
         view?.displayCast(castMembers)
         view?.displayRecommendations(recommendations)
+
+        val imdbId = show.externalIds?.imdbId
+        if (imdbId != null) {
+            val imdbRating = showRepository.imdbRating(imdbId)
+            if (imdbRating != null) {
+                view?.displayImdbRating(imdbRating)
+            }
+        }
     }
 }

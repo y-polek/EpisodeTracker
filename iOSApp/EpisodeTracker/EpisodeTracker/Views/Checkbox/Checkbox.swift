@@ -40,7 +40,7 @@ class Checkbox: UIView {
     }
     
     private func setup() {
-        Bundle(for: ImageButton.self).loadNibNamed("Checkbox", owner: self, options: nil)
+        Bundle(for: Checkbox.self).loadNibNamed("Checkbox", owner: self, options: nil)
         addSubview(contentView)
         
         updateUi()

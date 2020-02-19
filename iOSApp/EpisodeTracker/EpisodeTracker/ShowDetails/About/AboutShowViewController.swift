@@ -4,7 +4,6 @@ import SharedCode
 class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var genresCollectionView: UICollectionView!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
     @IBOutlet weak var trailersContainer: UIView!
@@ -12,6 +11,7 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var castContainer: UIView!
     @IBOutlet weak var recommendationsCollectionView: UICollectionView!
     @IBOutlet weak var recommendationsContainer: UIView!
+    @IBOutlet weak var imdbBadge: ImdbBadge!
     
     var showId: Int!
     var presenter: AboutShowPresenter!
@@ -66,6 +66,10 @@ extension AboutShowViewController: AboutShowView {
         recommendationsDataSource.recommendations = recommendations
         recommendationsCollectionView.reloadData()
         recommendationsContainer.isHidden = recommendations.isEmpty
+    }
+    
+    func displayImdbRating(rating: Float) {
+        imdbBadge.rating = rating
     }
 }
 
