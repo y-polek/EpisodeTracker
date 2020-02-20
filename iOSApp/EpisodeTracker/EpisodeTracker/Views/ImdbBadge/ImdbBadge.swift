@@ -1,13 +1,19 @@
 import UIKit
+import MaterialComponents.MaterialRipple
 
+@IBDesignable
 class ImdbBadge: UIView {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var label: UILabel!
-    
+
     var rating: Float? = nil {
         didSet { updateLabel() }
     }
+    
+    var tapCallback: (() -> Void)?
+    
+    private let rippleController = MDCRippleTouchController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +34,10 @@ class ImdbBadge: UIView {
         layer.borderColor = UIColor.textColorPrimary.cgColor
         layer.cornerRadius = 8
         clipsToBounds = true
+        
+        rippleController.addRipple(to: self)
+        
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapped(gesture:))))
     }
     
     private func updateLabel() {
@@ -36,5 +46,9 @@ class ImdbBadge: UIView {
         } else {
             label.text = "—"
         }
+    }
+    
+    @objc private func onTapped(gesture: UIGestureRecognizer) {
+        tapCallback?()
     }
 }
