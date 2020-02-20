@@ -66,9 +66,14 @@ extension AboutShowViewController: AboutShowView {
             URL(string: show.homePageUrl!)?.open()
         }
         
-        instagramButton.isHidden = show.instagramUrl == nil
+        instagramButton.isHidden = show.instagramUsername == nil
         instagramButton.tapCallback = {
-            URL(string: show.instagramUrl!)?.open()
+            let appUrl = URL(string: "instagram://user?username=\(show.instagramUsername!)")!
+            if appUrl.canBeOpen() {
+                appUrl.open()
+            } else {
+                URL(string: "https://www.instagram.com/\(show.instagramUsername!)")?.open()
+            }
         }
         
         facebookButton.isHidden = show.facebookUrl == nil

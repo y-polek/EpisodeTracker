@@ -6,7 +6,7 @@ data class ShowDetailsViewModel(
     val genres: List<String>,
     val homePageUrl: String?,
     val imdbUrl: String?,
-    val instagramUrl: String?,
+    val instagramUsername: String?,
     val facebookUrl: String?,
     val twitterUrl: String?
 )

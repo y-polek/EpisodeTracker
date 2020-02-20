@@ -40,7 +40,7 @@ class AboutShowPresenter(
             genres = show.genres,
             homePageUrl = show.homePageUrl,
             imdbUrl = imdbUrl,
-            instagramUrl = instagramUrl,
+            instagramUsername = show.instagramId,
             facebookUrl = facebookUrl,
             twitterUrl = twitterUrl)
 
