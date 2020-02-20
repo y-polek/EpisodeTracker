@@ -41,7 +41,7 @@ class AboutShowPresenter(
             homePageUrl = show.homePageUrl,
             imdbUrl = imdbUrl,
             instagramUsername = show.instagramId,
-            facebookUrl = facebookUrl,
+            facebookProfile = show.facebookId,
             twitterUrl = twitterUrl)
 
         view?.displayShowDetails(detailsViewModel)

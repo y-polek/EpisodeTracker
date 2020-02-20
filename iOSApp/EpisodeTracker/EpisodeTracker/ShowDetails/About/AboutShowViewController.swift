@@ -76,9 +76,9 @@ extension AboutShowViewController: AboutShowView {
             }
         }
         
-        facebookButton.isHidden = show.facebookUrl == nil
+        facebookButton.isHidden = show.facebookProfile == nil
         facebookButton.tapCallback = {
-            URL(string: show.facebookUrl!)?.open()
+            URL(string: "https://www.facebook.com/\(show.facebookProfile!)")?.open()
         }
         
         twitterButton.isHidden = show.twitterUrl == nil
