@@ -81,9 +81,14 @@ extension AboutShowViewController: AboutShowView {
             URL(string: "https://www.facebook.com/\(show.facebookProfile!)")?.open()
         }
         
-        twitterButton.isHidden = show.twitterUrl == nil
+        twitterButton.isHidden = show.twitterUsername == nil
         twitterButton.tapCallback = {
-            URL(string: show.twitterUrl!)?.open()
+            let appUrl = URL(string: "twitter://user?screen_name=\(show.twitterUsername!)")!
+            if appUrl.canBeOpen() {
+                appUrl.open()
+            } else {
+                URL(string: "https://twitter.com/\(show.twitterUsername!)")?.open()
+            }
         }
     }
     

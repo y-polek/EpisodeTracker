@@ -8,5 +8,5 @@ data class ShowDetailsViewModel(
     val imdbUrl: String?,
     val instagramUsername: String?,
     val facebookProfile: String?,
-    val twitterUrl: String?
+    val twitterUsername: String?
 )
