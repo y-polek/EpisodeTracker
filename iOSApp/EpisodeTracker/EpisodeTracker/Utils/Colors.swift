@@ -4,10 +4,15 @@ extension UIColor {
     
     static let transparent = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
     
-    static let textColorPrimary = UIColor(named: "TextColorPrimary")!
-    static let textColorSecondary = UIColor(named: "TextColorSecondary")!
-    static let textColorPrimaryInverse = UIColor(named: "TextColorPrimaryInverse")
-    static let accent = UIColor(named: "Accent")!
-    static let dividerPrimary = UIColor(named: "DividerPrimary")!
+    static let textColorPrimary = color("TextColorPrimary")
+    static let textColorSecondary = color("TextColorSecondary")
+    static let textColorPrimaryInverse = color("TextColorPrimaryInverse")
+    static let accent = color("Accent")
+    static let dividerPrimary = color("DividerPrimary")
     
+    private static let bundle = Bundle(for: AppDelegate.self)
+    
+    private static func color(_ named: String) -> UIColor {
+        UIColor(named: named, in: UIColor.bundle, compatibleWith: nil)!
+    }
 }
