@@ -4,6 +4,9 @@ data class ShowDetailsViewModel(
     val overview: String,
     val contentRating: String,
     val genres: List<String>,
-    val airTime: String,
-    val duration: String
+    val homePageUrl: String?,
+    val imdbUrl: String?,
+    val instagramUsername: String?,
+    val facebookUrl: String?,
+    val twitterUrl: String?
 )

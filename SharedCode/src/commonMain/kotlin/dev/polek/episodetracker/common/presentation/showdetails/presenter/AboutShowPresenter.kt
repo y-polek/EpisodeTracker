@@ -29,14 +29,20 @@ class AboutShowPresenter(
     private fun loadShow() {
         val show = myShowsRepository.showDetails(showId) ?: return
 
+        val imdbUrl = show.imdbId?.let { "https://www.imdb.com/title/$it" }
+        val instagramUrl = show.instagramId?.let { "https://www.instagram.com/$it" }
+        val facebookUrl = show.facebookId?.let { "https://www.facebook.com/$it" }
+        val twitterUrl = show.twitterId?.let { "https://twitter.com/$it" }
+
         val detailsViewModel = ShowDetailsViewModel(
             overview = show.overview,
             contentRating = show.contentRating.orEmpty(),
             genres = show.genres,
-
-            // TODO: show read data
-            airTime = "Thu 20:30",
-            duration = "60 min")
+            homePageUrl = show.homePageUrl,
+            imdbUrl = imdbUrl,
+            instagramUsername = show.instagramId,
+            facebookUrl = facebookUrl,
+            twitterUrl = twitterUrl)
 
         view?.displayShowDetails(detailsViewModel)
     }
@@ -60,14 +66,12 @@ class AboutShowPresenter(
         val recommendations = show.recommendations.map { recommendation ->
             val year = recommendation.year
             val network = recommendation.network?.name
-
             val subhead = when {
                 year != null && network != null -> "$year ∙ $network"
                 year != null -> "$year"
                 network != null -> network
                 else -> ""
             }
-
             RecommendationViewModel(
                 showId = recommendation.tmdbId ?: 0,
                 name = recommendation.name.orEmpty(),
@@ -78,5 +82,13 @@ class AboutShowPresenter(
         view?.displayTrailers(trailers)
         view?.displayCast(castMembers)
         view?.displayRecommendations(recommendations)
+
+        val imdbId = show.externalIds?.imdbId
+        if (imdbId != null) {
+            val imdbRating = showRepository.imdbRating(imdbId)
+            if (imdbRating != null) {
+                view?.displayImdbRating(imdbRating)
+            }
+        }
     }
 }

@@ -24,7 +24,6 @@ class ShowDetailsPresenter(
             return
         }
 
-
         val year = show.year
         val endYear = if (show.isEnded) show.lastYear else null
         val yearsText = when {

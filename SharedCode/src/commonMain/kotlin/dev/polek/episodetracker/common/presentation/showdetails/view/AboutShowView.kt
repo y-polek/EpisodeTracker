@@ -11,4 +11,5 @@ interface AboutShowView {
     fun displayTrailers(trailers: List<TrailerViewModel>)
     fun displayCast(cast: List<CastMemberViewModel>)
     fun displayRecommendations(recommendations: List<RecommendationViewModel>)
+    fun displayImdbRating(rating: Float)
 }

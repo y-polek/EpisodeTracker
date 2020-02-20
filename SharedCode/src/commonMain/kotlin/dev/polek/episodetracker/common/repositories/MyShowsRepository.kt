@@ -62,6 +62,7 @@ class MyShowsRepository(
                 year = show.year,
                 lastYear = show.lastYear,
                 imageUrl = show.backdropPath?.let(::backdropImageUrl),
+                homePageUrl = show.homepage,
                 genres = show.genres?.map(GenreEntity::name).orEmpty(),
                 networkTmdbId = show.network?.tmdbId,
                 contentRating = show.contentRating,

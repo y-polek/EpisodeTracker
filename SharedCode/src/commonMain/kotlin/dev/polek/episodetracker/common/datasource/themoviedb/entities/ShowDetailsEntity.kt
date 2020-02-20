@@ -17,6 +17,7 @@ data class ShowDetailsEntity(
     @SerialName("overview") val overview: String? = null,
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("backdrop_path") val backdropPath: String? = null,
+    @SerialName("homepage") val homepage: String? = null,
     @SerialName("in_production") val inProduction: Boolean = true,
     @SerialName("next_episode_to_air") val nextEpisodeToAir: EpisodeEntity? = null,
     @SerialName("number_of_seasons") val numberOfSeasons: Int = 1,

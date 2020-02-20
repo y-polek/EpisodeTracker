@@ -1,10 +1,10 @@
 import UIKit
+import MaterialComponents.MaterialRipple
 import SharedCode
 
 class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var genresCollectionView: UICollectionView!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
     @IBOutlet weak var trailersContainer: UIView!
@@ -12,6 +12,11 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var castContainer: UIView!
     @IBOutlet weak var recommendationsCollectionView: UICollectionView!
     @IBOutlet weak var recommendationsContainer: UIView!
+    @IBOutlet weak var imdbBadge: ImdbBadge!
+    @IBOutlet weak var homePageButton: IconButton!
+    @IBOutlet weak var instagramButton: IconButton!
+    @IBOutlet weak var facebookButton: IconButton!
+    @IBOutlet weak var twitterButton: IconButton!
     
     var showId: Int!
     var presenter: AboutShowPresenter!
@@ -19,6 +24,8 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     let trailersDataSource = TrailersDataSource()
     let castDataSource = CastDataSource()
     let recommendationsDataSource = RecommendationsDataSource()
+    
+    private let rippleController = MDCRippleTouchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +55,36 @@ extension AboutShowViewController: AboutShowView {
         genresDataSource.genres = show.genres
         genresCollectionView.reloadData()
         overviewLabel.text = show.overview
+        
+        imdbBadge.isHidden = show.imdbUrl == nil
+        imdbBadge.tapCallback = {
+            URL(string: show.imdbUrl!)?.open()
+        }
+        
+        homePageButton.isHidden = show.homePageUrl == nil
+        homePageButton.tapCallback = {
+            URL(string: show.homePageUrl!)?.open()
+        }
+        
+        instagramButton.isHidden = show.instagramUsername == nil
+        instagramButton.tapCallback = {
+            let appUrl = URL(string: "instagram://user?username=\(show.instagramUsername!)")!
+            if appUrl.canBeOpen() {
+                appUrl.open()
+            } else {
+                URL(string: "https://www.instagram.com/\(show.instagramUsername!)")?.open()
+            }
+        }
+        
+        facebookButton.isHidden = show.facebookUrl == nil
+        facebookButton.tapCallback = {
+            URL(string: show.facebookUrl!)?.open()
+        }
+        
+        twitterButton.isHidden = show.twitterUrl == nil
+        twitterButton.tapCallback = {
+            URL(string: show.twitterUrl!)?.open()
+        }
     }
     
     func displayTrailers(trailers: [TrailerViewModel]) {
@@ -66,6 +103,10 @@ extension AboutShowViewController: AboutShowView {
         recommendationsDataSource.recommendations = recommendations
         recommendationsCollectionView.reloadData()
         recommendationsContainer.isHidden = recommendations.isEmpty
+    }
+    
+    func displayImdbRating(rating: Float) {
+        imdbBadge.rating = rating
     }
 }
 
@@ -115,10 +156,10 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionView
     
     private func openTrailer(_ trailer: TrailerViewModel) {
         var url: URL = URL(string: "youtube://\(trailer.youtubeKey)")!
-        if !UIApplication.shared.canOpenURL(url) {
+        if !url.canBeOpen() {
             url = URL(string: trailer.url)!
         }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        url.open()
     }
 }
 
