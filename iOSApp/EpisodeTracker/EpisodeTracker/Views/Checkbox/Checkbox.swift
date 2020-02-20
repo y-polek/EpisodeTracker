@@ -14,8 +14,6 @@ class Checkbox: UIView {
         didSet { updateCheckedState() }
     }
     
-    var padding: CGFloat = 10
-    
     var checkedChangeCallback: ((Bool) -> Void)?
     
     private let rippleController = MDCRippleTouchController()
