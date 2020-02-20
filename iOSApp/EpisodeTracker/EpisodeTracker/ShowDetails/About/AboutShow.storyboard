@@ -76,18 +76,18 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CuV-V4-49b">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="577.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="573.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hnm-H7-oBF">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YaJ-H0-hwe">
-                                                        <rect key="frame" x="0.0" y="0.0" width="258" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="236" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWB-aI-9BX" customClass="ImdbBadge" customModule="EpisodeTracker" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="0.0" width="80" height="32"/>
+                                                                <rect key="frame" x="16" y="0.0" width="72" height="28"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="80" id="3Q3-h9-UPH"/>
+                                                                    <constraint firstAttribute="width" constant="72" id="3Q3-h9-UPH"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -95,44 +95,64 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-globe" translatesAutoresizingMaskIntoConstraints="NO" id="NXS-xG-TcH">
-                                                                <rect key="frame" x="101" y="0.0" width="30" height="32"/>
-                                                                <color key="tintColor" name="TextColorPrimary"/>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XjZ-2l-vxi" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                <rect key="frame" x="93" y="0.0" width="28" height="28"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="30" id="DJh-AF-jsL"/>
+                                                                    <constraint firstAttribute="width" secondItem="XjZ-2l-vxi" secondAttribute="height" multiplier="1:1" id="rWe-dj-QtL"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-instagram" translatesAutoresizingMaskIntoConstraints="NO" id="McD-Wt-6Ih">
-                                                                <rect key="frame" x="136" y="0.0" width="32" height="32"/>
-                                                                <color key="tintColor" name="TextColorPrimary"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-globe"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                                                        <color key="value" name="TextColorPrimary"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dea-ga-UGt" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                <rect key="frame" x="126" y="0.0" width="28" height="28"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="McD-Wt-6Ih" secondAttribute="height" multiplier="1:1" id="TX4-sU-57s"/>
+                                                                    <constraint firstAttribute="width" secondItem="dea-ga-UGt" secondAttribute="height" multiplier="1:1" id="9Cr-Ha-frD"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-facebook" translatesAutoresizingMaskIntoConstraints="NO" id="GD0-hc-r28">
-                                                                <rect key="frame" x="173" y="0.0" width="32" height="32"/>
-                                                                <color key="tintColor" name="TextColorPrimary"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-instagram"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                                                        <color key="value" name="TextColorPrimary"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j7S-DD-AKb" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                <rect key="frame" x="159" y="0.0" width="28" height="28"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="GD0-hc-r28" secondAttribute="height" multiplier="1:1" id="kPL-Xa-QhI"/>
+                                                                    <constraint firstAttribute="width" secondItem="j7S-DD-AKb" secondAttribute="height" multiplier="1:1" id="jR0-C3-65C"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-twitter" translatesAutoresizingMaskIntoConstraints="NO" id="mJz-pw-tCj">
-                                                                <rect key="frame" x="210" y="0.0" width="32" height="32"/>
-                                                                <color key="tintColor" name="TextColorPrimary"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-facebook"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                                                        <color key="value" name="TextColorPrimary"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="slO-Yc-NzN" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                <rect key="frame" x="192" y="0.0" width="28" height="28"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="mJz-pw-tCj" secondAttribute="height" multiplier="1:1" id="Cac-pk-By3"/>
+                                                                    <constraint firstAttribute="width" secondItem="slO-Yc-NzN" secondAttribute="height" multiplier="1:1" id="eRf-mG-Vfb"/>
                                                                 </constraints>
-                                                            </imageView>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-twitter"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                                                        <color key="value" name="TextColorPrimary"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
                                                         </subviews>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="46h-CN-SvG"/>
+                                                    <constraint firstAttribute="height" constant="28" id="46h-CN-SvG"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="GQP-1W-RU4" userLabel="Description Stack View">
-                                                <rect key="frame" x="0.0" y="40" width="414" height="42.5"/>
+                                                <rect key="frame" x="0.0" y="36" width="414" height="42.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Etiam porta sem malesuada magna mollis euismod." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJZ-7A-bIA">
                                                         <rect key="frame" x="16" y="0.0" width="382" height="42.5"/>
@@ -144,7 +164,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kPH-Zj-lSo" userLabel="Trailers Stack View">
-                                                <rect key="frame" x="0.0" y="90.5" width="414" height="143"/>
+                                                <rect key="frame" x="0.0" y="86.5" width="414" height="143"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGg-qj-mN5" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -237,7 +257,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VNE-4Q-b26" userLabel="Cast Stack View">
-                                                <rect key="frame" x="0.0" y="241.5" width="414" height="185"/>
+                                                <rect key="frame" x="0.0" y="237.5" width="414" height="185"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9P-l7-bYY" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -331,7 +351,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3yd-Bk-zam" userLabel="Recommendations Stack View">
-                                                <rect key="frame" x="0.0" y="434.5" width="414" height="143"/>
+                                                <rect key="frame" x="0.0" y="430.5" width="414" height="143"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGo-d3-exp" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -453,18 +473,22 @@
                     <connections>
                         <outlet property="castCollectionView" destination="L3N-3X-QNy" id="x1Y-Qv-76s"/>
                         <outlet property="castContainer" destination="VNE-4Q-b26" id="kae-tH-sKp"/>
+                        <outlet property="facebookButton" destination="j7S-DD-AKb" id="vDM-32-RKA"/>
                         <outlet property="genresCollectionView" destination="1pI-DI-phs" id="vbw-tr-K5L"/>
+                        <outlet property="homePageButton" destination="XjZ-2l-vxi" id="FM4-h2-beI"/>
                         <outlet property="imdbBadge" destination="wWB-aI-9BX" id="yil-Qq-ILd"/>
+                        <outlet property="instagramButton" destination="dea-ga-UGt" id="oSt-h8-quW"/>
                         <outlet property="overviewLabel" destination="jJZ-7A-bIA" id="4gy-u3-nDH"/>
                         <outlet property="recommendationsCollectionView" destination="xXu-yU-h5D" id="eys-QM-X9R"/>
                         <outlet property="recommendationsContainer" destination="3yd-Bk-zam" id="6Jt-kQ-joM"/>
                         <outlet property="trailersCollectionView" destination="dzu-UI-7nv" id="aVm-Mw-zSV"/>
                         <outlet property="trailersContainer" destination="kPH-Zj-lSo" id="sMO-BW-Hnr"/>
+                        <outlet property="twitterButton" destination="slO-Yc-NzN" id="JIj-wC-Ic6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4b-Gb-cPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432.80000000000001" y="756.2807881773399"/>
+            <point key="canvasLocation" x="431.8840579710145" y="756.02678571428567"/>
         </scene>
     </scenes>
     <resources>

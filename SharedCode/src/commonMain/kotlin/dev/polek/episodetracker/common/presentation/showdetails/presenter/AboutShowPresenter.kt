@@ -29,14 +29,20 @@ class AboutShowPresenter(
     private fun loadShow() {
         val show = myShowsRepository.showDetails(showId) ?: return
 
+        val imdbUrl = show.imdbId?.let { "https://www.imdb.com/title/$it" }
+        val instagramUrl = show.instagramId?.let { "https://www.instagram.com/$it" }
+        val facebookUrl = show.facebookId?.let { "https://www.facebook.com/$it" }
+        val twitterUrl = show.twitterId?.let { "https://twitter.com/$it" }
+
         val detailsViewModel = ShowDetailsViewModel(
             overview = show.overview,
             contentRating = show.contentRating.orEmpty(),
             genres = show.genres,
-
-            // TODO: show read data
-            airTime = "Thu 20:30",
-            duration = "60 min")
+            homePageUrl = show.homePageUrl,
+            imdbUrl = imdbUrl,
+            instagramUrl = instagramUrl,
+            facebookUrl = facebookUrl,
+            twitterUrl = twitterUrl)
 
         view?.displayShowDetails(detailsViewModel)
     }
