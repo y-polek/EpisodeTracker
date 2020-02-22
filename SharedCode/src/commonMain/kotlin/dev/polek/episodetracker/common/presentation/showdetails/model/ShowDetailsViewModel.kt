@@ -9,5 +9,8 @@ data class ShowDetailsViewModel(
     val facebookProfile: String?,
     val twitterUsername: String?)
 {
-    val imdbUrl: String? = imdbId?.let { "https://www.imdb.com/title/$it" }
+    val imdbUrl = imdbId?.let { "https://www.imdb.com/title/$it" }
+    val instagramUrl = instagramUsername?.let { "https://www.instagram.com/$it" }
+    val facebookUrl = facebookProfile?.let { "https://www.facebook.com/$it" }
+    val twitterUrl = twitterUsername?.let { "https://twitter.com/$it" }
 }

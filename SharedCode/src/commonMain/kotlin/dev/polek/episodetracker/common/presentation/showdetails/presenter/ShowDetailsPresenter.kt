@@ -18,8 +18,7 @@ class ShowDetailsPresenter(
         super.attachView(view)
 
         launch {
-            val myShow = myShowsRepository.showDetails(showId)
-            if (myShow != null) {
+            if (myShowsRepository.isInMyShows(showId)) {
                 loadFromMyShows()
             } else {
                 loadFromRemote()

@@ -58,36 +58,36 @@ extension AboutShowViewController: AboutShowView {
         
         imdbBadge.isHidden = show.imdbUrl == nil
         imdbBadge.tapCallback = {
-            URL(string: show.imdbUrl!)?.open()
+            show.imdbUrl?.toUrl()?.open()
         }
         
         homePageButton.isHidden = show.homePageUrl == nil
         homePageButton.tapCallback = {
-            URL(string: show.homePageUrl!)?.open()
+            show.homePageUrl?.toUrl()?.open()
         }
         
         instagramButton.isHidden = show.instagramUsername == nil
         instagramButton.tapCallback = {
-            let appUrl = URL(string: "instagram://user?username=\(show.instagramUsername!)")!
+            let appUrl = "instagram://user?username=\(show.instagramUsername!)".toUrl()!
             if appUrl.canBeOpen() {
                 appUrl.open()
             } else {
-                URL(string: "https://www.instagram.com/\(show.instagramUsername!)")?.open()
+                show.instagramUrl?.toUrl()?.open()
             }
         }
         
         facebookButton.isHidden = show.facebookProfile == nil
         facebookButton.tapCallback = {
-            URL(string: "https://www.facebook.com/\(show.facebookProfile!)")?.open()
+            show.facebookUrl?.toUrl()?.open()
         }
         
         twitterButton.isHidden = show.twitterUsername == nil
         twitterButton.tapCallback = {
-            let appUrl = URL(string: "twitter://user?screen_name=\(show.twitterUsername!)")!
+            let appUrl = "twitter://user?screen_name=\(show.twitterUsername!)".toUrl()!
             if appUrl.canBeOpen() {
                 appUrl.open()
             } else {
-                URL(string: "https://twitter.com/\(show.twitterUsername!)")?.open()
+                show.twitterUrl?.toUrl()?.open()
             }
         }
     }

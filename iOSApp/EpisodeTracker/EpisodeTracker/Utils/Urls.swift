@@ -10,3 +10,9 @@ extension URL {
         return UIApplication.shared.canOpenURL(self)
     }
 }
+
+extension String {
+    func toUrl() -> URL? {
+        return URL(string: self)
+    }
+}
