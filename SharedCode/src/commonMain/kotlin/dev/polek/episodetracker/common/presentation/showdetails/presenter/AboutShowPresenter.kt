@@ -48,7 +48,7 @@ class AboutShowPresenter(
             val detailsViewModel = ShowDetailsViewModel(
                 overview = show.overview.orEmpty(),
                 genres = show.genres,
-                homePageUrl = show.homepage,
+                homePageUrl = show.homePageUrl,
                 imdbId = show.externalIds?.imdbId,
                 instagramUsername = show.externalIds?.instagramId,
                 facebookProfile = show.externalIds?.facebookId,

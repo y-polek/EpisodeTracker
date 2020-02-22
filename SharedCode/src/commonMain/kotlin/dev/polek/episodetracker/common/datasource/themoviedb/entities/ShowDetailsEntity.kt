@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.common.datasource.themoviedb.entities
 
 import dev.polek.episodetracker.common.utils.allNotNull
+import dev.polek.episodetracker.common.utils.blankToNull
 import dev.polek.episodetracker.common.utils.parseDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -34,6 +35,7 @@ data class ShowDetailsEntity(
     @Transient val genres: List<String> = genreEntities?.filter(GenreEntity::isValid)?.map(GenreEntity::name).orEmpty()
     @Transient val contentRating: String? = contentRatings?.ratings?.firstOrNull { it.country == "US" }?.rating
     @Transient val network: NetworkEntity? = networks?.firstOrNull(NetworkEntity::isValid)
+    @Transient val homePageUrl = homepage?.blankToNull()
     @Transient val videos: List<VideoEntity> = videosEntity?.results?.filter(VideoEntity::isValid).orEmpty()
     @Transient val cast: List<CastMemberEntity> = credits?.cast?.filter(CastMemberEntity::isValid).orEmpty()
     @Transient val recommendations: List<RecommendationEntity> = recommendationsEntity?.results?.filter(RecommendationEntity::isValid).orEmpty()
