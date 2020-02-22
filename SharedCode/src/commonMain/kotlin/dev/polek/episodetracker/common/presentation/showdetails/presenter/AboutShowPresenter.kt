@@ -30,9 +30,6 @@ class AboutShowPresenter(
         val show = myShowsRepository.showDetails(showId) ?: return
 
         val imdbUrl = show.imdbId?.let { "https://www.imdb.com/title/$it" }
-        val instagramUrl = show.instagramId?.let { "https://www.instagram.com/$it" }
-        val facebookUrl = show.facebookId?.let { "https://www.facebook.com/$it" }
-        val twitterUrl = show.twitterId?.let { "https://twitter.com/$it" }
 
         val detailsViewModel = ShowDetailsViewModel(
             overview = show.overview,
@@ -53,9 +50,7 @@ class AboutShowPresenter(
         val trailers = show.videos.map { video ->
             TrailerViewModel(
                 name = video.name.orEmpty(),
-                youtubeKey = video.key.orEmpty(),
-                url = "https://www.youtube.com/watch?v=${video.key}",
-                previewImageUrl = "https://img.youtube.com/vi/${video.key}/mqdefault.jpg")
+                youtubeKey = video.key.orEmpty())
         }
         val castMembers = show.cast.map { member ->
             CastMemberViewModel(
