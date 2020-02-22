@@ -24,7 +24,7 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var episodesView: UIView!
     @IBOutlet weak var dismissButton: UIButton!
     
-    public func setParameters(showId: Int, openEpisodesTabOnStart: Bool) {
+    private func setParameters(showId: Int, openEpisodesTabOnStart: Bool) {
         self.showId = showId
         self.openEpisodesTabOnStart = openEpisodesTabOnStart
     }
