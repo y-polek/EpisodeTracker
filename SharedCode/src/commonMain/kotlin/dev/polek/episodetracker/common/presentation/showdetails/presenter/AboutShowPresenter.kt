@@ -33,7 +33,6 @@ class AboutShowPresenter(
 
         val detailsViewModel = ShowDetailsViewModel(
             overview = show.overview,
-            contentRating = show.contentRating.orEmpty(),
             genres = show.genres,
             homePageUrl = show.homePageUrl,
             imdbUrl = imdbUrl,
