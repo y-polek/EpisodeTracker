@@ -60,7 +60,11 @@ class ShowDetailsViewController: UIViewController {
             showAboutTab()
         }
         
-        presenter = ShowDetailsPresenter(showId: Int32(showId), repository: AppDelegate.instance().myShowsRepository)
+        presenter = ShowDetailsPresenter(
+            showId: Int32(showId),
+            myShowsRepository: AppDelegate.instance().myShowsRepository,
+            showRepository: AppDelegate.instance().showRepository
+        )
         presenter.attachView(view: self)
     }
     

@@ -12,7 +12,7 @@ data class ShowDetailsEntity(
     @SerialName("name") val name: String? = null,
     @SerialName("first_air_date") val firstAirDate: String? = null,
     @SerialName("last_air_date") val lastAirDate: String? = null,
-    @SerialName("genres") val genres: List<GenreEntity>? = null,
+    @SerialName("genres") val genreEntities: List<GenreEntity>? = null,
     @SerialName("networks") val networks: List<NetworkEntity>? = null,
     @SerialName("overview") val overview: String? = null,
     @SerialName("poster_path") val posterPath: String? = null,
@@ -31,6 +31,7 @@ data class ShowDetailsEntity(
     @Transient val year: Int? = firstAirDate?.let(::parseDate)?.year
     @Transient val lastYear: Int? = lastAirDate?.let(::parseDate)?.year
     @Transient val isEnded = !inProduction
+    @Transient val genres: List<String> = genreEntities?.filter(GenreEntity::isValid)?.map(GenreEntity::name).orEmpty()
     @Transient val contentRating: String? = contentRatings?.ratings?.firstOrNull { it.country == "US" }?.rating
     @Transient val network: NetworkEntity? = networks?.firstOrNull(NetworkEntity::isValid)
     @Transient val videos: List<VideoEntity> = videosEntity?.results?.filter(VideoEntity::isValid).orEmpty()

@@ -29,13 +29,11 @@ class AboutShowPresenter(
     private fun loadShow() {
         val show = myShowsRepository.showDetails(showId) ?: return
 
-        val imdbUrl = show.imdbId?.let { "https://www.imdb.com/title/$it" }
-
         val detailsViewModel = ShowDetailsViewModel(
             overview = show.overview,
             genres = show.genres,
             homePageUrl = show.homePageUrl,
-            imdbUrl = imdbUrl,
+            imdbId = show.imdbId,
             instagramUsername = show.instagramId,
             facebookProfile = show.facebookId,
             twitterUsername = show.twitterId)
@@ -45,6 +43,18 @@ class AboutShowPresenter(
 
     private suspend fun loadAdditionalInfo() {
         val show = showRepository.showDetails(showId)
+
+        if (!myShowsRepository.isInMyShows(showId)) {
+            val detailsViewModel = ShowDetailsViewModel(
+                overview = show.overview.orEmpty(),
+                genres = show.genres,
+                homePageUrl = show.homepage,
+                imdbId = show.externalIds?.imdbId,
+                instagramUsername = show.externalIds?.instagramId,
+                facebookProfile = show.externalIds?.facebookId,
+                twitterUsername = show.externalIds?.twitterId)
+            view?.displayShowDetails(detailsViewModel)
+        }
 
         val trailers = show.videos.map { video ->
             TrailerViewModel(
