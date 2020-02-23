@@ -15,6 +15,8 @@ class ShowDetailsViewController: UIViewController {
     private var openEpisodesTabOnStart: Bool!
     private var presenter: ShowDetailsPresenter!
     
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageView: ImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
@@ -59,6 +61,8 @@ class ShowDetailsViewController: UIViewController {
         } else {
             showAboutTab()
         }
+        
+        showActivityIndicator()
         
         presenter = ShowDetailsPresenter(
             showId: Int32(showId),
@@ -110,6 +114,18 @@ class ShowDetailsViewController: UIViewController {
         episodesView.isHidden = false
         aboutView.isHidden = true
     }
+    
+    private func showActivityIndicator() {
+        activityIndicator.startAnimating()
+        contentView.isHidden = true
+        dismissButton.imageView?.tintColor = .textColorPrimary
+    }
+    
+    private func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+        contentView.isHidden = false
+        dismissButton.imageView?.tintColor = .textColorPrimaryInverse
+    }
 }
 
 extension ShowDetailsViewController: ShowDetailsView {
@@ -119,6 +135,8 @@ extension ShowDetailsViewController: ShowDetailsView {
         imageView.imageUrl = show.imageUrl
         subheadLabel.text = show.subhead
         ratingLabel.text = show.rating
+        contentView.isHidden = false
+        hideActivityIndicator()
     }
     
     func close() {
