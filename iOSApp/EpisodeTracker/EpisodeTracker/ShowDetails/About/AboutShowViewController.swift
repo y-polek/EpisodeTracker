@@ -4,6 +4,8 @@ import SharedCode
 
 class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var genresCollectionView: UICollectionView!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
@@ -40,11 +42,23 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
         castContainer.isHidden = true
         recommendationsContainer.isHidden = true
         
+        showActivityIndicator()
+        
         presenter = AboutShowPresenter(
             showId: Int32(showId),
             myShowsRepository: AppDelegate.instance().myShowsRepository,
             showRepository: AppDelegate.instance().showRepository)
         presenter.attachView(view: self)
+    }
+    
+    private func showActivityIndicator() {
+        scrollView.isHidden = true
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideActivityIndicator() {
+        scrollView.isHidden = false
+        activityIndicator.stopAnimating()
     }
 }
 
@@ -52,6 +66,8 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
 extension AboutShowViewController: AboutShowView {
     
     func displayShowDetails(show: ShowDetailsViewModel) {
+        hideActivityIndicator()
+        
         genresDataSource.genres = show.genres
         genresCollectionView.reloadData()
         overviewLabel.text = show.overview

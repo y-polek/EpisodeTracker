@@ -442,6 +442,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="Rly-AX-ZLA"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Ng8-Vm-jIz"/>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mfe-Bj-ZDn">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -454,6 +458,7 @@
                         <viewLayoutGuide key="safeArea" id="wu8-cL-4R2"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="mfe-Bj-ZDn" id="nGB-5g-JIC"/>
                         <outlet property="castCollectionView" destination="L3N-3X-QNy" id="x1Y-Qv-76s"/>
                         <outlet property="castContainer" destination="VNE-4Q-b26" id="kae-tH-sKp"/>
                         <outlet property="facebookButton" destination="j7S-DD-AKb" id="vDM-32-RKA"/>
@@ -464,6 +469,7 @@
                         <outlet property="overviewLabel" destination="jJZ-7A-bIA" id="4gy-u3-nDH"/>
                         <outlet property="recommendationsCollectionView" destination="xXu-yU-h5D" id="eys-QM-X9R"/>
                         <outlet property="recommendationsContainer" destination="3yd-Bk-zam" id="6Jt-kQ-joM"/>
+                        <outlet property="scrollView" destination="ELm-3U-64k" id="Q3D-H1-5lW"/>
                         <outlet property="trailersCollectionView" destination="dzu-UI-7nv" id="aVm-Mw-zSV"/>
                         <outlet property="trailersContainer" destination="kPH-Zj-lSo" id="sMO-BW-Hnr"/>
                         <outlet property="twitterButton" destination="slO-Yc-NzN" id="JIj-wC-Ic6"/>
