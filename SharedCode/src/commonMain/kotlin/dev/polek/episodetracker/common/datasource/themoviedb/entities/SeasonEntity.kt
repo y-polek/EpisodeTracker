@@ -8,7 +8,6 @@ import kotlinx.serialization.Transient
 @Serializable
 data class SeasonEntity(
     @SerialName("id") val tmdbId: Int? = null,
-    @SerialName("name") val name: String? = null,
     @SerialName("season_number") val number: Int? = null,
     @SerialName("episodes") val episodes: List<EpisodeEntity>? = null)
 {

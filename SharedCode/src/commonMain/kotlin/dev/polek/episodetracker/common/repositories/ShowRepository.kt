@@ -6,7 +6,6 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Compani
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.SeasonEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
-import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.model.Episode
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
@@ -25,7 +24,6 @@ class ShowRepository(
 
     suspend fun season(showTmdbId: Int, seasonNumber: Int): Season? {
         val season = tmdbService.season(showTmdbId = showTmdbId, number = seasonNumber)
-        log("ShowRepository: $season")
         if (!season.isValid) return null
 
         return mapSeason(season)
@@ -40,13 +38,13 @@ class ShowRepository(
                     season = episode.seasonNumber ?: 0,
                     episode = episode.episodeNumber ?: 0),
                 airDateMillis = episode.airDateMillis,
-                imageUrl = episode.stillPath?.let(::stillImageUrl)
+                imageUrl = episode.stillPath?.let(::stillImageUrl),
+                isWatched = false
             )
         }
 
         private fun mapSeason(season: SeasonEntity): Season {
             return Season(
-                name = season.name.orEmpty(),
                 number = season.number ?: 0,
                 episodes = season.episodes?.filter(EpisodeEntity::isValid)?.map(::mapEpisode).orEmpty()
             )

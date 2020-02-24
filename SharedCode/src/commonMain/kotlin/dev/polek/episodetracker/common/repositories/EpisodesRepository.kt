@@ -1,42 +1,29 @@
 package dev.polek.episodetracker.common.repositories
 
+import dev.polek.episodetracker.common.model.Episode
 import dev.polek.episodetracker.common.model.EpisodeNumber
-import dev.polek.episodetracker.common.presentation.showdetails.model.EpisodeViewModel
-import dev.polek.episodetracker.common.presentation.showdetails.model.SeasonViewModel
-import dev.polek.episodetracker.common.utils.formatDate
-import dev.polek.episodetracker.common.utils.formatTimeBetween
+import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.db.Database
-import io.ktor.util.date.GMTDate
 
 class EpisodesRepository(private val db: Database) {
 
-    fun allSeasons(showTmdbId: Int): List<SeasonViewModel> {
-        val now = GMTDate()
+    fun allSeasons(showTmdbId: Int): List<Season> {
         val allEpisodes = db.episodeQueries.episodes(showTmdbId) { name, seasonNumber, episodeNumber, isWatched, airDateMillis, imageUrl ->
-            val isAired = airDateMillis != null && airDateMillis < now.timestamp
-            val timeLeftToRelease = if (!isAired && airDateMillis != null) {
-                formatTimeBetween(now, GMTDate(airDateMillis)).replace(' ', '\n')
-            } else {
-                ""
-            }
-            EpisodeViewModel(
-                episodeNumber = episodeNumber,
-                seasonNumber = seasonNumber,
+            Episode(
                 name = name,
-                airDate = airDateMillis?.let { formatDate(GMTDate(it)) }.orEmpty(),
+                number = EpisodeNumber(season = seasonNumber, episode = episodeNumber),
+                airDateMillis = airDateMillis,
                 imageUrl = imageUrl,
-                isWatched = isWatched,
-                isAired = isAired,
-                timeLeftToRelease = timeLeftToRelease)
+                isWatched = isWatched)
         }.executeAsList()
 
         return allEpisodes.groupBy { it.number.season }
             .map { (season, episodes) ->
-                SeasonViewModel(
+                Season(
                     number = season,
                     episodes = episodes.sortedBy { it.number.episode })
             }
-            .sortedBy(SeasonViewModel::number)
+            .sortedBy(Season::number)
     }
 
     fun setEpisodeWatched(showTmdbId: Int, seasonNumber: Int, episodeNumber: Int, isWatched: Boolean) {

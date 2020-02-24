@@ -34,7 +34,7 @@ class EpisodeViewModel(
                     name = episode.name,
                     airDate = episode.airDateMillis?.let { formatDate(GMTDate(it)) }.orEmpty(),
                     imageUrl = episode.imageUrl,
-                    isWatched = false,
+                    isWatched = episode.isWatched,
                     isAired = isAired,
                     timeLeftToRelease = timeLeftToRelease)
             }

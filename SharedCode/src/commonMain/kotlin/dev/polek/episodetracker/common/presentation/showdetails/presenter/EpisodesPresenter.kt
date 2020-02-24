@@ -1,6 +1,5 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
-import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.showdetails.model.EpisodeViewModel
@@ -24,8 +23,6 @@ class EpisodesPresenter(
 
     override fun onViewAppeared() {
         super.onViewAppeared()
-
-        log("EpisodesPresenter: onViewAppeared")
 
         launch {
             loadEpisodes()
@@ -67,22 +64,18 @@ class EpisodesPresenter(
     }
 
     private suspend fun loadEpisodes() {
+        val isInMyShow = myShowsRepository.isInMyShows(showId)
+
         val seasonsList = when {
-            myShowsRepository.isInMyShows(showId) -> {
-                episodesRepository.allSeasons(showTmdbId = showId)
-            }
+            isInMyShow -> episodesRepository.allSeasons(showTmdbId = showId)
             else -> {
                 val show = showRepository.showDetails(showId)
                 (1..show.numberOfSeasons)
                     .mapNotNull { seasonNumber ->
-                        val season = showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
-                            ?: return@mapNotNull null
-                        SeasonViewModel.map(season)
+                        showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
                     }
             }
-        }
-
-        log("EpisodesPresenter: ${seasonsList.size}")
+        }.map(SeasonViewModel.Companion::map)
 
         seasons = SeasonsViewModel(seasonsList)
         view?.displaySeasons(seasons.asList())
