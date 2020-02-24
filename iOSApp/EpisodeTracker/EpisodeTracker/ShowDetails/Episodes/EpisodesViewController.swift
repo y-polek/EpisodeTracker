@@ -8,11 +8,14 @@ class EpisodesViewController: UIViewController {
     var seasons = [SeasonViewModel]()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(SeasonHeaderView.nib, forHeaderFooterViewReuseIdentifier: SeasonHeaderView.reuseIdentifier)
+        
+        showActivityIndicator()
         
         let app = AppDelegate.instance()
         presenter = EpisodesPresenter(
@@ -32,6 +35,16 @@ class EpisodesViewController: UIViewController {
         super.viewWillDisappear(animated)
         presenter.onViewDisappeared()
     }
+    
+    private func showActivityIndicator() {
+        tableView.isHidden = true
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideActivityIndicator() {
+        tableView.isHidden = false
+        activityIndicator.stopAnimating()
+    }
 }
 
 extension EpisodesViewController: EpisodesView {
@@ -39,6 +52,7 @@ extension EpisodesViewController: EpisodesView {
     func displaySeasons(seasons: [SeasonViewModel]) {
         self.seasons = seasons
         tableView.reloadData()
+        hideActivityIndicator()
     }
     
     func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
