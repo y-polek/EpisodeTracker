@@ -1,5 +1,6 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
+import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.showdetails.model.EpisodeViewModel
@@ -8,24 +9,33 @@ import dev.polek.episodetracker.common.presentation.showdetails.model.SeasonsVie
 import dev.polek.episodetracker.common.presentation.showdetails.model.toEpisodes
 import dev.polek.episodetracker.common.presentation.showdetails.view.EpisodesView
 import dev.polek.episodetracker.common.repositories.EpisodesRepository
+import dev.polek.episodetracker.common.repositories.MyShowsRepository
+import dev.polek.episodetracker.common.repositories.ShowRepository
+import kotlinx.coroutines.launch
 
 class EpisodesPresenter(
     private val showId: Int,
-    private val repository: EpisodesRepository) : BasePresenter<EpisodesView>()
+    private val myShowsRepository: MyShowsRepository,
+    private val episodesRepository: EpisodesRepository,
+    private val showRepository: ShowRepository) : BasePresenter<EpisodesView>()
 {
 
     private var seasons: SeasonsViewModel = SeasonsViewModel(emptyList())
 
-    override fun attachView(view: EpisodesView) {
-        super.attachView(view)
-        seasons = SeasonsViewModel(repository.allSeasons(showTmdbId = showId))
-        view.displaySeasons(seasons.asList())
+    override fun onViewAppeared() {
+        super.onViewAppeared()
+
+        log("EpisodesPresenter: onViewAppeared")
+
+        launch {
+            loadEpisodes()
+        }
     }
 
     fun onEpisodeWatchedStateToggled(episode: EpisodeViewModel) {
         val isWatched = !episode.isWatched
 
-        val firstNotWatchedNumber = repository.firstNotWatchedEpisode(showId)
+        val firstNotWatchedNumber = episodesRepository.firstNotWatchedEpisode(showId)
         if (isWatched && firstNotWatchedNumber != null && firstNotWatchedNumber < episode.number) {
             view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
                 if (checkAllPreviousEpisodes) {
@@ -42,7 +52,7 @@ class EpisodesPresenter(
     fun onSeasonWatchedStateToggled(season: SeasonViewModel) {
         val isWatched = !season.isWatched
 
-        val firstNotWatchedSeason = repository.firstNotWatchedEpisode(showId)?.season ?: season.number
+        val firstNotWatchedSeason = episodesRepository.firstNotWatchedEpisode(showId)?.season ?: season.number
         if (isWatched && firstNotWatchedSeason < season.number) {
             view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
                 if (checkAllPreviousEpisodes) {
@@ -56,10 +66,32 @@ class EpisodesPresenter(
         }
     }
 
+    private suspend fun loadEpisodes() {
+        val seasonsList = when {
+            myShowsRepository.isInMyShows(showId) -> {
+                episodesRepository.allSeasons(showTmdbId = showId)
+            }
+            else -> {
+                val show = showRepository.showDetails(showId)
+                (1..show.numberOfSeasons)
+                    .mapNotNull { seasonNumber ->
+                        val season = showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
+                            ?: return@mapNotNull null
+                        SeasonViewModel.map(season)
+                    }
+            }
+        }
+
+        log("EpisodesPresenter: ${seasonsList.size}")
+
+        seasons = SeasonsViewModel(seasonsList)
+        view?.displaySeasons(seasons.asList())
+    }
+
     private fun setEpisodeWatched(episode: EpisodeViewModel, isWatched: Boolean) {
         episode.isWatched = isWatched
 
-        repository.setEpisodeWatched(
+        episodesRepository.setEpisodeWatched(
             showTmdbId = showId,
             seasonNumber = episode.number.season,
             episodeNumber = episode.number.episode,
@@ -71,7 +103,7 @@ class EpisodesPresenter(
     private fun setSeasonWatched(season: SeasonViewModel, isWatched: Boolean) {
         season.isWatched = isWatched
 
-        repository.setSeasonWatched(
+        episodesRepository.setSeasonWatched(
             showTmdbId = showId,
             seasonNumber = season.number,
             isWatched = isWatched)
@@ -88,7 +120,7 @@ class EpisodesPresenter(
             episode.isWatched = true
         }
 
-        repository.markAllWatchedUpTo(episodeNumber = episodeNumber, showTmdbId = showId)
+        episodesRepository.markAllWatchedUpTo(episodeNumber = episodeNumber, showTmdbId = showId)
 
         (1..episodeNumber.season).forEach { season ->
             view?.reloadSeason(season)
@@ -100,7 +132,7 @@ class EpisodesPresenter(
             season.isWatched = true
         }
 
-        repository.markAllWatchedUpToSeason(season = seasonNumber, showTmdbId = showId)
+        episodesRepository.markAllWatchedUpToSeason(season = seasonNumber, showTmdbId = showId)
 
         (1..seasonNumber).forEach { season ->
             view?.reloadSeason(season)

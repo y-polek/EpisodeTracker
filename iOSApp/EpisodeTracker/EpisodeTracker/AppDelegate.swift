@@ -10,8 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let database: Database = DatabaseKt.database
     let tmdbService: TmdbService = TmdbService()
     let omdbService: OmdbService = OmdbService()
-    lazy var myShowsRepository: MyShowsRepository = MyShowsRepository(db: database, tmdbService: tmdbService)
     lazy var showRepository: ShowRepository = ShowRepository(tmdbService: tmdbService, omdbService: omdbService)
+    lazy var myShowsRepository: MyShowsRepository = MyShowsRepository(db: database, tmdbService: tmdbService, showRepository: showRepository)
     lazy var discoverRepository: DiscoverRepository = DiscoverRepository(tmdbService: tmdbService)
     lazy var toWatchRepository: ToWatchRepository = ToWatchRepository(db: database)
     lazy var episodesRepository: EpisodesRepository = EpisodesRepository(db: database)

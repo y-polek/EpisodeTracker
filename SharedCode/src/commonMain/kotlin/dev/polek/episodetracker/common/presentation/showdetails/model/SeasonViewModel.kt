@@ -1,5 +1,7 @@
 package dev.polek.episodetracker.common.presentation.showdetails.model
 
+import dev.polek.episodetracker.common.model.Season
+
 data class SeasonViewModel(
     val number: Int,
     val episodes: List<EpisodeViewModel>)
@@ -20,4 +22,12 @@ data class SeasonViewModel(
             val watchedCount = episodes.count(EpisodeViewModel::isWatched)
             return "$watchedCount/$totalCount"
         }
+
+    companion object {
+        fun map(season: Season): SeasonViewModel {
+            return SeasonViewModel(
+                number = season.number,
+                episodes = EpisodeViewModel.map(season.episodes))
+        }
+    }
 }

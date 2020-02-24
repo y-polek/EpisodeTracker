@@ -3,8 +3,6 @@ package dev.polek.episodetracker.common.repositories
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.networkImageUrl
-import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.stillImageUrl
-import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.GenreEntity
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
@@ -16,7 +14,8 @@ import io.ktor.util.date.GMTDate
 
 class MyShowsRepository(
     private val db: Database,
-    private val tmdbService: TmdbService)
+    private val tmdbService: TmdbService,
+    private val showRepository: ShowRepository)
 {
     suspend fun addShow(tmdbId: Int) {
         if (isInMyShows(tmdbId)) return
@@ -25,21 +24,20 @@ class MyShowsRepository(
 
         log("Adding show: $show")
 
-        val seasons = (1..show.numberOfSeasons).map { seasonNumber ->
-            tmdbService.season(tmdbId = tmdbId, number = seasonNumber)
+        val seasons = (1..show.numberOfSeasons).mapNotNull { seasonNumber ->
+            showRepository.season(showTmdbId = tmdbId, seasonNumber = seasonNumber)
         }
 
         db.transaction {
-            seasons.flatMap { it.episodes.orEmpty() }
-                .filter(EpisodeEntity::isValid)
+            seasons.flatMap { it.episodes }
                 .forEach { episode ->
                     db.episodeQueries.insert(
                         showTmdbId = tmdbId,
-                        name = episode.name.orEmpty(),
-                        episodeNumber = requireNotNull(episode.episodeNumber),
-                        seasonNumber = requireNotNull(episode.seasonNumber),
+                        name = episode.name,
+                        episodeNumber = episode.number.episode,
+                        seasonNumber = episode.number.season,
                         airDateMillis = episode.airDateMillis,
-                        imageUrl = episode.stillPath?.let(::stillImageUrl))
+                        imageUrl = episode.imageUrl)
                 }
 
             show.network?.let { network ->

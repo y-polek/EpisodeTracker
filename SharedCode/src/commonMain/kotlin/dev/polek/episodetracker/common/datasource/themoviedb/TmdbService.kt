@@ -53,8 +53,8 @@ class TmdbService(client: HttpClient?) {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId?append_to_response=external_ids,content_ratings")
     }
 
-    suspend fun season(tmdbId: Int, number: Int): SeasonEntity {
-        return client.get(urlString = "$BASE_URL/tv/$tmdbId/season/$number")
+    suspend fun season(showTmdbId: Int, number: Int): SeasonEntity {
+        return client.get(urlString = "$BASE_URL/tv/$showTmdbId/season/$number")
     }
 
     suspend fun showDetails(showTmdbId: Int): ShowDetailsEntity {

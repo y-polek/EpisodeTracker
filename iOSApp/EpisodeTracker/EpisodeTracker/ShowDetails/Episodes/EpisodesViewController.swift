@@ -14,8 +14,23 @@ class EpisodesViewController: UIViewController {
         
         tableView.register(SeasonHeaderView.nib, forHeaderFooterViewReuseIdentifier: SeasonHeaderView.reuseIdentifier)
         
-        presenter = EpisodesPresenter(showId: Int32(showId), repository: AppDelegate.instance().episodesRepository)
+        let app = AppDelegate.instance()
+        presenter = EpisodesPresenter(
+            showId: Int32(showId),
+            myShowsRepository: app.myShowsRepository,
+            episodesRepository: app.episodesRepository,
+            showRepository: app.showRepository)
         presenter.attachView(view: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.onViewAppeared()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.onViewDisappeared()
     }
 }
 
@@ -23,6 +38,7 @@ extension EpisodesViewController: EpisodesView {
     
     func displaySeasons(seasons: [SeasonViewModel]) {
         self.seasons = seasons
+        tableView.reloadData()
     }
     
     func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
