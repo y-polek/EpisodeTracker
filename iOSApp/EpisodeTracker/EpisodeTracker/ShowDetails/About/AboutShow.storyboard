@@ -193,7 +193,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWX-3l-HQd" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWX-3l-HQd" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <userDefinedRuntimeAttributes>
@@ -286,7 +286,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c51-Mu-4Ru" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c51-Mu-4Ru" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <userDefinedRuntimeAttributes>
@@ -380,7 +380,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="839-L2-uFK" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="839-L2-uFK" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <userDefinedRuntimeAttributes>
