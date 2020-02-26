@@ -154,11 +154,13 @@ extension ShowDetailsViewController: ShowDetailsView {
     
     func displayAddToMyShowsButton() {
         addButton.isHidden = false
+        addButton.isEnabled = true
         addButton.isActivityIndicatorHidden = true
     }
     
     func displayAddToMyShowsProgress() {
         addButton.isActivityIndicatorHidden = false
+        addButton.isEnabled = false
     }
     
     func hideAddToMyShowsButton() {

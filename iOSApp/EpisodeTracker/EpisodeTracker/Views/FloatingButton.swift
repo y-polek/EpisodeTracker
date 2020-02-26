@@ -22,6 +22,22 @@ class FloatingButton: MDCFloatingButton {
         }
     }
     
+    override init(frame: CGRect, shape: MDCFloatingButtonShape) {
+        super.init(frame: frame, shape: shape)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    private func setup() {
+        setTitleColor(.textColorPrimaryInverse, for: .normal)
+        setTitleColor(.textColorPrimaryInverse, for: .disabled)
+        disabledAlpha = 0.9
+    }
+    
     private func showActivityIndicator() {
         addSubview(activityIndicator)
         activityIndicator.center = imageView?.center ?? CGPoint(x: 0, y: 0)
