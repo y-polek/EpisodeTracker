@@ -81,7 +81,7 @@
                                             <segue destination="GyZ-fu-kq0" kind="embed" identifier="about_view" id="7C6-0F-U0C"/>
                                         </connections>
                                     </containerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsY-EQ-KkW" customClass="FloatingButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsY-EQ-KkW" customClass="FloatingButton" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="90.666666666666686" y="730" width="194" height="48"/>
                                         <color key="backgroundColor" name="Accent"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>

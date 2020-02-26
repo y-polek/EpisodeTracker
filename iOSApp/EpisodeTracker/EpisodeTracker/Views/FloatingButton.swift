@@ -33,6 +33,8 @@ class FloatingButton: MDCFloatingButton {
     private func hideActivityIndicator() {
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
-        setImage(image, for: .normal)
+        if image != nil {
+            setImage(image, for: .normal)
+        }
     }
 }

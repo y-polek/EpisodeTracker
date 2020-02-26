@@ -113,7 +113,7 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @IBAction func addToMyShowsTapped(_ sender: Any) {
-        addButton.isActivityIndicatorHidden.toggle()
+        presenter.onAddToMyShowsButtonClicked()
     }
     
     private func showAboutTab() {
@@ -150,6 +150,20 @@ extension ShowDetailsViewController: ShowDetailsView {
         ratingLabel.text = show.rating
         contentView.isHidden = false
         hideActivityIndicator()
+    }
+    
+    func displayAddToMyShowsButton() {
+        addButton.isHidden = false
+        addButton.isActivityIndicatorHidden = true
+    }
+    
+    func displayAddToMyShowsProgress() {
+        addButton.isActivityIndicatorHidden = false
+    }
+    
+    func hideAddToMyShowsButton() {
+        addButton.isActivityIndicatorHidden = true
+        addButton.isHidden = true
     }
     
     func close() {
