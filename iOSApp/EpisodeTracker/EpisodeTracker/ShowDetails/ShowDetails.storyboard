@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,6 +81,18 @@
                                             <segue destination="GyZ-fu-kq0" kind="embed" identifier="about_view" id="7C6-0F-U0C"/>
                                         </connections>
                                     </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsY-EQ-KkW" customClass="FloatingButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                        <rect key="frame" x="90.666666666666686" y="730" width="194" height="48"/>
+                                        <color key="backgroundColor" name="Accent"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <color key="tintColor" name="TextColorPrimaryInverse"/>
+                                        <state key="normal" title="Add to My Shows" image="ic-add">
+                                            <color key="titleColor" name="TextColorPrimaryInverse"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addToMyShowsTapped:" destination="7qu-An-85M" eventType="touchUpInside" id="i5n-Ox-wF3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -94,6 +107,7 @@
                                     <constraint firstAttribute="bottom" secondItem="AXG-qH-y9d" secondAttribute="bottom" id="aRH-2d-6Tg"/>
                                     <constraint firstAttribute="trailing" secondItem="AXG-qH-y9d" secondAttribute="trailing" id="asj-rE-H7j"/>
                                     <constraint firstAttribute="trailing" secondItem="bz5-Zm-oSn" secondAttribute="trailing" id="dkq-E4-Zf9"/>
+                                    <constraint firstItem="dsY-EQ-KkW" firstAttribute="centerX" secondItem="3g5-7n-dX0" secondAttribute="centerX" id="fBp-QI-E4q"/>
                                     <constraint firstItem="m6d-2k-LBz" firstAttribute="leading" secondItem="3g5-7n-dX0" secondAttribute="leading" id="iiJ-XK-VnB"/>
                                     <constraint firstAttribute="bottom" secondItem="m6d-2k-LBz" secondAttribute="bottom" id="poc-CP-9ha"/>
                                     <constraint firstItem="AXG-qH-y9d" firstAttribute="top" secondItem="bz5-Zm-oSn" secondAttribute="bottom" id="qK5-IK-bCN"/>
@@ -103,7 +117,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOA-xL-8CE">
-                                <rect key="frame" x="0.0" y="44" width="48" height="34"/>
+                                <rect key="frame" x="0.0" y="44" width="72" height="58"/>
                                 <inset key="contentEdgeInsets" minX="12" minY="5" maxX="12" maxY="5"/>
                                 <state key="normal" image="ic-back">
                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -119,6 +133,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="sue-Vb-FUr" firstAttribute="bottom" secondItem="dsY-EQ-KkW" secondAttribute="bottom" id="1la-9i-Stt"/>
                             <constraint firstItem="3g5-7n-dX0" firstAttribute="bottom" secondItem="8Mg-ED-3gF" secondAttribute="bottom" id="7LQ-Rw-Hia"/>
                             <constraint firstAttribute="trailing" secondItem="3g5-7n-dX0" secondAttribute="trailing" id="RZO-fv-d12"/>
                             <constraint firstItem="BOA-xL-8CE" firstAttribute="top" secondItem="sue-Vb-FUr" secondAttribute="top" id="TDl-My-iWQ"/>
@@ -131,6 +146,8 @@
                     <connections>
                         <outlet property="aboutView" destination="AXG-qH-y9d" id="W6T-o8-H0X"/>
                         <outlet property="activityIndicator" destination="m22-PA-7SV" id="LMS-u8-yGz"/>
+                        <outlet property="addButton" destination="dsY-EQ-KkW" id="uTa-n5-v8u"/>
+                        <outlet property="addButtonBottomConstraint" destination="1la-9i-Stt" id="ZDT-TP-7gk"/>
                         <outlet property="contentView" destination="3g5-7n-dX0" id="f4t-sp-N6E"/>
                         <outlet property="dismissButton" destination="BOA-xL-8CE" id="bp4-mP-JWo"/>
                         <outlet property="episodesView" destination="m6d-2k-LBz" id="fHc-sV-RSp"/>
@@ -163,6 +180,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic-add" width="24" height="24"/>
         <image name="ic-back" width="24" height="24"/>
+        <namedColor name="Accent">
+            <color red="0.0" green="0.34999999403953552" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColorPrimaryInverse">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

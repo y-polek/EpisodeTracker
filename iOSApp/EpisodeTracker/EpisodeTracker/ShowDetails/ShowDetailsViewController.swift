@@ -1,5 +1,6 @@
 import UIKit
-import MaterialComponents.MDCTabBar
+import MaterialComponents.MaterialTabs
+import MaterialComponents.MaterialButtons
 import SharedCode
 
 class ShowDetailsViewController: UIViewController {
@@ -25,6 +26,8 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var aboutView: UIView!
     @IBOutlet weak var episodesView: UIView!
     @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var addButton: FloatingButton!
+    @IBOutlet weak var addButtonBottomConstraint: NSLayoutConstraint!
     
     private func setParameters(showId: Int, openEpisodesTabOnStart: Bool) {
         self.showId = showId
@@ -55,6 +58,12 @@ class ShowDetailsViewController: UIViewController {
         tabBar.delegate = self
         
         dismissButton.imageView?.tintColor = .textColorPrimaryInverse
+        
+        addButton.mode = .expanded
+        
+        if let bottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
+            addButtonBottomConstraint.constant = bottomInset > 0 ? 0 : 16
+        }
         
         if openEpisodesTabOnStart {
             showEpisodesTab()
@@ -101,6 +110,10 @@ class ShowDetailsViewController: UIViewController {
     
     @IBAction func onDismissTapped(_ sender: Any) {
         close()
+    }
+    
+    @IBAction func addToMyShowsTapped(_ sender: Any) {
+        addButton.isActivityIndicatorHidden.toggle()
     }
     
     private func showAboutTab() {
