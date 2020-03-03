@@ -15,6 +15,8 @@ class ShowDetailsViewController: UIViewController {
     private var showId: Int!
     private var openEpisodesTabOnStart: Bool!
     private var presenter: ShowDetailsPresenter!
+    private var aboutShowViewController: AboutShowViewController?
+    private var episodesViewController: EpisodesViewController?
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -98,10 +100,12 @@ class ShowDetailsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "about_view":
-            (segue.destination as! AboutShowViewController).showId = showId
+            aboutShowViewController = (segue.destination as! AboutShowViewController)
+            aboutShowViewController!.showId = showId
             break
         case "episodes_view":
-            (segue.destination as! EpisodesViewController).showId = showId
+            episodesViewController = (segue.destination as! EpisodesViewController)
+            episodesViewController!.showId = showId
             break
         default:
             break
@@ -139,6 +143,17 @@ class ShowDetailsViewController: UIViewController {
         contentView.isHidden = false
         dismissButton.imageView?.tintColor = .textColorPrimaryInverse
     }
+    
+    private func setBottomInset() {
+        let inset = addButton.bounds.height + addButtonBottomConstraint.constant
+        aboutShowViewController?.setBottomInset(inset)
+        episodesViewController?.setBottomInset(inset)
+    }
+    
+    private func removeBottomInset() {
+        aboutShowViewController?.setBottomInset(0)
+        episodesViewController?.setBottomInset(0)
+    }
 }
 
 extension ShowDetailsViewController: ShowDetailsView {
@@ -156,6 +171,7 @@ extension ShowDetailsViewController: ShowDetailsView {
         addButton.isHidden = false
         addButton.isEnabled = true
         addButton.isActivityIndicatorHidden = true
+        setBottomInset()
     }
     
     func displayAddToMyShowsProgress() {
@@ -166,6 +182,7 @@ extension ShowDetailsViewController: ShowDetailsView {
     func hideAddToMyShowsButton() {
         addButton.isActivityIndicatorHidden = true
         addButton.isHidden = true
+        removeBottomInset()
     }
     
     func close() {
