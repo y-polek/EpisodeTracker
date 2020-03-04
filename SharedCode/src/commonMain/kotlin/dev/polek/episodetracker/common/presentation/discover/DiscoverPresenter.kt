@@ -10,10 +10,20 @@ class DiscoverPresenter(
     private val discoverRepository: DiscoverRepository,
     private val myShowsRepository: MyShowsRepository) : BasePresenter<DiscoverView>()
 {
+    private var searchResults: List<DiscoverResultViewModel>? = null
+
     override fun attachView(view: DiscoverView) {
         super.attachView(view)
-
         view.showPrompt()
+    }
+
+    override fun onViewAppeared() {
+        super.onViewAppeared()
+
+        searchResults?.forEach { show ->
+            show.isInMyShows = myShowsRepository.isInMyShows(show.id)
+        }
+        view?.updateSearchResults()
     }
 
     fun onSearchQuerySubmitted(query: String) {
@@ -33,6 +43,7 @@ class DiscoverPresenter(
                     isInMyShows = myShowsRepository.isInMyShows(it.tmdbId)
                 )
             }
+            searchResults = results
 
             view?.hideProgress()
             view?.showSearchResults(results)

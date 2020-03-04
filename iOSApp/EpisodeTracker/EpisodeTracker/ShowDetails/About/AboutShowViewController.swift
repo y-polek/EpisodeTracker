@@ -51,6 +51,10 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
         presenter.attachView(view: self)
     }
     
+    func setBottomInset(_ inset: CGFloat) {
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
+    }
+    
     private func showActivityIndicator() {
         scrollView.isHidden = true
         activityIndicator.startAnimating()

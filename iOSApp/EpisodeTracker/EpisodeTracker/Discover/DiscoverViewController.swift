@@ -16,6 +16,16 @@ class DiscoverViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         presenter.attachView(view: self)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.onViewAppeared()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.onViewDisappeared()
+    }
 }
 
 extension DiscoverViewController: DiscoverView {
@@ -47,6 +57,10 @@ extension DiscoverViewController: DiscoverView {
             self.results[row] = result
             tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
         }
+    }
+    
+    func updateSearchResults() {
+        tableView.reloadData()
     }
     
     func showEmptyMessage() {

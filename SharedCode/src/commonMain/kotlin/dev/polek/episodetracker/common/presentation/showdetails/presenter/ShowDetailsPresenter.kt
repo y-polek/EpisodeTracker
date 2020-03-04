@@ -17,16 +17,31 @@ class ShowDetailsPresenter(
     override fun attachView(view: ShowDetailsView) {
         super.attachView(view)
 
+        val isInMyShows = myShowsRepository.isInMyShows(showId)
         launch {
-            if (myShowsRepository.isInMyShows(showId)) {
-                loadFromMyShows()
+            if (isInMyShows) {
+                loadFromDb()
             } else {
                 loadFromRemote()
             }
         }
+
+        if (isInMyShows) {
+            view.hideAddToMyShowsButton()
+        } else {
+            view.displayAddToMyShowsButton()
+        }
     }
 
-    private fun loadFromMyShows() {
+    fun onAddToMyShowsButtonClicked() {
+        view?.displayAddToMyShowsProgress()
+        launch {
+            myShowsRepository.addShow(showId)
+            view?.hideAddToMyShowsButton()
+        }
+    }
+
+    private fun loadFromDb() {
         val show = myShowsRepository.showDetails(showId)
         if (show == null) {
             view?.close()
