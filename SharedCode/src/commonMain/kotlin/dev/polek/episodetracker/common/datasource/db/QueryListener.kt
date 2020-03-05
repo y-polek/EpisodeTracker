@@ -31,8 +31,8 @@ class QueryListener<Q : Any, R>(
         val result = extractQueryResult(query)
         subscriberRef.get()?.onQueryResult(result)
     }
-}
 
-interface Subscriber<T> {
-    fun onQueryResult(result: T)
+    interface Subscriber<T> {
+        fun onQueryResult(result: T)
+    }
 }

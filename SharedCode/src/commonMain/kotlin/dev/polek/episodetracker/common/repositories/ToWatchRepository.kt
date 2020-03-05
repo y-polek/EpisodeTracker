@@ -3,7 +3,7 @@ package dev.polek.episodetracker.common.repositories
 import co.touchlab.stately.ensureNeverFrozen
 import com.squareup.sqldelight.Query
 import dev.polek.episodetracker.common.datasource.db.QueryListener
-import dev.polek.episodetracker.common.datasource.db.Subscriber
+import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
 import dev.polek.episodetracker.common.utils.formatEpisodeNumber
 import dev.polek.episodetracker.db.Database
