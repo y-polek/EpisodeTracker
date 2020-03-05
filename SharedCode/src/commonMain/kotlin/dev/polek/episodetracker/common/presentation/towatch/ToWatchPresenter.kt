@@ -12,8 +12,6 @@ class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresente
     }
 
     override fun onViewAppeared() {
-
-
         repository.setToWatchShowsSubscriber(this)
     }
 
