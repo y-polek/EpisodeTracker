@@ -2,11 +2,12 @@ package dev.polek.episodetracker.common.presentation.towatch
 
 import co.touchlab.stately.ensureNeverFrozen
 import dev.polek.episodetracker.common.datasource.db.QueryListener
+import dev.polek.episodetracker.common.model.ToWatchShow
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.repositories.ToWatchRepository
 
 class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresenter<ToWatchView>(),
-    QueryListener.Subscriber<List<ToWatchShowViewModel>> {
+    QueryListener.Subscriber<List<ToWatchShow>> {
 
     init {
         ensureNeverFrozen()
@@ -29,7 +30,8 @@ class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresente
         view?.openToWatchShowDetails(show.id)
     }
 
-    override fun onQueryResult(result: List<ToWatchShowViewModel>) {
-        view?.displayShows(result)
+    override fun onQueryResult(result: List<ToWatchShow>) {
+        val shows = result.map(ToWatchShowViewModel.Companion::map)
+        view?.displayShows(shows)
     }
 }
