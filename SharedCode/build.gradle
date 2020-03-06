@@ -59,6 +59,10 @@ kotlin {
 
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
+
+            // Stately
+            implementation "co.touchlab:stately:$stately_version"
+            implementation "co.touchlab:stately-collections:$stately_version"
         }
         commonTest.dependencies {
             implementation 'org.jetbrains.kotlin:kotlin-test-common'

@@ -1,26 +1,61 @@
 package dev.polek.episodetracker.common.presentation.myshows
 
+import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 
 class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresenter<MyShowsView>() {
 
+    private val model = MyShowsViewModel(
+        upcomingShows = emptyList(),
+        toBeAnnouncedShows = emptyList(),
+        endedShows = emptyList(),
+        isUpcomingExpanded = true,
+        isToBeAnnouncedExpanded = true,
+        isEndedExpanded = true
+    )
+
+    private val upcomingShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
+        override fun onQueryResult(result: List<UpcomingShowViewModel>) {
+            model.upcomingShows = result
+            view?.updateShows(model)
+        }
+    }
+
+    private val toBeAnnouncedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
+        override fun onQueryResult(result: List<ShowViewModel>) {
+            model.toBeAnnouncedShows = result
+            view?.updateShows(model)
+        }
+    }
+
+    private val endedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
+        override fun onQueryResult(result: List<ShowViewModel>) {
+            model.endedShows = result
+            view?.updateShows(model)
+        }
+    }
+
     override fun attachView(view: MyShowsView) {
         super.attachView(view)
-
-        val model =
-            MyShowsViewModel(
-                upcomingShows = repository.upcomingShows(),
-                toBeAnnouncedShows = repository.toBeAnnouncedShows(),
-                endedShows = repository.endedShows(),
-                isUpcomingExpanded = true,
-                isToBeAnnouncedExpanded = true,
-                isEndedExpanded = true
-            )
-
         view.updateShows(model)
+    }
+
+    override fun onViewAppeared() {
+        super.onViewAppeared()
+        repository.setUpcomingShowsSubscriber(upcomingShowsSubscriber)
+        repository.setToBeAnnouncedShowsSubscriber(toBeAnnouncedShowsSubscriber)
+        repository.setEndedShowsSubscriber(endedShowsSubscriber)
+    }
+
+    override fun onViewDisappeared() {
+        repository.removeUpcomingShowsSubscriber()
+        repository.removeToBeAnnouncedShowsSubscriber()
+        repository.removeEndedShowsSubscriber()
+        super.onViewDisappeared()
     }
 
     fun onShowClicked(show: ShowViewModel) {

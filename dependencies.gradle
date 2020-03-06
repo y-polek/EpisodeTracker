@@ -4,4 +4,5 @@ ext {
     serialization_version = '0.14.0'
     multiplatform_settings_version = '0.5'
     assertk_version = '0.21'
+    stately_version = '0.9.4'
 }

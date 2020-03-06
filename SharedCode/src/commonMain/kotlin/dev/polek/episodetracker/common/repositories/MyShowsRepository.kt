@@ -1,11 +1,15 @@
 package dev.polek.episodetracker.common.repositories
 
+import com.squareup.sqldelight.Query
+import dev.polek.episodetracker.common.datasource.db.QueryListener
+import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.networkImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.GenreEntity
 import dev.polek.episodetracker.common.logging.log
-import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.utils.formatEpisodeNumber
 import dev.polek.episodetracker.common.utils.formatTimeBetween
 import dev.polek.episodetracker.db.Database
@@ -17,6 +21,10 @@ class MyShowsRepository(
     private val tmdbService: TmdbService,
     private val showRepository: ShowRepository)
 {
+    private var upcomingShowsQueryListener: QueryListener<UpcomingShowViewModel, List<UpcomingShowViewModel>>? = null
+    private var toBeAnnouncedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
+    private var endedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
+
     suspend fun addShow(tmdbId: Int) {
         if (isInMyShows(tmdbId)) return
         val show = tmdbService.show(tmdbId)
@@ -81,7 +89,7 @@ class MyShowsRepository(
         return db.myShowQueries.isInMyShows(tmdbId).executeAsOne()
     }
 
-    fun upcomingShows(): List<MyShowsListItem.UpcomingShowViewModel> {
+    fun upcomingShows(): List<UpcomingShowViewModel> {
         val now = GMTDate()
         return db.myShowQueries.upcomingShows { tmdbId, name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
             val daysLeft: String = if (airDateMillis != null) {
@@ -90,7 +98,7 @@ class MyShowsRepository(
                 "N/A"
             }
 
-            val show = MyShowsListItem.UpcomingShowViewModel(
+            val show = UpcomingShowViewModel(
                 id = tmdbId,
                 name = name,
                 backdropUrl = imageUrl,
@@ -101,9 +109,42 @@ class MyShowsRepository(
         }.executeAsList()
     }
 
-    fun toBeAnnouncedShows(): List<MyShowsListItem.ShowViewModel> {
+    fun setUpcomingShowsSubscriber(subscriber: Subscriber<List<UpcomingShowViewModel>>) {
+        removeUpcomingShowsSubscriber()
+
+        val now = GMTDate()
+        val query = db.myShowQueries.upcomingShows { tmdbId, name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
+            val daysLeft: String = if (airDateMillis != null) {
+                formatTimeBetween(now, GMTDate(airDateMillis))
+            } else {
+                "N/A"
+            }
+
+            val show = UpcomingShowViewModel(
+                id = tmdbId,
+                name = name,
+                backdropUrl = imageUrl,
+                episodeName = episodeName,
+                episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),
+                timeLeft = daysLeft)
+            show
+        }
+
+        upcomingShowsQueryListener = QueryListener(
+            query = query,
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<UpcomingShowViewModel>::executeAsList)
+    }
+
+    fun removeUpcomingShowsSubscriber() {
+        upcomingShowsQueryListener?.destroy()
+        upcomingShowsQueryListener = null
+    }
+
+    fun toBeAnnouncedShows(): List<ShowViewModel> {
         return db.myShowQueries.toBeAnnouncedShows { tmdbId, name, imageUrl ->
-            val show = MyShowsListItem.ShowViewModel(
+            val show = ShowViewModel(
                 id = tmdbId,
                 name = name,
                 backdropUrl = imageUrl)
@@ -111,9 +152,39 @@ class MyShowsRepository(
         }.executeAsList()
     }
 
-    fun endedShows(): List<MyShowsListItem.ShowViewModel> {
+    fun setToBeAnnouncedShowsSubscriber(subscriber: Subscriber<List<ShowViewModel>>) {
+        removeToBeAnnouncedShowsSubscriber()
+
+        toBeAnnouncedShowsQueryListener = QueryListener(
+            query = db.myShowQueries.toBeAnnouncedShows(mapper = ::mapShowViewModel),
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<ShowViewModel>::executeAsList)
+    }
+
+    fun removeToBeAnnouncedShowsSubscriber() {
+        toBeAnnouncedShowsQueryListener?.destroy()
+        toBeAnnouncedShowsQueryListener = null
+    }
+
+    fun setEndedShowsSubscriber(subscriber: Subscriber<List<ShowViewModel>>) {
+        removeEndedShowsSubscriber()
+
+        endedShowsQueryListener = QueryListener(
+            query = db.myShowQueries.endedShows(mapper = ::mapShowViewModel),
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<ShowViewModel>::executeAsList)
+    }
+
+    fun removeEndedShowsSubscriber() {
+        endedShowsQueryListener?.destroy()
+        endedShowsQueryListener = null
+    }
+
+    fun endedShows(): List<ShowViewModel> {
         return db.myShowQueries.endedShows { tmdbId, name, imageUrl ->
-            val show = MyShowsListItem.ShowViewModel(
+            val show = ShowViewModel(
                 id = tmdbId,
                 name = name,
                 backdropUrl = imageUrl)
@@ -123,5 +194,14 @@ class MyShowsRepository(
 
     fun showDetails(tmdbId: Int): ShowDetails? {
         return db.myShowQueries.showDetails(tmdbId).executeAsOneOrNull()
+    }
+
+    companion object {
+        fun mapShowViewModel(tmdbId: Int, name: String, imageUrl: String?): ShowViewModel {
+            return ShowViewModel(
+                id = tmdbId,
+                name = name,
+                backdropUrl = imageUrl)
+        }
     }
 }

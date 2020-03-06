@@ -1,17 +1,34 @@
 package dev.polek.episodetracker.common.repositories
 
-import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
-import dev.polek.episodetracker.common.utils.formatEpisodeNumber
+import co.touchlab.stately.ensureNeverFrozen
+import com.squareup.sqldelight.Query
+import dev.polek.episodetracker.common.datasource.db.QueryListener
+import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
+import dev.polek.episodetracker.common.model.EpisodeNumber
+import dev.polek.episodetracker.common.model.ToWatchShow
 import dev.polek.episodetracker.db.Database
 
 class ToWatchRepository(private val db: Database) {
 
-    fun toWatchShows(): List<ToWatchShowViewModel> {
-        return db.myShowQueries.toWatchShows(mapper = ::mapToWatchShow).executeAsList()
+    private var toWatchShowsQueryListener: QueryListener<ToWatchShow, List<ToWatchShow>>? = null
+
+    init {
+        ensureNeverFrozen()
     }
 
-    fun toWatchShow(tmdbId: Int): ToWatchShowViewModel? {
-        return db.myShowQueries.toWatchShow(tmdbId = tmdbId, mapper = ::mapToWatchShow).executeAsList().firstOrNull()
+    fun setToWatchShowsSubscriber(subscriber: Subscriber<List<ToWatchShow>>) {
+        removeToWatchShowsSubscriber()
+
+        toWatchShowsQueryListener = QueryListener(
+            query = db.myShowQueries.toWatchShows(mapper = ::mapToWatchShow),
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<ToWatchShow>::executeAsList)
+    }
+
+    fun removeToWatchShowsSubscriber() {
+        toWatchShowsQueryListener?.destroy()
+        toWatchShowsQueryListener = null
     }
 
     fun markNextEpisodeWatched(showTmdbId: Int) {
@@ -36,13 +53,13 @@ class ToWatchRepository(private val db: Database) {
             episodeNumber: Int,
             episodeName: String,
             episodeImageUrl: String?,
-            notWatchedEpisodesCount: Long): ToWatchShowViewModel
+            notWatchedEpisodesCount: Long): ToWatchShow
         {
-            return ToWatchShowViewModel(
-                id = showTmdbId,
+            return ToWatchShow(
+                tmdbId = showTmdbId,
                 name = showName,
-                episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),
-                episodeName = episodeName,
+                nextEpisodeNumber = EpisodeNumber(season = seasonNumber, episode = episodeNumber),
+                nextEpisodeName = episodeName,
                 episodeCount = notWatchedEpisodesCount.toInt(),
                 imageUrl = episodeImageUrl)
         }

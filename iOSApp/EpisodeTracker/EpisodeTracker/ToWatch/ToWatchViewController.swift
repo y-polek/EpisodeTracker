@@ -32,20 +32,6 @@ extension ToWatchViewController: ToWatchView {
         tableView.reloadData()
     }
     
-    func updateShow(show: ToWatchShowViewModel) {
-        if let row = self.shows.firstIndex(where: { $0.id == show.id }) {
-            self.shows[row] = show
-            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
-        }
-    }
-    
-    func removeShow(show: ToWatchShowViewModel) {
-        if let row = self.shows.firstIndex(where: { $0.id == show.id }) {
-            self.shows.remove(at: row)
-            tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .none)
-        }
-    }
-    
     func openToWatchShowDetails(showId: Int32) {
         let vc = ShowDetailsViewController.instantiate(showId: Int(showId), openEpisodesTabOnStart: true)
         navigationController?.pushViewController(vc, animated: true)
