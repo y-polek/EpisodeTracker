@@ -26,6 +26,10 @@ class AboutShowPresenter(
         }
     }
 
+    fun onRecommendationClicked(recommendation: RecommendationViewModel) {
+        view?.openRecommendation(recommendation.showId)
+    }
+
     private fun loadShow() {
         val show = myShowsRepository.showDetails(showId) ?: return
 

@@ -25,29 +25,36 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     let genresDataSource = GenresDataSource()
     let trailersDataSource = TrailersDataSource()
     let castDataSource = CastDataSource()
-    let recommendationsDataSource = RecommendationsDataSource()
+    var recommendationsDelegate: RecommendationsDelegate!
     
     private let rippleController = MDCRippleTouchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        genresCollectionView.dataSource = genresDataSource
-        trailersCollectionView.dataSource = trailersDataSource
-        trailersCollectionView.delegate = trailersDataSource
-        castCollectionView.dataSource = castDataSource
-        recommendationsCollectionView.dataSource = recommendationsDataSource
-        
-        trailersContainer.isHidden = true
-        castContainer.isHidden = true
-        recommendationsContainer.isHidden = true
-        
-        showActivityIndicator()
-        
         presenter = AboutShowPresenter(
             showId: Int32(showId),
             myShowsRepository: AppDelegate.instance().myShowsRepository,
             showRepository: AppDelegate.instance().showRepository)
+        
+        recommendationsDelegate = RecommendationsDelegate(presenter)
+        
+        genresCollectionView.dataSource = genresDataSource
+        
+        trailersCollectionView.dataSource = trailersDataSource
+        trailersCollectionView.delegate = trailersDataSource
+        trailersContainer.isHidden = true
+        
+        castCollectionView.dataSource = castDataSource
+        castCollectionView.delegate = castDataSource
+        castContainer.isHidden = true
+        
+        recommendationsCollectionView.dataSource = recommendationsDelegate
+        recommendationsCollectionView.delegate = recommendationsDelegate
+        recommendationsContainer.isHidden = true
+        
+        showActivityIndicator()
+        
         presenter.attachView(view: self)
     }
     
@@ -125,13 +132,18 @@ extension AboutShowViewController: AboutShowView {
     }
     
     func displayRecommendations(recommendations: [RecommendationViewModel]) {
-        recommendationsDataSource.recommendations = recommendations
+        recommendationsDelegate.recommendations = recommendations
         recommendationsCollectionView.reloadData()
         recommendationsContainer.isHidden = recommendations.isEmpty
     }
     
     func displayImdbRating(rating: Float) {
         imdbBadge.rating = rating
+    }
+    
+    func openRecommendation(showId: Int32) {
+        let vc = ShowDetailsViewController.instantiate(showId: Int(showId))
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -189,7 +201,7 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionView
 }
 
 // MARK: - Cast UICollectionView datasource
-class CastDataSource: NSObject, UICollectionViewDataSource {
+class CastDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var castMembers = [CastMemberViewModel]()
     
@@ -209,10 +221,15 @@ class CastDataSource: NSObject, UICollectionViewDataSource {
     }
 }
 
-// MARK: - Recommendations UICollectionView datasource
-class RecommendationsDataSource: NSObject, UICollectionViewDataSource {
+// MARK: - Recommendations UICollectionView delegate
+class RecommendationsDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    let presenter: AboutShowPresenter
     var recommendations = [RecommendationViewModel]()
+    
+    init(_ presenter: AboutShowPresenter) {
+        self.presenter = presenter
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recommendations.count
@@ -228,5 +245,10 @@ class RecommendationsDataSource: NSObject, UICollectionViewDataSource {
         cell.subheadLabel.isHidden = show.subhead.isEmpty
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let recommendation = recommendations[indexPath.row]
+        presenter.onRecommendationClicked(recommendation: recommendation)
     }
 }

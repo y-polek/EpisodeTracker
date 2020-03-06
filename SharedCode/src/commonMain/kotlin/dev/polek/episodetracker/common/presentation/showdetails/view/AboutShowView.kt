@@ -12,4 +12,5 @@ interface AboutShowView {
     fun displayCast(cast: List<CastMemberViewModel>)
     fun displayRecommendations(recommendations: List<RecommendationViewModel>)
     fun displayImdbRating(rating: Float)
+    fun openRecommendation(showId: Int)
 }

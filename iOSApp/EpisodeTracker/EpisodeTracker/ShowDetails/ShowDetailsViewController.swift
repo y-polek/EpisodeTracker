@@ -5,7 +5,7 @@ import SharedCode
 
 class ShowDetailsViewController: UIViewController {
     
-    static func instantiate(showId: Int, openEpisodesTabOnStart: Bool) -> ShowDetailsViewController {
+    static func instantiate(showId: Int, openEpisodesTabOnStart: Bool = false) -> ShowDetailsViewController {
         let storyboard = UIStoryboard(name: "ShowDetails", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController() as! ShowDetailsViewController
         vc.setParameters(showId: Int(showId), openEpisodesTabOnStart: openEpisodesTabOnStart)
