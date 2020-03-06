@@ -7,7 +7,7 @@ import com.squareup.sqldelight.Query
 class QueryListener<Q : Any, R>(
     private val query: Query<Q>,
     subscriber: Subscriber<R>,
-    notifyImmediately: Boolean = false,
+    notifyImmediately: Boolean,
     private inline val extractQueryResult: (Query<Q>) -> R) : Query.Listener
 {
     private val subscriberRef = ThreadLocalRef<Subscriber<R>>()

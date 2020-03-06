@@ -17,6 +17,8 @@ class ToWatchRepository(private val db: Database) {
     }
 
     fun setToWatchShowsSubscriber(subscriber: Subscriber<List<ToWatchShow>>) {
+        removeToWatchShowsSubscriber()
+
         toWatchShowsQueryListener = QueryListener(
             query = db.myShowQueries.toWatchShows(mapper = ::mapToWatchShow),
             subscriber = subscriber,

@@ -4,9 +4,9 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.GroupViewModel.*
 
 class MyShowsViewModel(
-    val upcomingShows: List<UpcomingShowViewModel>,
-    val toBeAnnouncedShows: List<ShowViewModel>,
-    val endedShows: List<ShowViewModel>,
+    var upcomingShows: List<UpcomingShowViewModel>,
+    var toBeAnnouncedShows: List<ShowViewModel>,
+    var endedShows: List<ShowViewModel>,
     isUpcomingExpanded: Boolean,
     isToBeAnnouncedExpanded: Boolean,
     isEndedExpanded: Boolean)
