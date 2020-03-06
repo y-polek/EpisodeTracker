@@ -15,7 +15,7 @@ data class EpisodeEntity(
     @SerialName("air_date") val airDate: String? = null,
     @SerialName("still_path") val stillPath: String? = null)
 {
-    @Transient val isValid = allNotNull(tmdbId, episodeNumber, seasonNumber, airDate)
+    @Transient val isValid = allNotNull(tmdbId, episodeNumber, seasonNumber)
     @Transient val airDateMillis: Long? = if (airDate != null) parseDate(airDate)?.timestamp else null
     @Transient val number: Pair<Int, Int> = checkNotNull(seasonNumber) to checkNotNull(episodeNumber)
 }
