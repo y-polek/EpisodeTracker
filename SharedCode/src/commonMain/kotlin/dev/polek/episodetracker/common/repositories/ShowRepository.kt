@@ -23,10 +23,13 @@ class ShowRepository(
     }
 
     suspend fun season(showTmdbId: Int, seasonNumber: Int): Season? {
-        val season = tmdbService.season(showTmdbId = showTmdbId, number = seasonNumber)
-        if (!season.isValid) return null
+        val seasonEntity = tmdbService.season(showTmdbId = showTmdbId, number = seasonNumber)
+        if (!seasonEntity.isValid) return null
 
-        return mapSeason(season)
+        val season = mapSeason(seasonEntity)
+        if (season.episodes.isEmpty()) return null
+
+        return season
     }
 
     companion object {
