@@ -32,7 +32,7 @@ class ImdbBadge: UIView {
         
         layer.borderWidth = 1
         layer.borderColor = UIColor.textColorPrimary.cgColor
-        layer.cornerRadius = 8
+        layer.cornerRadius = 5
         clipsToBounds = true
         
         rippleController.addRipple(to: self)
