@@ -58,7 +58,9 @@ class ImageView: UIImageView {
     }
     
     private func updateOverlay() {
-        overlayLayer.frame = bounds
+        withDisabledAnimation {
+            overlayLayer.frame = bounds
+        }
         
         if let color = overlayColor {
             overlayLayer.colors = overlayOpacity.map {

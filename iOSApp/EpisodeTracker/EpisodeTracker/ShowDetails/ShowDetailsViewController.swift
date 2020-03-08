@@ -18,9 +18,13 @@ class ShowDetailsViewController: UIViewController {
     private var aboutShowViewController: AboutShowViewController?
     private var episodesViewController: EpisodesViewController?
     
+    private let minHeaderHeight: CGFloat = 50 + UIApplication.shared.statusBarFrame.height
+    private var maxHeaderHeight: CGFloat!
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageView: ImageView!
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -39,6 +43,8 @@ class ShowDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        maxHeaderHeight = imageView.bounds.width / 1.8
+        imageViewHeightConstraint.constant = maxHeaderHeight
         imageView.overlayOpacity = [0.6, 0.2, 0.4, 0.6]
         
         tabBar.items = [
@@ -85,11 +91,19 @@ class ShowDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        aboutShowViewController?.scrollCallback = scrollCallback(offset:)
+        episodesViewController?.scrollCallback = scrollCallback(offset:)
+        
         presenter.onViewAppeared()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        aboutShowViewController?.scrollCallback = nil
+        episodesViewController?.scrollCallback = nil
+        
         presenter.onViewDisappeared()
     }
     
@@ -118,6 +132,21 @@ class ShowDetailsViewController: UIViewController {
     
     @IBAction func addToMyShowsTapped(_ sender: Any) {
         presenter.onAddToMyShowsButtonClicked()
+    }
+    
+    private func scrollCallback(offset: CGFloat) -> Bool {
+        let newHeight = self.imageViewHeightConstraint.constant - offset
+        
+        if newHeight > self.maxHeaderHeight {
+            self.imageViewHeightConstraint.constant = self.maxHeaderHeight
+        } else if newHeight < self.minHeaderHeight {
+            self.imageViewHeightConstraint.constant = self.minHeaderHeight
+        } else {
+            self.imageViewHeightConstraint.constant = newHeight
+            return true
+        }
+        
+        return false
     }
     
     private func showAboutTab() {
