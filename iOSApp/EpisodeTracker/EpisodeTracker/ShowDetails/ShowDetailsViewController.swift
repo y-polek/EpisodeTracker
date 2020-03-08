@@ -47,7 +47,7 @@ class ShowDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        maxHeaderHeight = imageView.bounds.width / 1.8
+        maxHeaderHeight = imageView.bounds.width / 1.78
         imageViewHeightConstraint.constant = maxHeaderHeight
         imageView.overlayOpacity = [0.6, 0.4, 0.4, 0.6]
         imageView.isBlured = true

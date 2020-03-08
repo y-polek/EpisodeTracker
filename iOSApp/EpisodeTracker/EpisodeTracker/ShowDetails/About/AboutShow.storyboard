@@ -96,7 +96,7 @@
                                                                     <constraint firstAttribute="width" secondItem="XjZ-2l-vxi" secondAttribute="height" multiplier="1:1" id="rWe-dj-QtL"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-globe"/>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-link"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dea-ga-UGt" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
@@ -485,8 +485,8 @@
     </scenes>
     <resources>
         <image name="ic-facebook" width="24" height="24"/>
-        <image name="ic-globe" width="24" height="24"/>
         <image name="ic-instagram" width="24" height="24"/>
+        <image name="ic-link" width="24" height="24"/>
         <image name="ic-play-bold" width="24" height="24"/>
         <image name="ic-twitter" width="24" height="24"/>
         <namedColor name="DividerPrimary">
