@@ -7,6 +7,11 @@ class EpisodesViewController: UIViewController {
     var presenter: EpisodesPresenter!
     var seasons = [SeasonViewModel]()
     
+    /**
+     * Returns `true` if scroll should be blocked (offset set to `0`), `false` otherwise.
+     */
+    var scrollCallback: ((_ offset: CGFloat) -> Bool)?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -131,6 +136,16 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollCallback == nil { return }
+        
+        let offset = scrollView.contentOffset.y
+        let blockScroll = scrollCallback!(offset)
+        if blockScroll {
+            scrollView.contentOffset.y = 0
+        }
     }
     
     private func reloadSection(_ section: Int, animated: Bool = false) {

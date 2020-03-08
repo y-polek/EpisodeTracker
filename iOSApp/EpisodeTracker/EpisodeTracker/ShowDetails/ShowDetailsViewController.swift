@@ -18,18 +18,26 @@ class ShowDetailsViewController: UIViewController {
     private var aboutShowViewController: AboutShowViewController?
     private var episodesViewController: EpisodesViewController?
     
+    private let minHeaderHeight: CGFloat = 44 + UIApplication.shared.statusBarFrame.height
+    private var maxHeaderHeight: CGFloat!
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var toolbar: UIView!
     @IBOutlet weak var imageView: ImageView!
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerLabelsContainer: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var tabBar: MDCTabBar!
     @IBOutlet weak var aboutView: UIView!
     @IBOutlet weak var episodesView: UIView!
-    @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var addButton: FloatingButton!
     @IBOutlet weak var addButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolbarLabel: UILabel!
     
     private func setParameters(showId: Int, openEpisodesTabOnStart: Bool) {
         self.showId = showId
@@ -39,7 +47,14 @@ class ShowDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.overlayOpacity = [0.6, 0.2, 0.4, 0.6]
+        maxHeaderHeight = imageView.bounds.width / 1.8
+        imageViewHeightConstraint.constant = maxHeaderHeight
+        imageView.overlayOpacity = [0.6, 0.4, 0.4, 0.6]
+        imageView.isBlured = true
+        imageView.blurAlpha = 0
+        
+        toolbarLabel.alpha = 0
+        headerLabelsContainer.alpha = 1
         
         tabBar.items = [
             UITabBarItem(title: "About", image: nil, tag: 0),
@@ -59,7 +74,8 @@ class ShowDetailsViewController: UIViewController {
         tabBar.alignment = .justified
         tabBar.delegate = self
         
-        dismissButton.imageView?.tintColor = .textColorPrimaryInverse
+        backButton.imageView?.tintColor = .textColorPrimaryInverse
+        menuButton.imageView?.tintColor = .textColorPrimaryInverse
         
         addButton.mode = .expanded
         
@@ -85,11 +101,19 @@ class ShowDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        aboutShowViewController?.scrollCallback = scrollCallback(offset:)
+        episodesViewController?.scrollCallback = scrollCallback(offset:)
+        
         presenter.onViewAppeared()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        aboutShowViewController?.scrollCallback = nil
+        episodesViewController?.scrollCallback = nil
+        
         presenter.onViewDisappeared()
     }
     
@@ -112,12 +136,37 @@ class ShowDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func onDismissTapped(_ sender: Any) {
+    @IBAction func onBackTapped(_ sender: Any) {
         close()
+    }
+    
+    @IBAction func onMenuTapped(_ sender: Any) {
+        
     }
     
     @IBAction func addToMyShowsTapped(_ sender: Any) {
         presenter.onAddToMyShowsButtonClicked()
+    }
+    
+    private func scrollCallback(offset: CGFloat) -> Bool {
+        var newHeight = imageViewHeightConstraint.constant - offset
+        var blockScroll = false
+        
+        if newHeight > maxHeaderHeight {
+            newHeight = maxHeaderHeight
+        } else if newHeight < minHeaderHeight {
+            newHeight = minHeaderHeight
+        } else {
+            blockScroll = true
+        }
+        imageViewHeightConstraint.constant = newHeight
+        
+        let heightRatio = (newHeight - minHeaderHeight) / (maxHeaderHeight - minHeaderHeight)
+        toolbarLabel.alpha = 1 - 2 * heightRatio
+        headerLabelsContainer.alpha = 1 - 2 * (1 - heightRatio)
+        imageView.blurAlpha = 1 - heightRatio
+
+        return blockScroll
     }
     
     private func showAboutTab() {
@@ -135,13 +184,15 @@ class ShowDetailsViewController: UIViewController {
     private func showActivityIndicator() {
         activityIndicator.startAnimating()
         contentView.isHidden = true
-        dismissButton.imageView?.tintColor = .textColorPrimary
+        backButton.imageView?.tintColor = .textColorPrimary
+        menuButton.imageView?.tintColor = .textColorPrimary
     }
     
     private func hideActivityIndicator() {
         activityIndicator.stopAnimating()
         contentView.isHidden = false
-        dismissButton.imageView?.tintColor = .textColorPrimaryInverse
+        backButton.imageView?.tintColor = .textColorPrimaryInverse
+        menuButton.imageView?.tintColor = .textColorPrimaryInverse
     }
     
     private func setBottomInset() {
@@ -160,6 +211,7 @@ extension ShowDetailsViewController: ShowDetailsView {
     
     func displayShowHeader(show: ShowHeaderViewModel) {
         nameLabel.text = show.name
+        toolbarLabel.text = show.name
         imageView.imageUrl = show.imageUrl
         subheadLabel.text = show.subhead
         ratingLabel.text = show.rating

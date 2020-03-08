@@ -23,9 +23,32 @@ class ImageView: UIImageView {
         didSet { updateShadow() }
     }
     
-    var overlayOpacity: [CGFloat] = [0.0, 0.6]
+    var overlayOpacity: [CGFloat] = [0.0, 0.6] {
+        didSet {
+            if oldValue != self.overlayOpacity {
+                updateOverlay()
+            }
+        }
+    }
+    
+    var isBlured: Bool = false {
+        didSet {
+            if oldValue != self.isBlured {
+                updateBlur()
+            }
+        }
+    }
+    
+    var blurAlpha: CGFloat = 1.0 {
+        didSet {
+            if oldValue != self.blurAlpha {
+                updateBlur()
+            }
+        }
+    }
     
     private let overlayLayer = CAGradientLayer()
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +62,11 @@ class ImageView: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        updateOverlay()
+        
+        withDisabledAnimation {
+            overlayLayer.frame = bounds
+        }
+        blurView.frame = bounds
     }
     
     private func setup() {
@@ -47,6 +74,10 @@ class ImageView: UIImageView {
         layer.masksToBounds = true
         
         layer.insertSublayer(overlayLayer, at: 0)
+        addSubview(blurView)
+        
+        updateOverlay()
+        updateBlur()
     }
     
     private func updateImage() {
@@ -58,8 +89,6 @@ class ImageView: UIImageView {
     }
     
     private func updateOverlay() {
-        overlayLayer.frame = bounds
-        
         if let color = overlayColor {
             overlayLayer.colors = overlayOpacity.map {
                 color.withAlphaComponent($0).cgColor
@@ -79,5 +108,11 @@ class ImageView: UIImageView {
         } else {
             clipsToBounds = true
         }
+    }
+    
+    private func updateBlur() {
+        blurView.frame = bounds
+        blurView.isHidden = !isBlured
+        blurView.alpha = blurAlpha
     }
 }

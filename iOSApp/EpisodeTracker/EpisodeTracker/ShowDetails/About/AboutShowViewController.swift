@@ -27,6 +27,11 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     let castDataSource = CastDataSource()
     var recommendationsDelegate: RecommendationsDelegate!
     
+    /**
+     * Returns `true` if scroll should be blocked (offset set to `0`), `false` otherwise.
+     */
+    var scrollCallback: ((_ offset: CGFloat) -> Bool)?
+    
     private let rippleController = MDCRippleTouchController()
     
     override func viewDidLoad() {
@@ -144,6 +149,20 @@ extension AboutShowViewController: AboutShowView {
     func openRecommendation(showId: Int32) {
         let vc = ShowDetailsViewController.instantiate(showId: Int(showId))
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - UIScrollView delegate
+extension AboutShowViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollCallback == nil { return }
+        
+        let offset = scrollView.contentOffset.y
+        let blockScroll = scrollCallback!(offset)
+        if blockScroll {
+            scrollView.contentOffset.y = 0
+        }
     }
 }
 
