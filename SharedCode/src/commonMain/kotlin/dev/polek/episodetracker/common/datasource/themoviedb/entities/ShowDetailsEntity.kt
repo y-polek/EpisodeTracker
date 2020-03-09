@@ -14,7 +14,7 @@ data class ShowDetailsEntity(
     @SerialName("first_air_date")private val firstAirDate: String? = null,
     @SerialName("last_air_date") private val lastAirDate: String? = null,
     @SerialName("genres") private val genreEntities: List<GenreEntity>? = null,
-    @SerialName("networks") private val networks: List<NetworkEntity>? = null,
+    @SerialName("networks") private val networkEntities: List<NetworkEntity>? = null,
     @SerialName("overview") val overview: String? = null,
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("backdrop_path") val backdropPath: String? = null,
@@ -34,7 +34,11 @@ data class ShowDetailsEntity(
     @Transient val isEnded = !inProduction
     @Transient val genres: List<String> = genreEntities?.filter(GenreEntity::isValid)?.map(GenreEntity::name).orEmpty()
     @Transient val contentRating: String? = contentRatings?.ratings?.firstOrNull { it.country == "US" }?.rating
-    @Transient val network: NetworkEntity? = networks?.firstOrNull(NetworkEntity::isValid)
+    @Transient val networks: List<String> = networkEntities?.asSequence()
+        ?.filter(NetworkEntity::isValid)
+        ?.mapNotNull(NetworkEntity::name)
+        ?.toList()
+        .orEmpty()
     @Transient val homePageUrl = homepage?.blankToNull()
     @Transient val videos: List<VideoEntity> = videosEntity?.results?.filter(VideoEntity::isValid).orEmpty()
     @Transient val cast: List<CastMemberEntity> = credits?.cast?.filter(CastMemberEntity::isValid).orEmpty()

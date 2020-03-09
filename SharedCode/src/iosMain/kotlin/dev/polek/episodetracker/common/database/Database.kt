@@ -7,5 +7,7 @@ import dev.polek.episodetracker.db.MyShow
 
 val database: Database = Database(
     driver = NativeSqliteDriver(Database.Schema, "episode_tracker.db"),
-    MyShowAdapter = MyShow.Adapter(genresAdapter = ListOfStringsAdapter)
+    MyShowAdapter = MyShow.Adapter(
+        genresAdapter = ListOfStringsAdapter,
+        networksAdapter = ListOfStringsAdapter)
 )

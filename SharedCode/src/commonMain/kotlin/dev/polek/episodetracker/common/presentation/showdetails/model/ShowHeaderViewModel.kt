@@ -6,7 +6,7 @@ class ShowHeaderViewModel(
     val rating: String,
     year: Int?,
     endYear: Int?,
-    network: String?)
+    networks: List<String>)
 {
     val subhead: String
 
@@ -17,7 +17,7 @@ class ShowHeaderViewModel(
             else -> null
         }
         subhead = when {
-            yearsText != null && network != null -> "$yearsText ∙ $network"
+            yearsText != null && networks.isNotEmpty() -> "$yearsText ∙ ${networks.joinToString(", ")}"
             yearsText != null -> "$yearsText - $endYear"
             else -> ""
         }

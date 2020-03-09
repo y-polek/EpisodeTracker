@@ -46,14 +46,14 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2GK-WD-zvl">
                                                 <rect key="frame" x="0.0" y="30.333333333333343" width="343" height="18"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="2017 - Present" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-vg-dud">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100.66666666666667" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="2017 • CBS All Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-vg-dud">
+                                                        <rect key="frame" x="0.0" y="0.0" width="151.66666666666666" height="18"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfq-HF-cNm">
-                                                        <rect key="frame" x="298.66666666666669" y="0.0" width="44.333333333333314" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="TV-14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfq-HF-cNm">
+                                                        <rect key="frame" x="301.33333333333331" y="0.0" width="41.666666666666686" height="18"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@
                                         </connections>
                                     </containerView>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsY-EQ-KkW" customClass="FloatingButton" customModule="EpisodeTracker" customModuleProvider="target">
-                                        <rect key="frame" x="90.666666666666686" y="730" width="194" height="48"/>
+                                        <rect key="frame" x="102.66666666666669" y="754" width="170" height="24"/>
                                         <color key="backgroundColor" name="Accent"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <color key="tintColor" name="TextColorPrimaryInverse"/>

@@ -48,14 +48,6 @@ class MyShowsRepository(
                         imageUrl = episode.imageUrl)
                 }
 
-            show.network?.let { network ->
-                db.networkQueries.insertOrReplace(
-                    tmdbId = network.tmdbId ?: 0,
-                    name = network.name.orEmpty(),
-                    imageUrl = network.logoPath?.let(::networkImageUrl)
-                )
-            }
-
             db.myShowQueries.insert(
                 tmdbId = tmdbId,
                 imdbId = show.externalIds?.imdbId,
@@ -70,7 +62,7 @@ class MyShowsRepository(
                 imageUrl = show.backdropPath?.let(::backdropImageUrl),
                 homePageUrl = show.homepage,
                 genres = show.genres?.map(GenreEntity::name).orEmpty(),
-                networkTmdbId = show.network?.tmdbId,
+                networks = show.networks,
                 contentRating = show.contentRating,
                 isEnded = show.isEnded,
                 nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,

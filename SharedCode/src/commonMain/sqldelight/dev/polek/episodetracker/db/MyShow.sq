@@ -14,7 +14,7 @@ CREATE TABLE MyShow (
     imageUrl TEXT,
     homePageUrl TEXT,
     genres TEXT AS List<String> NOT NULL,
-    networkTmdbId INTEGER AS Int,
+    networks TEXT AS List<String> NOT NULL,
     contentRating TEXT,
     isEnded INTEGER AS Boolean NOT NULL,
     nextEpisodeSeason INTEGER AS Int,
@@ -24,7 +24,7 @@ CREATE TABLE MyShow (
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, homePageUrl, genres, networkTmdbId, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
+INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, homePageUrl, genres, networks, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:
@@ -76,13 +76,11 @@ SELECT
  contentRating,
  overview,
  genres,
- Network.name AS networkName,
- Network.imageUrl AS networkImageUrl,
+ networks,
  homePageUrl,
  imdbId,
  facebookId,
  instagramId,
  twitterId
 FROM MyShow
-LEFT OUTER JOIN Network ON Network.tmdbId = MyShow.networkTmdbId
 WHERE MyShow.tmdbId = ?;

@@ -55,7 +55,7 @@ class ShowDetailsPresenter(
             rating = show.contentRating.orEmpty(),
             year = show.year,
             endYear = if (show.isEnded) show.lastYear else null,
-            network = show.networkName)
+            networks = show.networks)
 
         view?.displayShowHeader(headerViewModel)
     }
@@ -69,7 +69,7 @@ class ShowDetailsPresenter(
             rating = show.contentRating.orEmpty(),
             year = show.year,
             endYear = if (show.isEnded) show.lastYear else null,
-            network = show.network?.name)
+            networks = show.networks)
 
         view?.displayShowHeader(headerViewModel)
     }

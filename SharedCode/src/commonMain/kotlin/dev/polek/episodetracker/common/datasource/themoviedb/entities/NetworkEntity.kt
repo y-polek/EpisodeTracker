@@ -1,15 +1,12 @@
 package dev.polek.episodetracker.common.datasource.themoviedb.entities
 
-import dev.polek.episodetracker.common.utils.allNotNull
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
 @Serializable
 data class NetworkEntity(
-    @SerialName("id") val tmdbId: Int? = null,
-    @SerialName("name") val name: String? = null,
-    @SerialName("logo_path") val logoPath: String? = null)
+    @SerialName("name") val name: String? = null)
 {
-    @Transient val isValid = allNotNull(tmdbId, name)
+    @Transient val isValid = name != null && name.isNotBlank()
 }
