@@ -2,20 +2,16 @@ package dev.polek.episodetracker.common.datasource.omdb
 
 import dev.polek.episodetracker.OMDB_API_KEY
 import dev.polek.episodetracker.common.datasource.omdb.entities.OmdbShowEntity
+import dev.polek.episodetracker.common.network.platformHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
 
 class OmdbService(client: HttpClient?) {
 
-    private val client = client ?: HttpClient {
-        install(Logging) {
-            level = LogLevel.ALL
-        }
+    private val client = client ?: platformHttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer(json = Json.nonstrict)
         }

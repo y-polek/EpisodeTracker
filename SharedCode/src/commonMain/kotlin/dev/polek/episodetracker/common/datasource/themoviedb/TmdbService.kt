@@ -4,25 +4,21 @@ import dev.polek.episodetracker.THE_MOVIE_DB_API_ACCESS_TOKEN
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.*
 import dev.polek.episodetracker.common.model.DiscoverResult
 import dev.polek.episodetracker.common.network.bearer
+import dev.polek.episodetracker.common.network.platformHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.features.auth.Auth
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
 
 class TmdbService(client: HttpClient?) {
 
-    private val client = client ?: HttpClient {
+    private val client = client ?: platformHttpClient {
         install(Auth) {
             bearer {
                 token = THE_MOVIE_DB_API_ACCESS_TOKEN
             }
-        }
-        install(Logging) {
-            level = LogLevel.ALL
         }
         install(JsonFeature) {
             serializer = KotlinxSerializer(json = Json.nonstrict)
