@@ -20,14 +20,21 @@ class DiscoverViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.onViewAppeared()
+        
+        tableView.retryTappedCallback = {
+            self.presenter.onRetryButtonClicked()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.onViewDisappeared()
+        
+        tableView.retryTappedCallback = nil
     }
 }
 
+// MARK: - DiscoverView implementation
 extension DiscoverViewController: DiscoverView {
     
     func showPrompt() {
@@ -69,6 +76,14 @@ extension DiscoverViewController: DiscoverView {
     
     func hideEmptyMessage() {
         tableView.hideEmptyView()
+    }
+    
+    func showError() {
+        tableView.showErrorView()
+    }
+    
+    func hideError() {
+        tableView.hideErrorView()
     }
     
     func openDiscoverShow(showId: Int32) {

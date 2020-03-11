@@ -82,12 +82,12 @@
                                         </connections>
                                     </containerView>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsY-EQ-KkW" customClass="FloatingButton" customModule="EpisodeTracker" customModuleProvider="target">
-                                        <rect key="frame" x="90.666666666666686" y="734" width="194" height="44"/>
+                                        <rect key="frame" x="94" y="734" width="187" height="44"/>
                                         <color key="backgroundColor" name="Accent"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="fWd-IM-2iX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="tintColor" name="TextColorPrimaryInverse"/>
                                         <state key="normal" title="Add to My Shows" image="ic-add">
                                             <color key="titleColor" name="TextColorPrimaryInverse"/>

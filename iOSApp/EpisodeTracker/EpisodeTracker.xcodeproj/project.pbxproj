@@ -21,6 +21,7 @@
 		D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238771523E5745300688E01 /* ShowDetailsViewController.swift */; };
 		D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238771823E5796200688E01 /* ShowDetails.storyboard */; };
 		D28792D523F887140071E46B /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28792D423F887140071E46B /* TrailerCell.swift */; };
+		D293933124184B6B00F028C6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D293933024184B6B00F028C6 /* ErrorView.swift */; };
 		D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; };
 		D29D7AF023A24D4400B2832D /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D29D7AFE23A2974700B2832D /* UpcomingShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29D7AFD23A2974700B2832D /* UpcomingShowCell.swift */; };
@@ -50,6 +51,7 @@
 		D2C283C723EA1D9A002BEE91 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */; };
 		D2C7E97923FC629100DA8C4E /* RecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7E97823FC629100DA8C4E /* RecommendationCell.swift */; };
 		D2CC728D2414E87C00D4AD01 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC728C2414E87C00D4AD01 /* Animations.swift */; };
+		D2CC72922416E8A500D4AD01 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC72912416E8A500D4AD01 /* ErrorView.xib */; };
 		D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */; };
 		D2D5E33523FDE88300FE6234 /* ImdbBadge.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D5E33423FDE88300FE6234 /* ImdbBadge.xib */; };
 		D2D5E33723FDF17E00FE6234 /* ImdbBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D5E33623FDF17E00FE6234 /* ImdbBadge.swift */; };
@@ -90,6 +92,7 @@
 		D238771523E5745300688E01 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		D238771823E5796200688E01 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
 		D28792D423F887140071E46B /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
+		D293933024184B6B00F028C6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D29D7AEE23A24D4400B2832D /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
 		D29D7AFD23A2974700B2832D /* UpcomingShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingShowCell.swift; sourceTree = "<group>"; };
 		D29D7AFF23A299DE00B2832D /* ShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCell.swift; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 		D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		D2C7E97823FC629100DA8C4E /* RecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationCell.swift; sourceTree = "<group>"; };
 		D2CC728C2414E87C00D4AD01 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		D2CC72912416E8A500D4AD01 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleTableViewCell.swift; sourceTree = "<group>"; };
 		D2D5E33423FDE88300FE6234 /* ImdbBadge.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImdbBadge.xib; sourceTree = "<group>"; };
 		D2D5E33623FDF17E00FE6234 /* ImdbBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImdbBadge.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				D2BD772023EB617D002AE94F /* Checkbox */,
 				D2D905CC23A96A0C00E45753 /* ImageButton */,
 				D234846423FEBEF6001BA5E5 /* IconButton */,
+				D2CC72902416E88900D4AD01 /* ErrorView */,
 				D29D7B0223A2A93D00B2832D /* ImageView.swift */,
 				D29D7B0723A2D47D00B2832D /* Divider.swift */,
 				D2D905CA23A8F89A00E45753 /* TableView.swift */,
@@ -335,6 +340,15 @@
 			path = SeasonHeaderView;
 			sourceTree = "<group>";
 		};
+		D2CC72902416E88900D4AD01 /* ErrorView */ = {
+			isa = PBXGroup;
+			children = (
+				D2CC72912416E8A500D4AD01 /* ErrorView.xib */,
+				D293933024184B6B00F028C6 /* ErrorView.swift */,
+			);
+			path = ErrorView;
+			sourceTree = "<group>";
+		};
 		D2D5E33323FDE7EB00FE6234 /* ImdbBadge */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +437,7 @@
 				D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */,
 				D222456323EE12C900082162 /* MyShowsHeaderView.xib in Resources */,
 				D205221F23ECA5D4003F9F6B /* SeasonHeaderView.xib in Resources */,
+				D2CC72922416E8A500D4AD01 /* ErrorView.xib in Resources */,
 				D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */,
 				D2BEEF2023A248820077F125 /* Main.storyboard in Resources */,
 				D2BD772223EB642D002AE94F /* Checkbox.xib in Resources */,
@@ -503,6 +518,7 @@
 				D29D7B0323A2A93D00B2832D /* ImageView.swift in Sources */,
 				D232E73323F59E6300F024B9 /* AboutShowViewController.swift in Sources */,
 				D2CC728D2414E87C00D4AD01 /* Animations.swift in Sources */,
+				D293933124184B6B00F028C6 /* ErrorView.swift in Sources */,
 				D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */,
 				D29D7B0023A299DE00B2832D /* ShowCell.swift in Sources */,
 				D2D5E33723FDF17E00FE6234 /* ImdbBadge.swift in Sources */,
