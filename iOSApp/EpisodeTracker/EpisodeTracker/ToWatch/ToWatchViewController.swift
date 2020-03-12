@@ -25,6 +25,7 @@ class ToWatchViewController: UIViewController {
     }
 }
 
+// MARK: - ToWatchView implementation
 extension ToWatchViewController: ToWatchView {
     
     func displayShows(shows: [ToWatchShowViewModel]) {
@@ -32,8 +33,8 @@ extension ToWatchViewController: ToWatchView {
         tableView.reloadData()
     }
     
-    func openToWatchShowDetails(showId: Int32) {
-        let vc = ShowDetailsViewController.instantiate(showId: Int(showId), openEpisodesTabOnStart: true)
+    func openToWatchShowDetails(show: ToWatchShowViewModel) {
+        let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name, openEpisodesTabOnStart: true)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

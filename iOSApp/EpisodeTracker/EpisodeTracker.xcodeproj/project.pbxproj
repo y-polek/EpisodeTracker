@@ -20,6 +20,7 @@
 		D234846823FEBF79001BA5E5 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234846723FEBF79001BA5E5 /* IconButton.swift */; };
 		D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238771523E5745300688E01 /* ShowDetailsViewController.swift */; };
 		D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238771823E5796200688E01 /* ShowDetails.storyboard */; };
+		D26B4827241A30F700156F82 /* Ints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B4826241A30F700156F82 /* Ints.swift */; };
 		D28792D523F887140071E46B /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28792D423F887140071E46B /* TrailerCell.swift */; };
 		D293933124184B6B00F028C6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D293933024184B6B00F028C6 /* ErrorView.swift */; };
 		D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; };
@@ -91,6 +92,7 @@
 		D234846723FEBF79001BA5E5 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		D238771523E5745300688E01 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		D238771823E5796200688E01 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
+		D26B4826241A30F700156F82 /* Ints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ints.swift; sourceTree = "<group>"; };
 		D28792D423F887140071E46B /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
 		D293933024184B6B00F028C6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D29D7AEE23A24D4400B2832D /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				D2F09F0E23F40675003BFFAA /* NavigationController.swift */,
 				D2C1761F23FEAFF600BE0137 /* Urls.swift */,
 				D2CC728C2414E87C00D4AD01 /* Animations.swift */,
+				D26B4826241A30F700156F82 /* Ints.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */,
 				D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */,
 				D29D7B0F23A3DC6B00B2832D /* AttributedStrings.swift in Sources */,
+				D26B4827241A30F700156F82 /* Ints.swift in Sources */,
 				D2D905D023A96CCB00E45753 /* ImageButton.swift in Sources */,
 				D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */,
 				D2AB72F223E8B70800BA9576 /* EpisodesViewController.swift in Sources */,

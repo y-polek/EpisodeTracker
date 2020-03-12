@@ -86,8 +86,8 @@ extension DiscoverViewController: DiscoverView {
         tableView.hideErrorView()
     }
     
-    func openDiscoverShow(showId: Int32) {
-        let vc = ShowDetailsViewController.instantiate(showId: Int(showId), openEpisodesTabOnStart: false)
+    func openDiscoverShow(show: DiscoverResultViewModel) {
+        let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

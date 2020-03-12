@@ -3,5 +3,5 @@ package dev.polek.episodetracker.common.presentation.towatch
 interface ToWatchView {
 
     fun displayShows(shows: List<ToWatchShowViewModel>)
-    fun openToWatchShowDetails(showId: Int)
+    fun openToWatchShowDetails(show: ToWatchShowViewModel)
 }

@@ -27,7 +27,7 @@ class AboutShowPresenter(
     }
 
     fun onRecommendationClicked(recommendation: RecommendationViewModel) {
-        view?.openRecommendation(recommendation.showId)
+        view?.openRecommendation(recommendation)
     }
 
     private fun loadShow() {

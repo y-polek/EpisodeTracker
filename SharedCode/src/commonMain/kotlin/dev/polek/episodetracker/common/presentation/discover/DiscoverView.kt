@@ -14,5 +14,5 @@ interface DiscoverView {
     fun hideEmptyMessage()
     fun showError()
     fun hideError()
-    fun openDiscoverShow(showId: Int)
+    fun openDiscoverShow(show: DiscoverResultViewModel)
 }

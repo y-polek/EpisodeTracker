@@ -41,6 +41,17 @@ class ShowDetailsPresenter(
         }
     }
 
+    fun onRetryButtonClicked() {
+        val isInMyShows = myShowsRepository.isInMyShows(showId)
+        launch {
+            if (isInMyShows) {
+                loadFromDb()
+            } else {
+                loadFromRemote()
+            }
+        }
+    }
+
     private fun loadFromDb() {
         val show = myShowsRepository.showDetails(showId)
         if (show == null) {

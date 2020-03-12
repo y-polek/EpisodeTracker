@@ -5,14 +5,15 @@ import SharedCode
 
 class ShowDetailsViewController: UIViewController {
     
-    static func instantiate(showId: Int, openEpisodesTabOnStart: Bool = false) -> ShowDetailsViewController {
+    static func instantiate(showId: Int, showName: String, openEpisodesTabOnStart: Bool = false) -> ShowDetailsViewController {
         let storyboard = UIStoryboard(name: "ShowDetails", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController() as! ShowDetailsViewController
-        vc.setParameters(showId: Int(showId), openEpisodesTabOnStart: openEpisodesTabOnStart)
+        vc.setParameters(Int(showId), showName, openEpisodesTabOnStart)
         return vc
     }
     
     private var showId: Int!
+    private var showName: String!
     private var openEpisodesTabOnStart: Bool!
     private var presenter: ShowDetailsPresenter!
     private var aboutShowViewController: AboutShowViewController?
@@ -40,8 +41,9 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var addButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarLabel: UILabel!
     
-    private func setParameters(showId: Int, openEpisodesTabOnStart: Bool) {
+    private func setParameters(_ showId: Int, _ showName: String, _ openEpisodesTabOnStart: Bool) {
         self.showId = showId
+        self.showName = showName
         self.openEpisodesTabOnStart = openEpisodesTabOnStart
     }
     
@@ -54,6 +56,7 @@ class ShowDetailsViewController: UIViewController {
         imageView.isBlured = true
         imageView.blurAlpha = 0
         
+        toolbarLabel.text = showName
         toolbarLabel.alpha = 0
         headerLabelsContainer.alpha = 1
         
@@ -75,10 +78,11 @@ class ShowDetailsViewController: UIViewController {
         tabBar.alignment = .justified
         tabBar.delegate = self
         
-        backButton.imageView?.tintColor = .textColorPrimaryInverse
-        menuButton.imageView?.tintColor = .textColorPrimaryInverse
-        
         addButton.mode = .expanded
+        
+        errorView.retryTappedCallback = {
+            self.presenter.onRetryButtonClicked()
+        }
         
         if let bottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
             addButtonBottomConstraint.constant = bottomInset > 0 ? 0 : 16
@@ -190,6 +194,12 @@ class ShowDetailsViewController: UIViewController {
         aboutShowViewController?.setBottomInset(0)
         episodesViewController?.setBottomInset(0)
     }
+    
+    private func setToolbarTextColor(_ color: UIColor) {
+        toolbarLabel.textColor = color
+        backButton.imageView?.tintColor = color
+        menuButton.imageView?.tintColor = color
+    }
 }
 
 // MARK: - ShowDetailsView implementation
@@ -202,24 +212,24 @@ extension ShowDetailsViewController: ShowDetailsView {
         subheadLabel.text = show.subhead
         ratingLabel.text = show.rating
         contentView.isHidden = false
+        setToolbarTextColor(.textColorPrimaryInverse)
     }
     
     func showProgress() {
         activityIndicator.startAnimating()
         contentView.isHidden = true
-        backButton.imageView?.tintColor = .textColorPrimary
-        menuButton.imageView?.tintColor = .textColorPrimary
+        setToolbarTextColor(.textColorPrimary)
     }
     
     func hideProgress() {
         activityIndicator.stopAnimating()
-        contentView.isHidden = false
-        backButton.imageView?.tintColor = .textColorPrimaryInverse
-        menuButton.imageView?.tintColor = .textColorPrimaryInverse
     }
     
     func showError() {
         errorView.isHidden = false
+        contentView.isHidden = true
+        setToolbarTextColor(.textColorPrimary)
+        toolbarLabel.alpha = 1
     }
     
     func hideError() {

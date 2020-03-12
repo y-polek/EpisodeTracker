@@ -57,7 +57,7 @@ class DiscoverPresenter(
     }
 
     fun onShowClicked(show: DiscoverResultViewModel) {
-        view?.openDiscoverShow(show.id)
+        view?.openDiscoverShow(show)
     }
 
     fun onRetryButtonClicked() {

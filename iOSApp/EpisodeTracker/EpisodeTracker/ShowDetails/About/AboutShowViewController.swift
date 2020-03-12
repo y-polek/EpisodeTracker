@@ -146,8 +146,8 @@ extension AboutShowViewController: AboutShowView {
         imdbBadge.rating = rating
     }
     
-    func openRecommendation(showId: Int32) {
-        let vc = ShowDetailsViewController.instantiate(showId: Int(showId))
+    func openRecommendation(show: RecommendationViewModel) {
+        let vc = ShowDetailsViewController.instantiate(showId: show.showId.int, showName: show.name)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
