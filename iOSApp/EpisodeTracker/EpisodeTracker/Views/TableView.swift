@@ -20,7 +20,7 @@ class TableView: UITableView {
     @IBInspectable
     var errorText: String = "" {
         didSet {
-            errorView.messageLabel.text = self.errorText
+            errorView.errorText = self.errorText
         }
     }
     

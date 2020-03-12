@@ -82,7 +82,7 @@
                                         </connections>
                                     </containerView>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsY-EQ-KkW" customClass="FloatingButton" customModule="EpisodeTracker" customModuleProvider="target">
-                                        <rect key="frame" x="94" y="734" width="187" height="44"/>
+                                        <rect key="frame" x="106" y="734" width="163" height="44"/>
                                         <color key="backgroundColor" name="Accent"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="fWd-IM-2iX"/>
@@ -166,6 +166,13 @@
                                     <constraint firstAttribute="bottom" secondItem="x7V-6v-Rqh" secondAttribute="bottom" id="yX3-Ji-BWQ"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLr-2j-L0n" customClass="ErrorView" customModule="EpisodeTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="80" width="375" height="732"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="errorText" value="Can't load data"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="m22-PA-7SV">
                                 <rect key="frame" x="177" y="396" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -174,9 +181,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="bottom" secondItem="dsY-EQ-KkW" secondAttribute="bottom" id="1la-9i-Stt"/>
+                            <constraint firstItem="3g5-7n-dX0" firstAttribute="bottom" secondItem="gLr-2j-L0n" secondAttribute="bottom" id="5jB-0L-3Px"/>
+                            <constraint firstItem="gLr-2j-L0n" firstAttribute="top" secondItem="NmW-en-zZ8" secondAttribute="bottom" id="6Fg-yQ-oeI"/>
                             <constraint firstItem="3g5-7n-dX0" firstAttribute="bottom" secondItem="8Mg-ED-3gF" secondAttribute="bottom" id="7LQ-Rw-Hia"/>
+                            <constraint firstItem="gLr-2j-L0n" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="8eQ-SH-CBl"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="NmW-en-zZ8" secondAttribute="trailing" id="NFS-gX-hmA"/>
                             <constraint firstAttribute="trailing" secondItem="3g5-7n-dX0" secondAttribute="trailing" id="RZO-fv-d12"/>
+                            <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="gLr-2j-L0n" secondAttribute="trailing" id="Tff-mR-u99"/>
                             <constraint firstItem="NmW-en-zZ8" firstAttribute="top" secondItem="sue-Vb-FUr" secondAttribute="top" id="USg-Fe-bcq"/>
                             <constraint firstAttribute="top" secondItem="3g5-7n-dX0" secondAttribute="top" id="XSz-OE-bem"/>
                             <constraint firstItem="NmW-en-zZ8" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="bDM-t6-TNV"/>
@@ -192,6 +203,7 @@
                         <outlet property="backButton" destination="BOA-xL-8CE" id="JoO-UA-Zv4"/>
                         <outlet property="contentView" destination="3g5-7n-dX0" id="f4t-sp-N6E"/>
                         <outlet property="episodesView" destination="m6d-2k-LBz" id="fHc-sV-RSp"/>
+                        <outlet property="errorView" destination="gLr-2j-L0n" id="8eI-dS-Faw"/>
                         <outlet property="headerLabelsContainer" destination="fkf-Zv-uKT" id="vbl-26-eF1"/>
                         <outlet property="imageView" destination="htr-Op-cRr" id="qEj-y2-f5o"/>
                         <outlet property="imageViewHeightConstraint" destination="Gee-wz-moh" id="oZ0-J2-XUx"/>

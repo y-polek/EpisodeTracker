@@ -23,6 +23,7 @@ class ShowDetailsViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorView: ErrorView!
     @IBOutlet weak var toolbar: UIView!
     @IBOutlet weak var imageView: ImageView!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
@@ -88,8 +89,6 @@ class ShowDetailsViewController: UIViewController {
         } else {
             showAboutTab()
         }
-        
-        showActivityIndicator()
         
         presenter = ShowDetailsPresenter(
             showId: Int32(showId),
@@ -181,20 +180,6 @@ class ShowDetailsViewController: UIViewController {
         aboutView.isHidden = true
     }
     
-    private func showActivityIndicator() {
-        activityIndicator.startAnimating()
-        contentView.isHidden = true
-        backButton.imageView?.tintColor = .textColorPrimary
-        menuButton.imageView?.tintColor = .textColorPrimary
-    }
-    
-    private func hideActivityIndicator() {
-        activityIndicator.stopAnimating()
-        contentView.isHidden = false
-        backButton.imageView?.tintColor = .textColorPrimaryInverse
-        menuButton.imageView?.tintColor = .textColorPrimaryInverse
-    }
-    
     private func setBottomInset() {
         let inset = addButton.bounds.height + addButtonBottomConstraint.constant
         aboutShowViewController?.setBottomInset(inset)
@@ -207,6 +192,7 @@ class ShowDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - ShowDetailsView implementation
 extension ShowDetailsViewController: ShowDetailsView {
     
     func displayShowHeader(show: ShowHeaderViewModel) {
@@ -216,7 +202,28 @@ extension ShowDetailsViewController: ShowDetailsView {
         subheadLabel.text = show.subhead
         ratingLabel.text = show.rating
         contentView.isHidden = false
-        hideActivityIndicator()
+    }
+    
+    func showProgress() {
+        activityIndicator.startAnimating()
+        contentView.isHidden = true
+        backButton.imageView?.tintColor = .textColorPrimary
+        menuButton.imageView?.tintColor = .textColorPrimary
+    }
+    
+    func hideProgress() {
+        activityIndicator.stopAnimating()
+        contentView.isHidden = false
+        backButton.imageView?.tintColor = .textColorPrimaryInverse
+        menuButton.imageView?.tintColor = .textColorPrimaryInverse
+    }
+    
+    func showError() {
+        errorView.isHidden = false
+    }
+    
+    func hideError() {
+        errorView.isHidden = true
     }
     
     func displayAddToMyShowsButton() {

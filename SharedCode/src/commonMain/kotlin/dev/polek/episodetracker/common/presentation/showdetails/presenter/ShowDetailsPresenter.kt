@@ -61,16 +61,23 @@ class ShowDetailsPresenter(
     }
 
     private suspend fun loadFromRemote() {
-        val show = showRepository.showDetails(showId)
+        view?.showProgress()
+        view?.hideError()
 
-        val headerViewModel = ShowHeaderViewModel(
-            name = show.name.orEmpty(),
-            imageUrl = show.backdropPath?.let(::backdropImageUrl),
-            rating = show.contentRating.orEmpty(),
-            year = show.year,
-            endYear = if (show.isEnded) show.lastYear else null,
-            networks = show.networks)
-
-        view?.displayShowHeader(headerViewModel)
+        try {
+            val show = showRepository.showDetails(showId)
+            val headerViewModel = ShowHeaderViewModel(
+                name = show.name.orEmpty(),
+                imageUrl = show.backdropPath?.let(::backdropImageUrl),
+                rating = show.contentRating.orEmpty(),
+                year = show.year,
+                endYear = if (show.isEnded) show.lastYear else null,
+                networks = show.networks)
+            view?.displayShowHeader(headerViewModel)
+        } catch (e: Throwable) {
+            view?.showError()
+        } finally {
+            view?.hideProgress()
+        }
     }
 }

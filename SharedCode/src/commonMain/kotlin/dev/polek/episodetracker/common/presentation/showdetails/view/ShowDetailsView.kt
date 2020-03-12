@@ -5,6 +5,10 @@ import dev.polek.episodetracker.common.presentation.showdetails.model.ShowHeader
 interface ShowDetailsView {
 
     fun displayShowHeader(show: ShowHeaderViewModel)
+    fun showProgress()
+    fun hideProgress()
+    fun showError()
+    fun hideError()
     fun displayAddToMyShowsButton()
     fun displayAddToMyShowsProgress()
     fun hideAddToMyShowsButton()
