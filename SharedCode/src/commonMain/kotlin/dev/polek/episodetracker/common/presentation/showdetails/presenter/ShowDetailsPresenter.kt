@@ -11,6 +11,7 @@ import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetails
 import dev.polek.episodetracker.common.repositories.EpisodesRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
+import dev.polek.episodetracker.db.ShowDetails
 import kotlinx.coroutines.launch
 
 class ShowDetailsPresenter(
@@ -35,10 +36,12 @@ class ShowDetailsPresenter(
 
         episodesTabRevealed = true
 
-        if (showDetails != null) {
-            launch {
-                loadEpisodes(showDetails!!)
-            }
+        val isInMyShows = myShowsRepository.isInMyShows(showId)
+        if (isInMyShows || showDetails != null) {
+            loadEpisodes()
+        } else {
+            view?.hideEpisodesProgress()
+            view?.showEpisodesError()
         }
     }
 
@@ -93,28 +96,24 @@ class ShowDetailsPresenter(
     }
 
     fun onEpisodesRetryButtonClicked() {
-        showDetails ?: return
-        launch {
-            loadEpisodes(showDetails!!)
+        if (showDetails != null) {
+            loadEpisodes()
+        } else {
+            loadShowDetails()
         }
     }
 
     private fun loadShowDetails() {
         view?.showProgress()
+        view?.showEpisodesProgress()
         view?.hideError()
 
         val isInMyShows = myShowsRepository.isInMyShows(showId)
         if (isInMyShows) {
             val show = myShowsRepository.showDetails(showId)
             checkNotNull(show) { "Can't find show with $showId ID in My Shows" }
-            val headerViewModel = ShowHeaderViewModel(
-                name = show.name,
-                imageUrl = show.imageUrl,
-                rating = show.contentRating.orEmpty(),
-                year = show.year,
-                endYear = if (show.isEnded) show.lastYear else null,
-                networks = show.networks)
-            view?.displayShowHeader(headerViewModel)
+            displayHeader(show)
+            displayDetails(show)
             view?.hideProgress()
         }
 
@@ -124,22 +123,29 @@ class ShowDetailsPresenter(
                 showDetails = show
                 if (!isInMyShows) {
                     displayHeader(show)
+                    displayDetails(show)
                 }
-                displayDetails(show)
                 displayAdditionalInfo(show)
 
                 val imdbId = show.externalIds?.imdbId
                 if (imdbId != null) {
                     loadImdbRating(imdbId)
                 }
-
-                if (episodesTabRevealed) {
-                    loadEpisodes(show)
-                }
             } catch (e: Throwable) {
-                view?.showError()
+                if (!isInMyShows) {
+                    view?.showError()
+                }
             } finally {
                 view?.hideProgress()
+            }
+
+            if (episodesTabRevealed) {
+                if (isInMyShows || showDetails != null) {
+                    loadEpisodes()
+                } else {
+                    view?.hideEpisodesProgress()
+                    view?.showEpisodesError()
+                }
             }
         }
 
@@ -148,6 +154,17 @@ class ShowDetailsPresenter(
         } else {
             view?.displayAddToMyShowsButton()
         }
+    }
+
+    private fun displayHeader(show: ShowDetails) {
+        val headerViewModel = ShowHeaderViewModel(
+            name = show.name,
+            imageUrl = show.imageUrl,
+            rating = show.contentRating.orEmpty(),
+            year = show.year,
+            endYear = if (show.isEnded) show.lastYear else null,
+            networks = show.networks)
+        view?.displayShowHeader(headerViewModel)
     }
 
     private fun displayHeader(show: ShowDetailsEntity) {
@@ -160,6 +177,18 @@ class ShowDetailsPresenter(
             networks = show.networks
         )
         view?.displayShowHeader(headerViewModel)
+    }
+
+    private fun displayDetails(show: ShowDetails) {
+        val detailsViewModel = ShowDetailsViewModel(
+            overview = show.overview,
+            genres = show.genres,
+            homePageUrl = show.homePageUrl,
+            imdbId = show.imdbId,
+            instagramUsername = show.instagramId,
+            facebookProfile = show.facebookId,
+            twitterUsername = show.twitterId)
+        view?.displayShowDetails(detailsViewModel)
     }
 
     private fun displayDetails(show: ShowDetailsEntity) {
@@ -213,29 +242,33 @@ class ShowDetailsPresenter(
         }
     }
 
-    private suspend fun loadEpisodes(show: ShowDetailsEntity) {
+    private fun loadEpisodes() {
         view?.showEpisodesProgress()
         view?.hideEpisodesError()
 
         val isInMyShow = myShowsRepository.isInMyShows(showId)
 
-        try {
-            val seasonsList = when {
-                isInMyShow -> episodesRepository.allSeasons(showTmdbId = showId)
-                else -> {
-                    (1..show.numberOfSeasons)
-                        .mapNotNull { seasonNumber ->
-                            showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
-                        }
-                }
-            }.map(SeasonViewModel.Companion::map)
+        launch {
+            try {
+                val seasonsList = when {
+                    isInMyShow -> episodesRepository.allSeasons(showTmdbId = showId)
+                    else -> {
+                        val numberOfSeasons = showDetails?.numberOfSeasons
+                            ?: throw Throwable("Can't load episodes list without ShowDetails")
+                        (1..numberOfSeasons)
+                            .mapNotNull { seasonNumber ->
+                                showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
+                            }
+                    }
+                }.map(SeasonViewModel.Companion::map)
 
-            seasons = SeasonsViewModel(seasonsList)
-            view?.displayEpisodes(seasons.asList())
-        } catch (e: Throwable) {
-            view?.showEpisodesError()
-        } finally {
-            view?.hideEpisodesProgress()
+                seasons = SeasonsViewModel(seasonsList)
+                view?.displayEpisodes(seasons.asList())
+            } catch (e: Throwable) {
+                view?.showEpisodesError()
+            } finally {
+                view?.hideEpisodesProgress()
+            }
         }
     }
 
