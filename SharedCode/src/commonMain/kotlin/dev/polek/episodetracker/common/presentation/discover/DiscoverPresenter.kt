@@ -12,6 +12,8 @@ class DiscoverPresenter(
 {
     private var searchResults: List<DiscoverResultViewModel>? = null
 
+    private var lastSearchQuery: String? = null
+
     override fun attachView(view: DiscoverView) {
         super.attachView(view)
         view.showPrompt()
@@ -27,30 +29,8 @@ class DiscoverPresenter(
     }
 
     fun onSearchQuerySubmitted(query: String) {
-        view?.hidePrompt()
-        view?.hideEmptyMessage()
-        view?.showProgress()
-
-        launch {
-            val results = discoverRepository.search(query).map {
-                DiscoverResultViewModel(
-                    id = it.tmdbId,
-                    name = it.name,
-                    year = it.year,
-                    posterUrl = it.posterUrl,
-                    overview = it.overview,
-                    genres = it.genres,
-                    isInMyShows = myShowsRepository.isInMyShows(it.tmdbId)
-                )
-            }
-            searchResults = results
-
-            view?.hideProgress()
-            view?.showSearchResults(results)
-            if (results.isEmpty()) {
-                view?.showEmptyMessage()
-            }
-        }
+        lastSearchQuery = query
+        performSearch(query)
     }
 
     fun onAddButtonClicked(show: DiscoverResultViewModel) {
@@ -77,6 +57,39 @@ class DiscoverPresenter(
     }
 
     fun onShowClicked(show: DiscoverResultViewModel) {
-        view?.openDiscoverShow(show.id)
+        view?.openDiscoverShow(show)
+    }
+
+    fun onRetryButtonClicked() {
+        lastSearchQuery ?: return
+        performSearch(lastSearchQuery!!)
+    }
+
+    private fun performSearch(query: String) {
+        view?.hidePrompt()
+        view?.hideEmptyMessage()
+        view?.hideError()
+        view?.showProgress()
+
+        launch {
+            try {
+                val results = discoverRepository.search(query).map { result ->
+                    val isInMyShow = myShowsRepository.isInMyShows(result.tmdbId)
+                    return@map DiscoverResultViewModel.map(result, isInMyShow)
+                }
+
+                searchResults = results
+                view?.showSearchResults(results)
+                if (results.isEmpty()) {
+                    view?.showEmptyMessage()
+                }
+            } catch (error: Throwable) {
+                searchResults = null
+                view?.showSearchResults(emptyList())
+                view?.showError()
+            } finally {
+                view?.hideProgress()
+            }
+        }
     }
 }

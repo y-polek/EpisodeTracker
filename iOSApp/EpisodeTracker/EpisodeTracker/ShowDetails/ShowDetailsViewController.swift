@@ -5,14 +5,15 @@ import SharedCode
 
 class ShowDetailsViewController: UIViewController {
     
-    static func instantiate(showId: Int, openEpisodesTabOnStart: Bool = false) -> ShowDetailsViewController {
+    static func instantiate(showId: Int, showName: String, openEpisodesTabOnStart: Bool = false) -> ShowDetailsViewController {
         let storyboard = UIStoryboard(name: "ShowDetails", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController() as! ShowDetailsViewController
-        vc.setParameters(showId: Int(showId), openEpisodesTabOnStart: openEpisodesTabOnStart)
+        vc.setParameters(Int(showId), showName, openEpisodesTabOnStart)
         return vc
     }
     
     private var showId: Int!
+    private var showName: String!
     private var openEpisodesTabOnStart: Bool!
     private var presenter: ShowDetailsPresenter!
     private var aboutShowViewController: AboutShowViewController?
@@ -23,6 +24,7 @@ class ShowDetailsViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorView: ErrorView!
     @IBOutlet weak var toolbar: UIView!
     @IBOutlet weak var imageView: ImageView!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
@@ -39,8 +41,9 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var addButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarLabel: UILabel!
     
-    private func setParameters(showId: Int, openEpisodesTabOnStart: Bool) {
+    private func setParameters(_ showId: Int, _ showName: String, _ openEpisodesTabOnStart: Bool) {
         self.showId = showId
+        self.showName = showName
         self.openEpisodesTabOnStart = openEpisodesTabOnStart
     }
     
@@ -53,6 +56,7 @@ class ShowDetailsViewController: UIViewController {
         imageView.isBlured = true
         imageView.blurAlpha = 0
         
+        toolbarLabel.text = showName
         toolbarLabel.alpha = 0
         headerLabelsContainer.alpha = 1
         
@@ -74,36 +78,43 @@ class ShowDetailsViewController: UIViewController {
         tabBar.alignment = .justified
         tabBar.delegate = self
         
-        backButton.imageView?.tintColor = .textColorPrimaryInverse
-        menuButton.imageView?.tintColor = .textColorPrimaryInverse
-        
         addButton.mode = .expanded
         
         if let bottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
             addButtonBottomConstraint.constant = bottomInset > 0 ? 0 : 16
         }
         
+        let app = AppDelegate.instance()
+        presenter = ShowDetailsPresenter(
+            showId: Int32(showId),
+            myShowsRepository: app.myShowsRepository,
+            showRepository: app.showRepository,
+            episodesRepository: app.episodesRepository)
+        presenter.attachView(view: self)
+        
         if openEpisodesTabOnStart {
             showEpisodesTab()
         } else {
             showAboutTab()
         }
-        
-        showActivityIndicator()
-        
-        presenter = ShowDetailsPresenter(
-            showId: Int32(showId),
-            myShowsRepository: AppDelegate.instance().myShowsRepository,
-            showRepository: AppDelegate.instance().showRepository
-        )
-        presenter.attachView(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        aboutShowViewController?.trailerTapCallback = trailerTapCallback(trailer:)
+        aboutShowViewController?.castMemberTapCallback = castMemberTapCallback(castMember:)
+        aboutShowViewController?.recommendationTapCallback = recommendationTapCallback(recommendation:)
         aboutShowViewController?.scrollCallback = scrollCallback(offset:)
+        
+        episodesViewController?.seasonWatchedStateToggleCallback = seasonWatchedStateToggleCallback(season:)
+        episodesViewController?.episodeWatchedStateToggleCallback = episodeWatchedStateToggleCallback(episode:)
+        episodesViewController?.retryTapCallback = episodesRetryTapCallback
         episodesViewController?.scrollCallback = scrollCallback(offset:)
+        
+        errorView.retryTappedCallback = {
+            self.presenter.onRetryButtonClicked()
+        }
         
         presenter.onViewAppeared()
     }
@@ -111,8 +122,16 @@ class ShowDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        aboutShowViewController?.trailerTapCallback = nil
+        aboutShowViewController?.castMemberTapCallback = nil
+        aboutShowViewController?.recommendationTapCallback = nil
         aboutShowViewController?.scrollCallback = nil
+        
+        episodesViewController?.seasonWatchedStateToggleCallback = nil
+        episodesViewController?.episodeWatchedStateToggleCallback = nil
         episodesViewController?.scrollCallback = nil
+        
+        errorView.retryTappedCallback = nil
         
         presenter.onViewDisappeared()
     }
@@ -148,6 +167,34 @@ class ShowDetailsViewController: UIViewController {
         presenter.onAddToMyShowsButtonClicked()
     }
     
+    private func trailerTapCallback(trailer: TrailerViewModel) {
+        var url: URL = URL(string: "youtube://\(trailer.youtubeKey)")!
+        if !url.canBeOpen() {
+            url = URL(string: trailer.url)!
+        }
+        url.open()
+    }
+    
+    private func castMemberTapCallback(castMember: CastMemberViewModel) {
+        
+    }
+    
+    private func recommendationTapCallback(recommendation: RecommendationViewModel) {
+        presenter.onRecommendationClicked(recommendation: recommendation)
+    }
+    
+    private func seasonWatchedStateToggleCallback(season: SeasonViewModel) {
+        presenter.onSeasonWatchedStateToggled(season: season)
+    }
+    
+    private func episodeWatchedStateToggleCallback(episode: EpisodeViewModel) {
+        presenter.onEpisodeWatchedStateToggled(episode: episode)
+    }
+    
+    private func episodesRetryTapCallback() {
+        presenter.onEpisodesRetryButtonClicked()
+    }
+    
     private func scrollCallback(offset: CGFloat) -> Bool {
         var newHeight = imageViewHeightConstraint.constant - offset
         var blockScroll = false
@@ -176,23 +223,10 @@ class ShowDetailsViewController: UIViewController {
     }
     
     private func showEpisodesTab() {
+        presenter.onEpisodesTabSelected()
         tabBar.setSelectedItem(tabBar.items[1], animated: false)
         episodesView.isHidden = false
         aboutView.isHidden = true
-    }
-    
-    private func showActivityIndicator() {
-        activityIndicator.startAnimating()
-        contentView.isHidden = true
-        backButton.imageView?.tintColor = .textColorPrimary
-        menuButton.imageView?.tintColor = .textColorPrimary
-    }
-    
-    private func hideActivityIndicator() {
-        activityIndicator.stopAnimating()
-        contentView.isHidden = false
-        backButton.imageView?.tintColor = .textColorPrimaryInverse
-        menuButton.imageView?.tintColor = .textColorPrimaryInverse
     }
     
     private func setBottomInset() {
@@ -205,8 +239,15 @@ class ShowDetailsViewController: UIViewController {
         aboutShowViewController?.setBottomInset(0)
         episodesViewController?.setBottomInset(0)
     }
+    
+    private func setToolbarTextColor(_ color: UIColor) {
+        toolbarLabel.textColor = color
+        backButton.imageView?.tintColor = color
+        menuButton.imageView?.tintColor = color
+    }
 }
 
+// MARK: - ShowDetailsView implementation
 extension ShowDetailsViewController: ShowDetailsView {
     
     func displayShowHeader(show: ShowHeaderViewModel) {
@@ -216,7 +257,28 @@ extension ShowDetailsViewController: ShowDetailsView {
         subheadLabel.text = show.subhead
         ratingLabel.text = show.rating
         contentView.isHidden = false
-        hideActivityIndicator()
+        setToolbarTextColor(.textColorPrimaryInverse)
+    }
+    
+    func showProgress() {
+        activityIndicator.startAnimating()
+        contentView.isHidden = true
+        setToolbarTextColor(.textColorPrimary)
+    }
+    
+    func hideProgress() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func showError() {
+        errorView.isHidden = false
+        contentView.isHidden = true
+        setToolbarTextColor(.textColorPrimary)
+        toolbarLabel.alpha = 1
+    }
+    
+    func hideError() {
+        errorView.isHidden = true
     }
     
     func displayAddToMyShowsButton() {
@@ -239,6 +301,58 @@ extension ShowDetailsViewController: ShowDetailsView {
     
     func close() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func displayShowDetails(show: ShowDetailsViewModel) {
+        aboutShowViewController?.displayShowDetails(show)
+    }
+    
+    func displayTrailers(trailers: [TrailerViewModel]) {
+        aboutShowViewController?.displayTrailers(trailers)
+    }
+    
+    func displayCast(castMembers: [CastMemberViewModel]) {
+        aboutShowViewController?.displayCast(castMembers)
+    }
+    
+    func displayRecommendations(recommendations: [RecommendationViewModel]) {
+        aboutShowViewController?.displayRecommendations(recommendations)
+    }
+    
+    func displayImdbRating(rating: Float) {
+        aboutShowViewController?.displayImdbRating(rating)
+    }
+    
+    func openRecommendation(show: RecommendationViewModel) {
+        aboutShowViewController?.openRecommendation(show)
+    }
+    
+    func displayEpisodes(seasons: [SeasonViewModel]) {
+        episodesViewController?.displaySeasons(seasons)
+    }
+    
+    func reloadSeason(season: Int32) {
+        episodesViewController?.reloadSeason(season)
+    }
+    
+    func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
+        episodesViewController?.showCheckAllPreviousEpisodesPrompt(callback: callback)
+    }
+    
+    func showEpisodesProgress() {
+        episodesViewController?.showActivityIndicator()
+    }
+    
+    func hideEpisodesProgress() {
+        episodesViewController?.hideActivityIndicator()
+    }
+    
+    func showEpisodesError() {
+        episodesViewController?.showError()
+    }
+    
+    func hideEpisodesError() {
+        episodesViewController?.hideError()
     }
 }
 

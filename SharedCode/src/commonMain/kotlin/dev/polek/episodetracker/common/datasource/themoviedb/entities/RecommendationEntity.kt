@@ -13,9 +13,13 @@ data class RecommendationEntity(
     @SerialName("first_air_date") val firstAirDate: String? = null,
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("backdrop_path") val backdropPath: String? = null,
-    @SerialName("networks") val networks: List<NetworkEntity>? = null)
+    @SerialName("networks") val networkEntities: List<NetworkEntity>? = null)
 {
     @Transient val isValid = allNotNull(tmdbId, name)
     @Transient val year: Int? = firstAirDate?.let(::parseDate)?.year
-    @Transient val network: NetworkEntity? = networks?.firstOrNull(NetworkEntity::isValid)
+    @Transient val networks: List<String> = networkEntities?.asSequence()
+        ?.filter(NetworkEntity::isValid)
+        ?.mapNotNull(NetworkEntity::name)
+        ?.toList()
+        .orEmpty()
 }

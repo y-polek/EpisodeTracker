@@ -27,7 +27,7 @@ class ToWatchPresenter(private val repository: ToWatchRepository) : BasePresente
     }
 
     fun onShowClicked(show: ToWatchShowViewModel) {
-        view?.openToWatchShowDetails(show.id)
+        view?.openToWatchShowDetails(show)
     }
 
     override fun onQueryResult(result: List<ToWatchShow>) {

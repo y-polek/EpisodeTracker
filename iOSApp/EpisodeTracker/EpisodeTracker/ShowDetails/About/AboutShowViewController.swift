@@ -2,10 +2,9 @@ import UIKit
 import MaterialComponents.MaterialRipple
 import SharedCode
 
-class AboutShowViewController: UIViewController, UICollectionViewDelegate {
+class AboutShowViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var genresCollectionView: UICollectionView!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
@@ -21,69 +20,50 @@ class AboutShowViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var twitterButton: IconButton!
     
     var showId: Int!
-    var presenter: AboutShowPresenter!
     let genresDataSource = GenresDataSource()
     let trailersDataSource = TrailersDataSource()
     let castDataSource = CastDataSource()
-    var recommendationsDelegate: RecommendationsDelegate!
+    var recommendationsDataSource: RecommendationsDataSource!
+    
+    var trailers = [TrailerViewModel]()
+    var castMembers = [CastMemberViewModel]()
+    var recommendations = [RecommendationViewModel]()
     
     /**
      * Returns `true` if scroll should be blocked (offset set to `0`), `false` otherwise.
      */
     var scrollCallback: ((_ offset: CGFloat) -> Bool)?
+    var trailerTapCallback: ((_ trailer: TrailerViewModel) -> Void)? {
+        didSet {
+            trailersDataSource.trailerTapCallback = self.trailerTapCallback
+        }
+    }
+    var castMemberTapCallback: ((_ castMember: CastMemberViewModel) -> Void)?
+    var recommendationTapCallback: ((_ recommendation: RecommendationViewModel) -> Void)?
     
     private let rippleController = MDCRippleTouchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter = AboutShowPresenter(
-            showId: Int32(showId),
-            myShowsRepository: AppDelegate.instance().myShowsRepository,
-            showRepository: AppDelegate.instance().showRepository)
-        
-        recommendationsDelegate = RecommendationsDelegate(presenter)
+        recommendationsDataSource = RecommendationsDataSource()
         
         genresCollectionView.dataSource = genresDataSource
         
         trailersCollectionView.dataSource = trailersDataSource
-        trailersCollectionView.delegate = trailersDataSource
+        trailersCollectionView.delegate = self
         trailersContainer.isHidden = true
         
         castCollectionView.dataSource = castDataSource
-        castCollectionView.delegate = castDataSource
+        castCollectionView.delegate = self
         castContainer.isHidden = true
         
-        recommendationsCollectionView.dataSource = recommendationsDelegate
-        recommendationsCollectionView.delegate = recommendationsDelegate
+        recommendationsCollectionView.dataSource = recommendationsDataSource
+        recommendationsCollectionView.delegate = self
         recommendationsContainer.isHidden = true
-        
-        showActivityIndicator()
-        
-        presenter.attachView(view: self)
     }
     
-    func setBottomInset(_ inset: CGFloat) {
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
-    }
-    
-    private func showActivityIndicator() {
-        scrollView.isHidden = true
-        activityIndicator.startAnimating()
-    }
-    
-    private func hideActivityIndicator() {
-        scrollView.isHidden = false
-        activityIndicator.stopAnimating()
-    }
-}
-
-// MARK: - AboutShowView implementation
-extension AboutShowViewController: AboutShowView {
-    
-    func displayShowDetails(show: ShowDetailsViewModel) {
-        hideActivityIndicator()
-        
+    func displayShowDetails(_ show: ShowDetailsViewModel) {
         genresDataSource.genres = show.genres
         genresCollectionView.reloadData()
         overviewLabel.text = show.overview
@@ -124,31 +104,70 @@ extension AboutShowViewController: AboutShowView {
         }
     }
     
-    func displayTrailers(trailers: [TrailerViewModel]) {
+    func displayTrailers(_ trailers: [TrailerViewModel]) {
+        self.trailers = trailers
         trailersDataSource.trailers = trailers
         trailersCollectionView.reloadData()
         trailersContainer.isHidden = trailers.isEmpty
     }
     
-    func displayCast(cast: [CastMemberViewModel]) {
-        castDataSource.castMembers = cast
+    func displayCast(_ castMembers: [CastMemberViewModel]) {
+        self.castMembers = castMembers
+        castDataSource.castMembers = castMembers
         castCollectionView.reloadData()
-        castContainer.isHidden = cast.isEmpty
+        castContainer.isHidden = castMembers.isEmpty
     }
     
-    func displayRecommendations(recommendations: [RecommendationViewModel]) {
-        recommendationsDelegate.recommendations = recommendations
+    func displayRecommendations(_ recommendations: [RecommendationViewModel]) {
+        self.recommendations = recommendations
+        recommendationsDataSource.recommendations = recommendations
         recommendationsCollectionView.reloadData()
         recommendationsContainer.isHidden = recommendations.isEmpty
     }
     
-    func displayImdbRating(rating: Float) {
+    func displayImdbRating(_ rating: Float) {
         imdbBadge.rating = rating
     }
     
-    func openRecommendation(showId: Int32) {
-        let vc = ShowDetailsViewController.instantiate(showId: Int(showId))
+    func openRecommendation(_ show: RecommendationViewModel) {
+        let vc = ShowDetailsViewController.instantiate(showId: show.showId.int, showName: show.name)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setBottomInset(_ inset: CGFloat) {
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
+    }
+}
+
+// MARK: - UICollectionViews delegate
+extension AboutShowViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case trailersCollectionView:
+            trailerSelectedAt(indexPath)
+        case castCollectionView:
+            castMemberSelectedAt(indexPath)
+        case recommendationsCollectionView:
+            recommendationSelectedAt(indexPath)
+        default:
+            break
+        }
+    }
+    
+    private func trailerSelectedAt(_ indexPath: IndexPath) {
+        let trailer = trailers[indexPath.row]
+        trailerTapCallback?(trailer)
+    }
+    
+    private func castMemberSelectedAt(_ indexPath: IndexPath) {
+        let castMember = castMembers[indexPath.row]
+        castMemberTapCallback?(castMember)
+    }
+    
+    private func recommendationSelectedAt(_ indexPath: IndexPath) {
+        let recommendation = recommendations[indexPath.row]
+        recommendationTapCallback?(recommendation)
     }
 }
 
@@ -184,9 +203,10 @@ class GenresDataSource: NSObject, UICollectionViewDataSource {
 }
 
 // MARK: - Trailers UICollectionView datasource and delegate
-class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class TrailersDataSource: NSObject, UICollectionViewDataSource {
     
     var trailers = [TrailerViewModel]()
+    var trailerTapCallback: ((_ trailer: TrailerViewModel) -> Void)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return trailers.count
@@ -199,23 +219,10 @@ class TrailersDataSource: NSObject, UICollectionViewDataSource, UICollectionView
         cell.previewImageView.imageUrl = trailer.previewImageUrl
         cell.nameLabel.text = trailer.name
         cell.playButton.tapCallback = {
-            self.openTrailer(trailer)
+            self.trailerTapCallback?(trailer)
         }
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let trailer = trailers[indexPath.row]
-        openTrailer(trailer)
-    }
-    
-    private func openTrailer(_ trailer: TrailerViewModel) {
-        var url: URL = URL(string: "youtube://\(trailer.youtubeKey)")!
-        if !url.canBeOpen() {
-            url = URL(string: trailer.url)!
-        }
-        url.open()
     }
 }
 
@@ -240,15 +247,10 @@ class CastDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-// MARK: - Recommendations UICollectionView delegate
-class RecommendationsDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - Recommendations UICollectionView datasource
+class RecommendationsDataSource: NSObject, UICollectionViewDataSource {
     
-    let presenter: AboutShowPresenter
     var recommendations = [RecommendationViewModel]()
-    
-    init(_ presenter: AboutShowPresenter) {
-        self.presenter = presenter
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recommendations.count
@@ -264,10 +266,5 @@ class RecommendationsDelegate: NSObject, UICollectionViewDataSource, UICollectio
         cell.subheadLabel.isHidden = show.subhead.isEmpty
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let recommendation = recommendations[indexPath.row]
-        presenter.onRecommendationClicked(recommendation: recommendation)
     }
 }

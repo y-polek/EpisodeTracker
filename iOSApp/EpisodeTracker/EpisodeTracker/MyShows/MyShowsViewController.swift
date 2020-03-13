@@ -29,6 +29,7 @@ class MyShowsViewController: UIViewController {
     }
 }
 
+// MARK: - MyShowsView implementation
 extension MyShowsViewController: MyShowsView {
     
     func updateShows(model: MyShowsViewModel) {
@@ -36,8 +37,8 @@ extension MyShowsViewController: MyShowsView {
         tableView.reloadData()
     }
     
-    func openMyShowDetails(showId: Int32) {
-        let vc = ShowDetailsViewController.instantiate(showId: Int(showId), openEpisodesTabOnStart: false)
+    func openMyShowDetails(show: MyShowsListItem.ShowViewModel) {
+        let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

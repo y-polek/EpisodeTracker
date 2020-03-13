@@ -17,16 +17,43 @@ class TableView: UITableView {
         }
     }
     
+    @IBInspectable
+    var errorText: String = "" {
+        didSet {
+            errorView.errorText = self.errorText
+        }
+    }
+    
+    @IBInspectable
+    var showErrorImage: Bool = true {
+        didSet {
+            errorView.showImage = self.showErrorImage
+        }
+    }
+    
+    var retryTappedCallback: (() -> Void)? {
+        didSet {
+            errorView.retryTappedCallback = self.retryTappedCallback
+        }
+    }
+    
     private let promptLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         return label
     }()
+    
     private let emptyLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         return label
     }()
+    
+    private let errorView: ErrorView = {
+        let view = ErrorView()
+        return view
+    }()
+    
     private let activityIndicator: UIActivityIndicatorView = {
         if #available(iOS 13.0, *) {
             return UIActivityIndicatorView(style: .large)
@@ -79,6 +106,16 @@ class TableView: UITableView {
     
     func hideEmptyView() {
         if backgroundView === emptyLabel {
+            backgroundView = nil
+        }
+    }
+    
+    func showErrorView() {
+        backgroundView = errorView
+    }
+    
+    func hideErrorView() {
+        if backgroundView === errorView {
             backgroundView = nil
         }
     }

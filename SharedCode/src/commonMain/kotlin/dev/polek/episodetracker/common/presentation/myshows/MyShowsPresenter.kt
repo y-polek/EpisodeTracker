@@ -59,6 +59,6 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
     }
 
     fun onShowClicked(show: ShowViewModel) {
-        view?.openMyShowDetails(show.id)
+        view?.openMyShowDetails(show)
     }
 }
