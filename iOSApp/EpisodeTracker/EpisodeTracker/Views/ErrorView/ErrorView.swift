@@ -5,8 +5,16 @@ import MaterialComponents.MaterialButtons
 class ErrorView: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var retryButton: MDCButton!
+    
+    @IBInspectable
+    var showImage: Bool = true {
+        didSet {
+            imageView.isHidden = !self.showImage
+        }
+    }
     
     @IBInspectable
     var errorText: String = "Error" {

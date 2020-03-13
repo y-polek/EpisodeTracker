@@ -4,64 +4,42 @@ import SharedCode
 class EpisodesViewController: UIViewController {
     
     var showId: Int!
-    var presenter: EpisodesPresenter!
     var seasons = [SeasonViewModel]()
     
     /**
      * Returns `true` if scroll should be blocked (offset set to `0`), `false` otherwise.
      */
     var scrollCallback: ((_ offset: CGFloat) -> Bool)?
+    var seasonWatchedStateToggleCallback: ((_ season: SeasonViewModel) -> Void)?
+    var episodeWatchedStateToggleCallback: ((_ episode: EpisodeViewModel) -> Void)?
+    var retryTapCallback: (() -> Void)?
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(SeasonHeaderView.nib, forHeaderFooterViewReuseIdentifier: SeasonHeaderView.reuseIdentifier)
         
-        showActivityIndicator()
-        
-        let app = AppDelegate.instance()
-        presenter = EpisodesPresenter(
-            showId: Int32(showId),
-            myShowsRepository: app.myShowsRepository,
-            episodesRepository: app.episodesRepository,
-            showRepository: app.showRepository)
-        presenter.attachView(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.onViewAppeared()
+        
+        tableView.retryTappedCallback = {
+            self.retryTapCallback?()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter.onViewDisappeared()
+        
+        tableView.retryTappedCallback = nil
     }
     
-    func setBottomInset(_ inset: CGFloat) {
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
-    }
-    
-    private func showActivityIndicator() {
-        tableView.isHidden = true
-        activityIndicator.startAnimating()
-    }
-    
-    private func hideActivityIndicator() {
-        tableView.isHidden = false
-        activityIndicator.stopAnimating()
-    }
-}
-
-extension EpisodesViewController: EpisodesView {
-    
-    func displaySeasons(seasons: [SeasonViewModel]) {
+    func displaySeasons(_ seasons: [SeasonViewModel]) {
         self.seasons = seasons
         tableView.reloadData()
-        hideActivityIndicator()
     }
     
     func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
@@ -75,9 +53,31 @@ extension EpisodesViewController: EpisodesView {
         present(alert, animated: true, completion: nil)
     }
     
-    func reloadSeason(season: Int32) {
+    func reloadSeason(_ season: Int32) {
         let section = Int(season) - 1
         reloadSection(section)
+    }
+    
+    func setBottomInset(_ inset: CGFloat) {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
+    }
+    
+    func showActivityIndicator() {
+        tableView.isHidden = true
+        activityIndicator.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        tableView.isHidden = false
+        activityIndicator.stopAnimating()
+    }
+    
+    func showError() {
+        tableView.showErrorView()
+    }
+    
+    func hideError() {
+        tableView.hideErrorView()
     }
 }
 
@@ -108,7 +108,8 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
             if season.isWatched == isChecked {
                 return
             }
-            self.presenter.onSeasonWatchedStateToggled(season: season)
+            
+            self.seasonWatchedStateToggleCallback?(season)
         }
         
         return header
@@ -132,7 +133,7 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
             if episode.isWatched == isChecked {
                 return
             }
-            self.presenter.onEpisodeWatchedStateToggled(episode: episode)
+            self.episodeWatchedStateToggleCallback?(episode)
         }
         
         return cell

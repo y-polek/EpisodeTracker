@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorView" customModule="EpisodeTracker" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="aK6-Xo-LbK"/>
+                <outlet property="imageView" destination="E3V-w5-8Le" id="s1U-tm-ogJ"/>
                 <outlet property="messageLabel" destination="Eqw-NI-zkl" id="iMl-Cb-fSA"/>
                 <outlet property="retryButton" destination="zy7-Ec-hdn" id="vGV-EF-i6x"/>
             </connections>

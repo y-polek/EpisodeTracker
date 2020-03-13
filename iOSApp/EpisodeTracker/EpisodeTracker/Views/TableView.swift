@@ -24,6 +24,13 @@ class TableView: UITableView {
         }
     }
     
+    @IBInspectable
+    var showErrorImage: Bool = true {
+        didSet {
+            errorView.showImage = self.showErrorImage
+        }
+    }
+    
     var retryTappedCallback: (() -> Void)? {
         didSet {
             errorView.retryTappedCallback = self.retryTappedCallback
