@@ -7,8 +7,11 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.GenreEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowEntity
 import dev.polek.episodetracker.common.logging.log
+import dev.polek.episodetracker.common.logging.loge
+import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.common.utils.currentTimeMillis
+import dev.polek.episodetracker.common.utils.formatTimestamp
 import dev.polek.episodetracker.db.AddToMyShowsTask
 import dev.polek.episodetracker.db.Database
 import kotlinx.coroutines.*
@@ -31,16 +34,14 @@ class AddToMyShowsQueue(
     }
 
     init {
+        log { "Init" }
+
         db.addToMyShowsTaskQueries.clearProgress()
 
         queryListener = QueryListener(
             query = db.addToMyShowsTaskQueries.allTasks(),
             subscriber = object : QueryListener.Subscriber<List<AddToMyShowsTask>> {
                 override fun onQueryResult(result: List<AddToMyShowsTask>) {
-                    val inProgressTasks = result.filter { it.inProgress }.joinToString { it.showTmdbId.toString() }
-                    val waitingTasks = result.filter { !it.inProgress }.joinToString { it.showTmdbId.toString() }
-                    log { "Tasks. In Progress: $inProgressTasks, Waiting: $waitingTasks" }
-
                     onTaskListModified(result)
                 }
             },
@@ -54,9 +55,11 @@ class AddToMyShowsQueue(
         }
 
     fun addShow(tmdbId: Int) {
+        log { "addShow($tmdbId)" }
+
         val alreadyInQueue = db.addToMyShowsTaskQueries.taskExist(tmdbId).executeAsOne()
         if (alreadyInQueue) {
-            log { "Trying to add Show that's already in Queue" }
+            loge { "Trying to add Show that's already in Queue: $tmdbId" }
             return
         }
 
@@ -64,9 +67,12 @@ class AddToMyShowsQueue(
     }
 
     fun cancelAddIfExist(tmdbId: Int) {
+        log { "cancelAddIfExist($tmdbId)" }
+
         val task = db.addToMyShowsTaskQueries.task(tmdbId).executeAsOneOrNull() ?: return
 
         if (task.inProgress) {
+            log { "canceling Job $tmdbId" }
             executeTaskJobs[tmdbId]?.cancel()
         }
 
@@ -74,13 +80,15 @@ class AddToMyShowsQueue(
     }
 
     private fun onTaskListModified(tasks: List<AddToMyShowsTask>) {
+        log { "onTaskListModified(${tasks.joinToString { it.toLogString() }})" }
+
         if (tasks.isEmpty()) return
 
         tasks.filter { !it.inProgress }.forEach(::executeTask)
     }
 
     private fun executeTask(task: AddToMyShowsTask) {
-        log { "Tasks. executeTask: ${task.showTmdbId}, ${task.lastAttemptTimestampMillis}" }
+        log { "executeTask(${task.toLogString()})" }
 
         val showTmdbId = task.showTmdbId
 
@@ -106,13 +114,14 @@ class AddToMyShowsQueue(
                 writeShowToDb(show, seasons)
                 db.addToMyShowsTaskQueries.remove(showTmdbId)
             } catch (e: Throwable) {
-                log { "Tasks. Error: $e" }
+                logw { "executeTask($showTmdbId) exception caught: $e" }
                 db.addToMyShowsTaskQueries.setFailed(showTmdbId)
             }
         }
 
         executeTaskJobs[showTmdbId] = job
         job.invokeOnCompletion {
+            log { "executeTask($showTmdbId) job completed" }
             executeTaskJobs.remove(showTmdbId)
         }
     }
@@ -128,7 +137,7 @@ class AddToMyShowsQueue(
         }
         val delayTime = backoffInterval - millisSinceLastAttempt
 
-        log { "Tasks. $lastAttemptTimestampMillis, ${currentTimeMillis()}, $delayTime" }
+        log { "backoffIfRequired(${task.toLogString()}) delay(ms): $delayTime" }
 
         if (delayTime <= 0) return
 
@@ -136,6 +145,8 @@ class AddToMyShowsQueue(
     }
 
     private fun writeShowToDb(show: ShowEntity, seasons: List<Season>) {
+        log { "writeShowToDb(${show.tmdbId})" }
+
         val showTmdbId = show.tmdbId!!
 
         db.transaction {
@@ -170,5 +181,11 @@ class AddToMyShowsQueue(
                 nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
                 nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
         }
+    }
+
+    private fun AddToMyShowsTask.toLogString(): String {
+        val status = if (this.inProgress) "In Progress" else "Waiting"
+        val lastAttempt = lastAttemptTimestampMillis?.let(::formatTimestamp).orEmpty()
+        return "{Task ${this.showTmdbId}, $status, last attempt: $lastAttempt, retry count: ${this.retryCount}"
     }
 }

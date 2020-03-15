@@ -34,6 +34,20 @@ fun formatDate(date: GMTDate): String {
     return "$month $day, $year"
 }
 
+fun formatTimestamp(date: GMTDate = GMTDate()): String {
+    val year = date.year
+    val month = (date.month.ordinal + 1).fillZero()
+    val day = date.dayOfMonth.fillZero()
+    val hours = date.hours.fillZero()
+    val minutes = date.minutes.fillZero()
+    val seconds = date.seconds.fillZero()
+    val millis = (date.timestamp % 1000).fillTwoZeroes()
+
+    return "$year-$month-$day $hours:$minutes:$seconds.$millis"
+}
+
+fun formatTimestamp(timestampMillis: Long): String = formatTimestamp(GMTDate(timestampMillis))
+
 val Month.fullName: String
     get() = when (this) {
         JANUARY -> "January"
@@ -49,3 +63,18 @@ val Month.fullName: String
         NOVEMBER -> "November"
         DECEMBER -> "December"
     }
+
+private fun Number.fillZero(): String {
+    return when (this) {
+        in 0..9 -> "0$this"
+        else -> this.toString()
+    }
+}
+
+private fun Number.fillTwoZeroes(): String {
+    return when (this) {
+        in 0..9 -> "00$this"
+        in 10..99 -> "0$this"
+        else -> this.toString()
+    }
+}
