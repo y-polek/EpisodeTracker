@@ -36,8 +36,8 @@ class ShowDetailsPresenter(
 
         episodesTabRevealed = true
 
-        val isInMyShows = myShowsRepository.isInMyShows(showId)
-        if (isInMyShows || showDetails != null) {
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb || showDetails != null) {
             loadEpisodes()
         } else {
             view?.hideEpisodesProgress()
@@ -108,8 +108,8 @@ class ShowDetailsPresenter(
         view?.showEpisodesProgress()
         view?.hideError()
 
-        val isInMyShows = myShowsRepository.isInMyShows(showId)
-        if (isInMyShows) {
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb) {
             val show = myShowsRepository.showDetails(showId)
             checkNotNull(show) { "Can't find show with $showId ID in My Shows" }
             displayHeader(show)
@@ -121,7 +121,7 @@ class ShowDetailsPresenter(
             try {
                 val show = showRepository.showDetails(showId)
                 showDetails = show
-                if (!isInMyShows) {
+                if (!inDb) {
                     displayHeader(show)
                     displayDetails(show)
                 }
@@ -132,7 +132,7 @@ class ShowDetailsPresenter(
                     loadImdbRating(imdbId)
                 }
             } catch (e: Throwable) {
-                if (!isInMyShows) {
+                if (!inDb) {
                     view?.showError()
                 }
             } finally {
@@ -140,7 +140,7 @@ class ShowDetailsPresenter(
             }
 
             if (episodesTabRevealed) {
-                if (isInMyShows || showDetails != null) {
+                if (inDb || showDetails != null) {
                     loadEpisodes()
                 } else {
                     view?.hideEpisodesProgress()
@@ -149,7 +149,7 @@ class ShowDetailsPresenter(
             }
         }
 
-        if (isInMyShows) {
+        if (inDb) {
             view?.hideAddToMyShowsButton()
         } else {
             view?.displayAddToMyShowsButton()
@@ -246,12 +246,12 @@ class ShowDetailsPresenter(
         view?.showEpisodesProgress()
         view?.hideEpisodesError()
 
-        val isInMyShow = myShowsRepository.isInMyShows(showId)
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
 
         launch {
             try {
                 val seasonsList = when {
-                    isInMyShow -> episodesRepository.allSeasons(showTmdbId = showId)
+                    inDb -> episodesRepository.allSeasons(showTmdbId = showId)
                     else -> {
                         val numberOfSeasons = showDetails?.numberOfSeasons
                             ?: throw Throwable("Can't load episodes list without ShowDetails")

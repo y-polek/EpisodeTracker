@@ -38,12 +38,12 @@ SET isWatched = ?
 WHERE showTmdbId = ? AND seasonNumber = ? AND episodeNumber = ?;
 
 markAllWatchedUpTo:
-UPDATE  Episode
+UPDATE Episode
 SET isWatched = 1
 WHERE showTmdbId = ? AND (seasonNumber < :season OR (seasonNumber == :season AND episodeNumber <= :episode));
 
 markAllWatchedUpToSeason:
-UPDATE  Episode
+UPDATE Episode
 SET isWatched = 1
 WHERE showTmdbId = ? AND seasonNumber <= :season;
 

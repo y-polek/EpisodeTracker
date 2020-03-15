@@ -1,0 +1,35 @@
+import java.lang.Boolean;
+
+CREATE TABLE AddToMyShowsTask (
+    showTmdbId INTEGER AS Int NOT NULL,
+    inProgress INTEGER AS Boolean NOT NULL DEFAULT 0,
+
+    PRIMARY KEY (showTmdbId)
+);
+
+add:
+INSERT INTO AddToMyShowsTask(showTmdbId)
+VALUES (?);
+
+remove:
+DELETE FROM AddToMyShowsTask WHERE showTmdbId = ?;
+
+setInProgress:
+UPDATE AddToMyShowsTask
+SET inProgress = ?
+WHERE showTmdbId = ?;
+
+clearProgress:
+UPDATE AddToMyShowsTask
+SET inProgress = 0;
+
+allTasks:
+SELECT * FROM AddToMyShowsTask;
+
+task:
+SELECT * FROM AddToMyShowsTask
+WHERE showTmdbId = ?;
+
+taskExist:
+SELECT count(*) > 0 FROM AddToMyShowsTask
+WHERE showTmdbId = ?;
