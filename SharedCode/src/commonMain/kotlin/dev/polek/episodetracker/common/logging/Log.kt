@@ -41,7 +41,3 @@ private fun Number.fillTwoZeroes(): String {
         else -> this.toString()
     }
 }
-
-fun logw(message: String) {
-    println("WARNING: $message")
-}

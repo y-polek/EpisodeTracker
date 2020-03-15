@@ -22,7 +22,7 @@ class MyShowsRepository(
 
     fun addShow(tmdbId: Int) {
         if (isAddedOrAddingToMyShows(tmdbId)) {
-            logw("Trying to add Show that's already in My Shows")
+            logw { "Trying to add Show that's already in My Shows" }
             return
         }
 
