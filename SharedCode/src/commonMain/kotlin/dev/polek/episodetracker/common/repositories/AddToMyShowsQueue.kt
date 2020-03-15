@@ -7,7 +7,6 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.GenreEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowEntity
 import dev.polek.episodetracker.common.logging.log
-import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.common.utils.currentTimeMillis
 import dev.polek.episodetracker.db.AddToMyShowsTask
@@ -40,7 +39,7 @@ class AddToMyShowsQueue(
                 override fun onQueryResult(result: List<AddToMyShowsTask>) {
                     val inProgressTasks = result.filter { it.inProgress }.joinToString { it.showTmdbId.toString() }
                     val waitingTasks = result.filter { !it.inProgress }.joinToString { it.showTmdbId.toString() }
-                    log("Tasks. In Progress: $inProgressTasks, Waiting: $waitingTasks")
+                    log { "Tasks. In Progress: $inProgressTasks, Waiting: $waitingTasks" }
 
                     onTaskListModified(result)
                 }
@@ -57,7 +56,7 @@ class AddToMyShowsQueue(
     fun addShow(tmdbId: Int) {
         val alreadyInQueue = db.addToMyShowsTaskQueries.taskExist(tmdbId).executeAsOne()
         if (alreadyInQueue) {
-            logw("Trying to add Show that's already in Queue")
+            log { "Trying to add Show that's already in Queue" }
             return
         }
 
@@ -81,7 +80,7 @@ class AddToMyShowsQueue(
     }
 
     private fun executeTask(task: AddToMyShowsTask) {
-        log("Tasks. executeTask: ${task.showTmdbId}, ${task.lastAttemptTimestampMillis}")
+        log { "Tasks. executeTask: ${task.showTmdbId}, ${task.lastAttemptTimestampMillis}" }
 
         val showTmdbId = task.showTmdbId
 
@@ -107,7 +106,7 @@ class AddToMyShowsQueue(
                 writeShowToDb(show, seasons)
                 db.addToMyShowsTaskQueries.remove(showTmdbId)
             } catch (e: Throwable) {
-                log("Tasks. Error: $e")
+                log { "Tasks. Error: $e" }
                 db.addToMyShowsTaskQueries.setFailed(showTmdbId)
             }
         }
@@ -129,7 +128,7 @@ class AddToMyShowsQueue(
         }
         val delayTime = backoffInterval - millisSinceLastAttempt
 
-        log("Tasks. $lastAttemptTimestampMillis, ${currentTimeMillis()}, $delayTime")
+        log { "Tasks. $lastAttemptTimestampMillis, ${currentTimeMillis()}, $delayTime" }
 
         if (delayTime <= 0) return
 
