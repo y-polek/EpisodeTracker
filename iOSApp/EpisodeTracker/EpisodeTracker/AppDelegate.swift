@@ -10,6 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let database: Database = DatabaseKt.database
     let tmdbService: TmdbService = TmdbService()
     let omdbService: OmdbService = OmdbService()
+    let connectivity: Connectivity = ConnectivityImpl()
     lazy var showRepository: ShowRepository = ShowRepository(tmdbService: tmdbService, omdbService: omdbService)
     lazy var myShowsRepository: MyShowsRepository = MyShowsRepository(db: database, tmdbService: tmdbService, showRepository: showRepository)
     lazy var discoverRepository: DiscoverRepository = DiscoverRepository(tmdbService: tmdbService)

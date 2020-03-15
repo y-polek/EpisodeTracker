@@ -59,6 +59,8 @@
 		D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CA23A8F89A00E45753 /* TableView.swift */; };
 		D2D905CE23A96A6E00E45753 /* ImageButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D905CD23A96A6E00E45753 /* ImageButton.xib */; };
 		D2D905D023A96CCB00E45753 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CF23A96CCB00E45753 /* ImageButton.swift */; };
+		D2EDA463241EB56700EAD144 /* ConnectivityImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EDA462241EB56700EAD144 /* ConnectivityImpl.swift */; };
+		D2EDA465241EC00B00EAD144 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EDA464241EC00B00EAD144 /* Log.swift */; };
 		D2F09F0F23F40675003BFFAA /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F09F0E23F40675003BFFAA /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +134,8 @@
 		D2D905CA23A8F89A00E45753 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		D2D905CD23A96A6E00E45753 /* ImageButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageButton.xib; sourceTree = "<group>"; };
 		D2D905CF23A96CCB00E45753 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		D2EDA462241EB56700EAD144 /* ConnectivityImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityImpl.swift; sourceTree = "<group>"; };
+		D2EDA464241EC00B00EAD144 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D2F09F0E23F40675003BFFAA /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,6 +240,8 @@
 				D2C1761F23FEAFF600BE0137 /* Urls.swift */,
 				D2CC728C2414E87C00D4AD01 /* Animations.swift */,
 				D26B4826241A30F700156F82 /* Ints.swift */,
+				D2EDA462241EB56700EAD144 /* ConnectivityImpl.swift */,
+				D2EDA464241EC00B00EAD144 /* Log.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 			files = (
 				D222456523EE147900082162 /* MyShowsHeaderView.swift in Sources */,
 				D22A897A2406CBB200014861 /* FloatingButton.swift in Sources */,
+				D2EDA465241EC00B00EAD144 /* Log.swift in Sources */,
 				D29D7AFE23A2974700B2832D /* UpcomingShowCell.swift in Sources */,
 				D29D7B1623A5063A00B2832D /* DiscoverResultCell.swift in Sources */,
 				D29D7B0323A2A93D00B2832D /* ImageView.swift in Sources */,
@@ -546,6 +553,7 @@
 				D29D7B1423A44F9A00B2832D /* DiscoverViewController.swift in Sources */,
 				D2C283C723EA1D9A002BEE91 /* EpisodeCell.swift in Sources */,
 				D29D7B0823A2D47D00B2832D /* Divider.swift in Sources */,
+				D2EDA463241EB56700EAD144 /* ConnectivityImpl.swift in Sources */,
 				D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */,
 				D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */,
 				D234846823FEBF79001BA5E5 /* IconButton.swift in Sources */,
