@@ -68,10 +68,7 @@ class AddToMyShowsQueue(
     private fun onTaskListModified(tasks: List<AddToMyShowsTask>) {
         if (tasks.isEmpty()) return
 
-        val hasTaskInProgress = tasks.find(AddToMyShowsTask::inProgress) != null
-        if (hasTaskInProgress) return
-
-        executeTask(tasks.first())
+        tasks.filter { !it.inProgress }.forEach(::executeTask)
     }
 
     private fun executeTask(task: AddToMyShowsTask) {
