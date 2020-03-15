@@ -3,6 +3,7 @@ import java.lang.Boolean;
 CREATE TABLE AddToMyShowsTask (
     showTmdbId INTEGER AS Int NOT NULL,
     inProgress INTEGER AS Boolean NOT NULL DEFAULT 0,
+    lastAttemptTimestampMillis INTEGER,
 
     PRIMARY KEY (showTmdbId)
 );
@@ -16,12 +17,17 @@ DELETE FROM AddToMyShowsTask WHERE showTmdbId = ?;
 
 setInProgress:
 UPDATE AddToMyShowsTask
-SET inProgress = ?
+SET inProgress = 1
+WHERE showTmdbId = ?;
+
+setFailed:
+UPDATE AddToMyShowsTask
+SET inProgress = 0, lastAttemptTimestampMillis = (SELECT currentTimeMillis FROM Time)
 WHERE showTmdbId = ?;
 
 clearProgress:
 UPDATE AddToMyShowsTask
-SET inProgress = 0;
+SET inProgress = 0, lastAttemptTimestampMillis = NULL;
 
 allTasks:
 SELECT * FROM AddToMyShowsTask;

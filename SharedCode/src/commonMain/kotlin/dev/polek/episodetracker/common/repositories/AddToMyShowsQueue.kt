@@ -75,11 +75,11 @@ class AddToMyShowsQueue(
     }
 
     private fun executeTask(task: AddToMyShowsTask) {
-        log("Tasks. executeTask: ${task.showTmdbId}")
+        log("Tasks. executeTask: ${task.showTmdbId}, ${task.lastAttemptTimestampMillis}")
 
         val showTmdbId = task.showTmdbId
 
-        db.addToMyShowsTaskQueries.setInProgress(showTmdbId = showTmdbId, inProgress = true)
+        db.addToMyShowsTaskQueries.setInProgress(showTmdbId)
 
         executeTaskJob = launch {
             try {
@@ -99,7 +99,7 @@ class AddToMyShowsQueue(
             } catch (e: Throwable) {
                 log("Tasks. Error: $e")
                 if (isActive) {
-                    db.addToMyShowsTaskQueries.setInProgress(showTmdbId = showTmdbId, inProgress = false)
+                    db.addToMyShowsTaskQueries.setFailed(showTmdbId)
                 }
             }
         }
