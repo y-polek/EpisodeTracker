@@ -6,6 +6,14 @@ inline fun Any.log(tag: String = this::class.simpleName.orEmpty(), message: () -
     println("${timestamp()} $tag: ${message()}")
 }
 
+inline fun Any.logw(tag: String = this::class.simpleName.orEmpty(), message: () -> String) {
+    println("${timestamp()} WARNING/$tag: ${message()}")
+}
+
+inline fun Any.loge(tag: String = this::class.simpleName.orEmpty(), message: () -> String) {
+    println("${timestamp()} ERROR/$tag: ${message()}")
+}
+
 fun timestamp(): String {
     val date = GMTDate()
     val year = date.year
