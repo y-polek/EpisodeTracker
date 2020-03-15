@@ -9,6 +9,7 @@ target 'EpisodeTracker' do
   pod 'MaterialComponents/Ripple', '100.0.0'
   pod 'MaterialComponents/Tabs', '100.0.0'
   pod 'MaterialComponents/Buttons', '100.0.0'
+  pod 'ReachabilitySwift', '5.0.0'
 
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
