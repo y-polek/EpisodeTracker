@@ -21,10 +21,14 @@ class AddToMyShowsQueue(
     private val showRepository: ShowRepository) : CoroutineScope {
 
     private val queryListener: QueryListener<AddToMyShowsTask, List<AddToMyShowsTask>>
-    private var executeTaskJob: Job? = null
+    private val parentJob = Job()
+    private val executeTaskJobs: MutableMap<Int /*showTmdbId*/, Job> = mutableMapOf()
 
     companion object {
-        const val BACKOFF_INTERVAL_MILLIS = 5000
+        const val BACKOFF_INTERVAL_MILLIS_1 = 5_000
+        const val BACKOFF_INTERVAL_MILLIS_2 = 20_000
+        const val BACKOFF_INTERVAL_MILLIS_3 = 60_000
+        const val BACKOFF_INTERVAL_MILLIS = 300_000
     }
 
     init {
@@ -47,7 +51,7 @@ class AddToMyShowsQueue(
 
     override val coroutineContext: CoroutineContext
         get() {
-            return ui + Job()
+            return ui + parentJob
         }
 
     fun addShow(tmdbId: Int) {
@@ -64,7 +68,7 @@ class AddToMyShowsQueue(
         val task = db.addToMyShowsTaskQueries.task(tmdbId).executeAsOneOrNull() ?: return
 
         if (task.inProgress) {
-            executeTaskJob?.cancel()
+            executeTaskJobs[tmdbId]?.cancel()
         }
 
         db.addToMyShowsTaskQueries.remove(tmdbId)
@@ -83,7 +87,7 @@ class AddToMyShowsQueue(
 
         db.addToMyShowsTaskQueries.setInProgress(showTmdbId)
 
-        executeTaskJob = launch {
+        val job = launch {
             try {
                 backoffIfRequired(task)
 
@@ -107,12 +111,23 @@ class AddToMyShowsQueue(
                 db.addToMyShowsTaskQueries.setFailed(showTmdbId)
             }
         }
+
+        executeTaskJobs[showTmdbId] = job
+        job.invokeOnCompletion {
+            executeTaskJobs.remove(showTmdbId)
+        }
     }
 
     private suspend fun backoffIfRequired(task: AddToMyShowsTask) {
         val lastAttemptTimestampMillis = task.lastAttemptTimestampMillis ?: return
         val millisSinceLastAttempt = currentTimeMillis() - lastAttemptTimestampMillis
-        val delayTime = BACKOFF_INTERVAL_MILLIS - millisSinceLastAttempt
+        val backoffInterval = when (task.retryCount) {
+            1 -> BACKOFF_INTERVAL_MILLIS_1
+            2 -> BACKOFF_INTERVAL_MILLIS_2
+            3 -> BACKOFF_INTERVAL_MILLIS_3
+            else -> BACKOFF_INTERVAL_MILLIS
+        }
+        val delayTime = backoffInterval - millisSinceLastAttempt
 
         log("Tasks. $lastAttemptTimestampMillis, ${currentTimeMillis()}, $delayTime")
 

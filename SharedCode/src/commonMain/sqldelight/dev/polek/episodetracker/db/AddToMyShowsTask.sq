@@ -4,6 +4,7 @@ CREATE TABLE AddToMyShowsTask (
     showTmdbId INTEGER AS Int NOT NULL,
     inProgress INTEGER AS Boolean NOT NULL DEFAULT 0,
     lastAttemptTimestampMillis INTEGER,
+    retryCount INTEGER AS Int NOT NULL DEFAULT 0,
 
     PRIMARY KEY (showTmdbId)
 );
@@ -22,12 +23,18 @@ WHERE showTmdbId = ?;
 
 setFailed:
 UPDATE AddToMyShowsTask
-SET inProgress = 0, lastAttemptTimestampMillis = (SELECT currentTimeMillis FROM Time)
+SET
+ inProgress = 0,
+ lastAttemptTimestampMillis = (SELECT currentTimeMillis FROM Time),
+ retryCount = retryCount + 1
 WHERE showTmdbId = ?;
 
 clearProgress:
 UPDATE AddToMyShowsTask
-SET inProgress = 0, lastAttemptTimestampMillis = NULL;
+SET
+ inProgress = 0,
+ lastAttemptTimestampMillis = NULL,
+ retryCount = 0;
 
 allTasks:
 SELECT * FROM AddToMyShowsTask;
