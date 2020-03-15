@@ -5,7 +5,6 @@ import dev.polek.episodetracker.common.datasource.db.QueryListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
-import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.networkImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.GenreEntity
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
@@ -30,7 +29,7 @@ class MyShowsRepository(
         val show = tmdbService.show(tmdbId)
         check(show.isValid) { throw RuntimeException("Trying to add invalid show: $show") }
 
-        log("Adding show: $show")
+        log { "Adding show: $show" }
 
         val seasons = (1..show.numberOfSeasons).mapNotNull { seasonNumber ->
             showRepository.season(showTmdbId = tmdbId, seasonNumber = seasonNumber)
