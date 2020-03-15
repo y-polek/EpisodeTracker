@@ -237,7 +237,7 @@ class ShowDetailsPresenter(
                     view?.displayImdbRating(imdbRating)
                 }
             } catch (e: Throwable) {
-                log("Failed to load IMDB rating: $e")
+                log { "Failed to load IMDB rating: $e" }
             }
         }
     }
