@@ -9,6 +9,7 @@ import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowEntity
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.model.Season
+import dev.polek.episodetracker.common.utils.currentTimeMillis
 import dev.polek.episodetracker.db.AddToMyShowsTask
 import dev.polek.episodetracker.db.Database
 import kotlinx.coroutines.*
@@ -21,6 +22,10 @@ class AddToMyShowsQueue(
 
     private val queryListener: QueryListener<AddToMyShowsTask, List<AddToMyShowsTask>>
     private var executeTaskJob: Job? = null
+
+    companion object {
+        const val BACKOFF_INTERVAL_MILLIS = 5000
+    }
 
     init {
         db.addToMyShowsTaskQueries.clearProgress()
@@ -80,6 +85,10 @@ class AddToMyShowsQueue(
 
         executeTaskJob = launch {
             try {
+                backoffIfRequired(task)
+
+                if (!isActive) return@launch
+
                 val show = tmdbService.show(showTmdbId)
                 check(show.isValid) { throw RuntimeException("Can't add invalid show: $show") }
 
@@ -95,11 +104,21 @@ class AddToMyShowsQueue(
                 db.addToMyShowsTaskQueries.remove(showTmdbId)
             } catch (e: Throwable) {
                 log("Tasks. Error: $e")
-                if (isActive) {
-                    db.addToMyShowsTaskQueries.setFailed(showTmdbId)
-                }
+                db.addToMyShowsTaskQueries.setFailed(showTmdbId)
             }
         }
+    }
+
+    private suspend fun backoffIfRequired(task: AddToMyShowsTask) {
+        val lastAttemptTimestampMillis = task.lastAttemptTimestampMillis ?: return
+        val millisSinceLastAttempt = currentTimeMillis() - lastAttemptTimestampMillis
+        val delayTime = BACKOFF_INTERVAL_MILLIS - millisSinceLastAttempt
+
+        log("Tasks. $lastAttemptTimestampMillis, ${currentTimeMillis()}, $delayTime")
+
+        if (delayTime <= 0) return
+
+        delay(delayTime)
     }
 
     private fun writeShowToDb(show: ShowEntity, seasons: List<Season>) {
