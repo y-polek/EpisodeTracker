@@ -21,11 +21,11 @@ class ConnectivityImpl: Connectivity {
     }
     
     func addListener(listener: ConnectivityListener) {
-        listeners.append(listener)
-        
-        if listeners.count == 1 {
+        if listeners.isEmpty {
             startListening()
         }
+        
+        listeners.append(listener)
     }
     
     func removeListener(listener: ConnectivityListener) {

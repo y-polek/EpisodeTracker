@@ -10,6 +10,7 @@ import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.loge
 import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.model.Season
+import dev.polek.episodetracker.common.network.Connectivity
 import dev.polek.episodetracker.common.utils.currentTimeMillis
 import dev.polek.episodetracker.common.utils.formatTimestamp
 import dev.polek.episodetracker.db.AddToMyShowsTask
@@ -20,7 +21,8 @@ import kotlin.coroutines.CoroutineContext
 class AddToMyShowsQueue(
     private val db: Database,
     private val tmdbService: TmdbService,
-    private val showRepository: ShowRepository) : CoroutineScope {
+    private val connectivity: Connectivity,
+    private val showRepository: ShowRepository) : CoroutineScope, Connectivity.Listener {
 
     private val queryListener: QueryListener<AddToMyShowsTask, List<AddToMyShowsTask>>
     private val parentJob = Job()
@@ -30,7 +32,7 @@ class AddToMyShowsQueue(
         const val BACKOFF_INTERVAL_MILLIS_1 = 5_000
         const val BACKOFF_INTERVAL_MILLIS_2 = 20_000
         const val BACKOFF_INTERVAL_MILLIS_3 = 60_000
-        const val BACKOFF_INTERVAL_MILLIS = 300_000
+        const val BACKOFF_INTERVAL_MILLIS = 120_000
     }
 
     init {
@@ -47,12 +49,24 @@ class AddToMyShowsQueue(
             },
             notifyImmediately = true,
             extractQueryResult = Query<AddToMyShowsTask>::executeAsList)
+
+        connectivity.addListener(this)
     }
 
     override val coroutineContext: CoroutineContext
         get() {
             return ui + parentJob
         }
+
+    override fun onConnectionAvailable() {
+        log { "Connection available" }
+
+        restartAllTasks()
+    }
+
+    override fun onConnectionLost() {
+        log { "Connection lost" }
+    }
 
     fun addShow(tmdbId: Int) {
         log { "addShow($tmdbId)" }
@@ -84,10 +98,12 @@ class AddToMyShowsQueue(
 
         if (tasks.isEmpty()) return
 
-        tasks.filter { !it.inProgress }.forEach(::executeTask)
+        tasks.filter { !it.inProgress }.forEach { task ->
+            executeTask(task, honorBackoff = true)
+        }
     }
 
-    private fun executeTask(task: AddToMyShowsTask) {
+    private fun executeTask(task: AddToMyShowsTask, honorBackoff: Boolean) {
         log { "executeTask(${task.toLogString()})" }
 
         val showTmdbId = task.showTmdbId
@@ -96,7 +112,9 @@ class AddToMyShowsQueue(
 
         val job = launch {
             try {
-                backoffIfRequired(task)
+                if (honorBackoff) {
+                    backoffIfRequired(task)
+                }
 
                 if (!isActive) return@launch
 
@@ -180,6 +198,15 @@ class AddToMyShowsQueue(
                 isEnded = show.isEnded,
                 nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
                 nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
+        }
+    }
+
+    private fun restartAllTasks() {
+        db.addToMyShowsTaskQueries.allTasks().executeAsList().forEach { task ->
+            if (task.inProgress) {
+                executeTaskJobs[task.showTmdbId]?.cancel()
+            }
+            executeTask(task, honorBackoff = false)
         }
     }
 
