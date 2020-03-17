@@ -1,5 +1,6 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
+import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
@@ -26,10 +27,31 @@ class ShowDetailsPresenter(
     private var seasonsViewModel: SeasonsViewModel = SeasonsViewModel(emptyList())
     private var episodesTabRevealed = false
 
+    private val isShowAddedOrAddingSubscriber = object : Subscriber<Boolean> {
+        @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+        override fun onQueryResult(isAddedOrAdding: Boolean) {
+            if (isAddedOrAdding) {
+                view?.hideAddToMyShowsButton()
+            } else {
+                view?.displayAddToMyShowsButton()
+            }
+        }
+    }
+
     override fun attachView(view: ShowDetailsView) {
         super.attachView(view)
 
         loadShowDetails()
+    }
+
+    override fun onViewAppeared() {
+        super.onViewAppeared()
+        myShowsRepository.setIsAddedOrAddingToMyShowsSubscriber(showId, isShowAddedOrAddingSubscriber)
+    }
+
+    override fun onViewDisappeared() {
+        myShowsRepository.removeIsAddedOrAddingToMyShowsSubscriber(showId)
+        super.onViewDisappeared()
     }
 
     fun onEpisodesTabSelected() {
