@@ -14,6 +14,7 @@ import dev.polek.episodetracker.common.repositories.EpisodesRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
 import dev.polek.episodetracker.db.ShowDetails
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ShowDetailsPresenter(
@@ -31,7 +32,11 @@ class ShowDetailsPresenter(
         @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
         override fun onQueryResult(isAddedOrAdding: Boolean) {
             if (isAddedOrAdding) {
-                view?.hideAddToMyShowsButton()
+                view?.displayAddToMyShowsProgress()
+                launch {
+                    delay(500)
+                    view?.hideAddToMyShowsButton()
+                }
             } else {
                 view?.displayAddToMyShowsButton()
             }
@@ -72,7 +77,6 @@ class ShowDetailsPresenter(
         view?.displayAddToMyShowsProgress()
         launch {
             myShowsRepository.addShow(showId)
-            view?.hideAddToMyShowsButton()
         }
     }
 
@@ -176,12 +180,6 @@ class ShowDetailsPresenter(
                     view?.showEpisodesError()
                 }
             }
-        }
-
-        if (inDb) {
-            view?.hideAddToMyShowsButton()
-        } else {
-            view?.displayAddToMyShowsButton()
         }
     }
 
