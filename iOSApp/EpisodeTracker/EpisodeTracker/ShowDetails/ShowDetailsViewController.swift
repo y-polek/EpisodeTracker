@@ -156,7 +156,7 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @IBAction func onBackTapped(_ sender: Any) {
-        close()
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func onMenuTapped(_ sender: Any) {
@@ -299,8 +299,15 @@ extension ShowDetailsViewController: ShowDetailsView {
         removeBottomInset()
     }
     
-    func close() {
-        navigationController?.popViewController(animated: true)
+    func displayAddToMyShowsConfirmation(showName: String, callback: @escaping (KotlinBoolean) -> Void) {
+        let alert = UIAlertController(title: nil, message: "Add \"\(showName)\" to My Shows?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+            callback(true)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            callback(false)
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
     func displayShowDetails(show: ShowDetailsViewModel) {
@@ -336,7 +343,14 @@ extension ShowDetailsViewController: ShowDetailsView {
     }
     
     func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
-        episodesViewController?.showCheckAllPreviousEpisodesPrompt(callback: callback)
+        let alert = UIAlertController(title: nil, message: "Check all previous episodes as watched?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Check One", style: .default, handler: { action in
+            callback(false)
+        }))
+        alert.addAction(UIAlertAction(title: "Check All", style: .default, handler: { action in
+            callback(true)
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
     func showEpisodesProgress() {

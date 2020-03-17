@@ -45,7 +45,7 @@ class TmdbService(client: HttpClient?) {
         }
     }
 
-    suspend fun show(tmdbId: Int): ShowEntity {
+    suspend fun show(tmdbId: Int): ShowDetailsEntity {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId?append_to_response=external_ids,content_ratings")
     }
 

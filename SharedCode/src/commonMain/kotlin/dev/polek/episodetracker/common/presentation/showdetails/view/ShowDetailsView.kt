@@ -12,7 +12,8 @@ interface ShowDetailsView {
     fun displayAddToMyShowsButton()
     fun displayAddToMyShowsProgress()
     fun hideAddToMyShowsButton()
-    fun close()
+    fun displayAddToMyShowsConfirmation(showName: String, callback: (confirmed: Boolean) -> Unit)
+    fun showCheckAllPreviousEpisodesPrompt(callback: (checkAllPreviousEpisodes: Boolean) -> Unit)
 
     fun displayShowDetails(show: ShowDetailsViewModel)
     fun displayTrailers(trailers: List<TrailerViewModel>)
@@ -26,6 +27,5 @@ interface ShowDetailsView {
     fun hideEpisodesProgress()
     fun showEpisodesError()
     fun hideEpisodesError()
-    fun showCheckAllPreviousEpisodesPrompt(callback: (checkAllPreviousEpisodes: Boolean) -> Unit)
     fun reloadSeason(season: Int)
 }
