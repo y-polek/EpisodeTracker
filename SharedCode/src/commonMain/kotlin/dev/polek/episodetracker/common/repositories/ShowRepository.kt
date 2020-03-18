@@ -9,11 +9,13 @@ import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetail
 import dev.polek.episodetracker.common.model.Episode
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
+import dev.polek.episodetracker.db.Database
 
 class ShowRepository(
     private val tmdbService: TmdbService,
-    private val omdbService: OmdbService) {
-
+    private val omdbService: OmdbService,
+    private val db: Database)
+{
     suspend fun showDetails(showTmdbId: Int): ShowDetailsEntity {
         return tmdbService.showDetails(showTmdbId)
     }
@@ -30,6 +32,43 @@ class ShowRepository(
         if (season.episodes.isEmpty()) return null
 
         return season
+    }
+
+    fun writeShowToDb(show: ShowDetailsEntity, seasons: List<Season>) {
+        val showTmdbId = show.tmdbId!!
+
+        db.transaction {
+            seasons.flatMap { it.episodes }
+                .forEach { episode ->
+                    db.episodeQueries.insert(
+                        showTmdbId = showTmdbId,
+                        name = episode.name,
+                        episodeNumber = episode.number.episode,
+                        seasonNumber = episode.number.season,
+                        airDateMillis = episode.airDateMillis,
+                        imageUrl = episode.imageUrl)
+                }
+
+            db.myShowQueries.insert(
+                tmdbId = showTmdbId,
+                imdbId = show.externalIds?.imdbId,
+                tvdbId = show.externalIds?.tvdbId,
+                facebookId = show.externalIds?.facebookId,
+                instagramId = show.externalIds?.instagramId,
+                twitterId = show.externalIds?.twitterId,
+                name = show.name.orEmpty(),
+                overview = show.overview.orEmpty(),
+                year = show.year,
+                lastYear = show.lastYear,
+                imageUrl = show.backdropPath?.let(TmdbService.Companion::backdropImageUrl),
+                homePageUrl = show.homePageUrl,
+                genres = show.genres,
+                networks = show.networks,
+                contentRating = show.contentRating,
+                isEnded = show.isEnded,
+                nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
+                nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
+        }
     }
 
     companion object {

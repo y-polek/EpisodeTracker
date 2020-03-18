@@ -23,7 +23,7 @@ class DiscoverPresenter(
         super.onViewAppeared()
 
         searchResults?.forEach { show ->
-            show.isInMyShows = myShowsRepository.isInMyShows(show.id)
+            show.isInMyShows = myShowsRepository.isAddedOrAddingToMyShows(show.id)
         }
         view?.updateSearchResults()
     }
@@ -74,7 +74,7 @@ class DiscoverPresenter(
         launch {
             try {
                 val results = discoverRepository.search(query).map { result ->
-                    val isInMyShow = myShowsRepository.isInMyShows(result.tmdbId)
+                    val isInMyShow = myShowsRepository.isAddedOrAddingToMyShows(result.tmdbId)
                     return@map DiscoverResultViewModel.map(result, isInMyShow)
                 }
 

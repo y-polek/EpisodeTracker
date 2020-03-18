@@ -42,17 +42,6 @@ class EpisodesViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
-        let alert = UIAlertController(title: nil, message: "Check all previous episodes as watched?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Check One", style: .default, handler: { action in
-            callback(false)
-        }))
-        alert.addAction(UIAlertAction(title: "Check All", style: .default, handler: { action in
-            callback(true)
-        }))
-        present(alert, animated: true, completion: nil)
-    }
-    
     func reloadSeason(_ season: Int32) {
         let section = Int(season) - 1
         reloadSection(section)

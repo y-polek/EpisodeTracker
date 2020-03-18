@@ -1,10 +1,13 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
+import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
 import dev.polek.episodetracker.common.logging.log
+import dev.polek.episodetracker.common.logging.loge
 import dev.polek.episodetracker.common.model.EpisodeNumber
+import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.showdetails.model.*
 import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetailsView
@@ -12,6 +15,7 @@ import dev.polek.episodetracker.common.repositories.EpisodesRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
 import dev.polek.episodetracker.db.ShowDetails
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ShowDetailsPresenter(
@@ -20,10 +24,25 @@ class ShowDetailsPresenter(
     private val showRepository: ShowRepository,
     private val episodesRepository: EpisodesRepository) : BasePresenter<ShowDetailsView>()
 {
-
     private var showDetails: ShowDetailsEntity? = null
-    private var seasons: SeasonsViewModel = SeasonsViewModel(emptyList())
+    private var showSeasons: List<Season>? = null
+    private var seasonsViewModel: SeasonsViewModel = SeasonsViewModel(emptyList())
     private var episodesTabRevealed = false
+
+    private val isShowAddedOrAddingSubscriber = object : Subscriber<Boolean> {
+        @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+        override fun onQueryResult(isAddedOrAdding: Boolean) {
+            if (isAddedOrAdding) {
+                view?.displayAddToMyShowsProgress()
+                launch {
+                    delay(500)
+                    view?.hideAddToMyShowsButton()
+                }
+            } else {
+                view?.displayAddToMyShowsButton()
+            }
+        }
+    }
 
     override fun attachView(view: ShowDetailsView) {
         super.attachView(view)
@@ -31,17 +50,31 @@ class ShowDetailsPresenter(
         loadShowDetails()
     }
 
+    override fun onViewAppeared() {
+        super.onViewAppeared()
+        myShowsRepository.setIsAddedOrAddingToMyShowsSubscriber(showId, isShowAddedOrAddingSubscriber)
+    }
+
+    override fun onViewDisappeared() {
+        myShowsRepository.removeIsAddedOrAddingToMyShowsSubscriber(showId)
+        super.onViewDisappeared()
+    }
+
     fun onEpisodesTabSelected() {
         if (episodesTabRevealed) return
 
         episodesTabRevealed = true
 
-        val isInMyShows = myShowsRepository.isInMyShows(showId)
-        if (isInMyShows || showDetails != null) {
-            loadEpisodes()
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb) {
+            loadEpisodesFromDb()
         } else {
-            view?.hideEpisodesProgress()
-            view?.showEpisodesError()
+            if (showDetails != null) {
+                loadEpisodesFromNetwork()
+            } else {
+                view?.hideEpisodesProgress()
+                view?.showEpisodesError()
+            }
         }
     }
 
@@ -49,7 +82,6 @@ class ShowDetailsPresenter(
         view?.displayAddToMyShowsProgress()
         launch {
             myShowsRepository.addShow(showId)
-            view?.hideAddToMyShowsButton()
         }
     }
 
@@ -62,42 +94,48 @@ class ShowDetailsPresenter(
     }
 
     fun onEpisodeWatchedStateToggled(episode: EpisodeViewModel) {
-        val isWatched = !episode.isWatched
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
 
-        val firstNotWatchedNumber = episodesRepository.firstNotWatchedEpisode(showId)
-        if (isWatched && firstNotWatchedNumber != null && firstNotWatchedNumber < episode.number) {
-            view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
-                if (checkAllPreviousEpisodes) {
-                    markAllEpisodesWatchedUpTo(episode.number)
+        if (inDb) {
+            processEpisodeWatchedStateToggle(episode)
+        } else {
+            val show = checkNotNull(showDetails) { "`showDetails` must not be null at this moment" }
+            val seasons = checkNotNull(showSeasons) { "`showSeasons` must not be null at this moment" }
+            
+            view?.displayAddToMyShowsConfirmation(showName = show.name.orEmpty()) { confirmed ->
+                if (confirmed) {
+                    showRepository.writeShowToDb(show, seasons)
+                    processEpisodeWatchedStateToggle(episode)
                 } else {
-                    setEpisodeWatched(episode, isWatched)
+                    view?.reloadSeason(episode.number.season)
                 }
             }
-        } else {
-            setEpisodeWatched(episode, isWatched)
         }
     }
 
     fun onSeasonWatchedStateToggled(season: SeasonViewModel) {
-        val isWatched = !season.isWatched
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
 
-        val firstNotWatchedSeason = episodesRepository.firstNotWatchedEpisode(showId)?.season ?: season.number
-        if (isWatched && firstNotWatchedSeason < season.number) {
-            view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
-                if (checkAllPreviousEpisodes) {
-                    markAllSeasonsWatchedUpTo(season.number)
+        if (inDb) {
+            processSeasonWatchedStateToggled(season)
+        } else {
+            val show = checkNotNull(showDetails) { "`showDetails` must not be null at this moment" }
+            val seasons = checkNotNull(showSeasons) { "`showSeasons` must not be null at this moment" }
+
+            view?.displayAddToMyShowsConfirmation(showName = show.name.orEmpty()) { confirmed ->
+                if (confirmed) {
+                    showRepository.writeShowToDb(show, seasons)
+                    processSeasonWatchedStateToggled(season)
                 } else {
-                    setSeasonWatched(season, isWatched)
+                    view?.reloadSeason(season.number)
                 }
             }
-        } else {
-            setSeasonWatched(season, isWatched)
         }
     }
 
     fun onEpisodesRetryButtonClicked() {
         if (showDetails != null) {
-            loadEpisodes()
+            loadEpisodesFromNetwork()
         } else {
             loadShowDetails()
         }
@@ -105,23 +143,25 @@ class ShowDetailsPresenter(
 
     private fun loadShowDetails() {
         view?.showProgress()
-        view?.showEpisodesProgress()
         view?.hideError()
 
-        val isInMyShows = myShowsRepository.isInMyShows(showId)
-        if (isInMyShows) {
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb) {
             val show = myShowsRepository.showDetails(showId)
             checkNotNull(show) { "Can't find show with $showId ID in My Shows" }
             displayHeader(show)
             displayDetails(show)
+            loadEpisodesFromDb()
             view?.hideProgress()
+        } else {
+            view?.showEpisodesProgress()
         }
 
         launch {
             try {
                 val show = showRepository.showDetails(showId)
                 showDetails = show
-                if (!isInMyShows) {
+                if (!inDb) {
                     displayHeader(show)
                     displayDetails(show)
                 }
@@ -132,7 +172,7 @@ class ShowDetailsPresenter(
                     loadImdbRating(imdbId)
                 }
             } catch (e: Throwable) {
-                if (!isInMyShows) {
+                if (!inDb) {
                     view?.showError()
                 }
             } finally {
@@ -140,19 +180,15 @@ class ShowDetailsPresenter(
             }
 
             if (episodesTabRevealed) {
-                if (isInMyShows || showDetails != null) {
-                    loadEpisodes()
-                } else {
-                    view?.hideEpisodesProgress()
-                    view?.showEpisodesError()
+                if (!inDb) {
+                    if (showDetails != null) {
+                        loadEpisodesFromNetwork()
+                    } else {
+                        view?.hideEpisodesProgress()
+                        view?.showEpisodesError()
+                    }
                 }
             }
-        }
-
-        if (isInMyShows) {
-            view?.hideAddToMyShowsButton()
-        } else {
-            view?.displayAddToMyShowsButton()
         }
     }
 
@@ -242,33 +278,71 @@ class ShowDetailsPresenter(
         }
     }
 
-    private fun loadEpisodes() {
+    private fun loadEpisodesFromDb() {
+        val seasonsList = episodesRepository.allSeasons(showId).map(SeasonViewModel.Companion::map)
+        seasonsViewModel = SeasonsViewModel(seasonsList)
+        view?.displayEpisodes(seasonsList)
+        view?.hideEpisodesProgress()
+    }
+
+    private fun loadEpisodesFromNetwork() {
+        val numberOfSeasons = showDetails?.numberOfSeasons
+        if (numberOfSeasons == null) {
+            loge { "Can't load episodes list without ShowDetails" }
+            return
+        }
+
         view?.showEpisodesProgress()
         view?.hideEpisodesError()
 
-        val isInMyShow = myShowsRepository.isInMyShows(showId)
-
         launch {
             try {
-                val seasonsList = when {
-                    isInMyShow -> episodesRepository.allSeasons(showTmdbId = showId)
-                    else -> {
-                        val numberOfSeasons = showDetails?.numberOfSeasons
-                            ?: throw Throwable("Can't load episodes list without ShowDetails")
-                        (1..numberOfSeasons)
-                            .mapNotNull { seasonNumber ->
-                                showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
-                            }
+                showSeasons = (1..numberOfSeasons)
+                    .mapNotNull { seasonNumber ->
+                        showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
                     }
-                }.map(SeasonViewModel.Companion::map)
-
-                seasons = SeasonsViewModel(seasonsList)
-                view?.displayEpisodes(seasons.asList())
+                val seasonsList = showSeasons!!.map(SeasonViewModel.Companion::map)
+                seasonsViewModel = SeasonsViewModel(seasonsList)
+                view?.displayEpisodes(seasonsList)
             } catch (e: Throwable) {
                 view?.showEpisodesError()
             } finally {
                 view?.hideEpisodesProgress()
             }
+        }
+    }
+
+    private fun processEpisodeWatchedStateToggle(episode: EpisodeViewModel) {
+        val isWatched = !episode.isWatched
+
+        val firstNotWatchedNumber = episodesRepository.firstNotWatchedEpisode(showId)
+        if (isWatched && firstNotWatchedNumber != null && firstNotWatchedNumber < episode.number) {
+            view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
+                if (checkAllPreviousEpisodes) {
+                    markAllEpisodesWatchedUpTo(episode.number)
+                } else {
+                    setEpisodeWatched(episode, isWatched)
+                }
+            }
+        } else {
+            setEpisodeWatched(episode, isWatched)
+        }
+    }
+
+    private fun processSeasonWatchedStateToggled(season: SeasonViewModel) {
+        val isWatched = !season.isWatched
+
+        val firstNotWatchedSeason = episodesRepository.firstNotWatchedEpisode(showId)?.season ?: season.number
+        if (isWatched && firstNotWatchedSeason < season.number) {
+            view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
+                if (checkAllPreviousEpisodes) {
+                    markAllSeasonsWatchedUpTo(season.number)
+                } else {
+                    setSeasonWatched(season, isWatched)
+                }
+            }
+        } else {
+            setSeasonWatched(season, isWatched)
         }
     }
 
@@ -296,11 +370,11 @@ class ShowDetailsPresenter(
     }
 
     private fun markAllEpisodesWatchedUpTo(episodeNumber: EpisodeNumber) {
-        seasons.get(1 until episodeNumber.season).forEach { season ->
+        seasonsViewModel.get(1 until episodeNumber.season).forEach { season ->
             season.isWatched = true
         }
 
-        seasons[episodeNumber.season]?.episodes?.toEpisodes()?.get(1..episodeNumber.episode)?.forEach { episode ->
+        seasonsViewModel[episodeNumber.season]?.episodes?.toEpisodes()?.get(1..episodeNumber.episode)?.forEach { episode ->
             episode.isWatched = true
         }
 
@@ -312,7 +386,7 @@ class ShowDetailsPresenter(
     }
 
     private fun markAllSeasonsWatchedUpTo(seasonNumber: Int) {
-        seasons.get(1..seasonNumber).forEach { season ->
+        seasonsViewModel.get(1..seasonNumber).forEach { season ->
             season.isWatched = true
         }
 
