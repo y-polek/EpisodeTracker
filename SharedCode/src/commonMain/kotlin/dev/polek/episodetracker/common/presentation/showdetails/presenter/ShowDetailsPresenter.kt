@@ -66,7 +66,9 @@ class ShowDetailsPresenter(
         episodesTabRevealed = true
 
         val inDb = myShowsRepository.isAddedToMyShows(showId)
-        if (!inDb) {
+        if (inDb) {
+            loadEpisodesFromDb()
+        } else {
             if (showDetails != null) {
                 loadEpisodesFromNetwork()
             } else {
@@ -280,6 +282,7 @@ class ShowDetailsPresenter(
         val seasonsList = episodesRepository.allSeasons(showId).map(SeasonViewModel.Companion::map)
         seasonsViewModel = SeasonsViewModel(seasonsList)
         view?.displayEpisodes(seasonsList)
+        view?.hideEpisodesProgress()
     }
 
     private fun loadEpisodesFromNetwork() {
