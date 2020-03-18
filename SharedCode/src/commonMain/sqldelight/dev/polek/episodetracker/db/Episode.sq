@@ -45,7 +45,9 @@ WHERE showTmdbId = ? AND (seasonNumber < :season OR (seasonNumber == :season AND
 markAllWatchedUpToSeason:
 UPDATE Episode
 SET isWatched = 1
-WHERE showTmdbId = ? AND seasonNumber <= :season;
+WHERE showTmdbId = ?
+  AND seasonNumber <= :season
+  AND airDateMillis < (SELECT currentTimeMillis FROM Time);
 
 nextNotWatchedEpisode:
 SELECT seasonNumber, episodeNumber
