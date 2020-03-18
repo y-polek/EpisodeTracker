@@ -5,6 +5,7 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
 import dev.polek.episodetracker.common.logging.log
+import dev.polek.episodetracker.common.logging.loge
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.common.presentation.BasePresenter
@@ -65,11 +66,13 @@ class ShowDetailsPresenter(
         episodesTabRevealed = true
 
         val inDb = myShowsRepository.isAddedToMyShows(showId)
-        if (inDb || showDetails != null) {
-            loadEpisodes()
-        } else {
-            view?.hideEpisodesProgress()
-            view?.showEpisodesError()
+        if (!inDb) {
+            if (showDetails != null) {
+                loadEpisodesFromNetwork()
+            } else {
+                view?.hideEpisodesProgress()
+                view?.showEpisodesError()
+            }
         }
     }
 
@@ -130,7 +133,7 @@ class ShowDetailsPresenter(
 
     fun onEpisodesRetryButtonClicked() {
         if (showDetails != null) {
-            loadEpisodes()
+            loadEpisodesFromNetwork()
         } else {
             loadShowDetails()
         }
@@ -138,7 +141,6 @@ class ShowDetailsPresenter(
 
     private fun loadShowDetails() {
         view?.showProgress()
-        view?.showEpisodesProgress()
         view?.hideError()
 
         val inDb = myShowsRepository.isAddedToMyShows(showId)
@@ -147,7 +149,10 @@ class ShowDetailsPresenter(
             checkNotNull(show) { "Can't find show with $showId ID in My Shows" }
             displayHeader(show)
             displayDetails(show)
+            loadEpisodesFromDb()
             view?.hideProgress()
+        } else {
+            view?.showEpisodesProgress()
         }
 
         launch {
@@ -173,11 +178,13 @@ class ShowDetailsPresenter(
             }
 
             if (episodesTabRevealed) {
-                if (inDb || showDetails != null) {
-                    loadEpisodes()
-                } else {
-                    view?.hideEpisodesProgress()
-                    view?.showEpisodesError()
+                if (!inDb) {
+                    if (showDetails != null) {
+                        loadEpisodesFromNetwork()
+                    } else {
+                        view?.hideEpisodesProgress()
+                        view?.showEpisodesError()
+                    }
                 }
             }
         }
@@ -269,29 +276,31 @@ class ShowDetailsPresenter(
         }
     }
 
-    private fun loadEpisodes() {
+    private fun loadEpisodesFromDb() {
+        val seasonsList = episodesRepository.allSeasons(showId).map(SeasonViewModel.Companion::map)
+        seasonsViewModel = SeasonsViewModel(seasonsList)
+        view?.displayEpisodes(seasonsList)
+    }
+
+    private fun loadEpisodesFromNetwork() {
+        val numberOfSeasons = showDetails?.numberOfSeasons
+        if (numberOfSeasons == null) {
+            loge { "Can't load episodes list without ShowDetails" }
+            return
+        }
+
         view?.showEpisodesProgress()
         view?.hideEpisodesError()
 
-        val inDb = myShowsRepository.isAddedToMyShows(showId)
-
         launch {
             try {
-                val seasonsList = when {
-                    inDb -> episodesRepository.allSeasons(showTmdbId = showId)
-                    else -> {
-                        val numberOfSeasons = showDetails?.numberOfSeasons
-                            ?: throw Throwable("Can't load episodes list without ShowDetails")
-                        showSeasons = (1..numberOfSeasons)
-                            .mapNotNull { seasonNumber ->
-                                showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
-                            }
-                        showSeasons!!
+                showSeasons = (1..numberOfSeasons)
+                    .mapNotNull { seasonNumber ->
+                        showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
                     }
-                }.map(SeasonViewModel.Companion::map)
-
+                val seasonsList = showSeasons!!.map(SeasonViewModel.Companion::map)
                 seasonsViewModel = SeasonsViewModel(seasonsList)
-                view?.displayEpisodes(seasonsViewModel.asList())
+                view?.displayEpisodes(seasonsList)
             } catch (e: Throwable) {
                 view?.showEpisodesError()
             } finally {
