@@ -160,11 +160,11 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @IBAction func onMenuTapped(_ sender: Any) {
-        
+        presenter.onMenuClicked()
     }
     
     @IBAction func addToMyShowsTapped(_ sender: Any) {
-        presenter.onAddToMyShowsButtonClicked()
+        presenter.onAddToMyShowsClicked()
     }
     
     private func trailerTapCallback(trailer: TrailerViewModel) {
@@ -307,6 +307,36 @@ extension ShowDetailsViewController: ShowDetailsView {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
             callback(false)
         }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func displayOptionsMenu(isInMyShows: Bool) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { action in
+            self.presenter.onShareShowClicked()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Mark Watched", style: .default, handler: { action in
+            self.presenter.onMarkWatchedClicked()
+        }))
+        
+        if isInMyShows {
+            alert.addAction(UIAlertAction(title: "Archive", style: .default, handler: { action in
+                self.presenter.onArchiveShowClicked()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { action in
+                self.presenter.onRemoveShowClicked()
+            }))
+        } else {
+            alert.addAction(UIAlertAction(title: "Add to My Shows", style: .destructive, handler: { action in
+                self.presenter.onAddToMyShowsClicked()
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         present(alert, animated: true, completion: nil)
     }
     

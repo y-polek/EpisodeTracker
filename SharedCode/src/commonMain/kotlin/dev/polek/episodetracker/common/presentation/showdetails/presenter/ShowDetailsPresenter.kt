@@ -78,11 +78,32 @@ class ShowDetailsPresenter(
         }
     }
 
-    fun onAddToMyShowsButtonClicked() {
+    fun onMenuClicked() {
+        val isAddedOrAdding = myShowsRepository.isAddedOrAddingToMyShows(showId)
+        view?.displayOptionsMenu(isInMyShows = isAddedOrAdding)
+    }
+
+    fun onAddToMyShowsClicked() {
         view?.displayAddToMyShowsProgress()
         launch {
             myShowsRepository.addShow(showId)
         }
+    }
+
+    fun onShareShowClicked() {
+
+    }
+
+    fun onMarkWatchedClicked() {
+        TODO("not implemented")
+    }
+
+    fun onRemoveShowClicked() {
+        myShowsRepository.removeShow(showId)
+    }
+
+    fun onArchiveShowClicked() {
+        TODO("not implemented")
     }
 
     fun onRetryButtonClicked() {
