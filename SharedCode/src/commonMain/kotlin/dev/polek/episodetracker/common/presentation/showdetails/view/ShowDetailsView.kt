@@ -13,7 +13,7 @@ interface ShowDetailsView {
     fun displayAddToMyShowsProgress()
     fun hideAddToMyShowsButton()
     fun displayAddToMyShowsConfirmation(showName: String, callback: (confirmed: Boolean) -> Unit)
-    fun showCheckAllPreviousEpisodesPrompt(callback: (checkAllPreviousEpisodes: Boolean) -> Unit)
+    fun showCheckAllPreviousEpisodesPrompt(onCheckAllPrevious: () -> Unit, onCheckOnlyThis: () -> Unit, onCancel: () -> Unit)
     fun displayOptionsMenu(isInMyShows: Boolean)
     fun shareText(text: String)
 

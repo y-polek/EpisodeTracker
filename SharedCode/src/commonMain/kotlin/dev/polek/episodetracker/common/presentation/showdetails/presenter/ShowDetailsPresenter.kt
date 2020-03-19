@@ -355,13 +355,17 @@ class ShowDetailsPresenter(
 
         val firstNotWatchedNumber = episodesRepository.firstNotWatchedEpisode(showId)
         if (isWatched && firstNotWatchedNumber != null && firstNotWatchedNumber < episode.number) {
-            view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
-                if (checkAllPreviousEpisodes) {
+            view?.showCheckAllPreviousEpisodesPrompt(
+                onCheckAllPrevious = {
                     markAllEpisodesWatchedUpTo(episode.number)
-                } else {
+                },
+                onCheckOnlyThis = {
                     setEpisodeWatched(episode, isWatched)
+                },
+                onCancel = {
+                    view?.reloadSeason(episode.number.season)
                 }
-            }
+            )
         } else {
             setEpisodeWatched(episode, isWatched)
         }
@@ -372,13 +376,17 @@ class ShowDetailsPresenter(
 
         val firstNotWatchedSeason = episodesRepository.firstNotWatchedEpisode(showId)?.season ?: season.number
         if (isWatched && firstNotWatchedSeason < season.number) {
-            view?.showCheckAllPreviousEpisodesPrompt { checkAllPreviousEpisodes ->
-                if (checkAllPreviousEpisodes) {
+            view?.showCheckAllPreviousEpisodesPrompt(
+                onCheckAllPrevious = {
                     markAllSeasonsWatchedUpTo(season.number)
-                } else {
+                },
+                onCheckOnlyThis = {
                     setSeasonWatched(season, isWatched)
+                },
+                onCancel = {
+                    view?.reloadSeason(season.number)
                 }
-            }
+            )
         } else {
             setSeasonWatched(season, isWatched)
         }

@@ -377,13 +377,20 @@ extension ShowDetailsViewController: ShowDetailsView {
         episodesViewController?.reloadSeason(season)
     }
     
-    func showCheckAllPreviousEpisodesPrompt(callback: @escaping (KotlinBoolean) -> Void) {
-        let alert = UIAlertController(title: nil, message: "Check all previous episodes as watched?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Check One", style: .default, handler: { action in
-            callback(false)
+    func showCheckAllPreviousEpisodesPrompt(
+        onCheckAllPrevious: @escaping () -> Void,
+        onCheckOnlyThis: @escaping () -> Void,
+        onCancel: @escaping () -> Void)
+    {
+        let alert = UIAlertController(title: "Check all previous episodes as watched?", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Check All", style: .default, handler: { _ in
+            onCheckAllPrevious()
         }))
-        alert.addAction(UIAlertAction(title: "Check All", style: .default, handler: { action in
-            callback(true)
+        alert.addAction(UIAlertAction(title: "Check One", style: .default, handler: { _ in
+            onCheckOnlyThis()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            onCancel()
         }))
         present(alert, animated: true, completion: nil)
     }
