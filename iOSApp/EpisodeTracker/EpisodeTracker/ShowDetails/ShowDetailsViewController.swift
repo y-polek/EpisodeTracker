@@ -340,6 +340,11 @@ extension ShowDetailsViewController: ShowDetailsView {
         present(alert, animated: true, completion: nil)
     }
     
+    func shareText(text: String) {
+        let controller = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        present(controller, animated: true, completion: nil)
+    }
+    
     func displayShowDetails(show: ShowDetailsViewModel) {
         aboutShowViewController?.displayShowDetails(show)
     }

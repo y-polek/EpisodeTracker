@@ -15,6 +15,7 @@ interface ShowDetailsView {
     fun displayAddToMyShowsConfirmation(showName: String, callback: (confirmed: Boolean) -> Unit)
     fun showCheckAllPreviousEpisodesPrompt(callback: (checkAllPreviousEpisodes: Boolean) -> Unit)
     fun displayOptionsMenu(isInMyShows: Boolean)
+    fun shareText(text: String)
 
     fun displayShowDetails(show: ShowDetailsViewModel)
     fun displayTrailers(trailers: List<TrailerViewModel>)

@@ -91,7 +91,24 @@ class ShowDetailsPresenter(
     }
 
     fun onShareShowClicked() {
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        val text = if (inDb) {
+            val show = myShowsRepository.showDetails(showId) ?: return
+            buildShareText(
+                name = show.name,
+                year = show.year,
+                imdbId = show.imdbId,
+                homePageUrl = show.homePageUrl)
+        } else {
+            val show = showDetails ?: return
+            buildShareText(
+                name = show.name.orEmpty(),
+                year = show.year,
+                imdbId = show.externalIds?.imdbId,
+                homePageUrl = show.homePageUrl)
+        }
 
+        view?.shareText(text)
     }
 
     fun onMarkWatchedClicked() {
@@ -415,6 +432,21 @@ class ShowDetailsPresenter(
 
         (1..seasonNumber).forEach { season ->
             view?.reloadSeason(season)
+        }
+    }
+
+    companion object {
+        private fun buildShareText(name: String, year: Int?, imdbId: String?, homePageUrl: String?): String {
+            return buildString {
+                append(name)
+                if (year != null) append(" ($year)")
+                if (imdbId != null) {
+                    val imdbUrl = imdbId.let { "https://www.imdb.com/title/$it" }
+                    append("\n$imdbUrl")
+                } else if (homePageUrl != null) {
+                    append("\n$homePageUrl")
+                }
+            }
         }
     }
 }
