@@ -37,6 +37,12 @@ UPDATE Episode
 SET isWatched = ?
 WHERE showTmdbId = ? AND seasonNumber = ? AND episodeNumber = ?;
 
+markAllWatched:
+UPDATE Episode
+SET isWatched = 1
+WHERE showTmdbId = ?
+  AND airDateMillis < (SELECT currentTimeMillis FROM Time);
+
 markAllWatchedUpTo:
 UPDATE Episode
 SET isWatched = 1

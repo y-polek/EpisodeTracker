@@ -112,7 +112,13 @@ class ShowDetailsPresenter(
     }
 
     fun onMarkWatchedClicked() {
-        TODO("not implemented")
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb) {
+            episodesRepository.markAllWatched(showId)
+        } else {
+            myShowsRepository.removeShow(showId)
+            myShowsRepository.addShow(showId, markAllEpisodesWatched = true)
+        }
     }
 
     fun onRemoveShowClicked() {

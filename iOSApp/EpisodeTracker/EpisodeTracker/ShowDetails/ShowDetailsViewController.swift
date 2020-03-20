@@ -317,7 +317,7 @@ extension ShowDetailsViewController: ShowDetailsView {
             self.presenter.onShareShowClicked()
         }))
         
-        alert.addAction(UIAlertAction(title: "Mark Watched", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Mark as Watched", style: .default, handler: { action in
             self.presenter.onMarkWatchedClicked()
         }))
         

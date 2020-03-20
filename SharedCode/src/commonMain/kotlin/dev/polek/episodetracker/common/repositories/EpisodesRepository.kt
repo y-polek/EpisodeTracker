@@ -34,6 +34,10 @@ class EpisodesRepository(private val db: Database) {
             isWatched = isWatched)
     }
 
+    fun markAllWatched(showTmdbId: Int) {
+        db.episodeQueries.markAllWatched(showTmdbId)
+    }
+
     fun markAllWatchedUpTo(showTmdbId: Int, episodeNumber: EpisodeNumber) {
         db.episodeQueries.markAllWatchedUpTo(
             showTmdbId = showTmdbId,

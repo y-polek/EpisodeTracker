@@ -34,7 +34,7 @@ class ShowRepository(
         return season
     }
 
-    fun writeShowToDb(show: ShowDetailsEntity, seasons: List<Season>) {
+    fun writeShowToDb(show: ShowDetailsEntity, seasons: List<Season>, markAllEpisodesWatched: Boolean = false) {
         val showTmdbId = show.tmdbId!!
 
         db.transaction {
@@ -48,6 +48,9 @@ class ShowRepository(
                         airDateMillis = episode.airDateMillis,
                         imageUrl = episode.imageUrl)
                 }
+            if (markAllEpisodesWatched) {
+                db.episodeQueries.markAllWatched(showTmdbId)
+            }
 
             db.myShowQueries.insert(
                 tmdbId = showTmdbId,

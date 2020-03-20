@@ -21,13 +21,13 @@ class MyShowsRepository(
     private var endedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var isAddedOrAddingQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
 
-    fun addShow(tmdbId: Int) {
+    fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean = false) {
         if (isAddedOrAddingToMyShows(tmdbId)) {
             logw { "Trying to add Show that's already in My Shows" }
             return
         }
 
-        addToMyShowsQueue.addShow(tmdbId)
+        addToMyShowsQueue.addShow(tmdbId, markAllEpisodesWatched)
     }
 
     fun removeShow(tmdbId: Int) {

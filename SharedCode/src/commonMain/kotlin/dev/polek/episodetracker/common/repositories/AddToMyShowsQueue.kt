@@ -65,7 +65,7 @@ class AddToMyShowsQueue(
         log { "Connection lost" }
     }
 
-    fun addShow(tmdbId: Int) {
+    fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean) {
         log { "addShow($tmdbId)" }
 
         val alreadyInQueue = db.addToMyShowsTaskQueries.taskExist(tmdbId).executeAsOne()
@@ -74,7 +74,7 @@ class AddToMyShowsQueue(
             return
         }
 
-        db.addToMyShowsTaskQueries.add(showTmdbId = tmdbId)
+        db.addToMyShowsTaskQueries.add(tmdbId, markAllEpisodesWatched)
     }
 
     fun cancelAddIfExist(tmdbId: Int) {
@@ -127,7 +127,8 @@ class AddToMyShowsQueue(
                 if (!isActive) return@launch
 
                 log { "writing show ${show.tmdbId} to DB" }
-                showRepository.writeShowToDb(show, seasons)
+                showRepository.writeShowToDb(show, seasons, task.markAllEpisodesWatched)
+
 
                 db.addToMyShowsTaskQueries.remove(showTmdbId)
             } catch (e: Throwable) {
