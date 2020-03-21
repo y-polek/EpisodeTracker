@@ -330,7 +330,7 @@ extension ShowDetailsViewController: ShowDetailsView {
                 self.presenter.onRemoveShowClicked()
             }))
         } else {
-            alert.addAction(UIAlertAction(title: "Add to My Shows", style: .destructive, handler: { action in
+            alert.addAction(UIAlertAction(title: "Add to My Shows", style: .default, handler: { action in
                 self.presenter.onAddToMyShowsClicked()
             }))
         }
