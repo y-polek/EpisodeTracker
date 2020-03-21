@@ -55,6 +55,7 @@ class SeasonHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setup() {
+        rippleController.rippleView.rippleColor = .ripple
         rippleController.delegate = self
         rippleController.addRipple(to: self)
         
