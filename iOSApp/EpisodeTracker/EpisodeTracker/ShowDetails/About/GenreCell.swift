@@ -11,7 +11,7 @@ class GenreCell: UICollectionViewCell {
     }
     
     private func setup() {
-        shadowView.backgroundColor = .white
+        shadowView.backgroundColor = .windowBackground
         shadowView.layer.cornerRadius = 5
         
         shadowView.layer.shadowColor = UIColor.lightGray.cgColor

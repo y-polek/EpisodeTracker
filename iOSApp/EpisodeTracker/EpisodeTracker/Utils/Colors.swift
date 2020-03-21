@@ -9,6 +9,7 @@ extension UIColor {
     static let textColorPrimaryInverse = color("TextColorPrimaryInverse")
     static let accent = color("Accent")
     static let dividerPrimary = color("DividerPrimary")
+    static let windowBackground = color("WindowBackground")
     
     private static let bundle = Bundle(for: AppDelegate.self)
     
