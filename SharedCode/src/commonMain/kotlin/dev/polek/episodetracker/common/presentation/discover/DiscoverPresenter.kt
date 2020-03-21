@@ -29,6 +29,7 @@ class DiscoverPresenter(
     }
 
     fun onSearchQuerySubmitted(query: String) {
+        if (query.isBlank()) return
         lastSearchQuery = query
         performSearch(query)
     }
