@@ -387,7 +387,7 @@ extension ShowDetailsViewController: ShowDetailsView {
         onCancel: @escaping () -> Void)
     {
         let alert = UIAlertController(title: "Check all previous episodes as watched?", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Check All", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Check All Previous", style: .default, handler: { _ in
             onCheckAllPrevious()
         }))
         alert.addAction(UIAlertAction(title: "Check One", style: .default, handler: { _ in
