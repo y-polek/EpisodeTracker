@@ -10,6 +10,7 @@ class FloatingButton: MDCFloatingButton {
         return indicator
     }()
     
+    @IBInspectable
     var image: UIImage? = nil
     
     var isActivityIndicatorHidden = true {
@@ -36,21 +37,19 @@ class FloatingButton: MDCFloatingButton {
         setTitleColor(.textColorPrimaryInverse, for: .normal)
         setTitleColor(.textColorPrimaryInverse, for: .disabled)
         disabledAlpha = 0.9
+        setImage(image, for: .normal)
     }
     
     private func showActivityIndicator() {
         addSubview(activityIndicator)
         activityIndicator.center = imageView?.center ?? CGPoint(x: 0, y: 0)
         activityIndicator.startAnimating()
-        image = image(for: .normal)
         setImage(nil, for: .normal)
     }
     
     private func hideActivityIndicator() {
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
-        if image != nil {
-            setImage(image, for: .normal)
-        }
+        setImage(image, for: .normal)
     }
 }

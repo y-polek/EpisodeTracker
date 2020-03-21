@@ -44,6 +44,15 @@ class ShowDetailsPresenter(
         }
     }
 
+    private val isShowAddedSubscriber = object : Subscriber<Boolean> {
+        @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+        override fun onQueryResult(isAdded: Boolean) {
+            if (isAdded) {
+                loadEpisodesFromDb()
+            }
+        }
+    }
+
     override fun attachView(view: ShowDetailsView) {
         super.attachView(view)
 
@@ -53,10 +62,12 @@ class ShowDetailsPresenter(
     override fun onViewAppeared() {
         super.onViewAppeared()
         myShowsRepository.setIsAddedOrAddingToMyShowsSubscriber(showId, isShowAddedOrAddingSubscriber)
+        myShowsRepository.setIsAddedToMyShowsSubscriber(showId, isShowAddedSubscriber)
     }
 
     override fun onViewDisappeared() {
         myShowsRepository.removeIsAddedOrAddingToMyShowsSubscriber(showId)
+        myShowsRepository.removeIsAddedToMyShowsSubscriber(showId)
         super.onViewDisappeared()
     }
 

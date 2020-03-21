@@ -377,6 +377,10 @@ extension ShowDetailsViewController: ShowDetailsView {
         episodesViewController?.reloadSeason(season)
     }
     
+    func reloadAllSeasons() {
+        episodesViewController?.reloadAllSeasons()
+    }
+    
     func showCheckAllPreviousEpisodesPrompt(
         onCheckAllPrevious: @escaping () -> Void,
         onCheckOnlyThis: @escaping () -> Void,

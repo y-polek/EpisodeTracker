@@ -20,6 +20,7 @@ class MyShowsRepository(
     private var toBeAnnouncedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var endedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var isAddedOrAddingQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
+    private var isAddedToMyShowsQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
 
     fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean = false) {
         if (isAddedOrAddingToMyShows(tmdbId)) {
@@ -62,6 +63,21 @@ class MyShowsRepository(
 
     fun removeIsAddedOrAddingToMyShowsSubscriber(showTmdbId: Int) {
         isAddedOrAddingQueryListeners.remove(showTmdbId)?.destroy()
+    }
+
+    fun setIsAddedToMyShowsSubscriber(showTmdbId: Int, subscriber: Subscriber<Boolean>) {
+        removeIsAddedToMyShowsSubscriber(showTmdbId)
+
+        val query = db.myShowQueries.isInMyShows(showTmdbId)
+        isAddedToMyShowsQueryListeners[showTmdbId] = QueryListener(
+            query = query,
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<Boolean>::executeAsOne)
+    }
+
+    fun removeIsAddedToMyShowsSubscriber(showTmdbId: Int) {
+        isAddedToMyShowsQueryListeners.remove(showTmdbId)?.destroy()
     }
 
     fun setUpcomingShowsSubscriber(subscriber: Subscriber<List<UpcomingShowViewModel>>) {
