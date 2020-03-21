@@ -25,13 +25,18 @@ class ImdbBadge: UIView {
         setup()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layer.borderColor = label.textColor.cgColor
+    }
+    
     private func setup() {
         Bundle(for: ImdbBadge.self).loadNibNamed("ImdbBadge", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         
         layer.borderWidth = 1
-        layer.borderColor = UIColor.textColorPrimary.cgColor
+        layer.borderColor = label.textColor.cgColor
         layer.cornerRadius = 5
         clipsToBounds = true
         
