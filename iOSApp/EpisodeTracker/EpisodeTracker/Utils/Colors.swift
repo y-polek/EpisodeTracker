@@ -10,6 +10,7 @@ extension UIColor {
     static let accent = color("Accent")
     static let dividerPrimary = color("DividerPrimary")
     static let windowBackground = color("WindowBackground")
+    static let ripple = color("RippleColor")
     
     private static let bundle = Bundle(for: AppDelegate.self)
     

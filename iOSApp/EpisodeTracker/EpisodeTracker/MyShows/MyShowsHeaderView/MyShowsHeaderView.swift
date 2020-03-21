@@ -49,6 +49,7 @@ class MyShowsHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setup() {
+        rippleController.rippleView.rippleColor = .ripple
         rippleController.addRipple(to: self)
         
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
