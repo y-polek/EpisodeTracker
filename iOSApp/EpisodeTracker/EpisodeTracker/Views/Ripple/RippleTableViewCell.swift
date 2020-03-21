@@ -3,7 +3,11 @@ import MaterialComponents.MaterialRipple
 
 class RippleTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var rippleView: MDCRippleView!
+    @IBOutlet weak var rippleView: MDCRippleView! {
+        didSet {
+            self.rippleView?.rippleColor = .ripple
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
