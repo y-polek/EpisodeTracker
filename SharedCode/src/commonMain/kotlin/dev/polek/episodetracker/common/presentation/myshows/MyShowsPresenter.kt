@@ -17,7 +17,7 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
         isUpcomingExpanded = true,
         isToBeAnnouncedExpanded = true,
         isEndedExpanded = true,
-        isArchivedExpanded = false)
+        isArchivedExpanded = true)
 
     private val upcomingShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
         override fun onQueryResult(result: List<UpcomingShowViewModel>) {
