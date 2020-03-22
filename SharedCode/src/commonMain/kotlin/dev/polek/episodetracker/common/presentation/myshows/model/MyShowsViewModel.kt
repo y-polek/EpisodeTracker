@@ -7,15 +7,19 @@ class MyShowsViewModel(
     var upcomingShows: List<UpcomingShowViewModel>,
     var toBeAnnouncedShows: List<ShowViewModel>,
     var endedShows: List<ShowViewModel>,
+    var archivedShows: List<ShowViewModel>,
     isUpcomingExpanded: Boolean,
     isToBeAnnouncedExpanded: Boolean,
-    isEndedExpanded: Boolean)
+    isEndedExpanded: Boolean,
+    isArchivedExpanded: Boolean)
 {
     var isUpcomingExpanded: Boolean = isUpcomingExpanded
         private set
     var isToBeAnnouncedExpanded: Boolean = isToBeAnnouncedExpanded
         private set
     var isEndedExpanded: Boolean = isEndedExpanded
+        private set
+    var isArchivedExpanded: Boolean = isArchivedExpanded
         private set
 
     var items: List<MyShowsListItem> = populateItemList()
@@ -48,6 +52,15 @@ class MyShowsViewModel(
         setEndedExpanded(!isEndedExpanded)
     }
 
+    fun setArchivedExpanded(expanded: Boolean) {
+        isArchivedExpanded = expanded
+        items = populateItemList()
+    }
+
+    fun toggleArchivedExpanded() {
+        setArchivedExpanded(!isArchivedExpanded)
+    }
+
     private fun populateItemList(): List<MyShowsListItem> {
         val items = mutableListOf<MyShowsListItem>()
         if (upcomingShows.isNotEmpty()) {
@@ -77,6 +90,15 @@ class MyShowsViewModel(
                 items.addAll(endedShows)
             }
         }
+        if (archivedShows.isNotEmpty()) {
+            // "Archived" Group Header
+            items.add(ArchivedGroupViewModel("Archived", isArchivedExpanded))
+
+            // "Archived" Shows
+            if (isArchivedExpanded) {
+                items.addAll(archivedShows)
+            }
+        }
         return items
     }
 
@@ -86,9 +108,10 @@ class MyShowsViewModel(
                 upcomingShows = emptyList(),
                 toBeAnnouncedShows = emptyList(),
                 endedShows = emptyList(),
+                archivedShows = emptyList(),
                 isUpcomingExpanded = true,
                 isToBeAnnouncedExpanded = true,
-                isEndedExpanded = true
-            )
+                isEndedExpanded = true,
+                isArchivedExpanded = true)
     }
 }

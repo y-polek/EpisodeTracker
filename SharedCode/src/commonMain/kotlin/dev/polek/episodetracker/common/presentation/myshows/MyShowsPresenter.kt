@@ -13,10 +13,11 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
         upcomingShows = emptyList(),
         toBeAnnouncedShows = emptyList(),
         endedShows = emptyList(),
+        archivedShows = emptyList(),
         isUpcomingExpanded = true,
         isToBeAnnouncedExpanded = true,
-        isEndedExpanded = true
-    )
+        isEndedExpanded = true,
+        isArchivedExpanded = false)
 
     private val upcomingShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
         override fun onQueryResult(result: List<UpcomingShowViewModel>) {
@@ -39,6 +40,13 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
         }
     }
 
+    private val archivedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
+        override fun onQueryResult(result: List<ShowViewModel>) {
+            model.archivedShows = result
+            view?.updateShows(model)
+        }
+    }
+
     override fun attachView(view: MyShowsView) {
         super.attachView(view)
         view.updateShows(model)
@@ -49,12 +57,14 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
         repository.setUpcomingShowsSubscriber(upcomingShowsSubscriber)
         repository.setToBeAnnouncedShowsSubscriber(toBeAnnouncedShowsSubscriber)
         repository.setEndedShowsSubscriber(endedShowsSubscriber)
+        repository.setArchivedShowsSubscriber(archivedShowsSubscriber)
     }
 
     override fun onViewDisappeared() {
         repository.removeUpcomingShowsSubscriber()
         repository.removeToBeAnnouncedShowsSubscriber()
         repository.removeEndedShowsSubscriber()
+        repository.removeArchivedShowsSubscriber()
         super.onViewDisappeared()
     }
 

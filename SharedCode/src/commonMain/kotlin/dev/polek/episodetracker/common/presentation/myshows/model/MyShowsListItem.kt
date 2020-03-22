@@ -8,6 +8,7 @@ sealed class MyShowsListItem {
         class UpcomingGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
         class ToBeAnnouncedGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
         class EndedGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
+        class ArchivedGroupViewModel(name: String, expanded: Boolean) : GroupViewModel(name, expanded)
     }
 
     open class ShowViewModel(

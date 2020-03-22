@@ -19,6 +19,7 @@ class MyShowsRepository(
     private var upcomingShowsQueryListener: QueryListener<UpcomingShowViewModel, List<UpcomingShowViewModel>>? = null
     private var toBeAnnouncedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var endedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
+    private var archivedShowsQueueListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var isAddedOrAddingQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
     private var isAddedToMyShowsQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
 
@@ -143,6 +144,21 @@ class MyShowsRepository(
     fun removeEndedShowsSubscriber() {
         endedShowsQueryListener?.destroy()
         endedShowsQueryListener = null
+    }
+
+    fun setArchivedShowsSubscriber(subscriber: Subscriber<List<ShowViewModel>>) {
+        removeArchivedShowsSubscriber()
+
+        archivedShowsQueueListener = QueryListener(
+            query = db.myShowQueries.archivedShows(mapper = ::mapShowViewModel),
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<ShowViewModel>::executeAsList)
+    }
+
+    fun removeArchivedShowsSubscriber() {
+        archivedShowsQueueListener?.destroy()
+        archivedShowsQueueListener = null
     }
 
     fun showDetails(tmdbId: Int): ShowDetails? {

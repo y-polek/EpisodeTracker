@@ -68,6 +68,11 @@ SELECT tmdbId, name, imageUrl
 FROM MyShow
 WHERE isEnded = 1;
 
+archivedShows:
+SELECT tmdbId, name, imageUrl
+FROM MyShow
+WHERE isArchived = 1;
+
 toWatchShows:
 SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow

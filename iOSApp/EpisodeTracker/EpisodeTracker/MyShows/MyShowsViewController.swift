@@ -43,12 +43,14 @@ extension MyShowsViewController: MyShowsView {
     }
 }
 
+// MARK: - TableView datasource and delegate
 extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         let number = (model.upcomingShows.isEmpty ? 0 : 1)
             + (model.toBeAnnouncedShows.isEmpty ? 0 : 1)
             + (model.endedShows.isEmpty ? 0 : 1)
+            + (model.archivedShows.isEmpty ? 0 : 1)
         return number
     }
     
@@ -60,21 +62,15 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
             return model.isToBeAnnouncedExpanded ? model.toBeAnnouncedShows.count : 0
         case endedSectionIndex():
             return model.isEndedExpanded ? model.endedShows.count : 0
+        case archivedSectionIndex():
+            return model.isArchivedExpanded ? model.archivedShows.count : 0
         default:
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyShowsHeaderView.reuseIdentifier) as? MyShowsHeaderView
-        
-        if view == nil {
-            return nil
-        }
-        
-        
-        let header = view!
-        
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyShowsHeaderView.reuseIdentifier) as! MyShowsHeaderView
         
         switch section {
         case upcomingSectionIndex():
@@ -98,6 +94,13 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
                 self.model.toggleEndedExpanded()
                 tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
             }
+        case archivedSectionIndex():
+            header.title = "Archived"
+            header.isExpanded = model.isArchivedExpanded
+            header.tapCallback = {
+                self.model.toggleArchivedExpanded()
+                tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
+            }
         default:
             break
         }
@@ -113,6 +116,8 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
             return toBeAnnouncedShowCell(tableView, indexPath)
         case endedSectionIndex():
             return endedShowCell(tableView, indexPath)
+        case archivedSectionIndex():
+            return archivedShowCell(tableView, indexPath)
         default:
             fatalError("Unknown section #\(indexPath.section)")
         }
@@ -132,6 +137,8 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
             show = model.toBeAnnouncedShows[row]
         case endedSectionIndex():
             show = model.endedShows[row]
+        case archivedSectionIndex():
+            show = model.archivedShows[row]
         default:
             fatalError("Unknown section #\(indexPath.section)")
         }
@@ -150,6 +157,10 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
         return model.endedShows.isEmpty ? -1 : (2 - (model.upcomingShows.isEmpty ? 1 : 0) - (model.toBeAnnouncedShows.isEmpty ? 1 : 0))
     }
     
+    private func archivedSectionIndex() -> Int {
+        return model.archivedShows.isEmpty ? -1 : (3 - (model.upcomingShows.isEmpty ? 1 : 0) - (model.toBeAnnouncedShows.isEmpty ? 1 : 0) - (model.endedShows.isEmpty ? 1 : 0))
+    }
+    
     private func upcomingShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UpcomingShowCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "upcoming_show_cell") as! UpcomingShowCell
         cell.bind(show: model.upcomingShows[indexPath.row])
@@ -165,6 +176,12 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     private func endedShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> ShowCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "show_cell") as! ShowCell
         cell.bind(show: model.endedShows[indexPath.row])
+        return cell
+    }
+    
+    private func archivedShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> ShowCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "show_cell") as! ShowCell
+        cell.bind(show: model.archivedShows[indexPath.row])
         return cell
     }
 }
