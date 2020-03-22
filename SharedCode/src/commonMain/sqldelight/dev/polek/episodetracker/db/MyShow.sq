@@ -56,17 +56,20 @@ FROM MyShow
 INNER JOIN Episode
  ON Episode.showTmdbId = MyShow.tmdbId
  AND Episode.seasonNumber = MyShow.nextEpisodeSeason
- AND Episode.episodeNumber = MyShow.nextEpisodeNumber;
+ AND Episode.episodeNumber = MyShow.nextEpisodeNumber
+WHERE isArchived = 0;
 
 toBeAnnouncedShows:
 SELECT tmdbId, name, imageUrl
 FROM MyShow
-WHERE isEnded = 0 AND nextEpisodeNumber IS NULL;
+WHERE isEnded = 0
+    AND nextEpisodeNumber IS NULL
+    AND isArchived = 0;
 
 endedShows:
 SELECT tmdbId, name, imageUrl
 FROM MyShow
-WHERE isEnded = 1;
+WHERE isEnded = 1 AND isArchived = 0;
 
 archivedShows:
 SELECT tmdbId, name, imageUrl
