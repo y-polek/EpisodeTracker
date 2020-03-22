@@ -40,6 +40,7 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var addButton: FloatingButton!
     @IBOutlet weak var addButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarLabel: UILabel!
+    @IBOutlet weak var archivedBadge: UIView!
     
     private func setParameters(_ showId: Int, _ showName: String, _ openEpisodesTabOnStart: Bool) {
         self.showId = showId
@@ -59,6 +60,7 @@ class ShowDetailsViewController: UIViewController {
         toolbarLabel.text = showName
         toolbarLabel.alpha = 0
         headerLabelsContainer.alpha = 1
+        archivedBadge.alpha = 1
         
         tabBar.items = [
             UITabBarItem(title: "About", image: nil, tag: 0),
@@ -163,8 +165,17 @@ class ShowDetailsViewController: UIViewController {
         presenter.onMenuClicked()
     }
     
-    @IBAction func addToMyShowsTapped(_ sender: Any) {
+    @IBAction func onAddToMyShowsTapped(_ sender: Any) {
         presenter.onAddToMyShowsClicked()
+    }
+    
+    @IBAction func onArchivedButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "Do you want to unarchive this show?", message: "Archived shows are not shown in \"Upcoming\" or \"To Watch\" lists.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { action in
+            self.presenter.onUnarchiveShowClicked()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     private func trailerTapCallback(trailer: TrailerViewModel) {
@@ -212,6 +223,7 @@ class ShowDetailsViewController: UIViewController {
         toolbarLabel.alpha = 1 - 2 * heightRatio
         headerLabelsContainer.alpha = 1 - 2 * (1 - heightRatio)
         imageView.blurAlpha = 1 - heightRatio
+        archivedBadge.alpha = 1 - 2 * (1 - heightRatio)
 
         return blockScroll
     }
@@ -297,6 +309,14 @@ extension ShowDetailsViewController: ShowDetailsView {
         addButton.isActivityIndicatorHidden = true
         addButton.isHidden = true
         removeBottomInset()
+    }
+    
+    func displayArchivedBadge() {
+        archivedBadge.isHidden = false
+    }
+    
+    func hideArchivedBadge() {
+        archivedBadge.isHidden = true
     }
     
     func displayAddToMyShowsConfirmation(showName: String, callback: @escaping (KotlinBoolean) -> Void) {

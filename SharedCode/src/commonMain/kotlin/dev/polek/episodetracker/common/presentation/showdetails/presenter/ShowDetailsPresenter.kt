@@ -53,6 +53,17 @@ class ShowDetailsPresenter(
         }
     }
 
+    private val isArchivedSubscriber = object : Subscriber<Boolean> {
+        @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+        override fun onQueryResult(isArchived: Boolean) {
+            if (isArchived) {
+                view?.displayArchivedBadge()
+            } else {
+                view?.hideArchivedBadge()
+            }
+        }
+    }
+
     override fun attachView(view: ShowDetailsView) {
         super.attachView(view)
 
@@ -63,11 +74,13 @@ class ShowDetailsPresenter(
         super.onViewAppeared()
         myShowsRepository.setIsAddedOrAddingToMyShowsSubscriber(showId, isShowAddedOrAddingSubscriber)
         myShowsRepository.setIsAddedToMyShowsSubscriber(showId, isShowAddedSubscriber)
+        myShowsRepository.setIsArchivedSubscriber(showId, isArchivedSubscriber)
     }
 
     override fun onViewDisappeared() {
         myShowsRepository.removeIsAddedOrAddingToMyShowsSubscriber(showId)
         myShowsRepository.removeIsAddedToMyShowsSubscriber(showId)
+        myShowsRepository.removeIsArchivedSubscriber(showId)
         super.onViewDisappeared()
     }
 

@@ -12,6 +12,8 @@ interface ShowDetailsView {
     fun displayAddToMyShowsButton()
     fun displayAddToMyShowsProgress()
     fun hideAddToMyShowsButton()
+    fun displayArchivedBadge()
+    fun hideArchivedBadge()
     fun displayAddToMyShowsConfirmation(showName: String, callback: (confirmed: Boolean) -> Unit)
     fun showCheckAllPreviousEpisodesPrompt(onCheckAllPrevious: () -> Unit, onCheckOnlyThis: () -> Unit, onCancel: () -> Unit)
     fun displayOptionsMenu(isInMyShows: Boolean, isArchived: Boolean)

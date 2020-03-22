@@ -34,6 +34,34 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqx-wp-KSC" userLabel="Archived Badge">
+                                        <rect key="frame" x="277" y="80" width="90" height="28"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvT-AR-iin">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
+                                                <state key="normal" title="ARCHIVED">
+                                                    <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onArchivedButtonTapped:" destination="7qu-An-85M" eventType="touchUpInside" id="edy-qq-L76"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="tvT-AR-iin" firstAttribute="leading" secondItem="tqx-wp-KSC" secondAttribute="leading" id="VWB-mw-DBC"/>
+                                            <constraint firstItem="tvT-AR-iin" firstAttribute="top" secondItem="tqx-wp-KSC" secondAttribute="top" id="fA9-DN-bNg"/>
+                                            <constraint firstAttribute="trailing" secondItem="tvT-AR-iin" secondAttribute="trailing" id="uIJ-tT-N20"/>
+                                            <constraint firstAttribute="bottom" secondItem="tvT-AR-iin" secondAttribute="bottom" id="wK4-wk-pGv"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fkf-Zv-uKT" userLabel="Header Labels Stack View">
                                         <rect key="frame" x="16" y="135.66666666666666" width="343" height="48.333333333333343"/>
                                         <subviews>
@@ -96,7 +124,7 @@
                                             <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-add"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="addToMyShowsTapped:" destination="7qu-An-85M" eventType="touchUpInside" id="i5n-Ox-wF3"/>
+                                            <action selector="onAddToMyShowsTapped:" destination="7qu-An-85M" eventType="touchUpInside" id="i5n-Ox-wF3"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -107,6 +135,7 @@
                                     <constraint firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" id="9cm-mA-O8C"/>
                                     <constraint firstItem="fkf-Zv-uKT" firstAttribute="bottom" secondItem="htr-Op-cRr" secondAttribute="bottom" constant="-16" id="CxB-dL-tAG"/>
                                     <constraint firstAttribute="trailing" secondItem="m6d-2k-LBz" secondAttribute="trailing" id="HIE-tv-znq"/>
+                                    <constraint firstItem="tqx-wp-KSC" firstAttribute="trailing" secondItem="htr-Op-cRr" secondAttribute="trailing" constant="-8" id="VUc-Wv-Wm8"/>
                                     <constraint firstItem="m6d-2k-LBz" firstAttribute="top" secondItem="bz5-Zm-oSn" secondAttribute="bottom" id="WRH-Ue-yh0"/>
                                     <constraint firstItem="fkf-Zv-uKT" firstAttribute="leading" secondItem="htr-Op-cRr" secondAttribute="leading" constant="16" id="ZFB-7X-pA5"/>
                                     <constraint firstItem="bz5-Zm-oSn" firstAttribute="leading" secondItem="3g5-7n-dX0" secondAttribute="leading" id="aOz-et-Xa3"/>
@@ -189,6 +218,7 @@
                             <constraint firstItem="3g5-7n-dX0" firstAttribute="bottom" secondItem="8Mg-ED-3gF" secondAttribute="bottom" id="7LQ-Rw-Hia"/>
                             <constraint firstItem="gLr-2j-L0n" firstAttribute="leading" secondItem="sue-Vb-FUr" secondAttribute="leading" id="8eQ-SH-CBl"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="NmW-en-zZ8" secondAttribute="trailing" id="NFS-gX-hmA"/>
+                            <constraint firstItem="tqx-wp-KSC" firstAttribute="top" secondItem="NmW-en-zZ8" secondAttribute="bottom" id="PVR-RI-uec"/>
                             <constraint firstAttribute="trailing" secondItem="3g5-7n-dX0" secondAttribute="trailing" id="RZO-fv-d12"/>
                             <constraint firstItem="sue-Vb-FUr" firstAttribute="trailing" secondItem="gLr-2j-L0n" secondAttribute="trailing" id="Tff-mR-u99"/>
                             <constraint firstItem="NmW-en-zZ8" firstAttribute="top" secondItem="sue-Vb-FUr" secondAttribute="top" id="USg-Fe-bcq"/>
@@ -203,6 +233,7 @@
                         <outlet property="activityIndicator" destination="m22-PA-7SV" id="LMS-u8-yGz"/>
                         <outlet property="addButton" destination="dsY-EQ-KkW" id="uTa-n5-v8u"/>
                         <outlet property="addButtonBottomConstraint" destination="1la-9i-Stt" id="ZDT-TP-7gk"/>
+                        <outlet property="archivedBadge" destination="tqx-wp-KSC" id="wnI-g6-h54"/>
                         <outlet property="backButton" destination="BOA-xL-8CE" id="JoO-UA-Zv4"/>
                         <outlet property="contentView" destination="3g5-7n-dX0" id="f4t-sp-N6E"/>
                         <outlet property="episodesView" destination="m6d-2k-LBz" id="fHc-sV-RSp"/>

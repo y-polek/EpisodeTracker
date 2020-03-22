@@ -22,6 +22,7 @@ class MyShowsRepository(
     private var archivedShowsQueueListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var isAddedOrAddingQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
     private var isAddedToMyShowsQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
+    private var isArchivedQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
 
     fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean = false, archive: Boolean = false) {
         if (isAddedOrAddingToMyShows(tmdbId)) {
@@ -56,9 +57,8 @@ class MyShowsRepository(
     fun setIsAddedOrAddingToMyShowsSubscriber(showTmdbId: Int, subscriber: Subscriber<Boolean>) {
         removeIsAddedOrAddingToMyShowsSubscriber(showTmdbId)
 
-        val query = db.myShowQueries.isAddedOrAdding(showTmdbId)
         isAddedOrAddingQueryListeners[showTmdbId] = QueryListener(
-            query = query,
+            query = db.myShowQueries.isAddedOrAdding(showTmdbId),
             subscriber = subscriber,
             notifyImmediately = true,
             extractQueryResult = Query<Boolean>::executeAsOne)
@@ -71,9 +71,8 @@ class MyShowsRepository(
     fun setIsAddedToMyShowsSubscriber(showTmdbId: Int, subscriber: Subscriber<Boolean>) {
         removeIsAddedToMyShowsSubscriber(showTmdbId)
 
-        val query = db.myShowQueries.isInMyShows(showTmdbId)
         isAddedToMyShowsQueryListeners[showTmdbId] = QueryListener(
-            query = query,
+            query = db.myShowQueries.isInMyShows(showTmdbId),
             subscriber = subscriber,
             notifyImmediately = true,
             extractQueryResult = Query<Boolean>::executeAsOne)
@@ -81,6 +80,20 @@ class MyShowsRepository(
 
     fun removeIsAddedToMyShowsSubscriber(showTmdbId: Int) {
         isAddedToMyShowsQueryListeners.remove(showTmdbId)?.destroy()
+    }
+
+    fun setIsArchivedSubscriber(showTmdbId: Int, subscriber: Subscriber<Boolean>) {
+        removeIsArchivedSubscriber(showTmdbId)
+
+        isArchivedQueryListeners[showTmdbId] = QueryListener(
+            query = db.myShowQueries.isArchived(showTmdbId),
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<Boolean>::executeAsOne)
+    }
+
+    fun removeIsArchivedSubscriber(showTmdbId: Int) {
+        isArchivedQueryListeners.remove(showTmdbId)?.destroy()
     }
 
     fun setUpcomingShowsSubscriber(subscriber: Subscriber<List<UpcomingShowViewModel>>) {
