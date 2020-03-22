@@ -310,7 +310,7 @@ extension ShowDetailsViewController: ShowDetailsView {
         present(alert, animated: true, completion: nil)
     }
     
-    func displayOptionsMenu(isInMyShows: Bool) {
+    func displayOptionsMenu(isInMyShows: Bool, isArchived: Bool) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { action in
@@ -322,9 +322,15 @@ extension ShowDetailsViewController: ShowDetailsView {
         }))
         
         if isInMyShows {
-            alert.addAction(UIAlertAction(title: "Archive", style: .default, handler: { action in
-                self.presenter.onArchiveShowClicked()
-            }))
+            if isArchived {
+                alert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { action in
+                    self.presenter.onUnarchiveShowClicked()
+                }))
+            } else {
+                alert.addAction(UIAlertAction(title: "Archive", style: .default, handler: { action in
+                    self.presenter.onArchiveShowClicked()
+                }))
+            }
             
             alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { action in
                 self.presenter.onRemoveShowClicked()

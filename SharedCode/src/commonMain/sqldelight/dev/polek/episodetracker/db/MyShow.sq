@@ -19,6 +19,7 @@ CREATE TABLE MyShow (
     isEnded INTEGER AS Boolean NOT NULL,
     nextEpisodeSeason INTEGER AS Int,
     nextEpisodeNumber INTEGER AS Int,
+    isArchived INTEGER AS Boolean NOT NULL DEFAULT 0,
 
     PRIMARY KEY (tmdbId)
 );
@@ -40,6 +41,13 @@ SELECT
   (
     (SELECT count(*) FROM MyShow WHERE tmdbId = :showTmdbId) +
     (SELECT count(*) FROM AddToMyShowsTask WHERE showTmdbId = :showTmdbId)
+  ) > 0;
+
+isArchived:
+SELECT
+  (
+    (SELECT count(*) FROM MyShow WHERE tmdbId = :showTmdbId AND isArchived = 1) +
+    (SELECT count(*) FROM AddToMyShowsTask WHERE showTmdbId = :showTmdbId AND archive = 1)
   ) > 0;
 
 upcomingShows:
@@ -91,3 +99,13 @@ SELECT
  twitterId
 FROM MyShow
 WHERE MyShow.tmdbId = ?;
+
+archive:
+UPDATE MyShow
+SET isArchived = 1
+WHERE tmdbId = ?;
+
+unarchive:
+UPDATE MyShow
+SET isArchived = 0
+WHERE tmdbId = ?;

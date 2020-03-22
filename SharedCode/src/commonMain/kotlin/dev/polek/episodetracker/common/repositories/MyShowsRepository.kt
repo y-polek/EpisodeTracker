@@ -22,13 +22,13 @@ class MyShowsRepository(
     private var isAddedOrAddingQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
     private var isAddedToMyShowsQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
 
-    fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean = false) {
+    fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean = false, archive: Boolean = false) {
         if (isAddedOrAddingToMyShows(tmdbId)) {
             logw { "Trying to add Show that's already in My Shows" }
             return
         }
 
-        addToMyShowsQueue.addShow(tmdbId, markAllEpisodesWatched)
+        addToMyShowsQueue.addShow(tmdbId, markAllEpisodesWatched, archive)
     }
 
     fun removeShow(tmdbId: Int) {
@@ -45,9 +45,11 @@ class MyShowsRepository(
     }
 
     fun isAddedOrAddingToMyShows(tmdbId: Int): Boolean {
-        val isAdded = isAddedToMyShows(tmdbId)
-        val isAdding = db.addToMyShowsTaskQueries.allTasks().executeAsList().any { it.showTmdbId == tmdbId }
-        return isAdded || isAdding
+        return db.myShowQueries.isAddedOrAdding(tmdbId).executeAsOne()
+    }
+
+    fun isArchived(showTmdbId: Int): Boolean {
+        return db.myShowQueries.isArchived(showTmdbId).executeAsOne()
     }
 
     fun setIsAddedOrAddingToMyShowsSubscriber(showTmdbId: Int, subscriber: Subscriber<Boolean>) {
@@ -145,6 +147,14 @@ class MyShowsRepository(
 
     fun showDetails(tmdbId: Int): ShowDetails? {
         return db.myShowQueries.showDetails(tmdbId).executeAsOneOrNull()
+    }
+
+    fun archiveShow(showTmdbId: Int) {
+        db.myShowQueries.archive(showTmdbId)
+    }
+
+    fun unarchiveShow(showTmdbId: Int) {
+        db.myShowQueries.unarchive(showTmdbId)
     }
 
     companion object {

@@ -14,7 +14,7 @@ interface ShowDetailsView {
     fun hideAddToMyShowsButton()
     fun displayAddToMyShowsConfirmation(showName: String, callback: (confirmed: Boolean) -> Unit)
     fun showCheckAllPreviousEpisodesPrompt(onCheckAllPrevious: () -> Unit, onCheckOnlyThis: () -> Unit, onCancel: () -> Unit)
-    fun displayOptionsMenu(isInMyShows: Boolean)
+    fun displayOptionsMenu(isInMyShows: Boolean, isArchived: Boolean)
     fun shareText(text: String)
 
     fun displayShowDetails(show: ShowDetailsViewModel)

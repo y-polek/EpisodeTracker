@@ -91,7 +91,8 @@ class ShowDetailsPresenter(
 
     fun onMenuClicked() {
         val isAddedOrAdding = myShowsRepository.isAddedOrAddingToMyShows(showId)
-        view?.displayOptionsMenu(isInMyShows = isAddedOrAdding)
+        val isArchived = myShowsRepository.isArchived(showId)
+        view?.displayOptionsMenu(isInMyShows = isAddedOrAdding, isArchived = isArchived)
     }
 
     fun onAddToMyShowsClicked() {
@@ -137,7 +138,23 @@ class ShowDetailsPresenter(
     }
 
     fun onArchiveShowClicked() {
-        TODO("not implemented")
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb) {
+            myShowsRepository.archiveShow(showId)
+        } else {
+            myShowsRepository.removeShow(showId)
+            myShowsRepository.addShow(showId, archive = true)
+        }
+    }
+
+    fun onUnarchiveShowClicked() {
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb) {
+            myShowsRepository.unarchiveShow(showId)
+        } else {
+            myShowsRepository.removeShow(showId)
+            myShowsRepository.addShow(showId, archive = false)
+        }
     }
 
     fun onRetryButtonClicked() {

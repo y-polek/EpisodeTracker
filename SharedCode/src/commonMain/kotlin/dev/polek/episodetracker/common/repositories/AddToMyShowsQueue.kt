@@ -65,7 +65,7 @@ class AddToMyShowsQueue(
         log { "Connection lost" }
     }
 
-    fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean) {
+    fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean, archive: Boolean) {
         log { "addShow($tmdbId)" }
 
         val alreadyInQueue = db.addToMyShowsTaskQueries.taskExist(tmdbId).executeAsOne()
@@ -74,7 +74,7 @@ class AddToMyShowsQueue(
             return
         }
 
-        db.addToMyShowsTaskQueries.add(tmdbId, markAllEpisodesWatched)
+        db.addToMyShowsTaskQueries.add(tmdbId, markAllEpisodesWatched, archive)
     }
 
     fun cancelAddIfExist(tmdbId: Int) {
