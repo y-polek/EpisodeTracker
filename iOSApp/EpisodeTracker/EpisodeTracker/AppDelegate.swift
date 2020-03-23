@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //ImageCache.default.clearDiskCache()
+        ImageCache.default.memoryStorage.config.totalCostLimit = 50 * 1024 * 1024
+        ImageCache.default.memoryStorage.config.expiration = .never
         
         
         return true
