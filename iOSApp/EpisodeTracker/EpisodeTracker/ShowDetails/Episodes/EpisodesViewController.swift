@@ -26,8 +26,8 @@ class EpisodesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.retryTappedCallback = {
-            self.retryTapCallback?()
+        tableView.retryTappedCallback = { [weak self] in
+            self?.retryTapCallback?()
         }
     }
     
@@ -93,16 +93,16 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
         header.episodeCount = season.watchedEpisodes
         header.checkbox.isChecked = season.isWatched
         header.isExpanded = season.isExpanded
-        header.tapCallback = {
+        header.tapCallback = { [weak self] in
             season.isExpanded = !season.isExpanded
-            self.reloadSection(section)
+            self?.reloadSection(section)
         }
-        header.checkbox.checkedChangeCallback = { isChecked in
+        header.checkbox.checkedChangeCallback = { [weak self] isChecked in
             if season.isWatched == isChecked {
                 return
             }
             
-            self.seasonWatchedStateToggleCallback?(season)
+            self?.seasonWatchedStateToggleCallback?(season)
         }
         
         return header
@@ -122,11 +122,11 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.middleDivider.isHidden = isLastInSeason
         cell.fullDivider.isHidden = !isLastInSeason || isLast
         
-        cell.checkbox.checkedChangeCallback = { isChecked in
+        cell.checkbox.checkedChangeCallback = { [weak self] isChecked in
             if episode.isWatched == isChecked {
                 return
             }
-            self.episodeWatchedStateToggleCallback?(episode)
+            self?.episodeWatchedStateToggleCallback?(episode)
         }
         
         return cell

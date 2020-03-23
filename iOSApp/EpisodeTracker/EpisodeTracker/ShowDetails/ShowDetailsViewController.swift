@@ -16,8 +16,8 @@ class ShowDetailsViewController: UIViewController {
     private var showName: String!
     private var openEpisodesTabOnStart: Bool!
     private var presenter: ShowDetailsPresenter!
-    private var aboutShowViewController: AboutShowViewController?
-    private var episodesViewController: EpisodesViewController?
+    private weak var aboutShowViewController: AboutShowViewController?
+    private weak var episodesViewController: EpisodesViewController?
     
     private let minHeaderHeight: CGFloat = 44 + UIApplication.shared.statusBarFrame.height
     private var maxHeaderHeight: CGFloat!
@@ -114,8 +114,8 @@ class ShowDetailsViewController: UIViewController {
         episodesViewController?.retryTapCallback = episodesRetryTapCallback
         episodesViewController?.scrollCallback = scrollCallback(offset:)
         
-        errorView.retryTappedCallback = {
-            self.presenter.onRetryButtonClicked()
+        errorView.retryTappedCallback = { [weak self] in
+            self?.presenter.onRetryButtonClicked()
         }
         
         presenter.onViewAppeared()
@@ -131,9 +131,8 @@ class ShowDetailsViewController: UIViewController {
         
         episodesViewController?.seasonWatchedStateToggleCallback = nil
         episodesViewController?.episodeWatchedStateToggleCallback = nil
+        episodesViewController?.retryTapCallback = nil
         episodesViewController?.scrollCallback = nil
-        
-        errorView.retryTappedCallback = nil
         
         presenter.onViewDisappeared()
     }
