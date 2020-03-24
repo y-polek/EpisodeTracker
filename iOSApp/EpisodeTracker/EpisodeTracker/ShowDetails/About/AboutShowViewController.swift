@@ -14,6 +14,7 @@ class AboutShowViewController: UIViewController {
     @IBOutlet weak var castContainer: UIView!
     @IBOutlet weak var recommendationsCollectionView: UICollectionView!
     @IBOutlet weak var recommendationsContainer: UIView!
+    @IBOutlet weak var socialNetworksView: UIStackView!
     @IBOutlet weak var imdbBadge: ImdbBadge!
     @IBOutlet weak var homePageButton: IconButton!
     @IBOutlet weak var instagramButton: IconButton!
@@ -67,7 +68,7 @@ class AboutShowViewController: UIViewController {
     func displayShowDetails(_ show: ShowDetailsViewModel) {
         genresDataSource.genres = show.genres
         genresCollectionView.reloadData()
-        genresHeightConstraint.constant = show.genres.isEmpty ? 0 : 50
+        genresHeightConstraint.constant = show.genres.isEmpty ? 0 : 45
         
         overviewLabel.text = show.overview
         
@@ -105,6 +106,8 @@ class AboutShowViewController: UIViewController {
                 show.twitterUrl?.toUrl()?.open()
             }
         }
+        
+        socialNetworksView.isHidden = imdbBadge.isHidden && homePageButton.isHidden && instagramButton.isHidden && facebookButton.isHidden && twitterButton.isHidden
     }
     
     func displayTrailers(_ trailers: [TrailerViewModel]) {

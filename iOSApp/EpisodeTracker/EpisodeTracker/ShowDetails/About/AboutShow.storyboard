@@ -23,10 +23,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1pI-DI-phs">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="H2v-Uh-NWb"/>
+                                            <constraint firstAttribute="height" constant="45" id="H2v-Uh-NWb"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gL5-uh-ZUG">
                                             <size key="itemSize" width="115" height="32"/>
@@ -36,7 +36,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="genre_cell" id="TXs-vZ-6lU" customClass="GenreCell" customModule="EpisodeTracker" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="9" width="115" height="32"/>
+                                                <rect key="frame" x="10" y="6.5" width="115" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="k4u-dv-ygl">
                                                     <rect key="frame" x="0.0" y="0.0" width="115" height="32"/>
@@ -76,9 +76,9 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CuV-V4-49b">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="573.5"/>
+                                        <rect key="frame" x="0.0" y="53" width="414" height="573.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hnm-H7-oBF">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hnm-H7-oBF" userLabel="Social Networks Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YaJ-H0-hwe">
@@ -432,7 +432,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1pI-DI-phs" firstAttribute="leading" secondItem="ELm-3U-64k" secondAttribute="leading" id="FGZ-Fi-P5V"/>
-                                    <constraint firstItem="CuV-V4-49b" firstAttribute="top" secondItem="1pI-DI-phs" secondAttribute="bottom" id="WF0-TZ-dxo"/>
+                                    <constraint firstItem="CuV-V4-49b" firstAttribute="top" secondItem="1pI-DI-phs" secondAttribute="bottom" constant="8" id="WF0-TZ-dxo"/>
                                     <constraint firstAttribute="trailing" secondItem="CuV-V4-49b" secondAttribute="trailing" id="cpc-WV-IY9"/>
                                     <constraint firstAttribute="bottom" secondItem="CuV-V4-49b" secondAttribute="bottom" constant="16" id="fyn-XP-Xfc"/>
                                     <constraint firstItem="1pI-DI-phs" firstAttribute="top" secondItem="ELm-3U-64k" secondAttribute="top" id="ks1-u2-B3J"/>
@@ -469,6 +469,7 @@
                         <outlet property="recommendationsCollectionView" destination="xXu-yU-h5D" id="eys-QM-X9R"/>
                         <outlet property="recommendationsContainer" destination="3yd-Bk-zam" id="6Jt-kQ-joM"/>
                         <outlet property="scrollView" destination="ELm-3U-64k" id="Q3D-H1-5lW"/>
+                        <outlet property="socialNetworksView" destination="hnm-H7-oBF" id="cMf-vc-tym"/>
                         <outlet property="trailersCollectionView" destination="dzu-UI-7nv" id="aVm-Mw-zSV"/>
                         <outlet property="trailersContainer" destination="kPH-Zj-lSo" id="sMO-BW-Hnr"/>
                         <outlet property="twitterButton" destination="slO-Yc-NzN" id="JIj-wC-Ic6"/>
