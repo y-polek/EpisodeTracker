@@ -5,6 +5,7 @@ import com.squareup.sqldelight.ColumnAdapter
 object ListOfStringsAdapter : ColumnAdapter<List<String>, String> {
 
     override fun decode(databaseValue: String): List<String> {
+        if (databaseValue.isEmpty()) return emptyList()
         return databaseValue.split(',')
     }
 
