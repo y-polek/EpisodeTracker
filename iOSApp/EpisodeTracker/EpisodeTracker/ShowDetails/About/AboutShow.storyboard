@@ -461,6 +461,7 @@
                         <outlet property="castContainer" destination="VNE-4Q-b26" id="kae-tH-sKp"/>
                         <outlet property="facebookButton" destination="j7S-DD-AKb" id="vDM-32-RKA"/>
                         <outlet property="genresCollectionView" destination="1pI-DI-phs" id="vbw-tr-K5L"/>
+                        <outlet property="genresHeightConstraint" destination="H2v-Uh-NWb" id="hVZ-rh-ZlY"/>
                         <outlet property="homePageButton" destination="XjZ-2l-vxi" id="FM4-h2-beI"/>
                         <outlet property="imdbBadge" destination="wWB-aI-9BX" id="yil-Qq-ILd"/>
                         <outlet property="instagramButton" destination="dea-ga-UGt" id="oSt-h8-quW"/>

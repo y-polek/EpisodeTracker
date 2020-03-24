@@ -6,6 +6,7 @@ class AboutShowViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var genresCollectionView: UICollectionView!
+    @IBOutlet weak var genresHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var trailersCollectionView: UICollectionView!
     @IBOutlet weak var trailersContainer: UIView!
@@ -66,6 +67,8 @@ class AboutShowViewController: UIViewController {
     func displayShowDetails(_ show: ShowDetailsViewModel) {
         genresDataSource.genres = show.genres
         genresCollectionView.reloadData()
+        genresHeightConstraint.constant = show.genres.isEmpty ? 0 : 50
+        
         overviewLabel.text = show.overview
         
         imdbBadge.isHidden = show.imdbUrl == nil
