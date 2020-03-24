@@ -18,7 +18,7 @@ class ShowHeaderViewModel(
         }
         subhead = when {
             yearsText != null && networks.isNotEmpty() -> "$yearsText ∙ ${networks.joinToString(", ")}"
-            yearsText != null -> "$yearsText - $endYear"
+            yearsText != null -> yearsText
             else -> ""
         }
     }
