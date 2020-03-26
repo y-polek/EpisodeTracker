@@ -1,4 +1,7 @@
 PODS:
+  - IGListDiffKit (4.0.0)
+  - IGListKit (4.0.0):
+    - IGListDiffKit (= 4.0.0)
   - Kingfisher (5.11.0):
     - Kingfisher/Core (= 5.11.0)
   - Kingfisher/Core (5.11.0)
@@ -54,6 +57,7 @@ PODS:
   - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
+  - IGListKit (= 4.0.0)
   - Kingfisher (= 5.11.0)
   - MaterialComponents/Buttons (= 100.0.0)
   - MaterialComponents/Ripple (= 100.0.0)
@@ -62,6 +66,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - IGListDiffKit
+    - IGListKit
     - Kingfisher
     - MaterialComponents
     - MDFInternationalization
@@ -69,12 +75,14 @@ SPEC REPOS:
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
+  IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
+  IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
   Kingfisher: 4569606189149e19c7d9439f47e885d0679b7a90
   MaterialComponents: b4cc6c1649a566d70bd72096f3e1aae2c3701e4f
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: cf7516f8320f26ac7b6ad4e5d27c5686e51355a5
+PODFILE CHECKSUM: 45bf0868c45d4219b412b17870c27e9bbaf55dd6
 
 COCOAPODS: 1.8.4
