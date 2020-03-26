@@ -365,7 +365,11 @@ class ShowDetailsPresenter(
 
     private fun loadEpisodesFromDb() {
         val seasonsList = episodesRepository.allSeasons(showId).map(SeasonViewModel.Companion::map)
+        val oldSeasonsViewModel = seasonsViewModel
         seasonsViewModel = SeasonsViewModel(seasonsList)
+        oldSeasonsViewModel.asList().forEach { season ->
+            seasonsViewModel[season.number]?.isExpanded = season.isExpanded
+        }
         view?.displayEpisodes(seasonsList)
         view?.hideEpisodesProgress()
     }
