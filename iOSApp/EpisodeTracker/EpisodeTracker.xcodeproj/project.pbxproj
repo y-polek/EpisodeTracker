@@ -22,6 +22,7 @@
 		D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238771823E5796200688E01 /* ShowDetails.storyboard */; };
 		D26B4827241A30F700156F82 /* Ints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B4826241A30F700156F82 /* Ints.swift */; };
 		D28792D523F887140071E46B /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28792D423F887140071E46B /* TrailerCell.swift */; };
+		D2906596242E87D2004CF818 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2906595242E87D2004CF818 /* GradientView.swift */; };
 		D293933124184B6B00F028C6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D293933024184B6B00F028C6 /* ErrorView.swift */; };
 		D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; };
 		D29D7AF023A24D4400B2832D /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -96,6 +97,7 @@
 		D238771823E5796200688E01 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
 		D26B4826241A30F700156F82 /* Ints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ints.swift; sourceTree = "<group>"; };
 		D28792D423F887140071E46B /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
+		D2906595242E87D2004CF818 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D293933024184B6B00F028C6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D29D7AEE23A24D4400B2832D /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
 		D29D7AFD23A2974700B2832D /* UpcomingShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingShowCell.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				D2D905CA23A8F89A00E45753 /* TableView.swift */,
 				D2242C1123F1B4F5001C8608 /* PadView.swift */,
 				D22A89792406CBB200014861 /* FloatingButton.swift */,
+				D2906595242E87D2004CF818 /* GradientView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				D29DCACE23F93BCE00491ACD /* RippleCollectionViewCell.swift in Sources */,
 				D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */,
 				D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */,
+				D2906596242E87D2004CF818 /* GradientView.swift in Sources */,
 				D29D7B0F23A3DC6B00B2832D /* AttributedStrings.swift in Sources */,
 				D26B4827241A30F700156F82 /* Ints.swift in Sources */,
 				D2D905D023A96CCB00E45753 /* ImageButton.swift in Sources */,
