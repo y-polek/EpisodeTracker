@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,27 +18,54 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMc-zP-E86">
                     <rect key="frame" x="0.0" y="44" width="414" height="69"/>
                     <subviews>
+                        <visualEffectView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-qs-ft9">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="69"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pyk-tg-cXL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0c-bn-HVp" userLabel="Background View" customClass="GradientView" customModule="EpisodeTracker" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="69"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                    <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                    <color key="value" name="WindowBackground"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fiA-Zi-d43">
                             <rect key="frame" x="16" y="0.0" width="382" height="69"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQ9-3V-TOe">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="69"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <color key="textColor" name="TextColorPrimary"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="ic-chevron-down" translatesAutoresizingMaskIntoConstraints="NO" id="o5f-3Q-TwV">
-                                    <rect key="frame" x="334" y="0.0" width="48" height="69"/>
+                                    <rect key="frame" x="358" y="0.0" width="24" height="69"/>
                                     <color key="tintColor" name="TextColorPrimary"/>
                                 </imageView>
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstItem="dcM-qs-ft9" firstAttribute="leading" secondItem="uMc-zP-E86" secondAttribute="leading" id="7wd-at-0Jg"/>
+                        <constraint firstItem="c0c-bn-HVp" firstAttribute="leading" secondItem="uMc-zP-E86" secondAttribute="leading" id="86Y-c6-5Ki"/>
+                        <constraint firstAttribute="trailing" secondItem="dcM-qs-ft9" secondAttribute="trailing" id="Gxl-ii-d3i"/>
+                        <constraint firstItem="dcM-qs-ft9" firstAttribute="top" secondItem="uMc-zP-E86" secondAttribute="top" id="MfE-Y9-u0F"/>
                         <constraint firstItem="fiA-Zi-d43" firstAttribute="leading" secondItem="uMc-zP-E86" secondAttribute="leading" constant="16" id="MlY-xq-SV2"/>
+                        <constraint firstAttribute="bottom" secondItem="c0c-bn-HVp" secondAttribute="bottom" id="NXE-hb-bH5"/>
                         <constraint firstItem="fiA-Zi-d43" firstAttribute="top" secondItem="uMc-zP-E86" secondAttribute="top" id="WTU-XO-vCs"/>
+                        <constraint firstAttribute="bottom" secondItem="dcM-qs-ft9" secondAttribute="bottom" id="cvD-Qf-pdg"/>
                         <constraint firstAttribute="trailing" secondItem="fiA-Zi-d43" secondAttribute="trailing" constant="16" id="h6R-HR-0aS"/>
+                        <constraint firstAttribute="trailing" secondItem="c0c-bn-HVp" secondAttribute="trailing" id="s6P-bq-jFN"/>
+                        <constraint firstItem="c0c-bn-HVp" firstAttribute="top" secondItem="uMc-zP-E86" secondAttribute="top" id="xbe-gD-3MD"/>
                         <constraint firstAttribute="bottom" secondItem="fiA-Zi-d43" secondAttribute="bottom" id="ytA-Nr-jHd"/>
                     </constraints>
                 </view>
@@ -62,6 +89,9 @@
         <image name="ic-chevron-down" width="24" height="24"/>
         <namedColor name="TextColorPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WindowBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
