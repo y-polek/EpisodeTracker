@@ -1,7 +1,7 @@
 import UIKit
 import SharedCode
 
-class ToWatchCell: RippleTableViewCell {
+class ToWatchCell: RippleCollectionViewCell {
     
     @IBOutlet weak var backgroundImage: ImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -10,7 +10,6 @@ class ToWatchCell: RippleTableViewCell {
     @IBOutlet weak var checkButton: ImageButton!
     
     func bind(_ show: ToWatchShowViewModel) {
-        selectionStyle = .none
         rippleView.layer.cornerRadius = backgroundImage.layer.cornerRadius
         
         backgroundImage.imageUrl = show.imageUrl

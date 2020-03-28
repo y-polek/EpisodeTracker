@@ -1,16 +1,23 @@
 import UIKit
+import IGListKit
 import SharedCode
 
 class ToWatchViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private let presenter = ToWatchPresenter(repository: AppDelegate.instance().toWatchRepository)
     private var shows = [ToWatchShowViewModel]()
+    private var adapter: ListAdapter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
+        adapter.collectionView = collectionView
+        adapter.dataSource = self
+        
         presenter.attachView(view: self)
     }
     
@@ -30,7 +37,7 @@ extension ToWatchViewController: ToWatchView {
     
     func displayShows(shows: [ToWatchShowViewModel]) {
         self.shows = shows
-        tableView.reloadData()
+        adapter.performUpdates(animated: true, completion: nil)
     }
     
     func openToWatchShowDetails(show: ToWatchShowViewModel) {
@@ -39,26 +46,53 @@ extension ToWatchViewController: ToWatchView {
     }
 }
 
-extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
+extension ToWatchViewController: ListAdapterDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shows.count
+    func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
+        return shows
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "to_watch_show_cell") as! ToWatchCell
-        let show = shows[indexPath.row]
+    func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
+        return ToWatchSectionController(object as! ToWatchShowViewModel, presenter)
+    }
+    
+    func emptyView(for listAdapter: ListAdapter) -> UIView? {
+        return nil
+    }
+}
+
+class ToWatchSectionController: ListSectionController {
+    
+    private var show: ToWatchShowViewModel!
+    private var presenter: ToWatchPresenter!
+    
+    init(_ show: ToWatchShowViewModel, _ presenter: ToWatchPresenter) {
+        super.init()
+        self.show = show
+        self.presenter = presenter
+    }
+    
+    override func sizeForItem(at index: Int) -> CGSize {
+        return CGSize(width: collectionContext!.containerSize.width, height: 158)
+    }
+    
+    override func cellForItem(at index: Int) -> UICollectionViewCell {
+        let cell = collectionContext!.dequeueReusableCellFromStoryboard(
+            withIdentifier: "to_watch_show_cell", for: self, at: index) as! ToWatchCell
         cell.bind(show)
-        cell.checkButton.tapCallback = {
-            self.presenter.onWatchedButtonClicked(show: show)
+        cell.checkButton.tapCallback = { [weak self] in
+            if let presenter = self?.presenter, let show = self?.show {
+                presenter.onWatchedButtonClicked(show: show)
+            }
         }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let show = shows[indexPath.row]
+    override func didUpdate(to object: Any) {
+        show = (object as! ToWatchShowViewModel)
+    }
+    
+    override func didSelectItem(at index: Int) {
         presenter.onShowClicked(show: show)
     }
 }
