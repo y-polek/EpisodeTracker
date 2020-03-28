@@ -146,6 +146,11 @@
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="414" height="158"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                        <color key="value" name="ImageRippleColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="backgroundImage" destination="8BA-uJ-tvC" id="z3o-js-hzv"/>
                                                     <outlet property="checkButton" destination="ErP-iI-xGV" id="B1w-c0-PQG"/>
@@ -477,6 +482,11 @@
                                                         <constraint firstItem="yYf-9R-lgX" firstAttribute="trailing" secondItem="hiE-Pc-MZx" secondAttribute="trailing" id="yoi-FH-Vpt"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                        <color key="value" name="ImageRippleColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="backgroundImage" destination="hiE-Pc-MZx" id="zfb-s7-sp9"/>
                                                     <outlet property="rippleView" destination="yYf-9R-lgX" id="6Yq-Qe-SEL"/>
@@ -528,6 +538,11 @@
                                                         <constraint firstAttribute="trailing" secondItem="jiE-hj-NNp" secondAttribute="trailing" constant="16" id="sca-Sh-jRU"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                        <color key="value" name="ImageRippleColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="backgroundImage" destination="jiE-hj-NNp" id="If0-aV-QqJ"/>
                                                     <outlet property="rippleView" destination="Roh-ip-c8U" id="P6M-fl-78j"/>
@@ -653,6 +668,9 @@
         </namedColor>
         <namedColor name="DividerPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ImageRippleColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.2501675466299057" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextColorPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

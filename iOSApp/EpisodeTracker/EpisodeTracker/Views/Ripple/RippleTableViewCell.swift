@@ -1,12 +1,18 @@
 import UIKit
 import MaterialComponents.MaterialRipple
 
+@IBDesignable
 class RippleTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var rippleView: MDCRippleView! {
-        didSet {
-            self.rippleView?.rippleColor = .ripple
-        }
+    @IBInspectable
+    var rippleColor: UIColor = .ripple {
+        didSet { updateColor() }
+    }
+    
+    
+    @IBOutlet
+    weak var rippleView: MDCRippleView! {
+        didSet { updateColor() }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -24,5 +30,9 @@ class RippleTableViewCell: UITableViewCell {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         rippleView.beginRippleTouchUp(animated: true, completion: nil)
+    }
+    
+    private func updateColor() {
+        rippleView?.rippleColor = rippleColor
     }
 }

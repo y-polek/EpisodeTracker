@@ -1,9 +1,19 @@
 import UIKit
 import MaterialComponents.MaterialRipple
 
+@IBDesignable
 class RippleCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var rippleView: MDCRippleView!
+    @IBInspectable
+    var rippleColor: UIColor = .ripple {
+        didSet { updateColor() }
+    }
+    
+    
+    @IBOutlet
+    weak var rippleView: MDCRippleView! {
+        didSet { updateColor() }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -20,5 +30,9 @@ class RippleCollectionViewCell: UICollectionViewCell {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         rippleView.beginRippleTouchUp(animated: true, completion: nil)
+    }
+    
+    private func updateColor() {
+        rippleView?.rippleColor = rippleColor
     }
 }
