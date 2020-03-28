@@ -9,7 +9,6 @@ class RippleCollectionViewCell: UICollectionViewCell {
         didSet { updateColor() }
     }
     
-    
     @IBOutlet
     weak var rippleView: MDCRippleView! {
         didSet { updateColor() }
