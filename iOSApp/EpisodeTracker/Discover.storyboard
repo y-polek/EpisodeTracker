@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ejl-jr-g1o">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Discover View Controller-->
+        <scene sceneID="4FG-wa-g8M">
+            <objects>
+                <viewController id="ejl-jr-g1o" customClass="DiscoverViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sv0-XT-NCb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="h6H-E2-6pI">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="0wq-y5-bg3">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="ejl-jr-g1o" id="MUI-x0-eNn"/>
+                                        </connections>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="166" estimatedRowHeight="166" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqJ-tf-7WG" customClass="TableView" customModule="EpisodeTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="669"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="discover_cell" rowHeight="166.5" id="qg9-tn-6U9" customClass="DiscoverResultCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="166.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qg9-tn-6U9" id="IwI-kR-PaA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="166.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-IW-wwM" customClass="MDCRippleView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="166.5"/>
+                                                            <color key="backgroundColor" name="Transparent"/>
+                                                        </view>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vCw-QC-pZJ">
+                                                            <rect key="frame" x="16" y="8" width="382" height="150"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6di-CG-k0O" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="150" id="ogE-Dy-Lnp"/>
+                                                                        <constraint firstAttribute="width" constant="100" id="yMI-IJ-0Mz"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bTb-PH-6Od">
+                                                                    <rect key="frame" x="116" y="0.0" width="266" height="150"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKE-Bg-1KC">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="266" height="24"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017 | Sci-Fi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8h-P2-OTM">
+                                                                            <rect key="frame" x="0.0" y="24" width="266" height="18"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nu6-he-rB5" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="42" width="266" height="9"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="9" id="Huk-N9-8wb"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                                    <color key="value" name="DividerPrimary"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </view>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="zQr-IQ-tYF">
+                                                                            <rect key="frame" x="0.0" y="51" width="266" height="99"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpc-7Z-fHZ">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="266" height="90"/>
+                                                                                    <string key="text">Follow the voyages of Starfleet on their missions to discover new worlds and new life forms, and one Starfleet officer who must learn that to truly understand all things alien, you must first understand yourself.</string>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYt-C1-GBV" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="165.5" width="414" height="1"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1" id="8XN-1s-CoC"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                    <color key="value" name="DividerPrimary"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncl-Ub-ORL" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="46" y="63" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="XOe-du-U9n"/>
+                                                                <constraint firstAttribute="width" constant="40" id="aQC-em-yQn"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-add"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Ncl-Ub-ORL" firstAttribute="centerY" secondItem="6di-CG-k0O" secondAttribute="centerY" id="7xb-Oy-Zyg"/>
+                                                        <constraint firstItem="Ncl-Ub-ORL" firstAttribute="centerX" secondItem="6di-CG-k0O" secondAttribute="centerX" id="A06-9i-Hvg"/>
+                                                        <constraint firstItem="hDu-IW-wwM" firstAttribute="top" secondItem="IwI-kR-PaA" secondAttribute="top" id="CUi-Ts-6Od"/>
+                                                        <constraint firstItem="ZYt-C1-GBV" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" id="Dv8-dv-J5e"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vCw-QC-pZJ" secondAttribute="trailing" constant="16" id="Gq9-QG-FNO"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hDu-IW-wwM" secondAttribute="trailing" id="KHL-gL-eea"/>
+                                                        <constraint firstItem="hDu-IW-wwM" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" id="NUj-Gg-394"/>
+                                                        <constraint firstItem="vCw-QC-pZJ" firstAttribute="top" secondItem="IwI-kR-PaA" secondAttribute="top" constant="8" id="Rg9-Jx-dwb"/>
+                                                        <constraint firstItem="vCw-QC-pZJ" firstAttribute="leading" secondItem="IwI-kR-PaA" secondAttribute="leading" constant="16" id="WlU-Ot-Aj5"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ZYt-C1-GBV" secondAttribute="trailing" id="bCH-9T-pKi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ZYt-C1-GBV" secondAttribute="bottom" id="egB-aP-xeA"/>
+                                                        <constraint firstAttribute="bottom" secondItem="hDu-IW-wwM" secondAttribute="bottom" id="rcY-LE-0Ak"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="divider" destination="ZYt-C1-GBV" id="P3i-0n-SJ3"/>
+                                                    <outlet property="imageButton" destination="Ncl-Ub-ORL" id="eht-1x-2cE"/>
+                                                    <outlet property="overviewLabel" destination="Kpc-7Z-fHZ" id="tcl-Dr-HTV"/>
+                                                    <outlet property="posterView" destination="6di-CG-k0O" id="Ycp-xw-oPg"/>
+                                                    <outlet property="rippleView" destination="hDu-IW-wwM" id="OJh-wh-K3t"/>
+                                                    <outlet property="subtitleLabel" destination="B8h-P2-OTM" id="Dah-5T-WAC"/>
+                                                    <outlet property="titleLabel" destination="HKE-Bg-1KC" id="ZDG-D0-46M"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="promptText" value="Search for TV Show"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="emptyText" value="Nothing found"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="errorText" value="Can't load search results"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="ejl-jr-g1o" id="HHQ-hO-eD3"/>
+                                            <outlet property="delegate" destination="ejl-jr-g1o" id="RoI-BZ-tyF"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VcL-nQ-BhN" firstAttribute="trailing" secondItem="h6H-E2-6pI" secondAttribute="trailing" id="0Sj-Dy-NAg"/>
+                            <constraint firstItem="VcL-nQ-BhN" firstAttribute="bottom" secondItem="h6H-E2-6pI" secondAttribute="bottom" id="RYL-Av-QFu"/>
+                            <constraint firstItem="h6H-E2-6pI" firstAttribute="top" secondItem="VcL-nQ-BhN" secondAttribute="top" id="dZV-0d-ZZg"/>
+                            <constraint firstItem="h6H-E2-6pI" firstAttribute="leading" secondItem="VcL-nQ-BhN" secondAttribute="leading" id="mL1-7l-JIt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VcL-nQ-BhN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Avy-mB-Wnr"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="QqJ-tf-7WG" id="8gb-Le-lRe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Va9-rp-8ic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-365" y="1588"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic-add" width="24" height="24"/>
+        <namedColor name="DividerPrimary">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Transparent">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

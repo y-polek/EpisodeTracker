@@ -21,6 +21,9 @@
 		D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238771823E5796200688E01 /* ShowDetails.storyboard */; };
 		D238A286242F8E0200510403 /* ToWatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238A285242F8E0200510403 /* ToWatchCell.swift */; };
 		D238A28A242FA0A900510403 /* ToWatchShow+ListDiffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */; };
+		D238A28C243010F600510403 /* MyShows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A28B243010F600510403 /* MyShows.storyboard */; };
+		D238A28F2430116200510403 /* ToWatch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A28D2430116200510403 /* ToWatch.storyboard */; };
+		D238A2912430119F00510403 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A2902430119F00510403 /* Discover.storyboard */; };
 		D26B4827241A30F700156F82 /* Ints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B4826241A30F700156F82 /* Ints.swift */; };
 		D28792D523F887140071E46B /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28792D423F887140071E46B /* TrailerCell.swift */; };
 		D2906596242E87D2004CF818 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2906595242E87D2004CF818 /* GradientView.swift */; };
@@ -97,6 +100,9 @@
 		D238771823E5796200688E01 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
 		D238A285242F8E0200510403 /* ToWatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToWatchCell.swift; sourceTree = "<group>"; };
 		D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToWatchShow+ListDiffable.swift"; sourceTree = "<group>"; };
+		D238A28B243010F600510403 /* MyShows.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyShows.storyboard; sourceTree = "<group>"; };
+		D238A28E2430116200510403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = EpisodeTracker/Base.lproj/ToWatch.storyboard; sourceTree = SOURCE_ROOT; };
+		D238A2902430119F00510403 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = SOURCE_ROOT; };
 		D26B4826241A30F700156F82 /* Ints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ints.swift; sourceTree = "<group>"; };
 		D28792D423F887140071E46B /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
 		D2906595242E87D2004CF818 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -254,6 +260,7 @@
 		D29D7B0B23A3BC5800B2832D /* ToWatch */ = {
 			isa = PBXGroup;
 			children = (
+				D238A28D2430116200510403 /* ToWatch.storyboard */,
 				D29D7B0C23A3BF3A00B2832D /* ToWatchViewController.swift */,
 				D238A285242F8E0200510403 /* ToWatchCell.swift */,
 				D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */,
@@ -264,6 +271,7 @@
 		D29D7B1223A44F6000B2832D /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				D238A2902430119F00510403 /* Discover.storyboard */,
 				D29D7B1323A44F9A00B2832D /* DiscoverViewController.swift */,
 				D29D7B1523A5063A00B2832D /* DiscoverResultCell.swift */,
 			);
@@ -328,9 +336,10 @@
 			isa = PBXGroup;
 			children = (
 				D222456123EE128C00082162 /* MyShowsHeaderView */,
+				D238A28B243010F600510403 /* MyShows.storyboard */,
 				D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */,
-				D29D7AFD23A2974700B2832D /* UpcomingShowCell.swift */,
 				D29D7AFF23A299DE00B2832D /* ShowCell.swift */,
+				D29D7AFD23A2974700B2832D /* UpcomingShowCell.swift */,
 			);
 			path = MyShows;
 			sourceTree = "<group>";
@@ -446,11 +455,14 @@
 			files = (
 				D2D5E33523FDE88300FE6234 /* ImdbBadge.xib in Resources */,
 				D2A0443F23FA049E00640850 /* Episodes.storyboard in Resources */,
+				D238A28F2430116200510403 /* ToWatch.storyboard in Resources */,
 				D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */,
+				D238A28C243010F600510403 /* MyShows.storyboard in Resources */,
 				D2A0443D23F9FDEF00640850 /* AboutShow.storyboard in Resources */,
 				D234846623FEBF12001BA5E5 /* IconButton.xib in Resources */,
 				D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */,
 				D222456323EE12C900082162 /* MyShowsHeaderView.xib in Resources */,
+				D238A2912430119F00510403 /* Discover.storyboard in Resources */,
 				D205221F23ECA5D4003F9F6B /* SeasonHeaderView.xib in Resources */,
 				D2CC72922416E8A500D4AD01 /* ErrorView.xib in Resources */,
 				D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */,
@@ -573,6 +585,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D238A28D2430116200510403 /* ToWatch.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D238A28E2430116200510403 /* Base */,
+			);
+			name = ToWatch.storyboard;
+			sourceTree = "<group>";
+		};
 		D2BEEF1E23A248820077F125 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
