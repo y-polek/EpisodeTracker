@@ -22,7 +22,6 @@
 		D238A286242F8E0200510403 /* ToWatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238A285242F8E0200510403 /* ToWatchCell.swift */; };
 		D238A28A242FA0A900510403 /* ToWatchShow+ListDiffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */; };
 		D238A28C243010F600510403 /* MyShows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A28B243010F600510403 /* MyShows.storyboard */; };
-		D238A28F2430116200510403 /* ToWatch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A28D2430116200510403 /* ToWatch.storyboard */; };
 		D238A2912430119F00510403 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A2902430119F00510403 /* Discover.storyboard */; };
 		D26B4827241A30F700156F82 /* Ints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B4826241A30F700156F82 /* Ints.swift */; };
 		D28792D523F887140071E46B /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28792D423F887140071E46B /* TrailerCell.swift */; };
@@ -45,6 +44,7 @@
 		D2A0443D23F9FDEF00640850 /* AboutShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A0443C23F9FDEF00640850 /* AboutShow.storyboard */; };
 		D2A0443F23FA049E00640850 /* Episodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A0443E23FA049E00640850 /* Episodes.storyboard */; };
 		D2AB72F223E8B70800BA9576 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */; };
+		D2B1DE2824313F2D000AC44A /* ToWatch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2B1DE2724313F2D000AC44A /* ToWatch.storyboard */; };
 		D2BD772223EB642D002AE94F /* Checkbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BD772123EB642D002AE94F /* Checkbox.xib */; };
 		D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD772323EB6470002AE94F /* Checkbox.swift */; };
 		D2BEEF1923A248820077F125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF1823A248820077F125 /* AppDelegate.swift */; };
@@ -101,7 +101,6 @@
 		D238A285242F8E0200510403 /* ToWatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToWatchCell.swift; sourceTree = "<group>"; };
 		D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToWatchShow+ListDiffable.swift"; sourceTree = "<group>"; };
 		D238A28B243010F600510403 /* MyShows.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyShows.storyboard; sourceTree = "<group>"; };
-		D238A28E2430116200510403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = EpisodeTracker/Base.lproj/ToWatch.storyboard; sourceTree = SOURCE_ROOT; };
 		D238A2902430119F00510403 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = SOURCE_ROOT; };
 		D26B4826241A30F700156F82 /* Ints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ints.swift; sourceTree = "<group>"; };
 		D28792D423F887140071E46B /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		D2A0443C23F9FDEF00640850 /* AboutShow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AboutShow.storyboard; sourceTree = "<group>"; };
 		D2A0443E23FA049E00640850 /* Episodes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Episodes.storyboard; sourceTree = "<group>"; };
 		D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
+		D2B1DE2724313F2D000AC44A /* ToWatch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToWatch.storyboard; sourceTree = "<group>"; };
 		D2BD772123EB642D002AE94F /* Checkbox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Checkbox.xib; sourceTree = "<group>"; };
 		D2BD772323EB6470002AE94F /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		D2BEEF1523A248820077F125 /* EpisodeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpisodeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,7 +260,7 @@
 		D29D7B0B23A3BC5800B2832D /* ToWatch */ = {
 			isa = PBXGroup;
 			children = (
-				D238A28D2430116200510403 /* ToWatch.storyboard */,
+				D2B1DE2724313F2D000AC44A /* ToWatch.storyboard */,
 				D29D7B0C23A3BF3A00B2832D /* ToWatchViewController.swift */,
 				D238A285242F8E0200510403 /* ToWatchCell.swift */,
 				D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */,
@@ -455,8 +455,8 @@
 			files = (
 				D2D5E33523FDE88300FE6234 /* ImdbBadge.xib in Resources */,
 				D2A0443F23FA049E00640850 /* Episodes.storyboard in Resources */,
-				D238A28F2430116200510403 /* ToWatch.storyboard in Resources */,
 				D238771923E5796200688E01 /* ShowDetails.storyboard in Resources */,
+				D2B1DE2824313F2D000AC44A /* ToWatch.storyboard in Resources */,
 				D238A28C243010F600510403 /* MyShows.storyboard in Resources */,
 				D2A0443D23F9FDEF00640850 /* AboutShow.storyboard in Resources */,
 				D234846623FEBF12001BA5E5 /* IconButton.xib in Resources */,
@@ -585,14 +585,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D238A28D2430116200510403 /* ToWatch.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D238A28E2430116200510403 /* Base */,
-			);
-			name = ToWatch.storyboard;
-			sourceTree = "<group>";
-		};
 		D2BEEF1E23A248820077F125 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
