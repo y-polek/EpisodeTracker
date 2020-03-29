@@ -45,6 +45,8 @@
 		D2A0443F23FA049E00640850 /* Episodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A0443E23FA049E00640850 /* Episodes.storyboard */; };
 		D2AB72F223E8B70800BA9576 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */; };
 		D2B1DE2824313F2D000AC44A /* ToWatch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2B1DE2724313F2D000AC44A /* ToWatch.storyboard */; };
+		D2B1DE2B24315DEB000AC44A /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B1DE2A24315DEB000AC44A /* EmptyView.xib */; };
+		D2B1DE2D24316071000AC44A /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B1DE2C24316071000AC44A /* EmptyView.swift */; };
 		D2BD772223EB642D002AE94F /* Checkbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BD772123EB642D002AE94F /* Checkbox.xib */; };
 		D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD772323EB6470002AE94F /* Checkbox.swift */; };
 		D2BEEF1923A248820077F125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF1823A248820077F125 /* AppDelegate.swift */; };
@@ -123,6 +125,8 @@
 		D2A0443E23FA049E00640850 /* Episodes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Episodes.storyboard; sourceTree = "<group>"; };
 		D2AB72F123E8B70800BA9576 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		D2B1DE2724313F2D000AC44A /* ToWatch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToWatch.storyboard; sourceTree = "<group>"; };
+		D2B1DE2A24315DEB000AC44A /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		D2B1DE2C24316071000AC44A /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		D2BD772123EB642D002AE94F /* Checkbox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Checkbox.xib; sourceTree = "<group>"; };
 		D2BD772323EB6470002AE94F /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		D2BEEF1523A248820077F125 /* EpisodeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpisodeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +235,7 @@
 				D2D905CC23A96A0C00E45753 /* ImageButton */,
 				D234846423FEBEF6001BA5E5 /* IconButton */,
 				D2CC72902416E88900D4AD01 /* ErrorView */,
+				D2B1DE2924315DD2000AC44A /* EmptyView */,
 				D29D7B0223A2A93D00B2832D /* ImageView.swift */,
 				D29D7B0723A2D47D00B2832D /* Divider.swift */,
 				D2D905CA23A8F89A00E45753 /* TableView.swift */,
@@ -285,6 +290,15 @@
 				D29DCACD23F93BCE00491ACD /* RippleCollectionViewCell.swift */,
 			);
 			path = Ripple;
+			sourceTree = "<group>";
+		};
+		D2B1DE2924315DD2000AC44A /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				D2B1DE2A24315DEB000AC44A /* EmptyView.xib */,
+				D2B1DE2C24316071000AC44A /* EmptyView.swift */,
+			);
+			path = EmptyView;
 			sourceTree = "<group>";
 		};
 		D2BD772023EB617D002AE94F /* Checkbox */ = {
@@ -461,6 +475,7 @@
 				D2A0443D23F9FDEF00640850 /* AboutShow.storyboard in Resources */,
 				D234846623FEBF12001BA5E5 /* IconButton.xib in Resources */,
 				D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */,
+				D2B1DE2B24315DEB000AC44A /* EmptyView.xib in Resources */,
 				D222456323EE12C900082162 /* MyShowsHeaderView.xib in Resources */,
 				D238A2912430119F00510403 /* Discover.storyboard in Resources */,
 				D205221F23ECA5D4003F9F6B /* SeasonHeaderView.xib in Resources */,
@@ -578,6 +593,7 @@
 				D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */,
 				D234846823FEBF79001BA5E5 /* IconButton.swift in Sources */,
 				D2C7E97923FC629100DA8C4E /* RecommendationCell.swift in Sources */,
+				D2B1DE2D24316071000AC44A /* EmptyView.swift in Sources */,
 				D29D7B0D23A3BF3A00B2832D /* ToWatchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

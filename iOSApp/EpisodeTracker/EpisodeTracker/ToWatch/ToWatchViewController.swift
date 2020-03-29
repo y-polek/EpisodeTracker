@@ -57,7 +57,10 @@ extension ToWatchViewController: ListAdapterDataSource {
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
-        return nil
+        let view = EmptyView()
+        view.messageText = "No episodes to watch"
+        view.isActionButtonHidden = true
+        return view
     }
 }
 
