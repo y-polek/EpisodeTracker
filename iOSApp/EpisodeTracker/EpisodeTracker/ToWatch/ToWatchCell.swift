@@ -22,4 +22,9 @@ class ToWatchCell: RippleCollectionViewCell {
             location: 0,
             length: show.episodeNumber.count)
     }
+    
+    override func shouldBeginRippleWith(_ touch: UITouch) -> Bool {
+        let location = touch.location(in: self.checkButton)
+        return !checkButton.bounds.contains(location)
+    }
 }
