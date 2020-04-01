@@ -1,29 +1,40 @@
 package dev.polek.episodetracker.common.presentation.myshows.model
 
-import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.*
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.GroupViewModel.*
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 
-class MyShowsViewModel(
+data class MyShowsViewModel(
     var upcomingShows: List<UpcomingShowViewModel>,
     var toBeAnnouncedShows: List<ShowViewModel>,
     var endedShows: List<ShowViewModel>,
-    var archivedShows: List<ShowViewModel>,
-    isUpcomingExpanded: Boolean,
-    isToBeAnnouncedExpanded: Boolean,
-    isEndedExpanded: Boolean,
-    isArchivedExpanded: Boolean)
+    var archivedShows: List<ShowViewModel>)
 {
-    var isUpcomingExpanded: Boolean = isUpcomingExpanded
+    var isUpcomingExpanded: Boolean = true
         private set
-    var isToBeAnnouncedExpanded: Boolean = isToBeAnnouncedExpanded
+    var isToBeAnnouncedExpanded: Boolean = true
         private set
-    var isEndedExpanded: Boolean = isEndedExpanded
+    var isEndedExpanded: Boolean = true
         private set
-    var isArchivedExpanded: Boolean = isArchivedExpanded
+    var isArchivedExpanded: Boolean = true
         private set
 
     var items: List<MyShowsListItem> = populateItemList()
         private set
+
+    fun modified(
+        upcomingShows: List<UpcomingShowViewModel> = this.upcomingShows,
+        toBeAnnouncedShows: List<ShowViewModel> = this.toBeAnnouncedShows,
+        endedShows: List<ShowViewModel> = this.endedShows,
+        archivedShows: List<ShowViewModel> = this.archivedShows): MyShowsViewModel
+    {
+        val model = MyShowsViewModel(upcomingShows, toBeAnnouncedShows, endedShows, archivedShows)
+        model.isUpcomingExpanded = this.isUpcomingExpanded
+        model.isToBeAnnouncedExpanded = this.isToBeAnnouncedExpanded
+        model.isEndedExpanded = this.isEndedExpanded
+        model.isArchivedExpanded = this.isArchivedExpanded
+        return model
+    }
 
     fun setUpcomingExpanded(expanded: Boolean) {
         isUpcomingExpanded = expanded
@@ -108,10 +119,6 @@ class MyShowsViewModel(
                 upcomingShows = emptyList(),
                 toBeAnnouncedShows = emptyList(),
                 endedShows = emptyList(),
-                archivedShows = emptyList(),
-                isUpcomingExpanded = true,
-                isToBeAnnouncedExpanded = true,
-                isEndedExpanded = true,
-                isArchivedExpanded = true)
+                archivedShows = emptyList())
     }
 }

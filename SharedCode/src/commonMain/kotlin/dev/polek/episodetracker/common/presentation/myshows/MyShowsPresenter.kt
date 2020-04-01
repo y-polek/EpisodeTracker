@@ -9,40 +9,36 @@ import dev.polek.episodetracker.common.repositories.MyShowsRepository
 
 class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresenter<MyShowsView>() {
 
-    private val model = MyShowsViewModel(
+    private var model = MyShowsViewModel(
         upcomingShows = emptyList(),
         toBeAnnouncedShows = emptyList(),
         endedShows = emptyList(),
-        archivedShows = emptyList(),
-        isUpcomingExpanded = true,
-        isToBeAnnouncedExpanded = true,
-        isEndedExpanded = true,
-        isArchivedExpanded = true)
+        archivedShows = emptyList())
 
     private val upcomingShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
         override fun onQueryResult(result: List<UpcomingShowViewModel>) {
-            model.upcomingShows = result
+            model = model.modified(upcomingShows = result)
             view?.updateShows(model)
         }
     }
 
     private val toBeAnnouncedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
-            model.toBeAnnouncedShows = result
+            model = model.modified(toBeAnnouncedShows = result)
             view?.updateShows(model)
         }
     }
 
     private val endedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
-            model.endedShows = result
+            model = model.modified(endedShows = result)
             view?.updateShows(model)
         }
     }
 
     private val archivedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
-            model.archivedShows = result
+            model = model.modified(archivedShows = result)
             view?.updateShows(model)
         }
     }
