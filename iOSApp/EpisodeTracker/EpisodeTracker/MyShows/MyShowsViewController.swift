@@ -135,30 +135,38 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
         case model.upcomingSectionIndex():
             header.title = "Upcoming"
             header.isExpanded = model.isUpcomingExpanded
-            header.tapCallback = {
-                self.model.toggleUpcomingExpanded()
-                tableView.reloadSections(IndexSet(arrayLiteral: self.model.upcomingSectionIndex()), with: .automatic)
+            header.tapCallback = { [weak self] in
+                if let model = self?.model {
+                    model.toggleUpcomingExpanded()
+                    tableView.reloadSections(IndexSet(arrayLiteral: model.upcomingSectionIndex()), with: .automatic)
+                }
             }
         case model.toBeAnnouncedSectionIndex():
             header.title = "To Be Announced"
             header.isExpanded = model.isToBeAnnouncedExpanded
-            header.tapCallback = {
-                self.model.toggleToBeAnnouncedExpanded()
-                tableView.reloadSections(IndexSet(arrayLiteral: self.model.toBeAnnouncedSectionIndex()), with: .automatic)
+            header.tapCallback = { [weak self] in
+                if let model = self?.model {
+                    model.toggleToBeAnnouncedExpanded()
+                    tableView.reloadSections(IndexSet(arrayLiteral: model.toBeAnnouncedSectionIndex()), with: .automatic)
+                }
             }
         case model.endedSectionIndex():
             header.title = "Ended"
             header.isExpanded = model.isEndedExpanded
-            header.tapCallback = {
-                self.model.toggleEndedExpanded()
-                tableView.reloadSections(IndexSet(arrayLiteral: self.model.endedSectionIndex()), with: .automatic)
+            header.tapCallback = { [weak self] in
+                if let model = self?.model {
+                    model.toggleEndedExpanded()
+                    tableView.reloadSections(IndexSet(arrayLiteral: model.endedSectionIndex()), with: .automatic)
+                }
             }
         case model.archivedSectionIndex():
             header.title = "Archived"
             header.isExpanded = model.isArchivedExpanded
-            header.tapCallback = {
-                self.model.toggleArchivedExpanded()
-                tableView.reloadSections(IndexSet(arrayLiteral: self.model.archivedSectionIndex()), with: .automatic)
+            header.tapCallback = { [weak self] in
+                if let model = self?.model {
+                    model.toggleArchivedExpanded()
+                    tableView.reloadSections(IndexSet(arrayLiteral: model.archivedSectionIndex()), with: .automatic)
+                }
             }
         default:
             break
