@@ -18,34 +18,29 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
     private val upcomingShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
         override fun onQueryResult(result: List<UpcomingShowViewModel>) {
             model = model.modified(upcomingShows = result)
-            view?.updateShows(model)
+            view?.displayUpcomingShows(model)
         }
     }
 
     private val toBeAnnouncedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
             model = model.modified(toBeAnnouncedShows = result)
-            view?.updateShows(model)
+            view?.displayToBeAnnouncedShows(model)
         }
     }
 
     private val endedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
             model = model.modified(endedShows = result)
-            view?.updateShows(model)
+            view?.displayEndedShows(model)
         }
     }
 
     private val archivedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
             model = model.modified(archivedShows = result)
-            view?.updateShows(model)
+            view?.displayArchivedShows(model)
         }
-    }
-
-    override fun attachView(view: MyShowsView) {
-        super.attachView(view)
-        view.updateShows(model)
     }
 
     override fun onViewAppeared() {

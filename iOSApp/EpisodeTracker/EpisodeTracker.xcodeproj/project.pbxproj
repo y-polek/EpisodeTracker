@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		142614C68DBC5A7FC08FD273 /* Pods_EpisodeTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */; };
 		D205221F23ECA5D4003F9F6B /* SeasonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205221E23ECA5D4003F9F6B /* SeasonHeaderView.xib */; };
+		D21D9E8E24391FE000533BEE /* ListDiffs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21D9E8D24391FE000533BEE /* ListDiffs.swift */; };
 		D222456323EE12C900082162 /* MyShowsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D222456223EE12C900082162 /* MyShowsHeaderView.xib */; };
 		D222456523EE147900082162 /* MyShowsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222456423EE147900082162 /* MyShowsHeaderView.swift */; };
 		D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2242C1123F1B4F5001C8608 /* PadView.swift */; };
@@ -91,6 +92,7 @@
 		A998D3B20E585233F3757CC8 /* Pods-EpisodeTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpisodeTracker.debug.xcconfig"; path = "Target Support Files/Pods-EpisodeTracker/Pods-EpisodeTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5BD7CB40732B5435C6506B /* Pods_EpisodeTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpisodeTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D205221E23ECA5D4003F9F6B /* SeasonHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonHeaderView.xib; sourceTree = "<group>"; };
+		D21D9E8D24391FE000533BEE /* ListDiffs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDiffs.swift; sourceTree = "<group>"; };
 		D222456223EE12C900082162 /* MyShowsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyShowsHeaderView.xib; sourceTree = "<group>"; };
 		D222456423EE147900082162 /* MyShowsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsHeaderView.swift; sourceTree = "<group>"; };
 		D2242C1123F1B4F5001C8608 /* PadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadView.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				D2EDA464241EC00B00EAD144 /* Log.swift */,
 				D2F09F0E23F40675003BFFAA /* NavigationController.swift */,
 				D2C1761F23FEAFF600BE0137 /* Urls.swift */,
+				D21D9E8D24391FE000533BEE /* ListDiffs.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */,
 				D2BD772423EB6470002AE94F /* Checkbox.swift in Sources */,
 				D238A286242F8E0200510403 /* ToWatchCell.swift in Sources */,
+				D21D9E8E24391FE000533BEE /* ListDiffs.swift in Sources */,
 				D2906596242E87D2004CF818 /* GradientView.swift in Sources */,
 				D29D7B0F23A3DC6B00B2832D /* AttributedStrings.swift in Sources */,
 				D26B4827241A30F700156F82 /* Ints.swift in Sources */,

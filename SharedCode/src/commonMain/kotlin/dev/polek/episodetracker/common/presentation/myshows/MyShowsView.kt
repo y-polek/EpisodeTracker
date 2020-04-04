@@ -4,6 +4,9 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewModel
 
 interface MyShowsView {
-    fun updateShows(model: MyShowsViewModel)
+    fun displayUpcomingShows(model: MyShowsViewModel)
+    fun displayToBeAnnouncedShows(model: MyShowsViewModel)
+    fun displayEndedShows(model: MyShowsViewModel)
+    fun displayArchivedShows(model: MyShowsViewModel)
     fun openMyShowDetails(show: MyShowsListItem.ShowViewModel)
 }

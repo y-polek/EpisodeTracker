@@ -33,88 +33,72 @@ class MyShowsViewController: UIViewController {
 // MARK: - MyShowsView implementation
 extension MyShowsViewController: MyShowsView {
     
-    func updateShows(model: MyShowsViewModel) {
-        let upcomingDiff = ListDiffPaths(
-            fromSection: self.model.upcomingSectionIndex(),
-            toSection: model.upcomingSectionIndex(),
-            oldArray: self.model.isUpcomingExpanded ? self.model.upcomingShows : [],
-            newArray: model.isUpcomingExpanded ? model.upcomingShows : [],
-            option: .equality)
-        
-        let tbaDiff = ListDiffPaths(
-            fromSection: self.model.toBeAnnouncedSectionIndex(),
-            toSection: model.toBeAnnouncedSectionIndex(),
-            oldArray: self.model.isToBeAnnouncedExpanded ? self.model.toBeAnnouncedShows : [],
-            newArray: model.isToBeAnnouncedExpanded ? model.toBeAnnouncedShows : [],
-            option: .equality)
-        
-        let endedDiff = ListDiffPaths(
-            fromSection: self.model.endedSectionIndex(),
-            toSection: model.endedSectionIndex(),
-            oldArray: self.model.isEndedExpanded ? self.model.endedShows : [],
-            newArray: model.isEndedExpanded ? model.endedShows : [],
-            option: .equality)
-        
-        let archivedDiff = ListDiffPaths(
-            fromSection: self.model.archivedSectionIndex(),
-            toSection: model.archivedSectionIndex(),
-            oldArray: self.model.isArchivedExpanded ? self.model.archivedShows : [],
-            newArray: model.isArchivedExpanded ? model.archivedShows : [],
-            option: .equality)
-        
-        var deletedSections = [Int]()
-        var insertedSections = [Int]()
-        
-        let oldUpcomingIdx = self.model.upcomingSectionIndex()
-        let newUpcomingIdx = model.upcomingSectionIndex()
-        if oldUpcomingIdx >= 0 && newUpcomingIdx < 0 {
-            deletedSections.append(oldUpcomingIdx)
-        }
-        if oldUpcomingIdx < 0 && newUpcomingIdx >= 0 {
-            insertedSections.append(newUpcomingIdx)
-        }
-        
-        let oldTbaIdx = self.model.toBeAnnouncedSectionIndex()
-        let newTbaIdx = model.toBeAnnouncedSectionIndex()
-        if oldTbaIdx >= 0 && newTbaIdx < 0 {
-            deletedSections.append(oldTbaIdx)
-        }
-        if oldTbaIdx < 0 && newTbaIdx >= 0 {
-            insertedSections.append(newTbaIdx)
-        }
-        
-        let oldEndedIdx = self.model.endedSectionIndex()
-        let newEndedIdx = model.endedSectionIndex()
-        if oldEndedIdx >= 0 && newEndedIdx < 0 {
-            deletedSections.append(oldEndedIdx)
-        }
-        if oldEndedIdx < 0 && newEndedIdx >= 0 {
-            insertedSections.append(newEndedIdx)
-        }
-        
-        let oldArchivedIdx = self.model.archivedSectionIndex()
-        let newArchivedIdx = model.archivedSectionIndex()
-        if oldArchivedIdx >= 0 && newArchivedIdx < 0 {
-            deletedSections.append(oldArchivedIdx)
-        }
-        if oldArchivedIdx < 0 && newArchivedIdx >= 0 {
-            insertedSections.append(newArchivedIdx)
-        }
-        
-        self.model = model
-        
-        tableView.beginUpdates()
-        tableView.deleteSections(IndexSet(deletedSections), with: .fade)
-        tableView.insertSections(IndexSet(insertedSections), with: .fade)
-        tableView.deleteRows(at: upcomingDiff.deletes + tbaDiff.deletes + endedDiff.deletes + archivedDiff.deletes, with: .fade)
-        tableView.insertRows(at: upcomingDiff.inserts + tbaDiff.inserts + endedDiff.inserts + archivedDiff.inserts, with: .automatic)
-        tableView.reloadRows(at: upcomingDiff.updates + tbaDiff.updates + endedDiff.updates + archivedDiff.updates, with: .automatic)
-        tableView.endUpdates()
+    func displayUpcomingShows(model: MyShowsViewModel) {
+        updateSection(model,
+            oldSectionIndex: self.model.upcomingSectionIndex(),
+            newSectionIndex: model.upcomingSectionIndex(),
+            oldShows: self.model.upcomingShows,
+            newShows: model.upcomingShows,
+            oldIsExpanded: self.model.isUpcomingExpanded,
+            newIsExpanded: model.isUpcomingExpanded)
+    }
+    
+    func displayToBeAnnouncedShows(model: MyShowsViewModel) {
+        updateSection(model,
+            oldSectionIndex: self.model.toBeAnnouncedSectionIndex(),
+            newSectionIndex: model.toBeAnnouncedSectionIndex(),
+            oldShows: self.model.toBeAnnouncedShows,
+            newShows: model.toBeAnnouncedShows,
+            oldIsExpanded: self.model.isToBeAnnouncedExpanded,
+            newIsExpanded: model.isToBeAnnouncedExpanded)
+    }
+    
+    func displayEndedShows(model: MyShowsViewModel) {
+        updateSection(model,
+            oldSectionIndex: self.model.endedSectionIndex(),
+            newSectionIndex: model.endedSectionIndex(),
+            oldShows: self.model.endedShows,
+            newShows: model.endedShows,
+            oldIsExpanded: self.model.isEndedExpanded,
+            newIsExpanded: model.isEndedExpanded)
+    }
+    
+    func displayArchivedShows(model: MyShowsViewModel) {
+        updateSection(model,
+            oldSectionIndex: self.model.archivedSectionIndex(),
+            newSectionIndex: model.archivedSectionIndex(),
+            oldShows: self.model.archivedShows,
+            newShows: model.archivedShows,
+            oldIsExpanded: self.model.isArchivedExpanded,
+            newIsExpanded: model.isArchivedExpanded)
     }
     
     func openMyShowDetails(show: MyShowsListItem.ShowViewModel) {
         let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func updateSection(
+        _ model: MyShowsViewModel,
+        oldSectionIndex: Int,
+        newSectionIndex: Int,
+        oldShows: [MyShowsListItem.ShowViewModel],
+        newShows: [MyShowsListItem.ShowViewModel],
+        oldIsExpanded: Bool,
+        newIsExpanded: Bool)
+    {
+        self.model = model
+        
+        let diff = ListDiffPaths(
+            fromSection: oldSectionIndex,
+            toSection: newSectionIndex,
+            oldArray: oldIsExpanded ? oldShows : [],
+            newArray: newIsExpanded ? newShows : [],
+            option: .equality)
+        
+        let sectionDiff = SectionDiff.diff(oldIndex: oldSectionIndex, newIndex: newSectionIndex)
+        
+        diff.apply(tableView, deletedSections: sectionDiff.deleted, insertedSections: sectionDiff.inserted)
     }
 }
 
