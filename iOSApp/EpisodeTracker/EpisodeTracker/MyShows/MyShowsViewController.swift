@@ -62,25 +62,6 @@ extension MyShowsViewController: MyShowsView {
             newArray: model.isArchivedExpanded ? model.archivedShows : [],
             option: .equality)
         
-        log(self) { "Old model. Upcoming: \(self.model.upcomingShows.count), TBA: \(self.model.toBeAnnouncedShows.count), Ended: \(self.model.endedShows.count), Archived: \(self.model.archivedShows.count)" }
-        log(self) { "New model. Upcoming: \(model.upcomingShows.count), TBA: \(model.toBeAnnouncedShows.count), Ended: \(model.endedShows.count), Archived: \(model.archivedShows.count)" }
-        log(self) { "Upcoming" }
-        log(self) { "Deletes: \(upcomingDiff.deletes.count)" }
-        log(self) { "Inserts: \(upcomingDiff.inserts.count)" }
-        log(self) { "Updates: \(upcomingDiff.updates.count)" }
-        log(self) { "TBA" }
-        log(self) { "Deletes: \(tbaDiff.deletes.count)" }
-        log(self) { "Inserts: \(tbaDiff.inserts.count)" }
-        log(self) { "Updates: \(tbaDiff.updates.count)" }
-        log(self) { "Ended" }
-        log(self) { "Deletes: \(endedDiff.deletes.count)" }
-        log(self) { "Inserts: \(endedDiff.inserts.count)" }
-        log(self) { "Updates: \(endedDiff.updates.count)" }
-        log(self) { "Archived" }
-        log(self) { "Deletes: \(archivedDiff.deletes.count)" }
-        log(self) { "Inserts: \(archivedDiff.inserts.count)" }
-        log(self) { "Updates: \(archivedDiff.updates.count)" }
-        
         var deletedSections = [Int]()
         var insertedSections = [Int]()
         
@@ -120,8 +101,6 @@ extension MyShowsViewController: MyShowsView {
             insertedSections.append(newArchivedIdx)
         }
         
-        
-        
         self.model = model
         
         tableView.beginUpdates()
@@ -131,7 +110,6 @@ extension MyShowsViewController: MyShowsView {
         tableView.insertRows(at: upcomingDiff.inserts + tbaDiff.inserts + endedDiff.inserts + archivedDiff.inserts, with: .automatic)
         tableView.reloadRows(at: upcomingDiff.updates + tbaDiff.updates + endedDiff.updates + archivedDiff.updates, with: .automatic)
         tableView.endUpdates()
-        //tableView.reloadData()
     }
     
     func openMyShowDetails(show: MyShowsListItem.ShowViewModel) {
@@ -153,13 +131,13 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case upcomingSectionIndex():
+        case model.upcomingSectionIndex():
             return model.isUpcomingExpanded ? model.upcomingShows.count : 0
-        case toBeAnnouncedSectionIndex():
+        case model.toBeAnnouncedSectionIndex():
             return model.isToBeAnnouncedExpanded ? model.toBeAnnouncedShows.count : 0
-        case endedSectionIndex():
+        case model.endedSectionIndex():
             return model.isEndedExpanded ? model.endedShows.count : 0
-        case archivedSectionIndex():
+        case model.archivedSectionIndex():
             return model.isArchivedExpanded ? model.archivedShows.count : 0
         default:
             return 0
@@ -170,28 +148,28 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyShowsHeaderView.reuseIdentifier) as! MyShowsHeaderView
         
         switch section {
-        case upcomingSectionIndex():
+        case model.upcomingSectionIndex():
             header.title = "Upcoming"
             header.isExpanded = model.isUpcomingExpanded
             header.tapCallback = {
                 self.model.toggleUpcomingExpanded()
                 tableView.reloadSections(IndexSet(arrayLiteral: self.model.upcomingSectionIndex()), with: .automatic)
             }
-        case toBeAnnouncedSectionIndex():
+        case model.toBeAnnouncedSectionIndex():
             header.title = "To Be Announced"
             header.isExpanded = model.isToBeAnnouncedExpanded
             header.tapCallback = {
                 self.model.toggleToBeAnnouncedExpanded()
                 tableView.reloadSections(IndexSet(arrayLiteral: self.model.toBeAnnouncedSectionIndex()), with: .automatic)
             }
-        case endedSectionIndex():
+        case model.endedSectionIndex():
             header.title = "Ended"
             header.isExpanded = model.isEndedExpanded
             header.tapCallback = {
                 self.model.toggleEndedExpanded()
                 tableView.reloadSections(IndexSet(arrayLiteral: self.model.endedSectionIndex()), with: .automatic)
             }
-        case archivedSectionIndex():
+        case model.archivedSectionIndex():
             header.title = "Archived"
             header.isExpanded = model.isArchivedExpanded
             header.tapCallback = {
@@ -207,13 +185,13 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case upcomingSectionIndex():
+        case model.upcomingSectionIndex():
             return upcomingShowCell(tableView, indexPath)
-        case toBeAnnouncedSectionIndex():
+        case model.toBeAnnouncedSectionIndex():
             return toBeAnnouncedShowCell(tableView, indexPath)
-        case endedSectionIndex():
+        case model.endedSectionIndex():
             return endedShowCell(tableView, indexPath)
-        case archivedSectionIndex():
+        case model.archivedSectionIndex():
             return archivedShowCell(tableView, indexPath)
         default:
             fatalError("Unknown section #\(indexPath.section)")
@@ -228,34 +206,18 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
         var show: MyShowsListItem.ShowViewModel
         switch section {
-        case upcomingSectionIndex():
+        case model.upcomingSectionIndex():
             show = model.upcomingShows[row]
-        case toBeAnnouncedSectionIndex():
+        case model.toBeAnnouncedSectionIndex():
             show = model.toBeAnnouncedShows[row]
-        case endedSectionIndex():
+        case model.endedSectionIndex():
             show = model.endedShows[row]
-        case archivedSectionIndex():
+        case model.archivedSectionIndex():
             show = model.archivedShows[row]
         default:
             fatalError("Unknown section #\(indexPath.section)")
         }
         presenter.onShowClicked(show: show)
-    }
-    
-    private func upcomingSectionIndex() -> Int {
-        return model.upcomingShows.isEmpty ? -1 : 0
-    }
-    
-    private func toBeAnnouncedSectionIndex() -> Int {
-        return model.toBeAnnouncedShows.isEmpty ? -1 : (1 - (model.upcomingShows.isEmpty ? 1 : 0))
-    }
-    
-    private func endedSectionIndex() -> Int {
-        return model.endedShows.isEmpty ? -1 : (2 - (model.upcomingShows.isEmpty ? 1 : 0) - (model.toBeAnnouncedShows.isEmpty ? 1 : 0))
-    }
-    
-    private func archivedSectionIndex() -> Int {
-        return model.archivedShows.isEmpty ? -1 : (3 - (model.upcomingShows.isEmpty ? 1 : 0) - (model.toBeAnnouncedShows.isEmpty ? 1 : 0) - (model.endedShows.isEmpty ? 1 : 0))
     }
     
     private func upcomingShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UpcomingShowCell {
