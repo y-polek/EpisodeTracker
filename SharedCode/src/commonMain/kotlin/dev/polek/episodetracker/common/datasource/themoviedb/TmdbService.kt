@@ -10,7 +10,11 @@ import io.ktor.client.features.auth.Auth
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.readText
+import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 
 class TmdbService(client: HttpClient?) {
 
@@ -21,7 +25,7 @@ class TmdbService(client: HttpClient?) {
             }
         }
         install(JsonFeature) {
-            serializer = KotlinxSerializer(json = Json.nonstrict)
+            serializer = KotlinxSerializer(json)
         }
     }
 
@@ -49,8 +53,10 @@ class TmdbService(client: HttpClient?) {
         return client.get(urlString = "$BASE_URL/tv/$tmdbId?append_to_response=external_ids,content_ratings")
     }
 
-    suspend fun season(showTmdbId: Int, number: Int): SeasonEntity {
-        return client.get(urlString = "$BASE_URL/tv/$showTmdbId/season/$number")
+    suspend fun season(showTmdbId: Int, number: Int): SeasonEntity? {
+        val response = client.get<HttpResponse>(urlString = "$BASE_URL/tv/$showTmdbId/season/$number")
+        if (response.status == HttpStatusCode.NotFound) return null
+        return json.parse(SeasonEntity.serializer(), response.readText())
     }
 
     suspend fun showDetails(showTmdbId: Int): ShowDetailsEntity {
@@ -68,6 +74,7 @@ class TmdbService(client: HttpClient?) {
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3"
         private const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p"
+        private val json = Json(JsonConfiguration.Stable.copy(strictMode = false))
 
         fun posterImageUrl(path: String): String {
             return "$BASE_IMAGE_URL/w500$path"

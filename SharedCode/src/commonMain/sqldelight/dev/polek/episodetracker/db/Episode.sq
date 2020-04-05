@@ -18,7 +18,7 @@ WHERE isWatched = 0 AND airDateMillis < Time.currentTimeMillis
 GROUP BY showTmdbId;
 
 insert:
-INSERT INTO Episode(showTmdbId, episodeNumber, seasonNumber, name, airDateMillis, imageUrl)
+INSERT OR REPLACE INTO Episode(showTmdbId, episodeNumber, seasonNumber, name, airDateMillis, imageUrl)
 VALUES (?, ?, ?, ?, ?, ?);
 
 deleteByTmdbId:

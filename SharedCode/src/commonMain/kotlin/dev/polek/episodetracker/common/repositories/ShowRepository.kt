@@ -25,7 +25,7 @@ class ShowRepository(
     }
 
     suspend fun season(showTmdbId: Int, seasonNumber: Int): Season? {
-        val seasonEntity = tmdbService.season(showTmdbId = showTmdbId, number = seasonNumber)
+        val seasonEntity = tmdbService.season(showTmdbId = showTmdbId, number = seasonNumber) ?: return null
         if (!seasonEntity.isValid) return null
 
         val season = mapSeason(seasonEntity)
