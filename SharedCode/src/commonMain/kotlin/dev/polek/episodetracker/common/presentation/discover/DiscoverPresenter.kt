@@ -4,6 +4,7 @@ import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.common.repositories.DiscoverRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DiscoverPresenter(
@@ -40,6 +41,7 @@ class DiscoverPresenter(
 
         launch {
             myShowsRepository.addShow(show.id)
+            delay(300)
             show.isInMyShows = true
             show.isAddInProgress = false
             view?.updateSearchResult(show)
@@ -48,12 +50,15 @@ class DiscoverPresenter(
     }
 
     fun onRemoveButtonClicked(show: DiscoverResultViewModel) {
-        show.isInMyShows = false
-        show.isAddInProgress = false
+        show.isAddInProgress = true
         view?.updateSearchResult(show)
 
         launch {
             myShowsRepository.removeShow(show.id)
+            delay(300)
+            show.isInMyShows = false
+            show.isAddInProgress = false
+            view?.updateSearchResult(show)
         }
     }
 
