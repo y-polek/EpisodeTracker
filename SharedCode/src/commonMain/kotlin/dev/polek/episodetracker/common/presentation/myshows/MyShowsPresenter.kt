@@ -62,4 +62,16 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
     fun onShowClicked(show: ShowViewModel) {
         view?.openMyShowDetails(show)
     }
+
+    fun onRemoveShowClicked(show: ShowViewModel) {
+        repository.removeShow(show.id)
+    }
+
+    fun onArchiveShowClicked(show: ShowViewModel) {
+        repository.archiveShow(show.id)
+    }
+
+    fun onUnarchiveShowClicked(show: ShowViewModel) {
+        repository.unarchiveShow(show.id)
+    }
 }

@@ -192,24 +192,37 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        presenter.onShowClicked(show: model.showAt(indexPath))
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let section = indexPath.section
-        let row = indexPath.row
+        let show = model.showAt(indexPath)
         
-        var show: MyShowsListItem.ShowViewModel
-        switch section {
-        case model.upcomingSectionIndex():
-            show = model.upcomingShows[row]
-        case model.toBeAnnouncedSectionIndex():
-            show = model.toBeAnnouncedShows[row]
-        case model.endedSectionIndex():
-            show = model.endedShows[row]
-        case model.archivedSectionIndex():
-            show = model.archivedShows[row]
-        default:
-            fatalError("Unknown section #\(indexPath.section)")
+        let removeAction = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (action, view, completionHandler) in
+            self?.presenter.onRemoveShowClicked(show: show)
+            completionHandler(true)
         }
-        presenter.onShowClicked(show: show)
+        removeAction.image = UIImage(named: "ic-remove")
+        
+        var archiveAction: UIContextualAction
+        if indexPath.section == model.archivedSectionIndex() {
+            archiveAction = UIContextualAction(style: .normal, title: "Unarchive") { [weak self] (action, view, completionHandler) in
+                self?.presenter.onUnarchiveShowClicked(show: show)
+                completionHandler(true)
+            }
+            archiveAction.image = UIImage(named: "ic-unarchive")
+        } else {
+            archiveAction = UIContextualAction(style: .normal, title: "Archive") { [weak self] (action, view, completionHandler) in
+                self?.presenter.onArchiveShowClicked(show: show)
+                completionHandler(true)
+            }
+            archiveAction.image = UIImage(named: "ic-archive")
+        }
+        
+        let config = UISwipeActionsConfiguration(actions: [archiveAction, removeAction])
+        config.performsFirstActionWithFullSwipe = false
+        return config
     }
     
     private func upcomingShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UpcomingShowCell {
@@ -253,5 +266,23 @@ extension MyShowsViewModel {
     
     func archivedSectionIndex() -> Int {
         return archivedShows.isEmpty ? -1 : (3 - (upcomingShows.isEmpty ? 1 : 0) - (toBeAnnouncedShows.isEmpty ? 1 : 0) - (endedShows.isEmpty ? 1 : 0))
+    }
+    
+    func showAt(_ indexPath: IndexPath) -> MyShowsListItem.ShowViewModel {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        switch section {
+        case upcomingSectionIndex():
+            return upcomingShows[row]
+        case toBeAnnouncedSectionIndex():
+            return toBeAnnouncedShows[row]
+        case endedSectionIndex():
+            return endedShows[row]
+        case archivedSectionIndex():
+            return archivedShows[row]
+        default:
+            fatalError("Unknown section #\(indexPath.section)")
+        }
     }
 }
