@@ -1,12 +1,15 @@
 import UIKit
 import IGListKit
+import SwipeCellKit
 import SharedCode
 
 class ToWatchViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let presenter = ToWatchPresenter(repository: AppDelegate.instance().toWatchRepository)
+    private let presenter = ToWatchPresenter(
+        toWatchRepository: AppDelegate.instance().toWatchRepository,
+        episodesRepository: AppDelegate.instance().episodesRepository)
     private var shows = [ToWatchShowViewModel]()
     private var adapter: ListAdapter!
     
@@ -46,6 +49,7 @@ extension ToWatchViewController: ToWatchView {
     }
 }
 
+// MARK: - ListAdapterDataSource implementation
 extension ToWatchViewController: ListAdapterDataSource {
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
@@ -64,7 +68,7 @@ extension ToWatchViewController: ListAdapterDataSource {
     }
 }
 
-class ToWatchSectionController: ListSectionController {
+class ToWatchSectionController: ListSectionController, SwipeCollectionViewCellDelegate {
     
     private var show: ToWatchShowViewModel!
     private var presenter: ToWatchPresenter!
@@ -82,6 +86,7 @@ class ToWatchSectionController: ListSectionController {
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         let cell = collectionContext!.dequeueReusableCellFromStoryboard(
             withIdentifier: "to_watch_show_cell", for: self, at: index) as! ToWatchCell
+        cell.delegate = self
         cell.bind(show)
         cell.checkButton.tapCallback = { [weak self] in
             if let presenter = self?.presenter, let show = self?.show {
@@ -97,5 +102,15 @@ class ToWatchSectionController: ListSectionController {
     
     override func didSelectItem(at index: Int) {
         presenter.onShowClicked(show: show)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        let markWatched = SwipeAction(style: .default, title: "Mark All Watched") { [weak self] (action, indexPath) in
+            if let presenter = self?.presenter, let show = self?.show {
+                presenter.onMarkAllWatchedClicked(show: show)
+            }
+        }
+        markWatched.image = UIImage(named: "ic-check-all")
+        return [markWatched]
     }
 }

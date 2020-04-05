@@ -1,8 +1,9 @@
 import UIKit
 import MaterialComponents.MaterialRipple
+import SwipeCellKit
 
 @IBDesignable
-class RippleCollectionViewCell: UICollectionViewCell {
+class RippleCollectionViewCell: SwipeCollectionViewCell {
     
     @IBInspectable
     var rippleColor: UIColor = .ripple {
