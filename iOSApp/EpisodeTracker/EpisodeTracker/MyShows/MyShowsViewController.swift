@@ -1,5 +1,6 @@
 import UIKit
 import IGListDiffKit
+import SwipeCellKit
 import SharedCode
 
 class MyShowsViewController: UIViewController {
@@ -102,8 +103,8 @@ extension MyShowsViewController: MyShowsView {
     }
 }
 
-// MARK: - TableView datasource and delegate
-extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - TableView datasource
+extension MyShowsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         let number = (model.upcomingShows.isEmpty ? 0 : 1)
@@ -190,63 +191,70 @@ extension MyShowsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        presenter.onShowClicked(show: model.showAt(indexPath))
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let show = model.showAt(indexPath)
-        
-        let removeAction = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (action, view, completionHandler) in
-            self?.presenter.onRemoveShowClicked(show: show)
-            completionHandler(true)
-        }
-        removeAction.image = UIImage(named: "ic-remove")
-        
-        var archiveAction: UIContextualAction
-        if indexPath.section == model.archivedSectionIndex() {
-            archiveAction = UIContextualAction(style: .normal, title: "Unarchive") { [weak self] (action, view, completionHandler) in
-                self?.presenter.onUnarchiveShowClicked(show: show)
-                completionHandler(true)
-            }
-            archiveAction.image = UIImage(named: "ic-unarchive")
-        } else {
-            archiveAction = UIContextualAction(style: .normal, title: "Archive") { [weak self] (action, view, completionHandler) in
-                self?.presenter.onArchiveShowClicked(show: show)
-                completionHandler(true)
-            }
-            archiveAction.image = UIImage(named: "ic-archive")
-        }
-        
-        let config = UISwipeActionsConfiguration(actions: [archiveAction, removeAction])
-        config.performsFirstActionWithFullSwipe = false
-        return config
-    }
-    
     private func upcomingShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UpcomingShowCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "upcoming_show_cell") as! UpcomingShowCell
+        cell.delegate = self
         cell.bind(show: model.upcomingShows[indexPath.row])
         return cell
     }
     
     private func toBeAnnouncedShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> ShowCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "show_cell") as! ShowCell
+        cell.delegate = self
         cell.bind(show: model.toBeAnnouncedShows[indexPath.row])
         return cell
     }
     
     private func endedShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> ShowCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "show_cell") as! ShowCell
+        cell.delegate = self
         cell.bind(show: model.endedShows[indexPath.row])
         return cell
     }
     
     private func archivedShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> ShowCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "show_cell") as! ShowCell
+        cell.delegate = self
         cell.bind(show: model.archivedShows[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - TableView delegate
+extension MyShowsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter.onShowClicked(show: model.showAt(indexPath))
+    }
+}
+
+// MARK: - SwipeTableViewCellDelegate
+extension MyShowsViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let show = model.showAt(indexPath)
+        
+        let remove = SwipeAction(style: .destructive, title: "Remove") { [weak self] (action, indexPath) in
+            self?.presenter.onRemoveShowClicked(show: show)
+        }
+        remove.image = UIImage(named: "ic-remove")
+        
+        if indexPath.section == model.archivedSectionIndex() {
+            let unarchive = SwipeAction(style: .default, title: "Unarchive") { [weak self] (action, indexPath) in
+                self?.presenter.onUnarchiveShowClicked(show: show)
+            }
+            unarchive.image = UIImage(named: "ic-unarchive")
+            return [unarchive, remove]
+        } else {
+            let archive = SwipeAction(style: .default, title: "Archive") { [weak self] (action, indexPath) in
+                self?.presenter.onArchiveShowClicked(show: show)
+            }
+            archive.image = UIImage(named: "ic-archive")
+            return [archive, remove]
+        }
     }
 }
 
