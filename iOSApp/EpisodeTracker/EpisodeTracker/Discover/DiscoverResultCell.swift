@@ -5,7 +5,7 @@ import SharedCode
 class DiscoverResultCell: RippleTableViewCell {
     
     private static var addImage: UIImage = UIImage(named: "ic-add")!
-    private static var checkImage: UIImage = UIImage(named: "ic-check")!
+    private static var checkImage: UIImage = UIImage(named: "ic-minus")!
     
     @IBOutlet weak var posterView: ImageView!
     @IBOutlet weak var titleLabel: UILabel!
