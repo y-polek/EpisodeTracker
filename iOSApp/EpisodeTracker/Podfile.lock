@@ -55,6 +55,7 @@ PODS:
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
   - ReachabilitySwift (5.0.0)
+  - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
   - IGListKit (= 4.0.0)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - MaterialComponents/Ripple (= 100.0.0)
   - MaterialComponents/Tabs (= 100.0.0)
   - ReachabilitySwift (= 5.0.0)
+  - SwipeCellKit (= 2.7.1)
 
 SPEC REPOS:
   trunk:
@@ -73,6 +75,7 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - ReachabilitySwift
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
@@ -82,7 +85,8 @@ SPEC CHECKSUMS:
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 45bf0868c45d4219b412b17870c27e9bbaf55dd6
+PODFILE CHECKSUM: b7b6e5fee4ced55d20d97cf363c7726fdecc5c8d
 
 COCOAPODS: 1.8.4
