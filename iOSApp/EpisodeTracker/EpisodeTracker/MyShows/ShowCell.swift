@@ -2,7 +2,7 @@ import UIKit
 import MaterialComponents.MaterialRipple
 import SharedCode
 
-class ShowCell: RippleTableViewCell {
+class ShowCell: SwipeRippleTableViewCell {
     
     @IBOutlet weak var backgroundImage: ImageView!
     @IBOutlet weak var titleLabel: UILabel!

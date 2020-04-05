@@ -1,7 +1,7 @@
 import UIKit
 import SharedCode
 
-class ToWatchCell: RippleCollectionViewCell {
+class ToWatchCell: SwipeRippleCollectionViewCell {
     
     @IBOutlet weak var backgroundImage: ImageView!
     @IBOutlet weak var titleLabel: UILabel!

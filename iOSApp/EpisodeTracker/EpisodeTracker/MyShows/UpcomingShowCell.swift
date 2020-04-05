@@ -1,7 +1,7 @@
 import UIKit
 import SharedCode
 
-class UpcomingShowCell: RippleTableViewCell {
+class UpcomingShowCell: SwipeRippleTableViewCell {
     
     @IBOutlet weak var backgroundImage: ImageView!
     @IBOutlet weak var titleLabel: UILabel!

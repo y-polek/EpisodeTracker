@@ -3,7 +3,7 @@ import MaterialComponents.MaterialRipple
 import SwipeCellKit
 
 @IBDesignable
-class RippleTableViewCell: SwipeTableViewCell {
+class RippleTableViewCell: UITableViewCell {
     
     @IBInspectable
     var rippleColor: UIColor = .ripple {
