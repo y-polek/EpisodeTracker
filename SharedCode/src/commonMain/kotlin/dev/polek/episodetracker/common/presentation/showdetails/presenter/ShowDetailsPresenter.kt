@@ -375,8 +375,8 @@ class ShowDetailsPresenter(
     }
 
     private fun loadEpisodesFromNetwork() {
-        val numberOfSeasons = showDetails?.numberOfSeasons
-        if (numberOfSeasons == null) {
+        val seasonNumbers = showDetails?.seasonNumbers
+        if (seasonNumbers == null) {
             loge { "Can't load episodes list without ShowDetails" }
             return
         }
@@ -384,16 +384,20 @@ class ShowDetailsPresenter(
         view?.showEpisodesProgress()
         view?.hideEpisodesError()
 
+        log { "loadEpisodesFromNetwork: $showDetails" }
+
         launch {
             try {
-                showSeasons = (1..numberOfSeasons)
+                showSeasons = seasonNumbers
                     .mapNotNull { seasonNumber ->
+                        log { "map season #$seasonNumber" }
                         showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
                     }
                 val seasonsList = showSeasons!!.map(SeasonViewModel.Companion::map)
                 seasonsViewModel = SeasonsViewModel(seasonsList)
                 view?.displayEpisodes(seasonsList)
-            } catch (e: Throwable) {
+            } catch (error: Throwable) {
+                loge { "loadEpisodesFromNetwork: $error" }
                 view?.showEpisodesError()
             } finally {
                 view?.hideEpisodesProgress()

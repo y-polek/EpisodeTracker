@@ -31,6 +31,6 @@ interface ShowDetailsView {
     fun hideEpisodesProgress()
     fun showEpisodesError()
     fun hideEpisodesError()
-    fun reloadSeason(season: Int)
+    fun reloadSeason(number: Int)
     fun reloadAllSeasons()
 }

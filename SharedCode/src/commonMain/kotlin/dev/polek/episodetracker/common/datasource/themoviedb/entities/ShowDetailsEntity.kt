@@ -21,17 +21,18 @@ data class ShowDetailsEntity(
     @SerialName("homepage") private val homepage: String? = null,
     @SerialName("in_production") val inProduction: Boolean = true,
     @SerialName("next_episode_to_air") val nextEpisodeToAir: EpisodeEntity? = null,
-    @SerialName("number_of_seasons") val numberOfSeasons: Int = 1,
+    @SerialName("seasons") private val seasons: List<SeasonEntity>?,
     @SerialName("external_ids") val externalIds: ExternalIdsEntity? = null,
     @SerialName("content_ratings") private val contentRatings: ContentRatingsEntity? = null,
     @SerialName("videos") private val videosEntity: VideosEntity? = null,
     @SerialName("credits") private val credits: CreditsEntity? = null,
     @SerialName("recommendations") private val recommendationsEntity: RecommendationsEntity? = null)
 {
-    @Transient val isValid = allNotNull(tmdbId, name, numberOfSeasons)
+    @Transient val isValid = allNotNull(tmdbId, name)
     @Transient val year: Int? = firstAirDate?.let(::parseDate)?.year
     @Transient val lastYear: Int? = lastAirDate?.let(::parseDate)?.year
     @Transient val isEnded = !inProduction
+    @Transient val seasonNumbers: List<Int> = seasons?.mapNotNull(SeasonEntity::number).orEmpty()
     @Transient val genres: List<String> = genreEntities?.filter(GenreEntity::isValid)?.map(GenreEntity::name).orEmpty()
     @Transient val contentRating: String? = contentRatings?.ratings?.firstOrNull { it.country == "US" }?.rating
     @Transient val networks: List<String> = networkEntities?.asSequence()

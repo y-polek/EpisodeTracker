@@ -398,8 +398,8 @@ extension ShowDetailsViewController: ShowDetailsView {
         episodesViewController?.displaySeasons(seasons)
     }
     
-    func reloadSeason(season: Int32) {
-        episodesViewController?.reloadSeason(season)
+    func reloadSeason(number: Int32) {
+        episodesViewController?.reloadSeason(number)
     }
     
     func reloadAllSeasons() {

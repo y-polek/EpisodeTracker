@@ -20,7 +20,6 @@ class EpisodesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(SeasonHeaderView.nib, forHeaderFooterViewReuseIdentifier: SeasonHeaderView.reuseIdentifier)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,9 +41,10 @@ class EpisodesViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func reloadSeason(_ season: Int32) {
-        let section = Int(season) - 1
-        reloadSection(section)
+    func reloadSeason(_ number: Int32) {
+        if let section = seasons.firstIndex(where: { $0.number == number }) {
+            reloadSection(section)
+        }
     }
     
     func reloadAllSeasons() {

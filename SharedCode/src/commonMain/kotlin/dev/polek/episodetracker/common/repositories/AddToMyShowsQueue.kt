@@ -120,7 +120,7 @@ class AddToMyShowsQueue(
 
                 if (!isActive) return@launch
 
-                val seasons = (1..show.numberOfSeasons).mapNotNull { seasonNumber ->
+                val seasons = show.seasonNumbers.mapNotNull { seasonNumber ->
                     showRepository.season(showTmdbId = showTmdbId, seasonNumber = seasonNumber)
                 }
 
