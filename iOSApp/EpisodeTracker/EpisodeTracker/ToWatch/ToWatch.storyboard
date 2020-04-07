@@ -24,9 +24,12 @@
                                     <searchBar contentMode="redraw" verticalHuggingPriority="251" searchBarStyle="minimal" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="Dc8-SD-RH0">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="search" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="tua-Su-vU1" id="9Ua-Ls-B3X"/>
+                                        </connections>
                                     </searchBar>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zav-d1-Iel">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zav-d1-Iel">
                                         <rect key="frame" x="0.0" y="56" width="414" height="762"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xsu-ht-Vo3">
@@ -177,6 +180,7 @@
                     <navigationItem key="navigationItem" id="2Bb-mK-aG9"/>
                     <connections>
                         <outlet property="collectionView" destination="zav-d1-Iel" id="adz-mm-vKF"/>
+                        <outlet property="searchBar" destination="Dc8-SD-RH0" id="KG7-W6-QeA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0n-p6-uCR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

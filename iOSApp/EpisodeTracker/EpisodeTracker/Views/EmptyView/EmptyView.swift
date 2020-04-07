@@ -55,7 +55,8 @@ class EmptyView: UIView {
     }
     
     private func updateActionButton() {
-        actionButton.titleLabel?.text = actionName
+        actionButton.setTitle(actionName, for: .normal)
+        actionButton.isUppercaseTitle = false
         actionButton.isHidden = isActionButtonHidden
     }
 }

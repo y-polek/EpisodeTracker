@@ -11,6 +11,9 @@ class ToWatchPresenter(
     private val toWatchRepository: ToWatchRepository,
     private val episodesRepository: EpisodesRepository) : BasePresenter<ToWatchView>(), QueryListener.Subscriber<List<ToWatchShow>>
 {
+    private var shows = emptyList<ToWatchShowViewModel>()
+    private var searchQuery = ""
+
     init {
         ensureNeverFrozen()
     }
@@ -36,8 +39,20 @@ class ToWatchPresenter(
         episodesRepository.markAllWatched(show.id)
     }
 
+    fun onSearchQueryChanged(text: String) {
+        searchQuery = text.trim()
+        displayShows()
+    }
+
     override fun onQueryResult(result: List<ToWatchShow>) {
-        val shows = result.map(ToWatchShowViewModel.Companion::map)
-        view?.displayShows(shows)
+        shows = result.map(ToWatchShowViewModel.Companion::map)
+        displayShows()
+    }
+
+    private fun displayShows() {
+        val filteredShows = shows.filter { show ->
+            show.name.contains(searchQuery, ignoreCase = true)
+        }
+        view?.displayShows(filteredShows)
     }
 }

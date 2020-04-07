@@ -6,6 +6,15 @@ import SharedCode
 class ToWatchViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    private let emptyView: EmptyView = {
+        let view = EmptyView()
+        view.messageText = "No episodes to watch"
+        view.isActionButtonHidden = true
+        return view
+    }()
+    private var filteredEmptyView: EmptyView!
     
     private let presenter = ToWatchPresenter(
         toWatchRepository: AppDelegate.instance().toWatchRepository,
@@ -20,6 +29,15 @@ class ToWatchViewController: UIViewController {
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
         adapter.collectionView = collectionView
         adapter.dataSource = self
+        
+        filteredEmptyView = EmptyView()
+        filteredEmptyView.messageText = "No shows found"
+        filteredEmptyView.actionName = "Show All"
+        filteredEmptyView.actionTappedCallback = { [weak self] in
+            self?.searchBar.text = ""
+            self?.searchBar.resignFirstResponder()
+            self?.presenter.onSearchQueryChanged(text: "")
+        }
         
         presenter.attachView(view: self)
     }
@@ -61,10 +79,13 @@ extension ToWatchViewController: ListAdapterDataSource {
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
-        let view = EmptyView()
-        view.messageText = "No episodes to watch"
-        view.isActionButtonHidden = true
-        return view
+        let searchText = searchBar.text?.trimmingCharacters(in: .whitespaces)
+        let isFiltered = !(searchText?.isEmpty ?? true)
+        if isFiltered {
+            return filteredEmptyView
+        } else {
+            return emptyView
+        }
     }
 }
 
@@ -112,5 +133,16 @@ class ToWatchSectionController: ListSectionController, SwipeCollectionViewCellDe
         }
         markWatched.image = UIImage(named: "ic-check-all")
         return [markWatched]
+    }
+}
+
+// MARK: - UISearchBarDelegate implementation
+extension ToWatchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter.onSearchQueryChanged(text: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
