@@ -62,6 +62,8 @@ extension ToWatchViewController: ToWatchView {
     }
     
     func openToWatchShowDetails(show: ToWatchShowViewModel) {
+        searchBar.resignFirstResponder()
+        
         let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name, openEpisodesTabOnStart: true)
         navigationController?.pushViewController(vc, animated: true)
     }
