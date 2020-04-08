@@ -81,9 +81,7 @@ extension ToWatchViewController: ListAdapterDataSource {
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
-        let searchText = searchBar.text?.trimmingCharacters(in: .whitespaces)
-        let isFiltered = !(searchText?.isEmpty ?? true)
-        if isFiltered {
+        if presenter.isFiltering {
             return filteredEmptyView
         } else {
             return emptyView

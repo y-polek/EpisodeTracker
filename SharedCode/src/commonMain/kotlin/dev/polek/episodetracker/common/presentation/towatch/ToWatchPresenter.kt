@@ -13,6 +13,7 @@ class ToWatchPresenter(
 {
     private var shows = emptyList<ToWatchShowViewModel>()
     private var searchQuery = ""
+    var isFiltering: Boolean = false
 
     init {
         ensureNeverFrozen()
@@ -53,6 +54,7 @@ class ToWatchPresenter(
         val filteredShows = shows.filter { show ->
             show.name.contains(searchQuery, ignoreCase = true)
         }
+        isFiltering = searchQuery.isNotEmpty() && shows.isNotEmpty()
         view?.displayShows(filteredShows)
     }
 }
