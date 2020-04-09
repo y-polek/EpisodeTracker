@@ -26,6 +26,8 @@ class ToWatchViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         
+        addHideKeyboardByTapGestureRecognizer()
+        
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
         adapter.collectionView = collectionView
         adapter.dataSource = self
@@ -62,8 +64,6 @@ extension ToWatchViewController: ToWatchView {
     }
     
     func openToWatchShowDetails(show: ToWatchShowViewModel) {
-        searchBar.resignFirstResponder()
-        
         let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name, openEpisodesTabOnStart: true)
         navigationController?.pushViewController(vc, animated: true)
     }

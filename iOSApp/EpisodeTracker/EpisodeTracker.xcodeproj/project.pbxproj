@@ -24,6 +24,7 @@
 		D238A28A242FA0A900510403 /* ToWatchShow+ListDiffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */; };
 		D238A28C243010F600510403 /* MyShows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A28B243010F600510403 /* MyShows.storyboard */; };
 		D238A2912430119F00510403 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D238A2902430119F00510403 /* Discover.storyboard */; };
+		D25A657C243E9A420094DDE1 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A657B243E9A420094DDE1 /* UIViewController+HideKeyboard.swift */; };
 		D26B4827241A30F700156F82 /* Ints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B4826241A30F700156F82 /* Ints.swift */; };
 		D276D51A243A7FFD0040EB1C /* SwipeRippleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276D519243A7FFD0040EB1C /* SwipeRippleTableViewCell.swift */; };
 		D276D51C243A80010040EB1C /* SwipeRippleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276D51B243A80010040EB1C /* SwipeRippleCollectionViewCell.swift */; };
@@ -109,6 +110,7 @@
 		D238A289242FA0A900510403 /* ToWatchShow+ListDiffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToWatchShow+ListDiffable.swift"; sourceTree = "<group>"; };
 		D238A28B243010F600510403 /* MyShows.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyShows.storyboard; sourceTree = "<group>"; };
 		D238A2902430119F00510403 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = SOURCE_ROOT; };
+		D25A657B243E9A420094DDE1 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
 		D26B4826241A30F700156F82 /* Ints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ints.swift; sourceTree = "<group>"; };
 		D276D519243A7FFD0040EB1C /* SwipeRippleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeRippleTableViewCell.swift; sourceTree = "<group>"; };
 		D276D51B243A80010040EB1C /* SwipeRippleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeRippleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				D2242C1123F1B4F5001C8608 /* PadView.swift */,
 				D22A89792406CBB200014861 /* FloatingButton.swift */,
 				D2906595242E87D2004CF818 /* GradientView.swift */,
+				D25A657B243E9A420094DDE1 /* UIViewController+HideKeyboard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				D276D51C243A80010040EB1C /* SwipeRippleCollectionViewCell.swift in Sources */,
 				D222456523EE147900082162 /* MyShowsHeaderView.swift in Sources */,
 				D22A897A2406CBB200014861 /* FloatingButton.swift in Sources */,
+				D25A657C243E9A420094DDE1 /* UIViewController+HideKeyboard.swift in Sources */,
 				D2EDA465241EC00B00EAD144 /* Log.swift in Sources */,
 				D29D7AFE23A2974700B2832D /* UpcomingShowCell.swift in Sources */,
 				D29D7B1623A5063A00B2832D /* DiscoverResultCell.swift in Sources */,
