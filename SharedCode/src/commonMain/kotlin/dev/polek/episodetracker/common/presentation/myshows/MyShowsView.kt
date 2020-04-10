@@ -1,12 +1,11 @@
 package dev.polek.episodetracker.common.presentation.myshows
 
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
-import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewModel
 
 interface MyShowsView {
-    fun displayUpcomingShows(model: MyShowsViewModel)
-    fun displayToBeAnnouncedShows(model: MyShowsViewModel)
-    fun displayEndedShows(model: MyShowsViewModel)
-    fun displayArchivedShows(model: MyShowsViewModel)
+    fun displayUpcomingShows(shows: List<MyShowsListItem.UpcomingShowViewModel>)
+    fun displayToBeAnnouncedShows(shows: List<MyShowsListItem.ShowViewModel>)
+    fun displayEndedShows(shows: List<MyShowsListItem.ShowViewModel>)
+    fun displayArchivedShows(shows: List<MyShowsListItem.ShowViewModel>)
     fun openMyShowDetails(show: MyShowsListItem.ShowViewModel)
 }
