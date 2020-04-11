@@ -7,5 +7,7 @@ interface MyShowsView {
     fun displayToBeAnnouncedShows(shows: List<MyShowsListItem.ShowViewModel>)
     fun displayEndedShows(shows: List<MyShowsListItem.ShowViewModel>)
     fun displayArchivedShows(shows: List<MyShowsListItem.ShowViewModel>)
+    fun showEmptyMessage(isFiltered: Boolean)
+    fun hideEmptyMessage()
     fun openMyShowDetails(show: MyShowsListItem.ShowViewModel)
 }

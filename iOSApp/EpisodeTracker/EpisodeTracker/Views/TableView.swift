@@ -13,7 +13,27 @@ class TableView: UITableView {
     @IBInspectable
     var emptyText: String = "" {
         didSet {
-            emptyLabel.text = emptyText
+            emptyView.messageText = emptyText
+        }
+    }
+    
+    @IBInspectable
+    var emptyActionName: String = "" {
+        didSet {
+            emptyView.actionName = emptyActionName
+        }
+    }
+    
+    @IBInspectable
+    var isEmptyActionHidden: Bool = true {
+        didSet {
+            emptyView.isActionButtonHidden = isEmptyActionHidden
+        }
+    }
+    
+    var emptyActionTappedCallback: (() -> Void)? = nil {
+        didSet {
+            emptyView.actionTappedCallback = emptyActionTappedCallback
         }
     }
     
@@ -43,11 +63,7 @@ class TableView: UITableView {
         return label
     }()
     
-    private let emptyLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        return label
-    }()
+    private let emptyView = EmptyView()
     
     private let errorView: ErrorView = {
         let view = ErrorView()
@@ -74,7 +90,7 @@ class TableView: UITableView {
     
     private func setup() {
         promptLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
-        emptyLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        emptyView.center = CGPoint(x: bounds.midX, y: bounds.midY)
         
         addSubview(activityIndicator)
     }
@@ -101,11 +117,11 @@ class TableView: UITableView {
     }
     
     func showEmptyView() {
-        backgroundView = emptyLabel
+        backgroundView = emptyView
     }
     
     func hideEmptyView() {
-        if backgroundView === emptyLabel {
+        if backgroundView === emptyView {
             backgroundView = nil
         }
     }

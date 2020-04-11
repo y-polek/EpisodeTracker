@@ -9,38 +9,55 @@ import dev.polek.episodetracker.common.repositories.MyShowsRepository
 class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresenter<MyShowsView>() {
 
     private var upcomingShows = emptyList<UpcomingShowViewModel>()
+    private var filteredUpcomingShows = emptyList<UpcomingShowViewModel>()
+
     private var tbaShows = emptyList<ShowViewModel>()
+    private var filteredTbaShows = emptyList<ShowViewModel>()
+
     private var endedShows = emptyList<ShowViewModel>()
+    private var filteredEndedShows = emptyList<ShowViewModel>()
+
     private var archivedShows = emptyList<ShowViewModel>()
+    private var filteredArchivedShows = emptyList<ShowViewModel>()
+
     private var searchQuery = ""
-    val isFiltering: Boolean
+
+    private val isFiltered: Boolean
         get() = searchQuery.isNotEmpty() && (upcomingShows.isNotEmpty() || tbaShows.isNotEmpty() || endedShows.isNotEmpty() || archivedShows.isNotEmpty())
 
     private val upcomingShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
         override fun onQueryResult(result: List<UpcomingShowViewModel>) {
             upcomingShows = result
-            view?.displayUpcomingShows(result.filtered())
+            filteredUpcomingShows = result.filtered()
+            view?.displayUpcomingShows(filteredUpcomingShows)
+            showOrHideEmptyMessage()
         }
     }
 
     private val toBeAnnouncedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
             tbaShows = result
-            view?.displayToBeAnnouncedShows(result.filtered())
+            filteredTbaShows = result.filtered()
+            view?.displayToBeAnnouncedShows(filteredTbaShows)
+            showOrHideEmptyMessage()
         }
     }
 
     private val endedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
             endedShows = result
-            view?.displayEndedShows(result.filtered())
+            filteredEndedShows = result.filtered()
+            view?.displayEndedShows(filteredEndedShows)
+            showOrHideEmptyMessage()
         }
     }
 
     private val archivedShowsSubscriber = object : Subscriber<List<ShowViewModel>> {
         override fun onQueryResult(result: List<ShowViewModel>) {
             archivedShows = result
-            view?.displayArchivedShows(result.filtered())
+            filteredArchivedShows = result.filtered()
+            view?.displayArchivedShows(filteredArchivedShows)
+            showOrHideEmptyMessage()
         }
     }
 
@@ -79,10 +96,31 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
     fun onSearchQueryChanged(text: String) {
         searchQuery = text.trim()
 
-        view?.displayUpcomingShows(upcomingShows.filtered())
-        view?.displayToBeAnnouncedShows(tbaShows.filtered())
-        view?.displayEndedShows(endedShows.filtered())
-        view?.displayArchivedShows(archivedShows.filtered())
+        filteredUpcomingShows = upcomingShows.filtered()
+        view?.displayUpcomingShows(filteredUpcomingShows)
+
+        filteredTbaShows = tbaShows.filtered()
+        view?.displayToBeAnnouncedShows(filteredTbaShows)
+
+        filteredEndedShows = endedShows.filtered()
+        view?.displayEndedShows(filteredEndedShows)
+
+        filteredArchivedShows = archivedShows.filtered()
+        view?.displayArchivedShows(filteredArchivedShows)
+
+        showOrHideEmptyMessage()
+    }
+
+    private fun showOrHideEmptyMessage() {
+        if (filteredUpcomingShows.isEmpty()
+            && filteredTbaShows.isEmpty()
+            && filteredEndedShows.isEmpty()
+            && filteredArchivedShows.isEmpty())
+        {
+            view?.showEmptyMessage(isFiltered)
+        } else {
+            view?.hideEmptyMessage()
+        }
     }
 
     private fun <T: ShowViewModel> List<T>.filtered(): List<T> {

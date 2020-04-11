@@ -5,7 +5,7 @@ import SharedCode
 
 class MyShowsViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
     private var upcomingShows = [MyShowsListItem.UpcomingShowViewModel]()
@@ -139,6 +139,31 @@ extension MyShowsViewController: MyShowsView {
             newShows: archivedShows,
             oldIsExpanded: oldIsExpanded,
             newIsExpanded: isArchivedExpanded)
+    }
+    
+    func showEmptyMessage(isFiltered: Bool) {
+        if isFiltered {
+            tableView.emptyText = "No shows found"
+            tableView.emptyActionName = "Show All"
+            tableView.isEmptyActionHidden = false
+            tableView.emptyActionTappedCallback = { [weak self] in
+                self?.searchBar.text = ""
+                self?.searchBar.resignFirstResponder()
+                self?.presenter.onSearchQueryChanged(text: "")
+            }
+        } else {
+            tableView.emptyText = "Add some shows on \"Discover\" tab"
+            tableView.emptyActionName = "Discover Shows"
+            tableView.isEmptyActionHidden = false
+            tableView.emptyActionTappedCallback = { [weak self] in
+                self?.tabBarController?.selectedIndex = 2
+            }
+        }
+        tableView.showEmptyView()
+    }
+    
+    func hideEmptyMessage() {
+        tableView.hideEmptyView()
     }
     
     func openMyShowDetails(show: MyShowsListItem.ShowViewModel) {
