@@ -327,7 +327,7 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
         let show = showAt(indexPath)
         
         let remove = SwipeAction(style: .destructive, title: "Remove") { [weak self] (action, indexPath) in
-            self?.presenter.onRemoveShowClicked(show: show)
+            self?.confirmRemoval(show: show)
         }
         remove.image = UIImage(named: "ic-remove")
         
@@ -344,6 +344,15 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
             archive.image = UIImage(named: "ic-archive")
             return [archive, remove]
         }
+    }
+    
+    private func confirmRemoval(show: MyShowsListItem.ShowViewModel) {
+        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove \"\(show.name)\"?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] _ in
+            self?.presenter.onRemoveShowClicked(show: show)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 

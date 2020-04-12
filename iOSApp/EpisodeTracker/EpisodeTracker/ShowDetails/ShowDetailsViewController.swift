@@ -332,31 +332,31 @@ extension ShowDetailsViewController: ShowDetailsView {
     func displayOptionsMenu(isInMyShows: Bool, isArchived: Bool) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { action in
-            self.presenter.onShareShowClicked()
+        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { [weak self] action in
+            self?.presenter.onShareShowClicked()
         }))
         
-        alert.addAction(UIAlertAction(title: "Mark as Watched", style: .default, handler: { action in
-            self.presenter.onMarkWatchedClicked()
+        alert.addAction(UIAlertAction(title: "Mark as Watched", style: .default, handler: { [weak self] action in
+            self?.presenter.onMarkWatchedClicked()
         }))
         
         if isInMyShows {
             if isArchived {
-                alert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { action in
-                    self.presenter.onUnarchiveShowClicked()
+                alert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { [weak self] action in
+                    self?.presenter.onUnarchiveShowClicked()
                 }))
             } else {
-                alert.addAction(UIAlertAction(title: "Archive", style: .default, handler: { action in
-                    self.presenter.onArchiveShowClicked()
+                alert.addAction(UIAlertAction(title: "Archive", style: .default, handler: { [weak self] action in
+                    self?.presenter.onArchiveShowClicked()
                 }))
             }
             
-            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { action in
-                self.presenter.onRemoveShowClicked()
+            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] action in
+                self?.confirmRemoval()
             }))
         } else {
-            alert.addAction(UIAlertAction(title: "Add to My Shows", style: .default, handler: { action in
-                self.presenter.onAddToMyShowsClicked()
+            alert.addAction(UIAlertAction(title: "Add to My Shows", style: .default, handler: { [weak self] action in
+                self?.presenter.onAddToMyShowsClicked()
             }))
         }
         
@@ -434,6 +434,15 @@ extension ShowDetailsViewController: ShowDetailsView {
     
     func hideEpisodesError() {
         episodesViewController?.hideError()
+    }
+    
+    private func confirmRemoval() {
+        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove this show?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] _ in
+            self?.presenter.onRemoveShowClicked()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
