@@ -11,7 +11,7 @@ class ToWatchViewController: UIViewController {
     private let presenter = ToWatchPresenter(
         toWatchRepository: AppDelegate.instance().toWatchRepository,
         episodesRepository: AppDelegate.instance().episodesRepository)
-    private var shows = [ToWatchShowViewModel]()
+    private var shows: [ToWatchShowViewModel]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,14 @@ class ToWatchViewController: UIViewController {
 extension ToWatchViewController: ToWatchView {
     
     func displayShows(shows: [ToWatchShowViewModel]) {
-        let diff = ListDiffPaths(fromSection: 0, toSection: 0, oldArray: self.shows, newArray: shows, option: .equality)
-        self.shows = shows
-        diff.apply(tableView, deletedSections: [], insertedSections: [])
+        if self.shows == nil {
+            self.shows = shows
+            tableView.reloadData()
+        } else {
+            let diff = ListDiffPaths(fromSection: 0, toSection: 0, oldArray: self.shows, newArray: shows, option: .equality)
+            self.shows = shows
+            diff.apply(tableView, deletedSections: [], insertedSections: [])
+        }
     }
     
     func showEmptyMessage(isFiltered: Bool) {
@@ -73,13 +78,13 @@ extension ToWatchViewController: ToWatchView {
 extension ToWatchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shows.count
+        return shows?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "to_watch_show_cell", for: indexPath) as! ToWatchCell
         cell.delegate = self
-        let show = shows[indexPath.row]
+        let show = shows![indexPath.row]
         cell.bind(show)
         cell.checkButton.tapCallback = { [weak self] in
             self?.presenter.onWatchedButtonClicked(show: show)
@@ -93,7 +98,7 @@ extension ToWatchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.onShowClicked(show: shows[indexPath.row])
+        presenter.onShowClicked(show: shows![indexPath.row])
     }
 }
 
@@ -103,7 +108,7 @@ extension ToWatchViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
-        let show = shows[indexPath.row]
+        let show = shows![indexPath.row]
         let markWatched = SwipeAction(style: .default, title: "Mark All Watched") { [weak self] (action, indexPath) in
             self?.presenter.onMarkAllWatchedClicked(show: show)
         }
