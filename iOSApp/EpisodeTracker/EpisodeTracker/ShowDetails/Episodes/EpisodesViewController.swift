@@ -47,10 +47,6 @@ class EpisodesViewController: UIViewController {
         }
     }
     
-    func reloadAllSeasons() {
-        tableView.reloadData()
-    }
-    
     func setBottomInset(_ inset: CGFloat) {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
     }
