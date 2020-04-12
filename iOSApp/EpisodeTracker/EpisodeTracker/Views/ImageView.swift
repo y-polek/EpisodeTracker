@@ -5,7 +5,11 @@ import Kingfisher
 class ImageView: UIImageView {
     
     var imageUrl: String? {
-        didSet { updateImage() }
+        didSet {
+            if oldValue != imageUrl {
+                updateImage()
+            }
+        }
     }
     
     @IBInspectable
