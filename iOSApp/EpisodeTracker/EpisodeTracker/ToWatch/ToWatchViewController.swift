@@ -4,42 +4,20 @@ import SwipeCellKit
 import SharedCode
 
 class ToWatchViewController: UIViewController {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+
+    @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    private let emptyView: EmptyView = {
-        let view = EmptyView()
-        view.messageText = "No episodes to watch"
-        view.isActionButtonHidden = true
-        return view
-    }()
-    private var filteredEmptyView: EmptyView!
     
     private let presenter = ToWatchPresenter(
         toWatchRepository: AppDelegate.instance().toWatchRepository,
         episodesRepository: AppDelegate.instance().episodesRepository)
     private var shows = [ToWatchShowViewModel]()
-    private var adapter: ListAdapter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         addHideKeyboardByTapGestureRecognizer()
-        
-        adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
-        adapter.collectionView = collectionView
-        adapter.dataSource = self
-        
-        filteredEmptyView = EmptyView()
-        filteredEmptyView.messageText = "No shows found"
-        filteredEmptyView.actionName = "Show All"
-        filteredEmptyView.actionTappedCallback = { [weak self] in
-            self?.searchBar.text = ""
-            self?.searchBar.resignFirstResponder()
-            self?.presenter.onSearchQueryChanged(text: "")
-        }
         
         presenter.attachView(view: self)
     }
@@ -59,8 +37,30 @@ class ToWatchViewController: UIViewController {
 extension ToWatchViewController: ToWatchView {
     
     func displayShows(shows: [ToWatchShowViewModel]) {
+        let diff = ListDiffPaths(fromSection: 0, toSection: 0, oldArray: self.shows, newArray: shows, option: .equality)
         self.shows = shows
-        adapter.performUpdates(animated: true, completion: nil)
+        diff.apply(tableView, deletedSections: [], insertedSections: [])
+    }
+    
+    func showEmptyMessage(isFiltered: Bool) {
+        if isFiltered {
+            tableView.emptyText = "No shows found"
+            tableView.emptyActionName = "Show All"
+            tableView.isEmptyActionHidden = false
+            tableView.emptyActionTappedCallback = { [weak self] in
+                self?.searchBar.text = ""
+                self?.searchBar.resignFirstResponder()
+                self?.presenter.onSearchQueryChanged(text: "")
+            }
+        } else {
+            tableView.emptyText = "No episodes to watch"
+            tableView.isEmptyActionHidden = true
+        }
+        tableView.showEmptyView()
+    }
+    
+    func hideEmptyMessage() {
+        tableView.hideEmptyView()
     }
     
     func openToWatchShowDetails(show: ToWatchShowViewModel) {
@@ -69,69 +69,46 @@ extension ToWatchViewController: ToWatchView {
     }
 }
 
-// MARK: - ListAdapterDataSource implementation
-extension ToWatchViewController: ListAdapterDataSource {
+// MARK: - UITableView datasource
+extension ToWatchViewController: UITableViewDataSource {
     
-    func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return shows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return shows.count
     }
     
-    func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return ToWatchSectionController(object as! ToWatchShowViewModel, presenter)
-    }
-    
-    func emptyView(for listAdapter: ListAdapter) -> UIView? {
-        if presenter.isFiltering {
-            return filteredEmptyView
-        } else {
-            return emptyView
-        }
-    }
-}
-
-class ToWatchSectionController: ListSectionController, SwipeCollectionViewCellDelegate {
-    
-    private var show: ToWatchShowViewModel!
-    private var presenter: ToWatchPresenter!
-    
-    init(_ show: ToWatchShowViewModel, _ presenter: ToWatchPresenter) {
-        super.init()
-        self.show = show
-        self.presenter = presenter
-    }
-    
-    override func sizeForItem(at index: Int) -> CGSize {
-        return CGSize(width: collectionContext!.containerSize.width, height: 158)
-    }
-    
-    override func cellForItem(at index: Int) -> UICollectionViewCell {
-        let cell = collectionContext!.dequeueReusableCellFromStoryboard(
-            withIdentifier: "to_watch_show_cell", for: self, at: index) as! ToWatchCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "to_watch_show_cell", for: indexPath) as! ToWatchCell
         cell.delegate = self
+        let show = shows[indexPath.row]
         cell.bind(show)
         cell.checkButton.tapCallback = { [weak self] in
-            if let presenter = self?.presenter, let show = self?.show {
-                presenter.onWatchedButtonClicked(show: show)
-            }
+            self?.presenter.onWatchedButtonClicked(show: show)
         }
         return cell
     }
+}
+
+// MARK: - UITableView delegate
+extension ToWatchViewController: UITableViewDelegate {
     
-    override func didUpdate(to object: Any) {
-        show = (object as! ToWatchShowViewModel)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter.onShowClicked(show: shows[indexPath.row])
     }
+}
+
+// MARK: - SwipeTableViewCellDelegate
+extension ToWatchViewController: SwipeTableViewCellDelegate {
     
-    override func didSelectItem(at index: Int) {
-        presenter.onShowClicked(show: show)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let show = shows[indexPath.row]
         let markWatched = SwipeAction(style: .default, title: "Mark All Watched") { [weak self] (action, indexPath) in
-            if let presenter = self?.presenter, let show = self?.show {
-                presenter.onMarkAllWatchedClicked(show: show)
-            }
+            self?.presenter.onMarkAllWatchedClicked(show: show)
         }
         markWatched.image = UIImage(named: "ic-check-all")
+        
         return [markWatched]
     }
 }

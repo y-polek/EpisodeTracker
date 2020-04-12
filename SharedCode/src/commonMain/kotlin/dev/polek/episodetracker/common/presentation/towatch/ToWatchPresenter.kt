@@ -13,7 +13,7 @@ class ToWatchPresenter(
 {
     private var shows = emptyList<ToWatchShowViewModel>()
     private var searchQuery = ""
-    val isFiltering: Boolean
+    private val isFiltered: Boolean
         get() = searchQuery.isNotEmpty() && shows.isNotEmpty()
 
     init {
@@ -56,5 +56,10 @@ class ToWatchPresenter(
             show.name.contains(searchQuery, ignoreCase = true)
         }
         view?.displayShows(filteredShows)
+        if (filteredShows.isEmpty()) {
+            view?.showEmptyMessage(isFiltered)
+        } else {
+            view?.hideEmptyMessage()
+        }
     }
 }
