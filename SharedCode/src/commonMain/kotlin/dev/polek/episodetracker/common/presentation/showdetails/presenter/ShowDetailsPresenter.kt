@@ -384,8 +384,6 @@ class ShowDetailsPresenter(
         view?.showEpisodesProgress()
         view?.hideEpisodesError()
 
-        log { "loadEpisodesFromNetwork: $showDetails" }
-
         launch {
             try {
                 showSeasons = seasonNumbers
