@@ -1,3 +1,4 @@
 include ':AndroidApp'
 include ':SharedCode'
 rootProject.name='Episode Tracker'
+enableFeaturePreview('GRADLE_METADATA')

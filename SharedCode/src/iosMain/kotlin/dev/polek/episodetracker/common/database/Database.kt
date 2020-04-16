@@ -1,6 +1,6 @@
 package dev.polek.episodetracker.common.database
 
-import com.squareup.sqldelight.drivers.ios.NativeSqliteDriver
+import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 import dev.polek.episodetracker.common.datasource.db.adapters.ListOfStringsAdapter
 import dev.polek.episodetracker.db.Database
 import dev.polek.episodetracker.db.MyShow

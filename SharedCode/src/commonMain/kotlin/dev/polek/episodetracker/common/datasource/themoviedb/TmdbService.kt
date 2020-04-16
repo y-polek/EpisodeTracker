@@ -74,7 +74,7 @@ class TmdbService(client: HttpClient?) {
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3"
         private const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p"
-        private val json = Json(JsonConfiguration.Stable.copy(strictMode = false))
+        private val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true, isLenient = true))
 
         fun posterImageUrl(path: String): String {
             return "$BASE_IMAGE_URL/w500$path"
