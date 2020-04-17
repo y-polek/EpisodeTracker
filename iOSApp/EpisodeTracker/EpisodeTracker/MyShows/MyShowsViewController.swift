@@ -29,6 +29,11 @@ class MyShowsViewController: UIViewController {
         presenter.attachView(view: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupRefreshControl()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter.onViewAppeared()
@@ -37,6 +42,10 @@ class MyShowsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.onViewDisappeared()
+    }
+    
+    @objc func onRefreshRequested() {
+        presenter.onRefreshRequested()
     }
     
     private func upcomingSectionIndex() -> Int {
@@ -70,6 +79,16 @@ class MyShowsViewController: UIViewController {
             return archivedShows[row]
         default:
             fatalError("Unknown section #\(indexPath.section)")
+        }
+    }
+    
+    private func setupRefreshControl() {
+        let isRefreshing = tableView.refreshControl?.isRefreshing ?? false
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(onRefreshRequested), for: .valueChanged)
+        tableView.refreshControl = control
+        if isRefreshing {
+            control.beginRefreshing()
         }
     }
 }
@@ -164,6 +183,10 @@ extension MyShowsViewController: MyShowsView {
     
     func hideEmptyMessage() {
         tableView.hideEmptyView()
+    }
+    
+    func hideRefresh() {
+        tableView.refreshControl?.endRefreshing()
     }
     
     func openMyShowDetails(show: MyShowsListItem.ShowViewModel) {

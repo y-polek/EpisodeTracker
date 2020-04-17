@@ -11,6 +11,7 @@ import dev.polek.episodetracker.common.utils.formatTimeBetween
 import dev.polek.episodetracker.db.Database
 import dev.polek.episodetracker.db.ShowDetails
 import io.ktor.util.date.GMTDate
+import kotlinx.coroutines.delay
 
 class MyShowsRepository(
     private val db: Database,
@@ -184,6 +185,10 @@ class MyShowsRepository(
 
     fun unarchiveShow(showTmdbId: Int) {
         db.myShowQueries.unarchive(showTmdbId)
+    }
+
+    suspend fun refreshMyShows() {
+        delay(10000)
     }
 
     companion object {

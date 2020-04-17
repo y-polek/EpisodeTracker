@@ -5,6 +5,7 @@ import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
+import kotlinx.coroutines.launch
 
 class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresenter<MyShowsView>() {
 
@@ -109,6 +110,13 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
         view?.displayArchivedShows(filteredArchivedShows)
 
         showOrHideEmptyMessage()
+    }
+
+    fun onRefreshRequested() {
+        launch {
+            repository.refreshMyShows()
+            view?.hideRefresh()
+        }
     }
 
     private fun showOrHideEmptyMessage() {

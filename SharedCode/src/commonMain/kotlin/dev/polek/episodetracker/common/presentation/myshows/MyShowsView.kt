@@ -9,5 +9,6 @@ interface MyShowsView {
     fun displayArchivedShows(shows: List<MyShowsListItem.ShowViewModel>)
     fun showEmptyMessage(isFiltered: Boolean)
     fun hideEmptyMessage()
+    fun hideRefresh()
     fun openMyShowDetails(show: MyShowsListItem.ShowViewModel)
 }
