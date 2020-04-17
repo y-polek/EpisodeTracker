@@ -8,12 +8,13 @@ import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 
 class OmdbService(client: HttpClient?) {
 
     private val client = client ?: platformHttpClient {
         install(JsonFeature) {
-            serializer = KotlinxSerializer(json = Json.nonstrict)
+            serializer = KotlinxSerializer(json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true, isLenient = true)))
         }
     }
 
