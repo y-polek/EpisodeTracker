@@ -1,5 +1,4 @@
 import UIKit
-import MaterialComponents.MaterialRipple
 
 class TrailerCell: RippleCollectionViewCell {
     
@@ -7,12 +6,8 @@ class TrailerCell: RippleCollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var playButton: ImageButton!
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setup()
-    }
-    
-    private func setup() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         rippleView.layer.cornerRadius = previewImageView.layer.cornerRadius
     }
 }

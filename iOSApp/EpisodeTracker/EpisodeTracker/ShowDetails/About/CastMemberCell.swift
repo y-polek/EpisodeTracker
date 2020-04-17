@@ -6,12 +6,8 @@ class CastMemberCell: RippleCollectionViewCell {
     @IBOutlet weak var actorNameLabel: UILabel!
     @IBOutlet weak var characterNameLabel: UILabel!
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setup()
-    }
-    
-    private func setup() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         rippleView.layer.cornerRadius = portraitImageView.layer.cornerRadius
     }
 }
