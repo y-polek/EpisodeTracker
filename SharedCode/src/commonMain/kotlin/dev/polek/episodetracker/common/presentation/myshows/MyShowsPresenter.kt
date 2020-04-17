@@ -1,14 +1,17 @@
 package dev.polek.episodetracker.common.presentation.myshows
 
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
+import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import kotlinx.coroutines.launch
 
-class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresenter<MyShowsView>() {
-
+class MyShowsPresenter(
+    private val repository: MyShowsRepository,
+    private val prefs: Preferences) : BasePresenter<MyShowsView>()
+{
     private var upcomingShows = emptyList<UpcomingShowViewModel>()
     private var filteredUpcomingShows = emptyList<UpcomingShowViewModel>()
 
@@ -61,6 +64,27 @@ class MyShowsPresenter(private val repository: MyShowsRepository) : BasePresente
             showOrHideEmptyMessage()
         }
     }
+
+    var isUpcomingExpanded: Boolean
+        get() = prefs.isUpcomingExpanded
+        set(value) {
+            prefs.isUpcomingExpanded = value
+        }
+    var isTbaExpanded: Boolean
+        get() = prefs.isTbaExpanded
+        set(value) {
+            prefs.isTbaExpanded = value
+        }
+    var isEndedExpanded: Boolean
+        get() = prefs.isEndedExpanded
+        set(value) {
+            prefs.isEndedExpanded = value
+        }
+    var isArchivedExpanded: Boolean
+        get() = prefs.isArchivedExpanded
+        set(value) {
+            prefs.isArchivedExpanded = value
+        }
 
     override fun onViewAppeared() {
         super.onViewAppeared()

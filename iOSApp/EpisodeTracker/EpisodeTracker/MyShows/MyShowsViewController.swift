@@ -12,12 +12,10 @@ class MyShowsViewController: UIViewController {
     private var tbaShows = [MyShowsListItem.ShowViewModel]()
     private var endedShows = [MyShowsListItem.ShowViewModel]()
     private var archivedShows = [MyShowsListItem.ShowViewModel]()
-    private var isUpcomingExpanded = true
-    private var isTbaExpanded = true
-    private var isEndedExpanded = true
-    private var isArchivedExpanded = false
     
-    private let presenter = MyShowsPresenter(repository: AppDelegate.instance().myShowsRepository)
+    private let presenter = MyShowsPresenter(
+        repository: AppDelegate.instance().myShowsRepository,
+        prefs: AppDelegate.instance().preferences)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +97,7 @@ extension MyShowsViewController: MyShowsView {
     func displayUpcomingShows(shows: [MyShowsListItem.UpcomingShowViewModel]) {
         let oldSectionIndex = upcomingSectionIndex()
         let oldShows = upcomingShows
-        let oldIsExpanded = isUpcomingExpanded
+        let oldIsExpanded = presenter.isUpcomingExpanded
         
         upcomingShows = shows
         
@@ -109,13 +107,13 @@ extension MyShowsViewController: MyShowsView {
             oldShows: oldShows,
             newShows: upcomingShows,
             oldIsExpanded: oldIsExpanded,
-            newIsExpanded: isUpcomingExpanded)
+            newIsExpanded: presenter.isUpcomingExpanded)
     }
     
     func displayToBeAnnouncedShows(shows: [MyShowsListItem.ShowViewModel]) {
         let oldSectionIndex = tbaSectionIndex()
         let oldShows = tbaShows
-        let oldIsExpanded = isTbaExpanded
+        let oldIsExpanded = presenter.isTbaExpanded
         
         tbaShows = shows
         
@@ -125,13 +123,13 @@ extension MyShowsViewController: MyShowsView {
             oldShows: oldShows,
             newShows: tbaShows,
             oldIsExpanded: oldIsExpanded,
-            newIsExpanded: isTbaExpanded)
+            newIsExpanded: presenter.isTbaExpanded)
     }
     
     func displayEndedShows(shows: [MyShowsListItem.ShowViewModel]) {
         let oldSectionIndex = endedSectionIndex()
         let oldShows = endedShows
-        let oldIsExpanded = isEndedExpanded
+        let oldIsExpanded = presenter.isEndedExpanded
         
         endedShows = shows
         
@@ -141,13 +139,13 @@ extension MyShowsViewController: MyShowsView {
             oldShows: oldShows,
             newShows: endedShows,
             oldIsExpanded: oldIsExpanded,
-            newIsExpanded: isEndedExpanded)
+            newIsExpanded: presenter.isEndedExpanded)
     }
     
     func displayArchivedShows(shows: [MyShowsListItem.ShowViewModel]) {
         let oldSectionIndex = archivedSectionIndex()
         let oldShows = archivedShows
-        let oldIsExpanded = isArchivedExpanded
+        let oldIsExpanded = presenter.isArchivedExpanded
         
         archivedShows = shows
         
@@ -157,7 +155,7 @@ extension MyShowsViewController: MyShowsView {
             oldShows: oldShows,
             newShows: archivedShows,
             oldIsExpanded: oldIsExpanded,
-            newIsExpanded: isArchivedExpanded)
+            newIsExpanded: presenter.isArchivedExpanded)
     }
     
     func showEmptyMessage(isFiltered: Bool) {
@@ -229,13 +227,13 @@ extension MyShowsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case upcomingSectionIndex():
-            return isUpcomingExpanded ? upcomingShows.count : 0
+            return presenter.isUpcomingExpanded ? upcomingShows.count : 0
         case tbaSectionIndex():
-            return isTbaExpanded ? tbaShows.count : 0
+            return presenter.isTbaExpanded ? tbaShows.count : 0
         case endedSectionIndex():
-            return isEndedExpanded ? endedShows.count : 0
+            return presenter.isEndedExpanded ? endedShows.count : 0
         case archivedSectionIndex():
-            return isArchivedExpanded ? archivedShows.count : 0
+            return presenter.isArchivedExpanded ? archivedShows.count : 0
         default:
             return 0
         }
@@ -247,37 +245,37 @@ extension MyShowsViewController: UITableViewDataSource {
         switch section {
         case upcomingSectionIndex():
             header.title = "Upcoming"
-            header.isExpanded = isUpcomingExpanded
+            header.isExpanded = presenter.isUpcomingExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
-                    vc.isUpcomingExpanded.toggle()
+                    vc.presenter.isUpcomingExpanded.toggle()
                     tableView.reloadSections(IndexSet(arrayLiteral: vc.upcomingSectionIndex()), with: .automatic)
                 }
             }
         case tbaSectionIndex():
             header.title = "To Be Announced"
-            header.isExpanded = isTbaExpanded
+            header.isExpanded = presenter.isTbaExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
-                    vc.isTbaExpanded.toggle()
+                    vc.presenter.isTbaExpanded.toggle()
                     tableView.reloadSections(IndexSet(arrayLiteral: vc.tbaSectionIndex()), with: .automatic)
                 }
             }
         case endedSectionIndex():
             header.title = "Ended"
-            header.isExpanded = isEndedExpanded
+            header.isExpanded = presenter.isEndedExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
-                    vc.isEndedExpanded.toggle()
+                    vc.presenter.isEndedExpanded.toggle()
                     tableView.reloadSections(IndexSet(arrayLiteral: vc.endedSectionIndex()), with: .automatic)
                 }
             }
         case archivedSectionIndex():
             header.title = "Archived"
-            header.isExpanded = isArchivedExpanded
+            header.isExpanded = presenter.isArchivedExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
-                    vc.isArchivedExpanded.toggle()
+                    vc.presenter.isArchivedExpanded.toggle()
                     tableView.reloadSections(IndexSet(arrayLiteral: vc.archivedSectionIndex()), with: .automatic)
                 }
             }

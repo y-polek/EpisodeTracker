@@ -8,6 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let database: Database = DatabaseKt.database
+    let preferences: Preferences = Preferences(settings: SettingsKt.settings)
     let tmdbService: TmdbService = TmdbService()
     let omdbService: OmdbService = OmdbService()
     let connectivity: Connectivity = ConnectivityImpl()
