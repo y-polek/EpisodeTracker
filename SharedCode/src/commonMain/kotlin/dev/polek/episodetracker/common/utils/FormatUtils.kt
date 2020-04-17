@@ -18,7 +18,7 @@ fun formatEpisodeNumber(number: EpisodeNumber): String {
     return formatEpisodeNumber(season = number.season, episode = number.episode)
 }
 
-@UseExperimental(ExperimentalTime::class)
+@OptIn(ExperimentalTime::class)
 fun formatTimeBetween(startDate: GMTDate, endDate: GMTDate): String {
     val diffInDays = (endDate.timestamp - startDate.timestamp).toDuration(MILLISECONDS).inDays
     val startMinutes = startDate.hours * 60 + startDate.minutes

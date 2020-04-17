@@ -11,7 +11,7 @@ actual val io: CoroutineContext = MainQueueDispatcher()
 
 actual fun runBlocking(block: suspend () -> Unit) = runBlocking { block() }
 
-@UseExperimental(InternalCoroutinesApi::class)
+@OptIn(InternalCoroutinesApi::class)
 internal class MainQueueDispatcher: CoroutineDispatcher(), Delay {
 
     override fun dispatch(context: CoroutineContext, block: Runnable) {
