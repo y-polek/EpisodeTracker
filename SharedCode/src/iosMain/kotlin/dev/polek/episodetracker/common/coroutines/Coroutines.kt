@@ -18,14 +18,13 @@ internal class MainQueueDispatcher: CoroutineDispatcher(), Delay {
         dispatch_async(dispatch_get_main_queue()) { block.run() }
     }
 
-    @InternalCoroutinesApi
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun scheduleResumeAfterDelay(timeMillis: Long, continuation: CancellableContinuation<Unit>) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, timeMillis * 1_000_000), dispatch_get_main_queue()) {
             with(continuation) { resumeUndispatched(Unit) }
         }
     }
 
-    @InternalCoroutinesApi
     override fun invokeOnTimeout(timeMillis: Long, block: Runnable): DisposableHandle {
         val handle = object : DisposableHandle {
             var disposed = false
