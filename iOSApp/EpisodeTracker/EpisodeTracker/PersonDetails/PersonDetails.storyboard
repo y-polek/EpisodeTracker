@@ -273,9 +273,9 @@
                         <outlet property="imageView" destination="dPa-w7-gT2" id="NyL-7X-gb4"/>
                         <outlet property="imdbBadge" destination="2xw-3I-fV2" id="Aw2-6r-N8J"/>
                         <outlet property="instagramButton" destination="T7d-Rc-55u" id="lFp-kp-ant"/>
-                        <outlet property="knownForCollectionView" destination="y0a-Y1-yJo" id="UgL-h8-M3w"/>
-                        <outlet property="knownForContainer" destination="cjl-Ie-Uy2" id="PQY-xO-pue"/>
                         <outlet property="nameLabel" destination="HCD-9w-6w5" id="qNs-fO-xhY"/>
+                        <outlet property="showsCollectionView" destination="y0a-Y1-yJo" id="CZw-7Z-txE"/>
+                        <outlet property="showsContainer" destination="cjl-Ie-Uy2" id="MbE-T5-YKn"/>
                         <outlet property="twitterButton" destination="UDc-tm-SG7" id="kq8-nQ-Tak"/>
                     </connections>
                 </viewController>

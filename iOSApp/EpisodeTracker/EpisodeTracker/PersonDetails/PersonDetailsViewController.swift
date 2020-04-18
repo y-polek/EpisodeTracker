@@ -20,14 +20,19 @@ class PersonDetailsViewController: UIViewController {
     @IBOutlet weak var instagramButton: IconButton!
     @IBOutlet weak var facebookButton: IconButton!
     @IBOutlet weak var twitterButton: IconButton!
-    @IBOutlet weak var knownForCollectionView: UICollectionView!
-    @IBOutlet weak var knownForContainer: UIView!
+    @IBOutlet weak var showsCollectionView: UICollectionView!
+    @IBOutlet weak var showsContainer: UIView!
     
     private var personId: Int!
     private var presenter: PersonDetailsPresenter!
     
+    private let showsDataSource = RecommendationsDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        showsCollectionView.dataSource = showsDataSource
+        showsCollectionView.delegate = self
         
         presenter = PersonDetailsPresenter(personId: personId.int32, tmdbService: AppDelegate.instance().tmdbService)
         presenter.attachView(view: self)
@@ -88,6 +93,23 @@ extension PersonDetailsViewController: PersonDetailsView {
                 person.twitterUrl?.toUrl()?.open()
             }
         }
+        
+        showsDataSource.recommendations = person.shows
+        showsCollectionView.reloadData()
+        showsContainer.isHidden = person.shows.isEmpty
+    }
+    
+    func openShow(show: RecommendationViewModel) {
+        let vc = ShowDetailsViewController.instantiate(showId: show.showId.int, showName: show.name)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
+// MARK: - UICollectionViews delegate
+extension PersonDetailsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let show = showsDataSource.recommendations[indexPath.row]
+        presenter.onShowClicked(show: show)
+    }
+}

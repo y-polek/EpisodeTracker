@@ -17,9 +17,11 @@ data class PersonDetailsEntity(
     @SerialName("biography") val biography: String? = null,
     @SerialName("profile_path") val profilePath: String? = null,
     @SerialName("homepage") val homepage: String? = null,
-    @SerialName("external_ids") val externalIds: ExternalIdsEntity? = null)
+    @SerialName("external_ids") val externalIds: ExternalIdsEntity? = null,
+    @SerialName("tv_credits") private val tvCredits: TvCreditEntity? = null)
 {
     @Transient val isValid = allNotNull(tmdbId, name)
     @Transient val birthday: GMTDate? = birthdayDate?.let(::parseDate)
     @Transient val deathday: GMTDate? = deathdayDate?.let(::parseDate)
+    @Transient val knownForShows: List<RecommendationEntity> = tvCredits?.cast?.filter(RecommendationEntity::isValid).orEmpty()
 }
