@@ -1,4 +1,4 @@
-package dev.polek.episodetracker.common.presentation.showdetails.view
+package dev.polek.episodetracker.common.presentation.showdetails
 
 import dev.polek.episodetracker.common.presentation.showdetails.model.*
 

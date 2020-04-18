@@ -1,4 +1,4 @@
-package dev.polek.episodetracker.common.presentation.showdetails.presenter
+package dev.polek.episodetracker.common.presentation.showdetails
 
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
@@ -10,7 +10,6 @@ import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.showdetails.model.*
-import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetailsView
 import dev.polek.episodetracker.common.repositories.EpisodesRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
@@ -123,14 +122,16 @@ class ShowDetailsPresenter(
                 name = show.name,
                 year = show.year,
                 imdbId = show.imdbId,
-                homePageUrl = show.homePageUrl)
+                homePageUrl = show.homePageUrl
+            )
         } else {
             val show = showDetails ?: return
             buildShareText(
                 name = show.name.orEmpty(),
                 year = show.year,
                 imdbId = show.externalIds?.imdbId,
-                homePageUrl = show.homePageUrl)
+                homePageUrl = show.homePageUrl
+            )
         }
 
         view?.shareText(text)
