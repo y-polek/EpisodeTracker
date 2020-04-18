@@ -63,6 +63,10 @@ class TmdbService(client: HttpClient?) {
         return client.get(urlString = "$BASE_URL/tv/$showTmdbId?append_to_response=external_ids,content_ratings,videos,credits,recommendations")
     }
 
+    suspend fun personDetails(personTmdbId: Int): PersonDetailsEntity {
+        return client.get(urlString = "$BASE_URL/person/$personTmdbId?append_to_response=external_ids,tv_credits")
+    }
+
     private suspend fun findGenreById(id: Int): String? {
         if (genresMap == null) {
             genresMap = client.get<GenresEntity>("$BASE_URL/genre/tv/list").genres.map { it.id to it.name }.toMap()

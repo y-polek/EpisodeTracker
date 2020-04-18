@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oNd-6X-Gps">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Person Details View Controller-->
+        <scene sceneID="YgA-tN-AlC">
+            <objects>
+                <viewController id="oNd-6X-Gps" customClass="PersonDetailsViewController" customModule="EpisodeTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X00-CH-Y8U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tlx-rJ-iuN">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaF-0M-t3P" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dPa-w7-gT2" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="20" width="150" height="225"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="dPa-w7-gT2" secondAttribute="height" multiplier="2:3" id="0IL-pM-peq"/>
+                                                    <constraint firstAttribute="width" constant="150" id="6Ag-UR-KcC"/>
+                                                </constraints>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="JvE-Kx-kaC" userLabel="Details">
+                                                <rect key="frame" x="178" y="20" width="216" height="225"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y5t-qv-m6t">
+                                                        <rect key="frame" x="0.0" y="0.0" width="216" height="147.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sonequa Martin-Green" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCD-9w-6w5" userLabel="Name">
+                                                                <rect key="frame" x="0.0" y="0.0" width="216" height="54.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="CYh-bu-4lf" userLabel="Social Networks">
+                                                                <rect key="frame" x="0.0" y="62.5" width="216" height="28"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gYT-KO-fWF">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="176" height="28"/>
+                                                                        <subviews>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xw-3I-fV2" customClass="ImdbBadge" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="44" height="28"/>
+                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconOnly" value="YES"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vd0-jt-xv5" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                <rect key="frame" x="49" y="0.0" width="28" height="28"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="Vd0-jt-xv5" secondAttribute="height" multiplier="1:1" id="Erg-Tx-PiA"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-link"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T7d-Rc-55u" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                <rect key="frame" x="82" y="0.0" width="28" height="28"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="T7d-Rc-55u" secondAttribute="height" multiplier="1:1" id="IlZ-IE-5bt"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-instagram"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YUg-8e-Y0D" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                <rect key="frame" x="115" y="0.0" width="28" height="28"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="YUg-8e-Y0D" secondAttribute="height" multiplier="1:1" id="shq-gK-H3d"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-facebook"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-tm-SG7" customClass="IconButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                <rect key="frame" x="148" y="0.0" width="28" height="28"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="UDc-tm-SG7" secondAttribute="height" multiplier="1:1" id="Fww-8t-Q8I"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-twitter"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="28" id="JGC-Vp-k7g"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 21, 1985 (age 35)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbt-6P-okl" userLabel="Birth Date">
+                                                                <rect key="frame" x="0.0" y="98.5" width="216" height="20.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Russelville, Alabama, USA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzx-PC-VPH" userLabel="Birth Place">
+                                                                <rect key="frame" x="0.0" y="127" width="216" height="20.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="b9x-yr-fYb">
+                                                <rect key="frame" x="20" y="253" width="374" height="579"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FfI-Tg-Nsk" userLabel="Bio">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="295.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jka-35-Txm">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="152.5"/>
+                                                                <string key="text">Sonequa Martin-Green is an American film and television actress, best known for her recurring roles on "The Good Wife" as Courtney Wells, "Once Upon a Time" as Tamara, and on "The Walking Dead" as Sasha Williams. She graduated from the University of Alabama in 2007 with a degree in Theatre.</string>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cjl-Ie-Uy2" userLabel="Known For Stack View">
+                                                                <rect key="frame" x="0.0" y="152.5" width="374" height="143"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vw1-vN-4EC" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="1"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="1" id="xS7-fm-FTi"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                                <color key="value" name="DividerPrimary"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQF-4z-2aZ">
+                                                                        <rect key="frame" x="0.0" y="9" width="374" height="18"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Known For" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkj-AC-ucP">
+                                                                                <rect key="frame" x="16" y="0.0" width="342" height="18"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
+                                                                    </stackView>
+                                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y0a-Y1-yJo">
+                                                                        <rect key="frame" x="0.0" y="35" width="374" height="108"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="108" id="xII-ip-sC2"/>
+                                                                        </constraints>
+                                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="16" id="Idr-ah-Ilx">
+                                                                            <size key="itemSize" width="192" height="108"/>
+                                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                            <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                                                        </collectionViewFlowLayout>
+                                                                        <cells>
+                                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recommendation_cell" id="mki-qq-SqU" customClass="RecommendationsCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                <rect key="frame" x="16" y="0.0" width="192" height="108"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9Sx-hA-40p">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                    <subviews>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuj-lw-Phz" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
+                                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                <userDefinedRuntimeAttribute type="color" keyPath="overlayColor">
+                                                                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                </userDefinedRuntimeAttribute>
+                                                                                            </userDefinedRuntimeAttributes>
+                                                                                        </imageView>
+                                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-pz-b9F" customClass="MDCRippleView">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
+                                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                        </view>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Official Trailer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="F2R-np-ZJE">
+                                                                                            <rect key="frame" x="8" y="67.5" width="176" height="18"/>
+                                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                                            <color key="textColor" name="TextColorPrimaryInverse"/>
+                                                                                            <nil key="highlightedColor"/>
+                                                                                        </label>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020 ∙ Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP4-e1-oB5">
+                                                                                            <rect key="frame" x="8" y="85.5" width="176" height="14.5"/>
+                                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                                            <color key="textColor" name="TextColorSecondaryInverse"/>
+                                                                                            <nil key="highlightedColor"/>
+                                                                                        </label>
+                                                                                    </subviews>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="bottom" secondItem="mP4-e1-oB5" secondAttribute="bottom" constant="8" id="81F-dv-LMw"/>
+                                                                                        <constraint firstAttribute="trailing" secondItem="mP4-e1-oB5" secondAttribute="trailing" constant="8" id="Gq5-Lt-GjC"/>
+                                                                                        <constraint firstItem="mP4-e1-oB5" firstAttribute="top" secondItem="F2R-np-ZJE" secondAttribute="bottom" id="IMC-Fq-pKN"/>
+                                                                                        <constraint firstItem="F2R-np-ZJE" firstAttribute="leading" secondItem="9Sx-hA-40p" secondAttribute="leading" constant="8" id="cmK-1N-ccu"/>
+                                                                                        <constraint firstAttribute="trailing" secondItem="F2R-np-ZJE" secondAttribute="trailing" constant="8" id="gQA-yD-GHq"/>
+                                                                                        <constraint firstItem="mP4-e1-oB5" firstAttribute="leading" secondItem="9Sx-hA-40p" secondAttribute="leading" constant="8" id="yMA-XN-mq2"/>
+                                                                                    </constraints>
+                                                                                </collectionViewCellContentView>
+                                                                                <size key="customSize" width="192" height="108"/>
+                                                                                <connections>
+                                                                                    <outlet property="backdropImageView" destination="nuj-lw-Phz" id="7B1-Tc-2ak"/>
+                                                                                    <outlet property="nameLabel" destination="F2R-np-ZJE" id="nu2-1h-hSX"/>
+                                                                                    <outlet property="rippleView" destination="s2B-pz-b9F" id="mS1-xC-cTS"/>
+                                                                                    <outlet property="subheadLabel" destination="mP4-e1-oB5" id="dFY-yp-q5P"/>
+                                                                                </connections>
+                                                                            </collectionViewCell>
+                                                                        </cells>
+                                                                    </collectionView>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="JvE-Kx-kaC" firstAttribute="top" secondItem="PaF-0M-t3P" secondAttribute="top" constant="20" symbolic="YES" id="6ZX-ia-Xge"/>
+                                            <constraint firstAttribute="trailing" secondItem="b9x-yr-fYb" secondAttribute="trailing" constant="20" symbolic="YES" id="6ej-iY-4Gt"/>
+                                            <constraint firstItem="JvE-Kx-kaC" firstAttribute="leading" secondItem="dPa-w7-gT2" secondAttribute="trailing" constant="8" symbolic="YES" id="7iF-2N-w1f"/>
+                                            <constraint firstItem="dPa-w7-gT2" firstAttribute="top" secondItem="PaF-0M-t3P" secondAttribute="top" constant="20" symbolic="YES" id="Erf-nq-n6G"/>
+                                            <constraint firstAttribute="bottom" secondItem="b9x-yr-fYb" secondAttribute="bottom" constant="20" symbolic="YES" id="K9f-g1-cvX"/>
+                                            <constraint firstItem="b9x-yr-fYb" firstAttribute="top" secondItem="dPa-w7-gT2" secondAttribute="bottom" constant="8" symbolic="YES" id="bUl-IR-Bg6"/>
+                                            <constraint firstItem="b9x-yr-fYb" firstAttribute="leading" secondItem="PaF-0M-t3P" secondAttribute="leading" constant="20" symbolic="YES" id="cTa-dl-etA"/>
+                                            <constraint firstItem="JvE-Kx-kaC" firstAttribute="height" secondItem="dPa-w7-gT2" secondAttribute="height" id="dqF-ea-qI1"/>
+                                            <constraint firstAttribute="trailing" secondItem="JvE-Kx-kaC" secondAttribute="trailing" constant="20" symbolic="YES" id="mj5-nt-sY6"/>
+                                            <constraint firstItem="dPa-w7-gT2" firstAttribute="leading" secondItem="PaF-0M-t3P" secondAttribute="leading" constant="20" symbolic="YES" id="pqf-Ig-KJu"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="PaF-0M-t3P" firstAttribute="leading" secondItem="Tlx-rJ-iuN" secondAttribute="leading" id="Cs0-hJ-15O"/>
+                                    <constraint firstItem="PaF-0M-t3P" firstAttribute="width" secondItem="Tlx-rJ-iuN" secondAttribute="width" id="Lz8-Hn-J6e"/>
+                                    <constraint firstItem="PaF-0M-t3P" firstAttribute="height" secondItem="Tlx-rJ-iuN" secondAttribute="height" priority="250" id="NxU-nX-get"/>
+                                    <constraint firstItem="PaF-0M-t3P" firstAttribute="top" secondItem="Tlx-rJ-iuN" secondAttribute="top" id="dq4-fe-3Xp"/>
+                                    <constraint firstAttribute="trailing" secondItem="PaF-0M-t3P" secondAttribute="trailing" id="lI1-5k-5om"/>
+                                    <constraint firstAttribute="bottom" secondItem="PaF-0M-t3P" secondAttribute="bottom" id="mLG-wC-VH2"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="NaN-rn-rTz"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="3I2-c0-9E1"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="HYb-V6-jX8" firstAttribute="trailing" secondItem="Tlx-rJ-iuN" secondAttribute="trailing" id="Lai-81-MAY"/>
+                            <constraint firstItem="Tlx-rJ-iuN" firstAttribute="leading" secondItem="HYb-V6-jX8" secondAttribute="leading" id="bDN-d4-G38"/>
+                            <constraint firstItem="Tlx-rJ-iuN" firstAttribute="top" secondItem="HYb-V6-jX8" secondAttribute="top" id="cUR-FF-mVD"/>
+                            <constraint firstAttribute="bottom" secondItem="Tlx-rJ-iuN" secondAttribute="bottom" id="qst-Xg-E71"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HYb-V6-jX8"/>
+                    </view>
+                    <connections>
+                        <outlet property="biographyLabel" destination="jka-35-Txm" id="M8t-hu-JAI"/>
+                        <outlet property="birthPlaceLabel" destination="bzx-PC-VPH" id="oId-mi-QVF"/>
+                        <outlet property="birthdayLabel" destination="Xbt-6P-okl" id="4qZ-do-ad7"/>
+                        <outlet property="facebookButton" destination="YUg-8e-Y0D" id="vwf-vo-mCZ"/>
+                        <outlet property="homePageButton" destination="Vd0-jt-xv5" id="78b-6j-ye4"/>
+                        <outlet property="imageView" destination="dPa-w7-gT2" id="NyL-7X-gb4"/>
+                        <outlet property="imdbBadge" destination="2xw-3I-fV2" id="Aw2-6r-N8J"/>
+                        <outlet property="instagramButton" destination="T7d-Rc-55u" id="lFp-kp-ant"/>
+                        <outlet property="knownForCollectionView" destination="y0a-Y1-yJo" id="UgL-h8-M3w"/>
+                        <outlet property="knownForContainer" destination="cjl-Ie-Uy2" id="PQY-xO-pue"/>
+                        <outlet property="nameLabel" destination="HCD-9w-6w5" id="qNs-fO-xhY"/>
+                        <outlet property="twitterButton" destination="UDc-tm-SG7" id="kq8-nQ-Tak"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5mU-Lg-es9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="16.741071428571427"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic-facebook" width="24" height="24"/>
+        <image name="ic-instagram" width="24" height="24"/>
+        <image name="ic-link" width="24" height="24"/>
+        <image name="ic-twitter" width="24" height="24"/>
+        <namedColor name="DividerPrimary">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColorPrimaryInverse">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColorSecondaryInverse">
+            <color red="1" green="1" blue="1" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

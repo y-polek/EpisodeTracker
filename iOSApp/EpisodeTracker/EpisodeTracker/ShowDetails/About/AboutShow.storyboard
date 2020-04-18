@@ -333,7 +333,7 @@
                                                     </collectionView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3yd-Bk-zam" userLabel="Recommendations Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3yd-Bk-zam" userLabel="Known For Stack View">
                                                 <rect key="frame" x="0.0" y="430.5" width="414" height="143"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGo-d3-exp" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">

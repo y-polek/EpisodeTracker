@@ -186,7 +186,8 @@ class ShowDetailsViewController: UIViewController {
     }
     
     private func castMemberTapCallback(castMember: CastMemberViewModel) {
-        
+        let vc = PersonDetailsViewController.instantiate(personId: castMember.id.int)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func recommendationTapCallback(recommendation: RecommendationViewModel) {

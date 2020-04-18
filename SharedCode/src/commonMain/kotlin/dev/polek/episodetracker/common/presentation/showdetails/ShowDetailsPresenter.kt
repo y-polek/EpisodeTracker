@@ -333,6 +333,7 @@ class ShowDetailsPresenter(
         }
         val castMembers = show.cast.map { member ->
             CastMemberViewModel(
+                id = member.tmdbId!!,
                 name = member.name.orEmpty(),
                 character = member.character.orEmpty(),
                 portraitImageUrl = member.profilePath?.let(TmdbService.Companion::profileImageUrl))

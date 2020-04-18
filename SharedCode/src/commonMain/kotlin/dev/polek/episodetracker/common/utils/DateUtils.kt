@@ -48,6 +48,24 @@ fun formatTimestamp(date: GMTDate = GMTDate()): String {
 
 fun formatTimestamp(timestampMillis: Long): String = formatTimestamp(GMTDate(timestampMillis))
 
+fun yearsSince(date: GMTDate): Int {
+    val now = GMTDate()
+
+    val years = now.year - date.year
+
+    if (now > date) {
+        if (now.month > date.month) return years
+        if (now.month < date.month) return years - 1
+        if (now.dayOfMonth >= date.dayOfMonth) return years
+        return years - 1
+    } else {
+        if (date.month > now.month) return years
+        if (date.month < now.month) return years - 1
+        if (date.dayOfMonth >= now.dayOfMonth) return years
+        return years - 1
+    }
+}
+
 val Month.fullName: String
     get() = when (this) {
         JANUARY -> "January"

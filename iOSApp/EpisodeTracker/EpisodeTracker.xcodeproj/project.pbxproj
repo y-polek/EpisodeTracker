@@ -71,6 +71,8 @@
 		D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CA23A8F89A00E45753 /* TableView.swift */; };
 		D2D905CE23A96A6E00E45753 /* ImageButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D905CD23A96A6E00E45753 /* ImageButton.xib */; };
 		D2D905D023A96CCB00E45753 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CF23A96CCB00E45753 /* ImageButton.swift */; };
+		D2E4A1BA244A58650031C2B5 /* PersonDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E4A1B9244A58650031C2B5 /* PersonDetails.storyboard */; };
+		D2E4A1BC244AF7CB0031C2B5 /* PersonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E4A1BB244AF7CB0031C2B5 /* PersonDetailsViewController.swift */; };
 		D2EDA463241EB56700EAD144 /* ConnectivityImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EDA462241EB56700EAD144 /* ConnectivityImpl.swift */; };
 		D2EDA465241EC00B00EAD144 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EDA464241EC00B00EAD144 /* Log.swift */; };
 		D2F09F0F23F40675003BFFAA /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F09F0E23F40675003BFFAA /* NavigationController.swift */; };
@@ -158,6 +160,8 @@
 		D2D905CA23A8F89A00E45753 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		D2D905CD23A96A6E00E45753 /* ImageButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageButton.xib; sourceTree = "<group>"; };
 		D2D905CF23A96CCB00E45753 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		D2E4A1B9244A58650031C2B5 /* PersonDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonDetails.storyboard; sourceTree = "<group>"; };
+		D2E4A1BB244AF7CB0031C2B5 /* PersonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsViewController.swift; sourceTree = "<group>"; };
 		D2EDA462241EB56700EAD144 /* ConnectivityImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityImpl.swift; sourceTree = "<group>"; };
 		D2EDA464241EC00B00EAD144 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D2F09F0E23F40675003BFFAA /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -239,10 +243,10 @@
 		D29D7B0123A2A92500B2832D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D2D5E33323FDE7EB00FE6234 /* ImdbBadge */,
 				D29DCACC23F93BB600491ACD /* Ripple */,
 				D2BD772023EB617D002AE94F /* Checkbox */,
 				D2D905CC23A96A0C00E45753 /* ImageButton */,
+				D2D5E33323FDE7EB00FE6234 /* ImdbBadge */,
 				D234846423FEBEF6001BA5E5 /* IconButton */,
 				D2CC72902416E88900D4AD01 /* ErrorView */,
 				D2B1DE2924315DD2000AC44A /* EmptyView */,
@@ -349,6 +353,7 @@
 				D29D7B0B23A3BC5800B2832D /* ToWatch */,
 				D29D7B1223A44F6000B2832D /* Discover */,
 				D238771423E5742B00688E01 /* ShowDetails */,
+				D2E4A1B8244A57D20031C2B5 /* PersonDetails */,
 				D29D7B0123A2A92500B2832D /* Views */,
 				D29D7B0423A2CCEE00B2832D /* Utils */,
 				D2BEEF1823A248820077F125 /* AppDelegate.swift */,
@@ -418,6 +423,15 @@
 				D2D905CF23A96CCB00E45753 /* ImageButton.swift */,
 			);
 			path = ImageButton;
+			sourceTree = "<group>";
+		};
+		D2E4A1B8244A57D20031C2B5 /* PersonDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D2E4A1B9244A58650031C2B5 /* PersonDetails.storyboard */,
+				D2E4A1BB244AF7CB0031C2B5 /* PersonDetailsViewController.swift */,
+			);
+			path = PersonDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,6 +510,7 @@
 				D205221F23ECA5D4003F9F6B /* SeasonHeaderView.xib in Resources */,
 				D2CC72922416E8A500D4AD01 /* ErrorView.xib in Resources */,
 				D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */,
+				D2E4A1BA244A58650031C2B5 /* PersonDetails.storyboard in Resources */,
 				D2BEEF2023A248820077F125 /* Main.storyboard in Resources */,
 				D2BD772223EB642D002AE94F /* Checkbox.xib in Resources */,
 				D2D905CE23A96A6E00E45753 /* ImageButton.xib in Resources */,
@@ -576,6 +591,7 @@
 				D29D7AFE23A2974700B2832D /* UpcomingShowCell.swift in Sources */,
 				D29D7B1623A5063A00B2832D /* DiscoverResultCell.swift in Sources */,
 				D29D7B0323A2A93D00B2832D /* ImageView.swift in Sources */,
+				D2E4A1BC244AF7CB0031C2B5 /* PersonDetailsViewController.swift in Sources */,
 				D232E73323F59E6300F024B9 /* AboutShowViewController.swift in Sources */,
 				D2CC728D2414E87C00D4AD01 /* Animations.swift in Sources */,
 				D293933124184B6B00F028C6 /* ErrorView.swift in Sources */,

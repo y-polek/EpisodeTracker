@@ -6,6 +6,11 @@ class ImdbBadge: UIView {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var label: UILabel!
+    
+    @IBInspectable
+    var iconOnly: Bool = false {
+        didSet { updateLabel() }
+    }
 
     var rating: Float? = nil {
         didSet { updateLabel() }
@@ -42,6 +47,8 @@ class ImdbBadge: UIView {
         
         rippleController.addRipple(to: self)
         
+        updateLabel()
+        
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapped(gesture:))))
     }
     
@@ -51,6 +58,8 @@ class ImdbBadge: UIView {
         } else {
             label.text = "—"
         }
+        
+        label.isHidden = iconOnly
     }
     
     @objc private func onTapped(gesture: UIGestureRecognizer) {

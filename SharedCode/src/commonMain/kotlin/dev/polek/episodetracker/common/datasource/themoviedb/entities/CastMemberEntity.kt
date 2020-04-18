@@ -7,9 +7,10 @@ import kotlinx.serialization.Transient
 
 @Serializable
 data class CastMemberEntity(
+    @SerialName("id") val tmdbId: Int? = null,
     @SerialName("name") val name: String? = null,
     @SerialName("character") val character: String? = null,
     @SerialName("profile_path") val profilePath: String? = null)
 {
-    @Transient val isValid = allNotNull(name, character)
+    @Transient val isValid = allNotNull(tmdbId, name, character)
 }

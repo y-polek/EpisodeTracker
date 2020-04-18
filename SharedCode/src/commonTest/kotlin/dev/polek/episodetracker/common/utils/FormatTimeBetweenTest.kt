@@ -1,7 +1,6 @@
 package dev.polek.episodetracker.common.utils
 
-import io.ktor.util.date.GMTDate
-import io.ktor.util.date.Month
+import dev.polek.episodetracker.common.testutils.date
 import io.ktor.util.date.Month.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -106,15 +105,5 @@ class FormatTimeBetweenTest {
         val formatted = formatTimeBetween(start, end)
 
         assertEquals("-2 days", formatted)
-    }
-
-    private fun date(year: Int, month: Month, day: Int, hours: Int = 0): GMTDate {
-        return GMTDate(
-            year = year,
-            month = month,
-            dayOfMonth = day,
-            hours = hours,
-            minutes = 0,
-            seconds = 0)
     }
 }
