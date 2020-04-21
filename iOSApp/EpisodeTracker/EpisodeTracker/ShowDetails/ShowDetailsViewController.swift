@@ -186,7 +186,7 @@ class ShowDetailsViewController: UIViewController {
     }
     
     private func castMemberTapCallback(castMember: CastMemberViewModel) {
-        
+        castMember.wikipediaUrl.toUrl()?.open()
     }
     
     private func recommendationTapCallback(recommendation: RecommendationViewModel) {
