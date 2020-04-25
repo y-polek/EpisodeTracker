@@ -25,8 +25,13 @@ CREATE TABLE MyShow (
 );
 
 insert:
-INSERT INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, homePageUrl, genres, networks, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
+INSERT OR REPLACE INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, homePageUrl, genres, networks, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+update:
+UPDATE MyShow
+SET imdbId = ?, tvdbId = ?, facebookId = ?, instagramId = ?, twitterId = ?, name = ?, overview = ?, year = ?, lastYear = ?, imageUrl = ?, homePageUrl = ?, genres = ?, networks = ?, contentRating = ?, isEnded = ?, nextEpisodeSeason = ?, nextEpisodeNumber = ?
+WHERE tmdbId = ?;
 
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;

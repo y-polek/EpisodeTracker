@@ -6,6 +6,7 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Compani
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.SeasonEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
+import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.model.Episode
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
@@ -53,6 +54,72 @@ class ShowRepository(
             }
 
             db.myShowQueries.insert(
+                tmdbId = showTmdbId,
+                imdbId = show.externalIds?.imdbId,
+                tvdbId = show.externalIds?.tvdbId,
+                facebookId = show.externalIds?.facebookId,
+                instagramId = show.externalIds?.instagramId,
+                twitterId = show.externalIds?.twitterId,
+                name = show.name.orEmpty(),
+                overview = show.overview.orEmpty(),
+                year = show.year,
+                lastYear = show.lastYear,
+                imageUrl = show.backdropPath?.let(TmdbService.Companion::backdropImageUrl),
+                homePageUrl = show.homePageUrl,
+                genres = show.genres,
+                networks = show.networks,
+                contentRating = show.contentRating,
+                isEnded = show.isEnded,
+                nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
+                nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
+        }
+    }
+
+    suspend fun refreshShow(showTmdbId: Int) {
+        try {
+            val show = showDetails(showTmdbId)
+            check(show.isValid) { throw RuntimeException("Can't add invalid show: $show") }
+
+            val seasons = show.seasonNumbers.mapNotNull { seasonNumber ->
+                season(showTmdbId = showTmdbId, seasonNumber = seasonNumber)
+            }
+
+            updateShowInDb(show, seasons)
+        } catch (e: Throwable) {
+            logw { "Failed to refresh show $showTmdbId: $e" }
+        }
+    }
+
+    private fun updateShowInDb(show: ShowDetailsEntity, seasons: List<Season>) {
+        val showTmdbId = show.tmdbId!!
+
+        db.transaction {
+            seasons.flatMap { it.episodes }
+                .forEach { episode ->
+                    val inDb = db.episodeQueries.isEpisodeInDb(
+                        showTmdbId = showTmdbId,
+                        episodeNumber = episode.number.episode,
+                        seasonNumber = episode.number.season).executeAsOne()
+                    if (inDb) {
+                        db.episodeQueries.update(
+                            showTmdbId = showTmdbId,
+                            name = episode.name,
+                            episodeNumber = episode.number.episode,
+                            seasonNumber = episode.number.season,
+                            airDateMillis = episode.airDateMillis,
+                            imageUrl = episode.imageUrl)
+                    } else {
+                        db.episodeQueries.insert(
+                            showTmdbId = showTmdbId,
+                            name = episode.name,
+                            episodeNumber = episode.number.episode,
+                            seasonNumber = episode.number.season,
+                            airDateMillis = episode.airDateMillis,
+                            imageUrl = episode.imageUrl)
+                    }
+                }
+
+            db.myShowQueries.update(
                 tmdbId = showTmdbId,
                 imdbId = show.externalIds?.imdbId,
                 tvdbId = show.externalIds?.tvdbId,

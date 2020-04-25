@@ -278,9 +278,18 @@ class ShowDetailsPresenter(
     }
 
     fun onEpisodesRefreshRequested() {
-        launch {
-            delay(5000)
-            view?.hideEpisodesRefreshProgress()
+        val inDb = myShowsRepository.isAddedToMyShows(showId)
+        if (inDb) {
+            launch {
+                showRepository.refreshShow(showId)
+                loadShowDetails()
+                view?.hideEpisodesRefreshProgress()
+            }
+        } else {
+            loadEpisodesFromNetwork(
+                showProgress = {},
+                hideProgress = { view?.hideEpisodesRefreshProgress() }
+            )
         }
     }
 
@@ -381,14 +390,17 @@ class ShowDetailsPresenter(
         view?.hideEpisodesProgress()
     }
 
-    private fun loadEpisodesFromNetwork() {
+    private fun loadEpisodesFromNetwork(
+        showProgress: () -> Unit = { view?.showEpisodesProgress() },
+        hideProgress: () -> Unit = { view?.hideEpisodesProgress() })
+    {
         val seasonNumbers = showDetails?.seasonNumbers
         if (seasonNumbers == null) {
             loge { "Can't load episodes list without ShowDetails" }
             return
         }
 
-        view?.showEpisodesProgress()
+        showProgress()
         view?.hideEpisodesError()
 
         launch {
@@ -405,7 +417,7 @@ class ShowDetailsPresenter(
                 loge { "loadEpisodesFromNetwork: $error" }
                 view?.showEpisodesError()
             } finally {
-                view?.hideEpisodesProgress()
+                hideProgress()
             }
         }
     }
