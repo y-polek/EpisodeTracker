@@ -13,13 +13,22 @@ class EpisodesViewController: UIViewController {
     var seasonWatchedStateToggleCallback: ((_ season: SeasonViewModel) -> Void)?
     var episodeWatchedStateToggleCallback: ((_ episode: EpisodeViewModel) -> Void)?
     var retryTapCallback: (() -> Void)?
+    var refreshRequestedCallback: (() -> Void)?
     
     @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    lazy var refreshControl: UIRefreshControl = {
+       let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(onRefreshRequested), for: .valueChanged)
+        return control
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.register(SeasonHeaderView.nib, forHeaderFooterViewReuseIdentifier: SeasonHeaderView.reuseIdentifier)
+        tableView.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +76,14 @@ class EpisodesViewController: UIViewController {
     
     func hideError() {
         tableView.hideErrorView()
+    }
+    
+    func hideRefreshProgress() {
+        refreshControl.endRefreshing()
+    }
+    
+    @objc func onRefreshRequested() {
+        refreshRequestedCallback?()
     }
 }
 

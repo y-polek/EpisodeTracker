@@ -277,6 +277,13 @@ class ShowDetailsPresenter(
         }
     }
 
+    fun onEpisodesRefreshRequested() {
+        launch {
+            delay(5000)
+            view?.hideEpisodesRefreshProgress()
+        }
+    }
+
     private fun displayHeader(show: ShowDetails) {
         val headerViewModel = ShowHeaderViewModel(
             name = show.name,

@@ -112,6 +112,7 @@ class ShowDetailsViewController: UIViewController {
         episodesViewController?.seasonWatchedStateToggleCallback = seasonWatchedStateToggleCallback(season:)
         episodesViewController?.episodeWatchedStateToggleCallback = episodeWatchedStateToggleCallback(episode:)
         episodesViewController?.retryTapCallback = episodesRetryTapCallback
+        episodesViewController?.refreshRequestedCallback = episodesRefreshRequestedCallback
         episodesViewController?.scrollCallback = scrollCallback(offset:)
         
         errorView.retryTappedCallback = { [weak self] in
@@ -203,6 +204,10 @@ class ShowDetailsViewController: UIViewController {
     
     private func episodesRetryTapCallback() {
         presenter.onEpisodesRetryButtonClicked()
+    }
+    
+    private func episodesRefreshRequestedCallback() {
+        presenter.onEpisodesRefreshRequested()
     }
     
     private func scrollCallback(offset: CGFloat) -> Bool {
@@ -434,6 +439,10 @@ extension ShowDetailsViewController: ShowDetailsView {
     
     func hideEpisodesError() {
         episodesViewController?.hideError()
+    }
+    
+    func hideEpisodesRefreshProgress() {
+        episodesViewController?.hideRefreshProgress()
     }
     
     private func confirmRemoval() {
