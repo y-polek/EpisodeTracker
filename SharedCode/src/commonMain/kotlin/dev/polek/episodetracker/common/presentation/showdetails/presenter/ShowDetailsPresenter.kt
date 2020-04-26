@@ -287,9 +287,9 @@ class ShowDetailsPresenter(
             }
         } else {
             loadEpisodesFromNetwork(
+                noCache = true,
                 showProgress = {},
-                hideProgress = { view?.hideEpisodesRefreshProgress() }
-            )
+                hideProgress = { view?.hideEpisodesRefreshProgress() })
         }
     }
 
@@ -391,6 +391,7 @@ class ShowDetailsPresenter(
     }
 
     private fun loadEpisodesFromNetwork(
+        noCache: Boolean = false,
         showProgress: () -> Unit = { view?.showEpisodesProgress() },
         hideProgress: () -> Unit = { view?.hideEpisodesProgress() })
     {
@@ -408,7 +409,7 @@ class ShowDetailsPresenter(
                 showSeasons = seasonNumbers
                     .mapNotNull { seasonNumber ->
                         log { "map season #$seasonNumber" }
-                        showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber)
+                        showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber, noCache = noCache)
                     }
                 val seasonsList = showSeasons!!.map(SeasonViewModel.Companion::map)
                 seasonsViewModel = SeasonsViewModel(seasonsList)

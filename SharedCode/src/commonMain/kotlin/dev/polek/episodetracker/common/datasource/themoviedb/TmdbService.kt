@@ -9,7 +9,9 @@ import io.ktor.client.HttpClient
 import io.ktor.client.features.auth.Auth
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.readText
 import io.ktor.http.HttpStatusCode
@@ -49,18 +51,24 @@ class TmdbService(client: HttpClient?) {
         }
     }
 
-    suspend fun show(tmdbId: Int): ShowDetailsEntity {
-        return client.get(urlString = "$BASE_URL/tv/$tmdbId?append_to_response=external_ids,content_ratings")
+    suspend fun show(tmdbId: Int, noCache: Boolean = false): ShowDetailsEntity {
+        return client.get(urlString = "$BASE_URL/tv/$tmdbId?append_to_response=external_ids,content_ratings") {
+            if (noCache) noCache()
+        }
     }
 
-    suspend fun season(showTmdbId: Int, number: Int): SeasonEntity? {
-        val response = client.get<HttpResponse>(urlString = "$BASE_URL/tv/$showTmdbId/season/$number")
+    suspend fun season(showTmdbId: Int, number: Int, noCache: Boolean = false): SeasonEntity? {
+        val response = client.get<HttpResponse>(urlString = "$BASE_URL/tv/$showTmdbId/season/$number") {
+            if (noCache) noCache()
+        }
         if (response.status == HttpStatusCode.NotFound) return null
         return json.parse(SeasonEntity.serializer(), response.readText())
     }
 
-    suspend fun showDetails(showTmdbId: Int): ShowDetailsEntity {
-        return client.get(urlString = "$BASE_URL/tv/$showTmdbId?append_to_response=external_ids,content_ratings,videos,credits,recommendations")
+    suspend fun showDetails(showTmdbId: Int, noCache: Boolean = false): ShowDetailsEntity {
+        return client.get(urlString = "$BASE_URL/tv/$showTmdbId?append_to_response=external_ids,content_ratings,videos,credits,recommendations") {
+            if (noCache) noCache()
+        }
     }
 
     private suspend fun findGenreById(id: Int): String? {
@@ -94,6 +102,10 @@ class TmdbService(client: HttpClient?) {
 
         fun profileImageUrl(path: String): String {
             return "$BASE_IMAGE_URL/h632$path"
+        }
+
+        private fun HttpRequestBuilder.noCache() {
+            this.header("Cache-Control", "no-cache")
         }
     }
 }

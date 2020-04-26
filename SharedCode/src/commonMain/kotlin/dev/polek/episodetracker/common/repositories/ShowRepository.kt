@@ -17,16 +17,16 @@ class ShowRepository(
     private val omdbService: OmdbService,
     private val db: Database)
 {
-    suspend fun showDetails(showTmdbId: Int): ShowDetailsEntity {
-        return tmdbService.showDetails(showTmdbId)
+    suspend fun showDetails(showTmdbId: Int, noCache: Boolean = false): ShowDetailsEntity {
+        return tmdbService.showDetails(showTmdbId, noCache = noCache)
     }
 
     suspend fun imdbRating(imdbId: String): Float? {
         return omdbService.show(imdbId).imdbRating
     }
 
-    suspend fun season(showTmdbId: Int, seasonNumber: Int): Season? {
-        val seasonEntity = tmdbService.season(showTmdbId = showTmdbId, number = seasonNumber) ?: return null
+    suspend fun season(showTmdbId: Int, seasonNumber: Int, noCache: Boolean = false): Season? {
+        val seasonEntity = tmdbService.season(showTmdbId = showTmdbId, number = seasonNumber, noCache = noCache) ?: return null
         if (!seasonEntity.isValid) return null
 
         val season = mapSeason(seasonEntity)
@@ -77,11 +77,11 @@ class ShowRepository(
 
     suspend fun refreshShow(showTmdbId: Int) {
         try {
-            val show = showDetails(showTmdbId)
+            val show = showDetails(showTmdbId, noCache = true)
             check(show.isValid) { throw RuntimeException("Can't add invalid show: $show") }
 
             val seasons = show.seasonNumbers.mapNotNull { seasonNumber ->
-                season(showTmdbId = showTmdbId, seasonNumber = seasonNumber)
+                season(showTmdbId = showTmdbId, seasonNumber = seasonNumber, noCache = true)
             }
 
             updateShowInDb(show, seasons)
