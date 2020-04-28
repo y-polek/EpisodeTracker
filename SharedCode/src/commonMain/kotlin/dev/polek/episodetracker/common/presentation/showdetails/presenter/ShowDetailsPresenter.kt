@@ -277,19 +277,19 @@ class ShowDetailsPresenter(
         }
     }
 
-    fun onEpisodesRefreshRequested() {
+    fun onRefreshRequested() {
         val inDb = myShowsRepository.isAddedToMyShows(showId)
         if (inDb) {
             launch {
                 showRepository.refreshShow(showId)
                 loadShowDetails()
-                view?.hideEpisodesRefreshProgress()
+                view?.hideRefreshProgress()
             }
         } else {
             loadEpisodesFromNetwork(
                 noCache = true,
                 showProgress = {},
-                hideProgress = { view?.hideEpisodesRefreshProgress() })
+                hideProgress = { view?.hideRefreshProgress() })
         }
     }
 

@@ -107,12 +107,13 @@ class ShowDetailsViewController: UIViewController {
         aboutShowViewController?.trailerTapCallback = trailerTapCallback(trailer:)
         aboutShowViewController?.castMemberTapCallback = castMemberTapCallback(castMember:)
         aboutShowViewController?.recommendationTapCallback = recommendationTapCallback(recommendation:)
+        aboutShowViewController?.refreshRequestedCallback = refreshRequestedCallback
         aboutShowViewController?.scrollCallback = scrollCallback(offset:)
         
         episodesViewController?.seasonWatchedStateToggleCallback = seasonWatchedStateToggleCallback(season:)
         episodesViewController?.episodeWatchedStateToggleCallback = episodeWatchedStateToggleCallback(episode:)
         episodesViewController?.retryTapCallback = episodesRetryTapCallback
-        episodesViewController?.refreshRequestedCallback = episodesRefreshRequestedCallback
+        episodesViewController?.refreshRequestedCallback = refreshRequestedCallback
         episodesViewController?.scrollCallback = scrollCallback(offset:)
         
         errorView.retryTappedCallback = { [weak self] in
@@ -128,11 +129,13 @@ class ShowDetailsViewController: UIViewController {
         aboutShowViewController?.trailerTapCallback = nil
         aboutShowViewController?.castMemberTapCallback = nil
         aboutShowViewController?.recommendationTapCallback = nil
+        aboutShowViewController?.refreshRequestedCallback = nil
         aboutShowViewController?.scrollCallback = nil
         
         episodesViewController?.seasonWatchedStateToggleCallback = nil
         episodesViewController?.episodeWatchedStateToggleCallback = nil
         episodesViewController?.retryTapCallback = nil
+        episodesViewController?.refreshRequestedCallback = nil
         episodesViewController?.scrollCallback = nil
         
         presenter.onViewDisappeared()
@@ -206,8 +209,8 @@ class ShowDetailsViewController: UIViewController {
         presenter.onEpisodesRetryButtonClicked()
     }
     
-    private func episodesRefreshRequestedCallback() {
-        presenter.onEpisodesRefreshRequested()
+    private func refreshRequestedCallback() {
+        presenter.onRefreshRequested()
     }
     
     private func scrollCallback(offset: CGFloat) -> Bool {
@@ -441,7 +444,8 @@ extension ShowDetailsViewController: ShowDetailsView {
         episodesViewController?.hideError()
     }
     
-    func hideEpisodesRefreshProgress() {
+    func hideRefreshProgress() {
+        aboutShowViewController?.hideRefreshProgress()
         episodesViewController?.hideRefreshProgress()
     }
     

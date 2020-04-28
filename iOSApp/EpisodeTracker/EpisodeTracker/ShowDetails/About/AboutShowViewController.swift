@@ -21,6 +21,12 @@ class AboutShowViewController: UIViewController {
     @IBOutlet weak var facebookButton: IconButton!
     @IBOutlet weak var twitterButton: IconButton!
     
+    lazy var refreshControl: UIRefreshControl = {
+       let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(onRefreshRequested), for: .valueChanged)
+        return control
+    }()
+    
     var showId: Int!
     let genresDataSource = GenresDataSource()
     let trailersDataSource = TrailersDataSource()
@@ -42,6 +48,7 @@ class AboutShowViewController: UIViewController {
     }
     var castMemberTapCallback: ((_ castMember: CastMemberViewModel) -> Void)?
     var recommendationTapCallback: ((_ recommendation: RecommendationViewModel) -> Void)?
+    var refreshRequestedCallback: (() -> Void)?
     
     private let rippleController = MDCRippleTouchController()
     
@@ -63,6 +70,8 @@ class AboutShowViewController: UIViewController {
         recommendationsCollectionView.dataSource = recommendationsDataSource
         recommendationsCollectionView.delegate = self
         recommendationsContainer.isHidden = true
+        
+        scrollView.refreshControl = refreshControl
     }
     
     func displayShowDetails(_ show: ShowDetailsViewModel) {
@@ -142,6 +151,14 @@ class AboutShowViewController: UIViewController {
     
     func setBottomInset(_ inset: CGFloat) {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
+    }
+    
+    func hideRefreshProgress() {
+        refreshControl.endRefreshing()
+    }
+    
+    @objc func onRefreshRequested() {
+        refreshRequestedCallback?()
     }
 }
 
