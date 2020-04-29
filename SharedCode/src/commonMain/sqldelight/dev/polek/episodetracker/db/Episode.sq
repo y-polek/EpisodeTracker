@@ -85,3 +85,8 @@ episodes:
 SELECT name, seasonNumber, episodeNumber, isWatched, airDateMillis, imageUrl
 FROM Episode
 WHERE showTmdbId = ?;
+
+lastSeason:
+SELECT max(seasonNumber)
+FROM Episode
+WHERE showTmdbId = ?;

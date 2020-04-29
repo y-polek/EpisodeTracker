@@ -90,6 +90,29 @@ class ShowRepository(
         }
     }
 
+    suspend fun refreshAllNonArchivedShows() {
+        db.myShowQueries.allNonArchivedShows().executeAsList().forEach { showTmdbId ->
+            refreshLatestSeason(showTmdbId)
+        }
+    }
+
+    private suspend fun refreshLatestSeason(showTmdbId: Int) {
+        val lastSeasonNumber = db.episodeQueries.lastSeason(showTmdbId).executeAsOneOrNull()?.max ?: 1
+
+        try {
+            val show = showDetails(showTmdbId, noCache = true)
+            check(show.isValid) { throw RuntimeException("Can't add invalid show: $show") }
+
+            val seasons = show.seasonNumbers.filter { it >= lastSeasonNumber }.mapNotNull { seasonNumber ->
+                season(showTmdbId = showTmdbId, seasonNumber = seasonNumber, noCache = true)
+            }
+
+            updateShowInDb(show, seasons)
+        } catch (e: Throwable) {
+            logw { "Failed to refresh show $showTmdbId: $e" }
+        }
+    }
+
     private fun updateShowInDb(show: ShowDetailsEntity, seasons: List<Season>) {
         val showTmdbId = show.tmdbId!!
 

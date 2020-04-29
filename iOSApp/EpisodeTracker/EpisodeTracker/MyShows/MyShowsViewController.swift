@@ -14,7 +14,8 @@ class MyShowsViewController: UIViewController {
     private var archivedShows = [MyShowsListItem.ShowViewModel]()
     
     private let presenter = MyShowsPresenter(
-        repository: AppDelegate.instance().myShowsRepository,
+        myShowsRepository: AppDelegate.instance().myShowsRepository,
+        showRepository: AppDelegate.instance().showRepository,
         prefs: AppDelegate.instance().preferences)
     
     override func viewDidLoad() {

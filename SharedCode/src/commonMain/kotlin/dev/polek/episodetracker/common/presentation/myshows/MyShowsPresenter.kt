@@ -6,10 +6,12 @@ import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
+import dev.polek.episodetracker.common.repositories.ShowRepository
 import kotlinx.coroutines.launch
 
 class MyShowsPresenter(
-    private val repository: MyShowsRepository,
+    private val myShowsRepository: MyShowsRepository,
+    private val showRepository: ShowRepository,
     private val prefs: Preferences) : BasePresenter<MyShowsView>()
 {
     private var upcomingShows = emptyList<UpcomingShowViewModel>()
@@ -88,17 +90,17 @@ class MyShowsPresenter(
 
     override fun onViewAppeared() {
         super.onViewAppeared()
-        repository.setUpcomingShowsSubscriber(upcomingShowsSubscriber)
-        repository.setToBeAnnouncedShowsSubscriber(toBeAnnouncedShowsSubscriber)
-        repository.setEndedShowsSubscriber(endedShowsSubscriber)
-        repository.setArchivedShowsSubscriber(archivedShowsSubscriber)
+        myShowsRepository.setUpcomingShowsSubscriber(upcomingShowsSubscriber)
+        myShowsRepository.setToBeAnnouncedShowsSubscriber(toBeAnnouncedShowsSubscriber)
+        myShowsRepository.setEndedShowsSubscriber(endedShowsSubscriber)
+        myShowsRepository.setArchivedShowsSubscriber(archivedShowsSubscriber)
     }
 
     override fun onViewDisappeared() {
-        repository.removeUpcomingShowsSubscriber()
-        repository.removeToBeAnnouncedShowsSubscriber()
-        repository.removeEndedShowsSubscriber()
-        repository.removeArchivedShowsSubscriber()
+        myShowsRepository.removeUpcomingShowsSubscriber()
+        myShowsRepository.removeToBeAnnouncedShowsSubscriber()
+        myShowsRepository.removeEndedShowsSubscriber()
+        myShowsRepository.removeArchivedShowsSubscriber()
         super.onViewDisappeared()
     }
 
@@ -107,15 +109,15 @@ class MyShowsPresenter(
     }
 
     fun onRemoveShowClicked(show: ShowViewModel) {
-        repository.removeShow(show.id)
+        myShowsRepository.removeShow(show.id)
     }
 
     fun onArchiveShowClicked(show: ShowViewModel) {
-        repository.archiveShow(show.id)
+        myShowsRepository.archiveShow(show.id)
     }
 
     fun onUnarchiveShowClicked(show: ShowViewModel) {
-        repository.unarchiveShow(show.id)
+        myShowsRepository.unarchiveShow(show.id)
     }
 
     fun onSearchQueryChanged(text: String) {
@@ -138,7 +140,7 @@ class MyShowsPresenter(
 
     fun onRefreshRequested() {
         launch {
-            repository.refreshMyShows()
+            showRepository.refreshAllNonArchivedShows()
             view?.hideRefresh()
         }
     }
