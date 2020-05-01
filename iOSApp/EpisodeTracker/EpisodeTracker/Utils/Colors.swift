@@ -11,6 +11,7 @@ extension UIColor {
     static let dividerPrimary = color("DividerPrimary")
     static let windowBackground = color("WindowBackground")
     static let ripple = color("RippleColor")
+    static let headerBackground = color("HeaderBackground")
     
     private static let bundle = Bundle(for: AppDelegate.self)
     
