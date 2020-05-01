@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.common.preferences.delegates
 
 import com.russhwolf.settings.Settings
+import dev.polek.episodetracker.common.logging.log
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
@@ -23,6 +24,8 @@ class JsonPreferenceDelegate<T: Any>(
 
     @OptIn(ImplicitReflectionSerializer::class)
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
+        log { "$key: $value" }
+
         if (value == null) {
             settings.remove(key)
         } else {

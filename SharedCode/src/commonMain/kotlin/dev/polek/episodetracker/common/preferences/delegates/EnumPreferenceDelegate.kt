@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.common.preferences.delegates
 
 import com.russhwolf.settings.Settings
+import dev.polek.episodetracker.common.logging.log
 import kotlin.reflect.KProperty
 
 internal class EnumPreferenceDelegate<T: Enum<T>>(
@@ -15,6 +16,8 @@ internal class EnumPreferenceDelegate<T: Enum<T>>(
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
+        log { "$key: $value" }
+
         if (value != null) {
             settings.putString(key, value.name)
         } else {

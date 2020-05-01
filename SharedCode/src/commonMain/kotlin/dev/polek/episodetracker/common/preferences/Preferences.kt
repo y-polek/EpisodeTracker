@@ -33,6 +33,15 @@ class Preferences(settings: Settings) {
         key = KEY_SHOW_LAST_WEEK_SECTION,
         defaultValue = true)
 
+    var showSpecials: Boolean by BooleanPreferenceDelegate(
+        settings = settings,
+        key = KEY_SHOW_SPECIALS,
+        defaultValue = true)
+    var showSpecialsInToWatch: Boolean by BooleanPreferenceDelegate(
+        settings = settings,
+        key = KEY_SHOW_SPECIALS_IN_TO_WATCH,
+        defaultValue = false)
+
     companion object {
         const val KEY_APPEARANCE = "key_appearance"
 
@@ -41,5 +50,8 @@ class Preferences(settings: Settings) {
         const val KEY_IS_ENDED_EXPANDED = "key_is_ended_expanded"
         const val KEY_IS_ARCHIVED_EXPANDED = "key_is_archived_expanded"
         const val KEY_SHOW_LAST_WEEK_SECTION = "key_show_last_week_section"
+
+        const val KEY_SHOW_SPECIALS = "key_show_specials"
+        const val KEY_SHOW_SPECIALS_IN_TO_WATCH = "key_show_specials_in_to_watch"
     }
 }

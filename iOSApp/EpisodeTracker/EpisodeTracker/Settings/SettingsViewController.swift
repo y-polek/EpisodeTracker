@@ -8,6 +8,9 @@ class SettingsViewController: UIViewController {
     private var presenter: SettingsPresenter!
     private var appearance: Appearance = .automatic
     private var showLastWeekSection: Bool = false
+    private var showSpecials: Bool = false
+    private var showSpecialsInToWatch: Bool = false
+    private var showSpecialsInToWatchEnabled: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,21 @@ extension SettingsViewController: SettingsView {
     
     func setShowLastWeekSection(showLastWeekSection: Bool) {
         self.showLastWeekSection = showLastWeekSection
-        tableView.reloadSections(IndexSet(arrayLiteral: PreferenceSection.myShows.rawValue), with: .automatic)
+        let indexPath = IndexPath(row: MyShowsOption.showLastWeekSection.rawValue, section: PreferenceSection.myShows.rawValue)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    func setShowSpecials(showSpecials: Bool) {
+        self.showSpecials = showSpecials
+        let indexPath = IndexPath(row: SpecialsOption.showSpecials.rawValue, section: PreferenceSection.specials.rawValue)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    func setShowSpecialsInToWatch(showSpecialsInToWatch: Bool, isEnabled: Bool) {
+        self.showSpecialsInToWatch = showSpecialsInToWatch
+        self.showSpecialsInToWatchEnabled = isEnabled
+        let indexPath = IndexPath(row: SpecialsOption.showSpecialsInToWatch.rawValue, section: PreferenceSection.specials.rawValue)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 
@@ -57,7 +74,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         switch PreferenceSection(rawValue: section) {
         case .appearance: return AppearanceOption.allCases.count
         case .myShows: return MyShowsOption.allCases.count
-        case .specials: return 2
+        case .specials: return SpecialsOption.allCases.count
         case .none: return 0
         }
     }
@@ -76,8 +93,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return myShowsCell(tableView, indexPath)
         case .specials:
             return specialsCell(tableView, indexPath)
-        default:
-            return tableView.dequeueReusableCell(withIdentifier: "multichoice_cell", for: indexPath) as! MultichoicePrefereenceCell
+        case .none:
+            fatalError("Unknown section at \(indexPath)")
         }
     }
     
@@ -116,7 +133,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.switchCallback = { [weak self] isOn in
                 self?.presenter.onShowLastWeekSectionChanged(isChecked: isOn)
             }
-        default:
+        case .none:
             break
         }
         
@@ -124,8 +141,28 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     private func specialsCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "switch_cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "switch_cell", for: indexPath) as! SwitchPreferenceCell
         cell.selectionStyle = .none
+        
+        let option = SpecialsOption(rawValue: indexPath.row)
+        cell.nameLabel.text = option?.description
+        switch option {
+        case .showSpecials:
+            cell.checkbox.isOn = showSpecials
+            cell.isEnabled = true
+            cell.switchCallback = { [weak self] isOn in
+                self?.presenter.onShowSpecialsChanged(isChecked: isOn)
+            }
+        case .showSpecialsInToWatch:
+            cell.checkbox.isOn = showSpecialsInToWatch
+            cell.isEnabled = showSpecialsInToWatchEnabled
+            cell.switchCallback = { [weak self] isOn in
+                self?.presenter.onShowSpecialsInToWatchChanged(isChecked: isOn)
+            }
+        case .none:
+            break
+        }
+        
         return cell
     }
 }

@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.common.preferences.delegates
 
 import com.russhwolf.settings.Settings
+import dev.polek.episodetracker.common.logging.log
 import kotlin.reflect.KProperty
 
 class BooleanPreferenceDelegate(
@@ -13,6 +14,8 @@ class BooleanPreferenceDelegate(
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean?) {
+        log { "$key: $value" }
+
         if (value != null) {
             settings.putBoolean(key, value)
         } else {

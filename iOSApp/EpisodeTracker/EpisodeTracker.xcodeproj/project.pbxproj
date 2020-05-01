@@ -36,6 +36,7 @@
 		D28D38F9245C2EDE00E9894B /* AppearanceOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38F8245C2EDE00E9894B /* AppearanceOption.swift */; };
 		D28D38FB245C5BCC00E9894B /* SwitchPreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38FA245C5BCC00E9894B /* SwitchPreferenceCell.swift */; };
 		D28D38FD245C5DC100E9894B /* MyShowsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38FC245C5DC100E9894B /* MyShowsOption.swift */; };
+		D28D38FF245C6F4000E9894B /* SpecialsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38FE245C6F4000E9894B /* SpecialsOption.swift */; };
 		D2906596242E87D2004CF818 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2906595242E87D2004CF818 /* GradientView.swift */; };
 		D293933124184B6B00F028C6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D293933024184B6B00F028C6 /* ErrorView.swift */; };
 		D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; };
@@ -129,6 +130,7 @@
 		D28D38F8245C2EDE00E9894B /* AppearanceOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceOption.swift; sourceTree = "<group>"; };
 		D28D38FA245C5BCC00E9894B /* SwitchPreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPreferenceCell.swift; sourceTree = "<group>"; };
 		D28D38FC245C5DC100E9894B /* MyShowsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsOption.swift; sourceTree = "<group>"; };
+		D28D38FE245C6F4000E9894B /* SpecialsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialsOption.swift; sourceTree = "<group>"; };
 		D2906595242E87D2004CF818 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D293933024184B6B00F028C6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D29D7AEE23A24D4400B2832D /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				D28D38F3245C0FE700E9894B /* PreferenceSection.swift */,
 				D28D38F8245C2EDE00E9894B /* AppearanceOption.swift */,
 				D28D38FC245C5DC100E9894B /* MyShowsOption.swift */,
+				D28D38FE245C6F4000E9894B /* SpecialsOption.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				D28792D523F887140071E46B /* TrailerCell.swift in Sources */,
 				D2C201372433E11800BA5622 /* MyShowViewModel+ListDiffable.swift in Sources */,
 				D2C1762023FEAFF600BE0137 /* Urls.swift in Sources */,
+				D28D38FF245C6F4000E9894B /* SpecialsOption.swift in Sources */,
 				D2F09F0F23F40675003BFFAA /* NavigationController.swift in Sources */,
 				D29DCAD023F9A68B00491ACD /* CastMemberCell.swift in Sources */,
 				D28D38F0245B55C000E9894B /* SettingsViewController.swift in Sources */,
