@@ -27,6 +27,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    @available(iOS 13.0, *)
+    func setAppearance(_ appearance: Appearance) {
+        var style: UIUserInterfaceStyle
+        switch appearance {
+        case .automatic:
+            style = .unspecified
+        case .light:
+            style = .light
+        case .dark:
+            style = .dark
+        default:
+            fatalError("Unknown appearance: \(appearance)")
+        }
+        window?.overrideUserInterfaceStyle = style
+    }
 
     static func instance() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
