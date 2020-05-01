@@ -4,6 +4,10 @@ import SharedCode
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    static func instance() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
 
     var window: UIWindow?
     
@@ -20,10 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var episodesRepository: EpisodesRepository = EpisodesRepository(db: database)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setupImageCache()
         
-        ImageCache.default.memoryStorage.config.totalCostLimit = 50 * 1024 * 1024
-        ImageCache.default.memoryStorage.config.expiration = .never
-        
+        if #available(iOS 13.0, *) {
+            setAppearance(preferences.appearance)
+        }
         
         return true
     }
@@ -43,9 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window?.overrideUserInterfaceStyle = style
     }
-
-    static func instance() -> AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
+    
+    private func setupImageCache() {
+        ImageCache.default.memoryStorage.config.totalCostLimit = 50 * 1024 * 1024
+        ImageCache.default.memoryStorage.config.expiration = .never
     }
 }
 
