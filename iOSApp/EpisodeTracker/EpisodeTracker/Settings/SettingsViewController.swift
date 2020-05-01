@@ -7,6 +7,7 @@ class SettingsViewController: UIViewController {
     
     private var presenter: SettingsPresenter!
     private var appearance: Appearance = .automatic
+    private var showLastWeekSection: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +33,16 @@ extension SettingsViewController: SettingsView {
     
     func setAppearance(appearance: Appearance) {
         self.appearance = appearance
-        tableView.reloadData()
+        tableView.reloadSections(IndexSet(arrayLiteral: PreferenceSection.appearance.rawValue), with: .automatic)
         
         if #available(iOS 13.0, *) {
             AppDelegate.instance().setAppearance(appearance)
         }
+    }
+    
+    func setShowLastWeekSection(showLastWeekSection: Bool) {
+        self.showLastWeekSection = showLastWeekSection
+        tableView.reloadSections(IndexSet(arrayLiteral: PreferenceSection.myShows.rawValue), with: .automatic)
     }
 }
 
@@ -49,8 +55,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch PreferenceSection(rawValue: section) {
-        case .appearance: return 3
-        case .myShows: return 1
+        case .appearance: return AppearanceOption.allCases.count
+        case .myShows: return MyShowsOption.allCases.count
         case .specials: return 2
         case .none: return 0
         }
@@ -78,7 +84,9 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch PreferenceSection(rawValue: indexPath.section) {
+        let section = PreferenceSection(rawValue: indexPath.section)
+        
+        switch section {
         case .appearance:
             if let option = AppearanceOption(rawValue: indexPath.row) {
                 presenter.onAppearanceOptionClicked(appearance: option.appearance)
@@ -97,8 +105,21 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     private func myShowsCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "switch_cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "switch_cell", for: indexPath) as! SwitchPreferenceCell
         cell.selectionStyle = .none
+        
+        let option = MyShowsOption(rawValue: indexPath.row)
+        cell.nameLabel.text = option?.description
+        switch option {
+        case .showLastWeekSection:
+            cell.checkbox.isOn = showLastWeekSection
+            cell.switchCallback = { [weak self] isOn in
+                self?.presenter.onShowLastWeekSectionChanged(isChecked: isOn)
+            }
+        default:
+            break
+        }
+        
         return cell
     }
     

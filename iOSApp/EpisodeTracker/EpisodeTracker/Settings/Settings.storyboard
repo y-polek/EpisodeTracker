@@ -60,7 +60,7 @@
                                             <outlet property="nameLabel" destination="WW3-pY-zMo" id="Bwl-rp-367"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="switch_cell" id="j65-QJ-nPD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="switch_cell" id="j65-QJ-nPD" customClass="SwitchPreferenceCell" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j65-QJ-nPD" id="3XO-GZ-m2Y">
@@ -78,6 +78,9 @@
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62k-q3-0Hb">
                                                             <rect key="frame" x="333" y="6.5" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="onSwitched:" destination="j65-QJ-nPD" eventType="valueChanged" id="6u1-BI-xAb"/>
+                                                            </connections>
                                                         </switch>
                                                     </subviews>
                                                 </stackView>
@@ -89,6 +92,10 @@
                                                 <constraint firstAttribute="bottom" secondItem="gev-xu-mXm" secondAttribute="bottom" id="ogI-AU-H8F"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkbox" destination="62k-q3-0Hb" id="Q9y-kW-2fI"/>
+                                            <outlet property="nameLabel" destination="Udm-Mc-iWd" id="wVw-Qa-3jh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

@@ -5,4 +5,5 @@ import dev.polek.episodetracker.common.model.Appearance
 interface SettingsView {
 
     fun setAppearance(appearance: Appearance)
+    fun setShowLastWeekSection(showLastWeekSection: Boolean)
 }

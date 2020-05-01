@@ -34,6 +34,8 @@
 		D28D38F4245C0FE700E9894B /* PreferenceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38F3245C0FE700E9894B /* PreferenceSection.swift */; };
 		D28D38F6245C141A00E9894B /* MultichoicePreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38F5245C141A00E9894B /* MultichoicePreferenceCell.swift */; };
 		D28D38F9245C2EDE00E9894B /* AppearanceOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38F8245C2EDE00E9894B /* AppearanceOption.swift */; };
+		D28D38FB245C5BCC00E9894B /* SwitchPreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38FA245C5BCC00E9894B /* SwitchPreferenceCell.swift */; };
+		D28D38FD245C5DC100E9894B /* MyShowsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D38FC245C5DC100E9894B /* MyShowsOption.swift */; };
 		D2906596242E87D2004CF818 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2906595242E87D2004CF818 /* GradientView.swift */; };
 		D293933124184B6B00F028C6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D293933024184B6B00F028C6 /* ErrorView.swift */; };
 		D29D7AEF23A24D4400B2832D /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29D7AEE23A24D4400B2832D /* SharedCode.framework */; };
@@ -125,6 +127,8 @@
 		D28D38F3245C0FE700E9894B /* PreferenceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceSection.swift; sourceTree = "<group>"; };
 		D28D38F5245C141A00E9894B /* MultichoicePreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultichoicePreferenceCell.swift; sourceTree = "<group>"; };
 		D28D38F8245C2EDE00E9894B /* AppearanceOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceOption.swift; sourceTree = "<group>"; };
+		D28D38FA245C5BCC00E9894B /* SwitchPreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPreferenceCell.swift; sourceTree = "<group>"; };
+		D28D38FC245C5DC100E9894B /* MyShowsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsOption.swift; sourceTree = "<group>"; };
 		D2906595242E87D2004CF818 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D293933024184B6B00F028C6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D29D7AEE23A24D4400B2832D /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 				D28D38F1245B589100E9894B /* Settings.storyboard */,
 				D28D38EF245B55C000E9894B /* SettingsViewController.swift */,
 				D28D38F5245C141A00E9894B /* MultichoicePreferenceCell.swift */,
+				D28D38FA245C5BCC00E9894B /* SwitchPreferenceCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			children = (
 				D28D38F3245C0FE700E9894B /* PreferenceSection.swift */,
 				D28D38F8245C2EDE00E9894B /* AppearanceOption.swift */,
+				D28D38FC245C5DC100E9894B /* MyShowsOption.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				D29D7AFE23A2974700B2832D /* UpcomingShowCell.swift in Sources */,
 				D29D7B1623A5063A00B2832D /* DiscoverResultCell.swift in Sources */,
 				D29D7B0323A2A93D00B2832D /* ImageView.swift in Sources */,
+				D28D38FD245C5DC100E9894B /* MyShowsOption.swift in Sources */,
 				D232E73323F59E6300F024B9 /* AboutShowViewController.swift in Sources */,
 				D2CC728D2414E87C00D4AD01 /* Animations.swift in Sources */,
 				D28D38F9245C2EDE00E9894B /* AppearanceOption.swift in Sources */,
@@ -638,6 +645,7 @@
 				D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */,
 				D2AB72F223E8B70800BA9576 /* EpisodesViewController.swift in Sources */,
 				D2BEEF1923A248820077F125 /* AppDelegate.swift in Sources */,
+				D28D38FB245C5BCC00E9894B /* SwitchPreferenceCell.swift in Sources */,
 				D2C283C523E9F648002BEE91 /* SeasonHeaderView.swift in Sources */,
 				D29D7B1123A3E00700B2832D /* Fonts.swift in Sources */,
 				D29D7B1423A44F9A00B2832D /* DiscoverViewController.swift in Sources */,

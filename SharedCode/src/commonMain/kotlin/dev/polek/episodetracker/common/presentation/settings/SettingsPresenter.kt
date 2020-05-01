@@ -9,6 +9,7 @@ class SettingsPresenter(private val prefs: Preferences) : BasePresenter<Settings
     override fun attachView(view: SettingsView) {
         super.attachView(view)
         view.setAppearance(prefs.appearance)
+        view.setShowLastWeekSection(prefs.showLastWeekSection)
     }
 
     fun onAppearanceOptionClicked(appearance: Appearance) {
@@ -16,5 +17,9 @@ class SettingsPresenter(private val prefs: Preferences) : BasePresenter<Settings
 
         prefs.appearance = appearance
         view?.setAppearance(appearance)
+    }
+
+    fun onShowLastWeekSectionChanged(isChecked: Boolean) {
+        prefs.showLastWeekSection = isChecked
     }
 }
