@@ -63,10 +63,10 @@ SELECT
 upcomingShows:
 SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
 FROM MyShow
+INNER JOIN UpcomingEpisodes ON UpcomingEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode
- ON Episode.showTmdbId = MyShow.tmdbId
- AND Episode.seasonNumber = MyShow.nextEpisodeSeason
- AND Episode.episodeNumber = MyShow.nextEpisodeNumber
+    ON Episode.showTmdbId = MyShow.tmdbId
+    AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = UpcomingEpisodes.upcomingEpisodeIndex
 WHERE isArchived = 0;
 
 toBeAnnouncedShows:
