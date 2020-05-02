@@ -17,20 +17,18 @@ CREATE TABLE MyShow (
     networks TEXT AS List<String> NOT NULL,
     contentRating TEXT,
     isEnded INTEGER AS Boolean NOT NULL,
-    nextEpisodeSeason INTEGER AS Int,
-    nextEpisodeNumber INTEGER AS Int,
     isArchived INTEGER AS Boolean NOT NULL DEFAULT 0,
 
     PRIMARY KEY (tmdbId)
 );
 
 insert:
-INSERT OR REPLACE INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, homePageUrl, genres, networks, contentRating, isEnded, nextEpisodeSeason, nextEpisodeNumber)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO MyShow(imdbId, tmdbId, tvdbId, facebookId, instagramId, twitterId, name, overview, year, lastYear, imageUrl, homePageUrl, genres, networks, contentRating, isEnded)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 update:
 UPDATE MyShow
-SET imdbId = ?, tvdbId = ?, facebookId = ?, instagramId = ?, twitterId = ?, name = ?, overview = ?, year = ?, lastYear = ?, imageUrl = ?, homePageUrl = ?, genres = ?, networks = ?, contentRating = ?, isEnded = ?, nextEpisodeSeason = ?, nextEpisodeNumber = ?
+SET imdbId = ?, tvdbId = ?, facebookId = ?, instagramId = ?, twitterId = ?, name = ?, overview = ?, year = ?, lastYear = ?, imageUrl = ?, homePageUrl = ?, genres = ?, networks = ?, contentRating = ?, isEnded = ?
 WHERE tmdbId = ?;
 
 deleteByTmdbId:
@@ -72,8 +70,9 @@ WHERE isArchived = 0;
 toBeAnnouncedShows:
 SELECT tmdbId, name, imageUrl
 FROM MyShow
+LEFT JOIN UpcomingEpisodes ON UpcomingEpisodes.showTmdbId = MyShow.tmdbId
 WHERE isEnded = 0
-    AND nextEpisodeNumber IS NULL
+    AND UpcomingEpisodes.upcomingEpisodeIndex IS NULL
     AND isArchived = 0;
 
 endedShows:

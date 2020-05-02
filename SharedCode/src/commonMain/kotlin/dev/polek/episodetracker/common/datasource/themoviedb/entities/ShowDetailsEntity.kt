@@ -20,7 +20,6 @@ data class ShowDetailsEntity(
     @SerialName("backdrop_path") val backdropPath: String? = null,
     @SerialName("homepage") private val homepage: String? = null,
     @SerialName("in_production") val inProduction: Boolean = true,
-    @SerialName("next_episode_to_air") val nextEpisodeToAir: EpisodeEntity? = null,
     @SerialName("seasons") private val seasons: List<SeasonEntity>?,
     @SerialName("external_ids") val externalIds: ExternalIdsEntity? = null,
     @SerialName("content_ratings") private val contentRatings: ContentRatingsEntity? = null,

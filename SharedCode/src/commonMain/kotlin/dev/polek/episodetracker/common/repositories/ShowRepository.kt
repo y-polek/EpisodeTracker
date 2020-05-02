@@ -69,9 +69,7 @@ class ShowRepository(
                 genres = show.genres,
                 networks = show.networks,
                 contentRating = show.contentRating,
-                isEnded = show.isEnded,
-                nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
-                nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
+                isEnded = show.isEnded)
         }
     }
 
@@ -158,9 +156,7 @@ class ShowRepository(
                 genres = show.genres,
                 networks = show.networks,
                 contentRating = show.contentRating,
-                isEnded = show.isEnded,
-                nextEpisodeSeason = show.nextEpisodeToAir?.seasonNumber,
-                nextEpisodeNumber = show.nextEpisodeToAir?.episodeNumber)
+                isEnded = show.isEnded)
         }
     }
 
