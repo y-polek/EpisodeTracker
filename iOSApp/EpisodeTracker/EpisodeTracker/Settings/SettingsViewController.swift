@@ -36,7 +36,7 @@ extension SettingsViewController: SettingsView {
     
     func setAppearance(appearance: Appearance) {
         self.appearance = appearance
-        tableView.reloadSections(IndexSet(arrayLiteral: PreferenceSection.appearance.rawValue), with: .automatic)
+        tableView.reloadSections(IndexSet(arrayLiteral: PreferenceSection.appearance.index), with: .automatic)
         
         if #available(iOS 13.0, *) {
             AppDelegate.instance().setAppearance(appearance)
@@ -45,20 +45,20 @@ extension SettingsViewController: SettingsView {
     
     func setShowLastWeekSection(showLastWeekSection: Bool) {
         self.showLastWeekSection = showLastWeekSection
-        let indexPath = IndexPath(row: MyShowsOption.showLastWeekSection.rawValue, section: PreferenceSection.myShows.rawValue)
+        let indexPath = IndexPath(row: MyShowsOption.showLastWeekSection.rawValue, section: PreferenceSection.myShows.index)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     func setShowSpecials(showSpecials: Bool) {
         self.showSpecials = showSpecials
-        let indexPath = IndexPath(row: SpecialsOption.showSpecials.rawValue, section: PreferenceSection.specials.rawValue)
+        let indexPath = IndexPath(row: SpecialsOption.showSpecials.rawValue, section: PreferenceSection.specials.index)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     func setShowSpecialsInToWatch(showSpecialsInToWatch: Bool, isEnabled: Bool) {
         self.showSpecialsInToWatch = showSpecialsInToWatch
         self.showSpecialsInToWatchEnabled = isEnabled
-        let indexPath = IndexPath(row: SpecialsOption.showSpecialsInToWatch.rawValue, section: PreferenceSection.specials.rawValue)
+        let indexPath = IndexPath(row: SpecialsOption.showSpecialsInToWatch.rawValue, section: PreferenceSection.specials.index)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
@@ -67,24 +67,23 @@ extension SettingsViewController: SettingsView {
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return PreferenceSection.allCases.count
+        return PreferenceSection.allSections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch PreferenceSection(rawValue: section) {
+        switch PreferenceSection.atIndex(section) {
         case .appearance: return AppearanceOption.allCases.count
         case .myShows: return MyShowsOption.allCases.count
         case .specials: return SpecialsOption.allCases.count
-        case .none: return 0
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return PreferenceSection(rawValue: section)?.description
+        return PreferenceSection.atIndex(section).description
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = PreferenceSection(rawValue: indexPath.section)
+        let section = PreferenceSection.atIndex(indexPath.section)
         
         switch section {
         case .appearance:
@@ -93,15 +92,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return myShowsCell(tableView, indexPath)
         case .specials:
             return specialsCell(tableView, indexPath)
-        case .none:
-            fatalError("Unknown section at \(indexPath)")
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let section = PreferenceSection(rawValue: indexPath.section)
+        let section = PreferenceSection.atIndex(indexPath.section)
         
         switch section {
         case .appearance:
