@@ -40,7 +40,6 @@ data class ShowDetailsEntity(
         ?.toList()
         .orEmpty()
     @Transient val homePageUrl = homepage?.blankToNull()
-    @Transient val imdbUrl = externalIds?.imdbId?.let { "https://www.imdb.com/title/$it" }
     @Transient val videos: List<VideoEntity> = videosEntity?.results?.filter(VideoEntity::isValid).orEmpty()
     @Transient val cast: List<CastMemberEntity> = credits?.cast?.filter(CastMemberEntity::isValid).orEmpty()
     @Transient val recommendations: List<RecommendationEntity> = recommendationsEntity?.results?.filter(RecommendationEntity::isValid).orEmpty()
