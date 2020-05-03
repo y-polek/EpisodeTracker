@@ -6,52 +6,31 @@ import dev.polek.episodetracker.common.preferences.delegates.BooleanPreferenceDe
 import dev.polek.episodetracker.common.preferences.delegates.EnumPreferenceDelegate
 
 class Preferences(settings: Settings) {
-    var appearance: Appearance by EnumPreferenceDelegate(
-        settings = settings,
-        key = KEY_APPEARANCE,
+    var appearance: Appearance by EnumPreferenceDelegate(settings, KEY_APPEARANCE,
         defaultValue = Appearance.AUTOMATIC,
         enumValues = Appearance.values())
 
-    var isUpcomingExpanded: Boolean by BooleanPreferenceDelegate(
-        settings = settings,
-        key = KEY_IS_UPCOMING_EXPANDED,
-        defaultValue = true)
-    var isTbaExpanded: Boolean by BooleanPreferenceDelegate(
-        settings = settings,
-        key = KEY_IS_TBA_EXPANDED,
-        defaultValue = true)
-    var isEndedExpanded: Boolean by BooleanPreferenceDelegate(
-        settings = settings,
-        key = KEY_IS_ENDED_EXPANDED,
-        defaultValue = true)
-    var isArchivedExpanded: Boolean by BooleanPreferenceDelegate(
-        settings = settings,
-        key = KEY_IS_ARCHIVED_EXPANDED,
-        defaultValue = false)
-    var showLastWeekSection: Boolean by BooleanPreferenceDelegate(
-        settings = settings,
-        key = KEY_SHOW_LAST_WEEK_SECTION,
-        defaultValue = true)
+    var isLastWeekExpanded by BooleanPreferenceDelegate(settings, KEY_IS_LAST_WEEK_EXPANDED, defaultValue = true)
+    var isUpcomingExpanded by BooleanPreferenceDelegate(settings, KEY_IS_UPCOMING_EXPANDED, defaultValue = true)
+    var isTbaExpanded by BooleanPreferenceDelegate(settings, KEY_IS_TBA_EXPANDED, defaultValue = true)
+    var isEndedExpanded by BooleanPreferenceDelegate(settings, KEY_IS_ENDED_EXPANDED, defaultValue = true)
+    var isArchivedExpanded by BooleanPreferenceDelegate(settings, KEY_IS_ARCHIVED_EXPANDED, defaultValue = false)
+    var showLastWeekSection by BooleanPreferenceDelegate(settings, KEY_SHOW_LAST_WEEK_SECTION, defaultValue = true)
 
-    var showSpecials: Boolean by BooleanPreferenceDelegate(
-        settings = settings,
-        key = KEY_SHOW_SPECIALS,
-        defaultValue = true)
-    var showSpecialsInToWatch: Boolean by BooleanPreferenceDelegate(
-        settings = settings,
-        key = KEY_SHOW_SPECIALS_IN_TO_WATCH,
-        defaultValue = false)
+    var showSpecials by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS, defaultValue = true)
+    var showSpecialsInToWatch by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS_IN_TO_WATCH, defaultValue = false)
 
     companion object {
-        const val KEY_APPEARANCE = "key_appearance"
+        private const val KEY_APPEARANCE = "key_appearance"
 
-        const val KEY_IS_UPCOMING_EXPANDED = "key_is_upcoming_expanded"
-        const val KEY_IS_TBA_EXPANDED = "key_is_tba_expanded"
-        const val KEY_IS_ENDED_EXPANDED = "key_is_ended_expanded"
-        const val KEY_IS_ARCHIVED_EXPANDED = "key_is_archived_expanded"
-        const val KEY_SHOW_LAST_WEEK_SECTION = "key_show_last_week_section"
+        private const val KEY_IS_LAST_WEEK_EXPANDED = "key_is_last_week_expanded"
+        private const val KEY_IS_UPCOMING_EXPANDED = "key_is_upcoming_expanded"
+        private const val KEY_IS_TBA_EXPANDED = "key_is_tba_expanded"
+        private const val KEY_IS_ENDED_EXPANDED = "key_is_ended_expanded"
+        private const val KEY_IS_ARCHIVED_EXPANDED = "key_is_archived_expanded"
+        private const val KEY_SHOW_LAST_WEEK_SECTION = "key_show_last_week_section"
 
-        const val KEY_SHOW_SPECIALS = "key_show_specials"
-        const val KEY_SHOW_SPECIALS_IN_TO_WATCH = "key_show_specials_in_to_watch"
+        private const val KEY_SHOW_SPECIALS = "key_show_specials"
+        private const val KEY_SHOW_SPECIALS_IN_TO_WATCH = "key_show_specials_in_to_watch"
     }
 }

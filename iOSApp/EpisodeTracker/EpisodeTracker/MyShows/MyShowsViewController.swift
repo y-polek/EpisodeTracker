@@ -8,6 +8,7 @@ class MyShowsViewController: UIViewController {
     @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
+    private var lastWeekShows = [MyShowsListItem.UpcomingShowViewModel]()
     private var upcomingShows = [MyShowsListItem.UpcomingShowViewModel]()
     private var tbaShows = [MyShowsListItem.ShowViewModel]()
     private var endedShows = [MyShowsListItem.ShowViewModel]()
@@ -47,20 +48,24 @@ class MyShowsViewController: UIViewController {
         presenter.onRefreshRequested()
     }
     
+    private func lastWeekSectionIndex() -> Int {
+        return lastWeekShows.isEmpty ? -1 : 0
+    }
+    
     private func upcomingSectionIndex() -> Int {
-        return upcomingShows.isEmpty ? -1 : 0
+        return upcomingShows.isEmpty ? -1 : (1 - (lastWeekShows.isEmpty ? 1 : 0))
     }
     
     private func tbaSectionIndex() -> Int {
-        return tbaShows.isEmpty ? -1 : (1 - (upcomingShows.isEmpty ? 1 : 0))
+        return tbaShows.isEmpty ? -1 : (2 - (lastWeekShows.isEmpty ? 1 : 0) - (upcomingShows.isEmpty ? 1 : 0))
     }
     
     private func endedSectionIndex() -> Int {
-        return endedShows.isEmpty ? -1 : (2 - (upcomingShows.isEmpty ? 1 : 0) - (tbaShows.isEmpty ? 1 : 0))
+        return endedShows.isEmpty ? -1 : (3 - (lastWeekShows.isEmpty ? 1 : 0) - (upcomingShows.isEmpty ? 1 : 0) - (tbaShows.isEmpty ? 1 : 0))
     }
     
     private func archivedSectionIndex() -> Int {
-        return archivedShows.isEmpty ? -1 : (3 - (upcomingShows.isEmpty ? 1 : 0) - (tbaShows.isEmpty ? 1 : 0) - (endedShows.isEmpty ? 1 : 0))
+        return archivedShows.isEmpty ? -1 : (4 - (lastWeekShows.isEmpty ? 1 : 0) - (upcomingShows.isEmpty ? 1 : 0) - (tbaShows.isEmpty ? 1 : 0) - (endedShows.isEmpty ? 1 : 0))
     }
     
     private func showAt(_ indexPath: IndexPath) -> MyShowsListItem.ShowViewModel {
@@ -68,6 +73,8 @@ class MyShowsViewController: UIViewController {
         let row = indexPath.row
         
         switch section {
+        case lastWeekSectionIndex():
+            return lastWeekShows[row]
         case upcomingSectionIndex():
             return upcomingShows[row]
         case tbaSectionIndex():
@@ -94,6 +101,22 @@ class MyShowsViewController: UIViewController {
 
 // MARK: - MyShowsView implementation
 extension MyShowsViewController: MyShowsView {
+    
+    func displayLastWeekShows(shows: [MyShowsListItem.UpcomingShowViewModel]) {
+        let oldSectionIndex = lastWeekSectionIndex()
+        let oldShows = lastWeekShows
+        let oldIsExpanded = presenter.isLastWeekExpanded
+        
+        lastWeekShows = shows
+        
+        updateSection(
+            oldSectionIndex: oldSectionIndex,
+            newSectionIndex: lastWeekSectionIndex(),
+            oldShows: oldShows,
+            newShows: lastWeekShows,
+            oldIsExpanded: oldIsExpanded,
+            newIsExpanded: presenter.isLastWeekExpanded)
+    }
     
     func displayUpcomingShows(shows: [MyShowsListItem.UpcomingShowViewModel]) {
         let oldSectionIndex = upcomingSectionIndex()
@@ -218,7 +241,8 @@ extension MyShowsViewController: MyShowsView {
 extension MyShowsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        let number = (upcomingShows.isEmpty ? 0 : 1)
+        let number = (lastWeekShows.isEmpty ? 0 : 1)
+            + (upcomingShows.isEmpty ? 0 : 1)
             + (tbaShows.isEmpty ? 0 : 1)
             + (endedShows.isEmpty ? 0 : 1)
             + (archivedShows.isEmpty ? 0 : 1)
@@ -227,6 +251,8 @@ extension MyShowsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
+        case lastWeekSectionIndex():
+            return presenter.isLastWeekExpanded ? lastWeekShows.count : 0
         case upcomingSectionIndex():
             return presenter.isUpcomingExpanded ? upcomingShows.count : 0
         case tbaSectionIndex():
@@ -244,6 +270,15 @@ extension MyShowsViewController: UITableViewDataSource {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyShowsHeaderView.reuseIdentifier) as! MyShowsHeaderView
         
         switch section {
+        case lastWeekSectionIndex():
+            header.title = "Last Week"
+            header.isExpanded = presenter.isLastWeekExpanded
+            header.tapCallback = { [weak self] in
+                if let vc = self {
+                    vc.presenter.isLastWeekExpanded.toggle()
+                    tableView.reloadSections(IndexSet(arrayLiteral: vc.lastWeekSectionIndex()), with: .automatic)
+                }
+            }
         case upcomingSectionIndex():
             header.title = "Upcoming"
             header.isExpanded = presenter.isUpcomingExpanded
@@ -289,6 +324,8 @@ extension MyShowsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
+        case lastWeekSectionIndex():
+            return lastWeekShowCell(tableView, indexPath)
         case upcomingSectionIndex():
             return upcomingShowCell(tableView, indexPath)
         case tbaSectionIndex():
@@ -300,6 +337,13 @@ extension MyShowsViewController: UITableViewDataSource {
         default:
             fatalError("Unknown section #\(indexPath.section)")
         }
+    }
+    
+    private func lastWeekShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UpcomingShowCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "upcoming_show_cell") as! UpcomingShowCell
+        cell.delegate = self
+        cell.bind(show: lastWeekShows[indexPath.row])
+        return cell
     }
     
     private func upcomingShowCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UpcomingShowCell {

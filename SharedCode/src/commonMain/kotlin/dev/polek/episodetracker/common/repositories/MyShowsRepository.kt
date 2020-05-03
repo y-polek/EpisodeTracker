@@ -8,6 +8,7 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.utils.formatEpisodeNumber
 import dev.polek.episodetracker.common.utils.formatTimeBetween
+import dev.polek.episodetracker.common.utils.now
 import dev.polek.episodetracker.db.Database
 import dev.polek.episodetracker.db.ShowDetails
 import io.ktor.util.date.GMTDate
@@ -16,6 +17,7 @@ class MyShowsRepository(
     private val db: Database,
     private val addToMyShowsQueue: AddToMyShowsQueue)
 {
+    private var lastWeekShowsQueryListener: QueryListener<UpcomingShowViewModel, List<UpcomingShowViewModel>>? = null
     private var upcomingShowsQueryListener: QueryListener<UpcomingShowViewModel, List<UpcomingShowViewModel>>? = null
     private var toBeAnnouncedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var endedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
@@ -96,26 +98,27 @@ class MyShowsRepository(
         isArchivedQueryListeners.remove(showTmdbId)?.destroy()
     }
 
+    fun setLastWeekShowsSubscriber(subscriber: Subscriber<List<UpcomingShowViewModel>>) {
+        removeLastWeekShowsSubscriber()
+
+        val query = db.myShowQueries.lastWeekShows(::mapUpcomingShowViewModel)
+
+        lastWeekShowsQueryListener = QueryListener(
+            query = query,
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<UpcomingShowViewModel>::executeAsList)
+    }
+
+    fun removeLastWeekShowsSubscriber() {
+        lastWeekShowsQueryListener?.destroy()
+        lastWeekShowsQueryListener = null
+    }
+
     fun setUpcomingShowsSubscriber(subscriber: Subscriber<List<UpcomingShowViewModel>>) {
         removeUpcomingShowsSubscriber()
 
-        val now = GMTDate()
-        val query = db.myShowQueries.upcomingShows { tmdbId, name, episodeName, episodeNumber, seasonNumber, airDateMillis, imageUrl ->
-            val daysLeft: String = if (airDateMillis != null) {
-                formatTimeBetween(now, GMTDate(airDateMillis))
-            } else {
-                "N/A"
-            }
-
-            val show = UpcomingShowViewModel(
-                id = tmdbId,
-                name = name,
-                backdropUrl = imageUrl,
-                episodeName = episodeName,
-                episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),
-                timeLeft = daysLeft)
-            show
-        }
+        val query = db.myShowQueries.upcomingShows(::mapUpcomingShowViewModel)
 
         upcomingShowsQueryListener = QueryListener(
             query = query,
@@ -187,11 +190,36 @@ class MyShowsRepository(
     }
 
     companion object {
+
         fun mapShowViewModel(tmdbId: Int, name: String, imageUrl: String?): ShowViewModel {
             return ShowViewModel(
                 id = tmdbId,
                 name = name,
                 backdropUrl = imageUrl)
+        }
+
+        fun mapUpcomingShowViewModel(
+            tmdbId: Int,
+            name: String,
+            episodeName: String,
+            episodeNumber: Int,
+            seasonNumber: Int,
+            airDateMillis: Long?,
+            imageUrl: String?): UpcomingShowViewModel
+        {
+            val daysLeft: String = if (airDateMillis != null) {
+                formatTimeBetween(now, GMTDate(airDateMillis))
+            } else {
+                "N/A"
+            }
+
+            return UpcomingShowViewModel(
+                id = tmdbId,
+                name = name,
+                backdropUrl = imageUrl,
+                episodeName = episodeName,
+                episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),
+                timeLeft = daysLeft)
         }
     }
 }

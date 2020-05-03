@@ -58,6 +58,15 @@ SELECT
     (SELECT count(*) FROM AddToMyShowsTask WHERE showTmdbId = :showTmdbId AND archive = 1)
   ) > 0;
 
+lastWeekShows:
+SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
+FROM MyShow
+INNER JOIN LastWeekEpisodes ON LastWeekEpisodes.showTmdbId = MyShow.tmdbId
+INNER JOIN Episode
+    ON Episode.showTmdbId = MyShow.tmdbId
+    AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = LastWeekEpisodes.episodeIndex
+WHERE isArchived = 0;
+
 upcomingShows:
 SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
 FROM MyShow

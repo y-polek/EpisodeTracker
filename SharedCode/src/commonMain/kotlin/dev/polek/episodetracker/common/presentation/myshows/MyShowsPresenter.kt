@@ -14,6 +14,9 @@ class MyShowsPresenter(
     private val showRepository: ShowRepository,
     private val prefs: Preferences) : BasePresenter<MyShowsView>()
 {
+    private var lastWeekShows = emptyList<UpcomingShowViewModel>()
+    private var filteredLastWeekShows = emptyList<UpcomingShowViewModel>()
+
     private var upcomingShows = emptyList<UpcomingShowViewModel>()
     private var filteredUpcomingShows = emptyList<UpcomingShowViewModel>()
 
@@ -29,7 +32,16 @@ class MyShowsPresenter(
     private var searchQuery = ""
 
     private val isFiltered: Boolean
-        get() = searchQuery.isNotEmpty() && (upcomingShows.isNotEmpty() || tbaShows.isNotEmpty() || endedShows.isNotEmpty() || archivedShows.isNotEmpty())
+        get() = searchQuery.isNotEmpty() && (lastWeekShows.isNotEmpty() || upcomingShows.isNotEmpty() || tbaShows.isNotEmpty() || endedShows.isNotEmpty() || archivedShows.isNotEmpty())
+
+    private val lastWeekShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
+        override fun onQueryResult(result: List<UpcomingShowViewModel>) {
+            lastWeekShows = result
+            filteredLastWeekShows = result.filtered()
+            view?.displayLastWeekShows(filteredLastWeekShows)
+            showOrHideEmptyMessage()
+        }
+    }
 
     private val upcomingShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
         override fun onQueryResult(result: List<UpcomingShowViewModel>) {
@@ -67,6 +79,11 @@ class MyShowsPresenter(
         }
     }
 
+    var isLastWeekExpanded: Boolean
+        get() = prefs.isLastWeekExpanded
+        set(value) {
+            prefs.isLastWeekExpanded = value
+        }
     var isUpcomingExpanded: Boolean
         get() = prefs.isUpcomingExpanded
         set(value) {
@@ -90,6 +107,7 @@ class MyShowsPresenter(
 
     override fun onViewAppeared() {
         super.onViewAppeared()
+        myShowsRepository.setLastWeekShowsSubscriber(lastWeekShowsSubscriber)
         myShowsRepository.setUpcomingShowsSubscriber(upcomingShowsSubscriber)
         myShowsRepository.setToBeAnnouncedShowsSubscriber(toBeAnnouncedShowsSubscriber)
         myShowsRepository.setEndedShowsSubscriber(endedShowsSubscriber)
@@ -97,6 +115,7 @@ class MyShowsPresenter(
     }
 
     override fun onViewDisappeared() {
+        myShowsRepository.removeLastWeekShowsSubscriber()
         myShowsRepository.removeUpcomingShowsSubscriber()
         myShowsRepository.removeToBeAnnouncedShowsSubscriber()
         myShowsRepository.removeEndedShowsSubscriber()
@@ -123,6 +142,9 @@ class MyShowsPresenter(
     fun onSearchQueryChanged(text: String) {
         searchQuery = text.trim()
 
+        filteredLastWeekShows = lastWeekShows.filtered()
+        view?.displayLastWeekShows(filteredLastWeekShows)
+
         filteredUpcomingShows = upcomingShows.filtered()
         view?.displayUpcomingShows(filteredUpcomingShows)
 
@@ -146,7 +168,8 @@ class MyShowsPresenter(
     }
 
     private fun showOrHideEmptyMessage() {
-        if (filteredUpcomingShows.isEmpty()
+        if (filteredLastWeekShows.isEmpty()
+            && filteredUpcomingShows.isEmpty()
             && filteredTbaShows.isEmpty()
             && filteredEndedShows.isEmpty()
             && filteredArchivedShows.isEmpty())

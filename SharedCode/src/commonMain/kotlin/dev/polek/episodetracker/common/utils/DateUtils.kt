@@ -7,6 +7,9 @@ import io.ktor.util.date.Month.*
 
 private val dateRegex = "^([\\d]{4})-([\\d]{1,2})-([\\d]{1,2})$".toRegex()
 
+val now: GMTDate
+    get() = GMTDate()
+
 @OptIn(InternalAPI::class)
 fun parseDate(dateStr: String): GMTDate? {
 
