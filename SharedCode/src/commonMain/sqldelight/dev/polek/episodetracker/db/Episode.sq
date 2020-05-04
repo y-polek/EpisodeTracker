@@ -24,11 +24,11 @@ JOIN Time
 WHERE airDateMillis > Time.currentTimeMillis
 GROUP BY showTmdbId;
 
-CREATE VIEW LastWeekEpisodes AS
+CREATE VIEW LastWeekNotWatchedEpisodes AS
 SELECT showTmdbId, max(10000 * seasonNumber + episodeNumber) AS episodeIndex
 FROM Episode
 JOIN Time
-WHERE airDateMillis < currentTimeMillis AND airDateMillis > (currentTimeMillis - 7 * 24 * 60 * 60 * 1000)
+WHERE isWatched = 0 AND airDateMillis < currentTimeMillis AND airDateMillis > (currentTimeMillis - 7 * 24 * 60 * 60 * 1000)
 GROUP BY showTmdbId;
 
 insert:
