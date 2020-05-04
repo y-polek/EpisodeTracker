@@ -1,18 +1,18 @@
 package dev.polek.episodetracker.common.repositories
 
-import assertk.assertThat
-import assertk.assertions.isEqualTo
 import com.squareup.sqldelight.db.SqlDriver
-import dev.polek.episodetracker.common.coroutines.runBlocking
 import dev.polek.episodetracker.common.database.createInMemorySqlDriver
 import dev.polek.episodetracker.common.datasource.db.adapters.ListOfStringsAdapter
+import dev.polek.episodetracker.common.datasource.omdb.OmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
-import dev.polek.episodetracker.common.testutils.TmdbShows.THE_ORVILLE
+import dev.polek.episodetracker.common.network.Connectivity
 import dev.polek.episodetracker.common.testutils.mockTmdbHttpClient
 import dev.polek.episodetracker.common.utils.parseDate
 import dev.polek.episodetracker.db.Database
 import dev.polek.episodetracker.db.MyShow
-import kotlin.test.*
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Ignore
 
 @Ignore
 class ToWatchRepositoryTest {
@@ -27,41 +27,24 @@ class ToWatchRepositoryTest {
         sqlDriver = createInMemorySqlDriver()
         db = Database(
             driver = sqlDriver,
-            MyShowAdapter = MyShow.Adapter(genresAdapter = ListOfStringsAdapter)
+            MyShowAdapter = MyShow.Adapter(genresAdapter = ListOfStringsAdapter, networksAdapter = ListOfStringsAdapter)
         )
         val tmdbService = TmdbService(client = mockTmdbHttpClient)
+        val omdbService = OmdbService(client = mockTmdbHttpClient)
+        val connectivity = object : Connectivity {
+            override fun isConnected() = true
+            override fun addListener(listener: Connectivity.Listener) {}
+            override fun removeListener(listener: Connectivity.Listener) {}
+        }
 
-        myShowsRepository = MyShowsRepository(db, tmdbService)
+        val showRepository = ShowRepository(tmdbService, omdbService, db)
+        myShowsRepository = MyShowsRepository(db, AddToMyShowsQueue(db, tmdbService, connectivity, showRepository))
         toWatchRepository = ToWatchRepository(db)
     }
 
     @AfterTest
     fun tearDown() {
         sqlDriver.close()
-    }
-
-    @Test
-    fun `test toWatchShow`() = runBlocking {
-        now("2017-09-01") // before S01 E01
-        myShowsRepository.addShow(THE_ORVILLE.id)
-
-        var show = toWatchRepository.toWatchShow(THE_ORVILLE.id)
-        assertNull(show)
-
-        now("2017-09-15") // between S01 E01 and S01 E02
-        show = toWatchRepository.toWatchShow(THE_ORVILLE.id)
-        assertNotNull(show)
-        assertThat(show.episodeCount).isEqualTo(1)
-
-        now("2017-12-20") // between S01 E12 and S02 E01
-        show = toWatchRepository.toWatchShow(THE_ORVILLE.id)
-        assertNotNull(show)
-        assertThat(show.episodeCount).isEqualTo(12)
-
-        now("2020-01-01") // after S02 E14 (before S03 E01)
-        show = toWatchRepository.toWatchShow(THE_ORVILLE.id)
-        assertNotNull(show)
-        assertThat(show.episodeCount).isEqualTo(26)
     }
 
     private fun String.millis(): Long = requireNotNull(parseDate(this)).timestamp

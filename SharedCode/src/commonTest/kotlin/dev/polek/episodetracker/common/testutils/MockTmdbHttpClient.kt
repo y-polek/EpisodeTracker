@@ -9,10 +9,11 @@ import io.ktor.client.request.HttpResponseData
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 
 val mockTmdbHttpClient = HttpClient(MockEngine) {
     install(JsonFeature) {
-        serializer = KotlinxSerializer(json = Json.nonstrict)
+        serializer = KotlinxSerializer(json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true, isLenient = true)))
     }
     engine {
         addHandler { request ->

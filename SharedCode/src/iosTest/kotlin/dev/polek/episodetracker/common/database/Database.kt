@@ -2,8 +2,8 @@ package dev.polek.episodetracker.common.database
 
 import co.touchlab.sqliter.DatabaseConfiguration
 import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.drivers.ios.NativeSqliteDriver
-import com.squareup.sqldelight.drivers.ios.wrapConnection
+import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
+import com.squareup.sqldelight.drivers.native.wrapConnection
 import dev.polek.episodetracker.db.Database
 
 private val configuration = DatabaseConfiguration(
