@@ -102,12 +102,12 @@ class MyShowsViewController: UIViewController {
 // MARK: - MyShowsView implementation
 extension MyShowsViewController: MyShowsView {
     
-    func displayLastWeekShows(shows: [MyShowsListItem.UpcomingShowViewModel]) {
+    func displayLastWeekShows(shows: [MyShowsListItem.UpcomingShowViewModel], isVisible: Bool) {
         let oldSectionIndex = lastWeekSectionIndex()
         let oldShows = lastWeekShows
         let oldIsExpanded = presenter.isLastWeekExpanded
         
-        lastWeekShows = shows
+        lastWeekShows = isVisible ? shows : []
         
         updateSection(
             oldSectionIndex: oldSectionIndex,

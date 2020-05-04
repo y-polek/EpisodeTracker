@@ -1,5 +1,7 @@
 package dev.polek.episodetracker.common.presentation.myshows
 
+import com.russhwolf.settings.ExperimentalListener
+import com.russhwolf.settings.SettingsListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
@@ -32,13 +34,13 @@ class MyShowsPresenter(
     private var searchQuery = ""
 
     private val isFiltered: Boolean
-        get() = searchQuery.isNotEmpty() && (lastWeekShows.isNotEmpty() || upcomingShows.isNotEmpty() || tbaShows.isNotEmpty() || endedShows.isNotEmpty() || archivedShows.isNotEmpty())
+        get() = searchQuery.isNotEmpty() && ((lastWeekShows.isNotEmpty() && prefs.showLastWeekSection) || upcomingShows.isNotEmpty() || tbaShows.isNotEmpty() || endedShows.isNotEmpty() || archivedShows.isNotEmpty())
 
     private val lastWeekShowsSubscriber = object : Subscriber<List<UpcomingShowViewModel>> {
         override fun onQueryResult(result: List<UpcomingShowViewModel>) {
             lastWeekShows = result
             filteredLastWeekShows = result.filtered()
-            view?.displayLastWeekShows(filteredLastWeekShows)
+            view?.displayLastWeekShows(filteredLastWeekShows, isVisible = prefs.showLastWeekSection)
             showOrHideEmptyMessage()
         }
     }
@@ -79,6 +81,9 @@ class MyShowsPresenter(
         }
     }
 
+    @OptIn(ExperimentalListener::class)
+    private var showLastWeekSectionListener: SettingsListener? = null
+
     var isLastWeekExpanded: Boolean
         get() = prefs.isLastWeekExpanded
         set(value) {
@@ -112,14 +117,22 @@ class MyShowsPresenter(
         myShowsRepository.setToBeAnnouncedShowsSubscriber(toBeAnnouncedShowsSubscriber)
         myShowsRepository.setEndedShowsSubscriber(endedShowsSubscriber)
         myShowsRepository.setArchivedShowsSubscriber(archivedShowsSubscriber)
+
+        showLastWeekSectionListener = prefs.listenShowLastWeekSectionListener {
+            myShowsRepository.triggerLastWeekShowsSubscriber()
+        }
     }
 
+    @OptIn(ExperimentalListener::class)
     override fun onViewDisappeared() {
         myShowsRepository.removeLastWeekShowsSubscriber()
         myShowsRepository.removeUpcomingShowsSubscriber()
         myShowsRepository.removeToBeAnnouncedShowsSubscriber()
         myShowsRepository.removeEndedShowsSubscriber()
         myShowsRepository.removeArchivedShowsSubscriber()
+
+        showLastWeekSectionListener?.deactivate()
+
         super.onViewDisappeared()
     }
 
@@ -143,7 +156,7 @@ class MyShowsPresenter(
         searchQuery = text.trim()
 
         filteredLastWeekShows = lastWeekShows.filtered()
-        view?.displayLastWeekShows(filteredLastWeekShows)
+        view?.displayLastWeekShows(filteredLastWeekShows, isVisible = prefs.showLastWeekSection)
 
         filteredUpcomingShows = upcomingShows.filtered()
         view?.displayUpcomingShows(filteredUpcomingShows)

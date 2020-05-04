@@ -115,6 +115,10 @@ class MyShowsRepository(
         lastWeekShowsQueryListener = null
     }
 
+    fun triggerLastWeekShowsSubscriber() {
+        lastWeekShowsQueryListener?.queryResultsChanged()
+    }
+
     fun setUpcomingShowsSubscriber(subscriber: Subscriber<List<UpcomingShowViewModel>>) {
         removeUpcomingShowsSubscriber()
 
