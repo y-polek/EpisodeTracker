@@ -65,7 +65,8 @@ INNER JOIN LastWeekEpisodes ON LastWeekEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode
     ON Episode.showTmdbId = MyShow.tmdbId
     AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = LastWeekEpisodes.episodeIndex
-WHERE isArchived = 0;
+WHERE isArchived = 0
+ORDER BY Episode.airDateMillis, MyShow.name;
 
 upcomingShows:
 SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
@@ -74,7 +75,8 @@ INNER JOIN UpcomingEpisodes ON UpcomingEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode
     ON Episode.showTmdbId = MyShow.tmdbId
     AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = UpcomingEpisodes.upcomingEpisodeIndex
-WHERE isArchived = 0;
+WHERE isArchived = 0
+ORDER BY Episode.airDateMillis, MyShow.name;
 
 toBeAnnouncedShows:
 SELECT tmdbId, name, imageUrl
@@ -82,17 +84,20 @@ FROM MyShow
 LEFT JOIN UpcomingEpisodes ON UpcomingEpisodes.showTmdbId = MyShow.tmdbId
 WHERE isEnded = 0
     AND UpcomingEpisodes.upcomingEpisodeIndex IS NULL
-    AND isArchived = 0;
+    AND isArchived = 0
+ORDER BY name;
 
 endedShows:
 SELECT tmdbId, name, imageUrl
 FROM MyShow
-WHERE isEnded = 1 AND isArchived = 0;
+WHERE isEnded = 1 AND isArchived = 0
+ORDER BY name;
 
 archivedShows:
 SELECT tmdbId, name, imageUrl
 FROM MyShow
-WHERE isArchived = 1;
+WHERE isArchived = 1
+ORDER BY name;
 
 toWatchShows:
 SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
