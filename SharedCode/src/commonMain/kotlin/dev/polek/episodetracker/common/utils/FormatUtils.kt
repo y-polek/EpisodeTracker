@@ -30,6 +30,8 @@ fun formatTimeBetween(startDate: GMTDate, endDate: GMTDate): String {
         -1 -> "Yesterday"
         0 -> "Today"
         1 -> "Tomorrow"
+        in 2..Int.MAX_VALUE -> "$days days"
+        in Int.MIN_VALUE..-2 -> "${endDate.month.fullName} ${endDate.dayOfMonth}"
         else -> "$days days"
     }
 }

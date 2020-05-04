@@ -105,7 +105,17 @@ class FormatTimeBetweenTest {
 
         val formatted = formatTimeBetween(start, end)
 
-        assertEquals("-2 days", formatted)
+        assertEquals("May 4", formatted)
+    }
+
+    @Test
+    fun `test week after end date`() {
+        val start = date(2020, JUNE, 13, 12)
+        val end = date(2020, JUNE, 6, 1)
+
+        val formatted = formatTimeBetween(start, end)
+
+        assertEquals("June 6", formatted)
     }
 
     private fun date(year: Int, month: Month, day: Int, hours: Int = 0): GMTDate {
