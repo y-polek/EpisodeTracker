@@ -9,6 +9,8 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
+import dev.polek.episodetracker.common.utils.Timer.doAtMidnight
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MyShowsPresenter(
@@ -83,6 +85,7 @@ class MyShowsPresenter(
 
     @OptIn(ExperimentalListener::class)
     private var showLastWeekSectionListener: SettingsListener? = null
+    private var midnightTimerJob: Job? = null
 
     var isLastWeekExpanded: Boolean
         get() = prefs.isLastWeekExpanded
@@ -121,6 +124,11 @@ class MyShowsPresenter(
         showLastWeekSectionListener = prefs.listenShowLastWeekSectionListener {
             myShowsRepository.triggerLastWeekShowsSubscriber()
         }
+
+        midnightTimerJob = doAtMidnight {
+            myShowsRepository.triggerLastWeekShowsSubscriber()
+            myShowsRepository.triggerUpcomingShowsSubscriber()
+        }
     }
 
     @OptIn(ExperimentalListener::class)
@@ -132,6 +140,7 @@ class MyShowsPresenter(
         myShowsRepository.removeArchivedShowsSubscriber()
 
         showLastWeekSectionListener?.deactivate()
+        midnightTimerJob?.cancel()
 
         super.onViewDisappeared()
     }

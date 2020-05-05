@@ -136,6 +136,10 @@ class MyShowsRepository(
         upcomingShowsQueryListener = null
     }
 
+    fun triggerUpcomingShowsSubscriber() {
+        upcomingShowsQueryListener?.queryResultsChanged()
+    }
+
     fun setToBeAnnouncedShowsSubscriber(subscriber: Subscriber<List<ShowViewModel>>) {
         removeToBeAnnouncedShowsSubscriber()
 

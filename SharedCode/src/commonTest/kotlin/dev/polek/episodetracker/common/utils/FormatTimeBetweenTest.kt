@@ -117,14 +117,4 @@ class FormatTimeBetweenTest {
 
         assertEquals("June 6", formatted)
     }
-
-    private fun date(year: Int, month: Month, day: Int, hours: Int = 0): GMTDate {
-        return GMTDate(
-            year = year,
-            month = month,
-            dayOfMonth = day,
-            hours = hours,
-            minutes = 0,
-            seconds = 0)
-    }
 }
