@@ -50,8 +50,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupImageCache() {
-        ImageCache.default.memoryStorage.config.totalCostLimit = 50 * 1024 * 1024
-        ImageCache.default.memoryStorage.config.expiration = .never
+        let cache = ImageCache.default
+        
+        cache.memoryStorage.config.totalCostLimit = 100 * 1024 * 1024
+        cache.memoryStorage.config.expiration = .never
+        
+        cache.diskStorage.config.sizeLimit = 200 * 1024 * 1024
+        cache.diskStorage.config.expiration = .days(30)
+        
+        ImageCache.default.calculateDiskStorageSize { result in
+            switch result {
+            case .success(let size):
+                log(self) { "Disk cache size: \(size / 1024 / 1024) MB" }
+            case .failure(let error):
+                log(self) { "\(error)" }
+            }
+        }
     }
 }
 
