@@ -86,7 +86,11 @@ class ImageView: UIImageView {
     
     private func updateImage() {
         if imageUrl != nil {
-            kf.setImage(with: URL(string: imageUrl!), options: [.backgroundDecode])
+            kf.setImage(with: URL(string: imageUrl!), options: [
+                .processor(DownsamplingImageProcessor(size: frame.size)),
+                .scaleFactor(UIScreen.main.scale),
+                .backgroundDecode
+            ])
         } else {
             image = nil
         }
