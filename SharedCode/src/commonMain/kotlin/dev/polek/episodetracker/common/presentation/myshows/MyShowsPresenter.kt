@@ -85,7 +85,6 @@ class MyShowsPresenter(
 
     @OptIn(ExperimentalListener::class)
     private var showLastWeekSectionListener: SettingsListener? = null
-    private var midnightTimerJob: Job? = null
 
     var isLastWeekExpanded: Boolean
         get() = prefs.isLastWeekExpanded
@@ -124,11 +123,6 @@ class MyShowsPresenter(
         showLastWeekSectionListener = prefs.listenShowLastWeekSectionListener {
             myShowsRepository.triggerLastWeekShowsSubscriber()
         }
-
-        midnightTimerJob = doAtMidnight {
-            myShowsRepository.triggerLastWeekShowsSubscriber()
-            myShowsRepository.triggerUpcomingShowsSubscriber()
-        }
     }
 
     @OptIn(ExperimentalListener::class)
@@ -140,7 +134,6 @@ class MyShowsPresenter(
         myShowsRepository.removeArchivedShowsSubscriber()
 
         showLastWeekSectionListener?.deactivate()
-        midnightTimerJob?.cancel()
 
         super.onViewDisappeared()
     }

@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var discoverRepository: DiscoverRepository = DiscoverRepository(tmdbService: tmdbService)
     lazy var toWatchRepository: ToWatchRepository = ToWatchRepository(db: database)
     lazy var episodesRepository: EpisodesRepository = EpisodesRepository(db: database)
+    
+    lazy var presenter = AppPresenter(myShowsRepository: myShowsRepository)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupImageCache()
@@ -30,7 +32,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             setAppearance(preferences.appearance)
         }
         
+        presenter.attachView(view: self)
+        
         return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        presenter.onViewAppeared()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        presenter.onViewDisappeared()
     }
     
     @available(iOS 13.0, *)
@@ -69,3 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// MARK: - AppView implementation
+extension AppDelegate: AppView {
+    
+}
