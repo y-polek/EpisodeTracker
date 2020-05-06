@@ -6,11 +6,15 @@ import com.russhwolf.settings.SettingsListener
 import dev.polek.episodetracker.common.model.Appearance
 import dev.polek.episodetracker.common.preferences.delegates.BooleanPreferenceDelegate
 import dev.polek.episodetracker.common.preferences.delegates.EnumPreferenceDelegate
+import dev.polek.episodetracker.common.preferences.delegates.LongPreferenceDelegate
 
 class Preferences(private val settings: Settings) {
+
     var appearance: Appearance by EnumPreferenceDelegate(settings, KEY_APPEARANCE,
         defaultValue = Appearance.AUTOMATIC,
         enumValues = Appearance.values())
+
+    var lastRefreshTimestamp: Long by LongPreferenceDelegate(settings, KEY_LAST_REFRESH_TIMESTAMP, 0L)
 
     var isLastWeekExpanded by BooleanPreferenceDelegate(settings, KEY_IS_LAST_WEEK_EXPANDED, defaultValue = true)
     var isUpcomingExpanded by BooleanPreferenceDelegate(settings, KEY_IS_UPCOMING_EXPANDED, defaultValue = true)
@@ -30,6 +34,8 @@ class Preferences(private val settings: Settings) {
 
     companion object {
         private const val KEY_APPEARANCE = "key_appearance"
+
+        private const val KEY_LAST_REFRESH_TIMESTAMP = "key_last_refresh_timestamp"
 
         private const val KEY_IS_LAST_WEEK_EXPANDED = "key_is_last_week_expanded"
         private const val KEY_IS_UPCOMING_EXPANDED = "key_is_upcoming_expanded"

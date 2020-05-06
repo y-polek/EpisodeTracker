@@ -16,14 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let tmdbService: TmdbService = TmdbService()
     let omdbService: OmdbService = OmdbService()
     let connectivity: Connectivity = ConnectivityImpl()
-    lazy var showRepository: ShowRepository = ShowRepository(tmdbService: tmdbService, omdbService: omdbService, db: database)
+    lazy var showRepository: ShowRepository = ShowRepository(tmdbService: tmdbService, omdbService: omdbService, db: database, preferences: preferences)
     lazy var addToMyShowsQueue: AddToMyShowsQueue = AddToMyShowsQueue(db: database, tmdbService: tmdbService, connectivity: connectivity, showRepository: showRepository)
     lazy var myShowsRepository: MyShowsRepository = MyShowsRepository(db: database, addToMyShowsQueue: addToMyShowsQueue)
     lazy var discoverRepository: DiscoverRepository = DiscoverRepository(tmdbService: tmdbService)
     lazy var toWatchRepository: ToWatchRepository = ToWatchRepository(db: database)
     lazy var episodesRepository: EpisodesRepository = EpisodesRepository(db: database)
     
-    lazy var presenter = AppPresenter(myShowsRepository: myShowsRepository)
+    lazy var presenter = AppPresenter(preferences: preferences, myShowsRepository: myShowsRepository, showRepository: showRepository)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupImageCache()

@@ -16,6 +16,10 @@ fun date(year: Int, month: Month, day: Int, hours: Int = 0): GMTDate {
         seconds = 0)
 }
 
+fun GMTDate.isSameDayAs(date: GMTDate): Boolean {
+    return this.year == date.year && this.dayOfYear == date.dayOfYear
+}
+
 fun millisUntilMidnight(): Long {
     val now = GMTDate()
     val tomorrow = now + 24 * 60 * 60 * 1000

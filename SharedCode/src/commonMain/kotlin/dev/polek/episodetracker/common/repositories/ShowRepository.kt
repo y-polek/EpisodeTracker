@@ -6,17 +6,25 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Compani
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.SeasonEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
+import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.model.Episode
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
+import dev.polek.episodetracker.common.preferences.Preferences
+import dev.polek.episodetracker.common.utils.now
 import dev.polek.episodetracker.db.Database
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
 
 class ShowRepository(
     private val tmdbService: TmdbService,
     private val omdbService: OmdbService,
-    private val db: Database)
+    private val db: Database,
+    private val preferences: Preferences)
 {
+    private var isFullRefreshInProgress = false
+
     suspend fun showDetails(showTmdbId: Int, noCache: Boolean = false): ShowDetailsEntity {
         return tmdbService.showDetails(showTmdbId, noCache = noCache)
     }
@@ -88,10 +96,26 @@ class ShowRepository(
         }
     }
 
+    @OptIn(ExperimentalTime::class)
     suspend fun refreshAllNonArchivedShows() {
-        db.myShowQueries.allNonArchivedShows().executeAsList().forEach { showTmdbId ->
-            refreshLatestSeason(showTmdbId)
+        if (isFullRefreshInProgress) {
+            log { "Refresh is in progress..." }
+            return
         }
+
+        isFullRefreshInProgress = true
+
+        val shows = db.myShowQueries.allNonArchivedShows().executeAsList()
+        log { "Refreshing ${shows.size} shows..." }
+
+        val time = measureTime {
+            shows.forEach { showTmdbId ->
+                refreshLatestSeason(showTmdbId)
+            }
+        }
+        log { "Refreshing finished in ${time.inSeconds.toInt()} sec" }
+        preferences.lastRefreshTimestamp = now.timestamp
+        isFullRefreshInProgress = false
     }
 
     private suspend fun refreshLatestSeason(showTmdbId: Int) {
