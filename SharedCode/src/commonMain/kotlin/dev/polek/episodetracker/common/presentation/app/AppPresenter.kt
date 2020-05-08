@@ -4,10 +4,9 @@ import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
-import dev.polek.episodetracker.common.utils.now
 import dev.polek.episodetracker.common.utils.isSameDayAs
+import dev.polek.episodetracker.common.utils.now
 import io.ktor.util.date.GMTDate
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class AppPresenter(

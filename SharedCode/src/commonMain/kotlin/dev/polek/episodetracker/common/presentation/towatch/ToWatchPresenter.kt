@@ -1,7 +1,7 @@
 package dev.polek.episodetracker.common.presentation.towatch
 
 import co.touchlab.stately.ensureNeverFrozen
-import dev.polek.episodetracker.common.datasource.db.QueryListener
+import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.model.ToWatchShow
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.repositories.EpisodesRepository
@@ -9,19 +9,26 @@ import dev.polek.episodetracker.common.repositories.ToWatchRepository
 
 class ToWatchPresenter(
     private val toWatchRepository: ToWatchRepository,
-    private val episodesRepository: EpisodesRepository) : BasePresenter<ToWatchView>(), QueryListener.Subscriber<List<ToWatchShow>>
+    private val episodesRepository: EpisodesRepository) : BasePresenter<ToWatchView>()
 {
     private var shows = emptyList<ToWatchShowViewModel>()
     private var searchQuery = ""
     private val isFiltered: Boolean
         get() = searchQuery.isNotEmpty() && shows.isNotEmpty()
 
+    private val toWatchShowsSubscriber = object : Subscriber<List<ToWatchShow>> {
+        override fun onQueryResult(result: List<ToWatchShow>) {
+            shows = result.map(ToWatchShowViewModel.Companion::map)
+            displayShows()
+        }
+    }
+
     init {
         ensureNeverFrozen()
     }
 
     override fun onViewAppeared() {
-        toWatchRepository.setToWatchShowsSubscriber(this)
+        toWatchRepository.setToWatchShowsSubscriber(toWatchShowsSubscriber)
     }
 
     override fun onViewDisappeared() {
@@ -43,11 +50,6 @@ class ToWatchPresenter(
 
     fun onSearchQueryChanged(text: String) {
         searchQuery = text.trim()
-        displayShows()
-    }
-
-    override fun onQueryResult(result: List<ToWatchShow>) {
-        shows = result.map(ToWatchShowViewModel.Companion::map)
         displayShows()
     }
 

@@ -9,8 +9,6 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
-import dev.polek.episodetracker.common.utils.Timer.doAtMidnight
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MyShowsPresenter(
