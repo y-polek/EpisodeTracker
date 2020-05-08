@@ -14,7 +14,7 @@ CREATE VIEW NotWatchedEpisodes AS
 SELECT showTmdbId, count(*) AS count, min(10000 * seasonNumber + episodeNumber) AS firstNotWatchedEpisodeIndex
 FROM Episode
 JOIN Time
-WHERE isWatched = 0 AND airDateMillis < Time.currentTimeMillis
+WHERE isWatched = 0 AND seasonNumber > 0 AND airDateMillis < Time.currentTimeMillis
 GROUP BY showTmdbId;
 
 CREATE VIEW UpcomingEpisodes AS
@@ -65,24 +65,28 @@ markAllWatched:
 UPDATE Episode
 SET isWatched = 1
 WHERE showTmdbId = ?
+  AND seasonNumber > 0
   AND airDateMillis < (SELECT currentTimeMillis FROM Time);
 
 markAllWatchedUpTo:
 UPDATE Episode
 SET isWatched = 1
-WHERE showTmdbId = ? AND (seasonNumber < :season OR (seasonNumber == :season AND episodeNumber <= :episode));
+WHERE showTmdbId = ?
+  AND seasonNumber > 0
+  AND (seasonNumber < :season OR (seasonNumber == :season AND episodeNumber <= :episode));
 
 markAllWatchedUpToSeason:
 UPDATE Episode
 SET isWatched = 1
 WHERE showTmdbId = ?
+  AND seasonNumber > 0
   AND seasonNumber <= :season
   AND airDateMillis < (SELECT currentTimeMillis FROM Time);
 
 nextNotWatchedEpisode:
 SELECT seasonNumber, episodeNumber
 FROM Episode
-WHERE showTmdbId = ? AND isWatched = 0
+WHERE showTmdbId = ? AND isWatched = 0 AND seasonNumber > 0
 ORDER BY seasonNumber, episodeNumber
 LIMIT 1;
 
