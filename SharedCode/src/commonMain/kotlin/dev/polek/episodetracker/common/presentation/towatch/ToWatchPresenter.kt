@@ -18,7 +18,7 @@ class ToWatchPresenter(
 
     private val toWatchShowsSubscriber = object : Subscriber<List<ToWatchShow>> {
         override fun onQueryResult(result: List<ToWatchShow>) {
-            shows = result.map(ToWatchShowViewModel.Companion::map)
+            shows = result.map(ToWatchShowViewModel.Companion::map).sortedBy(ToWatchShowViewModel::name)
             displayShows()
         }
     }

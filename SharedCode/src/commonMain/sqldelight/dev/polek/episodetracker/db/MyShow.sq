@@ -107,6 +107,15 @@ INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10
 WHERE isArchived = 0
 ORDER BY MyShow.name;
 
+toWatchSpecials:
+SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedSpecials.count
+FROM MyShow
+INNER JOIN NotWatchedSpecials ON NotWatchedSpecials.showTmdbId = MyShow.tmdbId
+INNER JOIN Episode ON Episode.showTmdbId = NotWatchedSpecials.showTmdbId
+                  AND Episode.episodeNumber = NotWatchedSpecials.firstNotWatchedEpisode
+WHERE isArchived = 0 AND seasonNumber = 0
+ORDER BY MyShow.name;
+
 toWatchShow:
 SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
 FROM MyShow
