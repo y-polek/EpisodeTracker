@@ -95,4 +95,10 @@ class EpisodesRepository(private val db: Database) {
             EpisodeNumber(season = seasonNumber, episode = episodeNumber)
         }.executeAsOneOrNull()
     }
+
+    fun firstNotWatchedSpecialEpisode(tmdbShowId: Int): EpisodeNumber? {
+        return db.episodeQueries.nextNotWatchedSpecialEpisode(tmdbShowId) { seasonNumber, episodeNumber ->
+            EpisodeNumber(season = seasonNumber, episode = episodeNumber)
+        }.executeAsOneOrNull()
+    }
 }

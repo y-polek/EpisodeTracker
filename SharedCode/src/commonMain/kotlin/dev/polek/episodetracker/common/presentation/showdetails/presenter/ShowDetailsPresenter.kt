@@ -433,11 +433,19 @@ class ShowDetailsPresenter(
     private fun processEpisodeWatchedStateToggle(episode: EpisodeViewModel) {
         val isWatched = !episode.isWatched
 
-        val firstNotWatchedNumber = episodesRepository.firstNotWatchedEpisode(showId)
+        val firstNotWatchedNumber = if (episode.isSpecial) {
+            episodesRepository.firstNotWatchedSpecialEpisode(showId)
+        } else {
+            episodesRepository.firstNotWatchedEpisode(showId)
+        }
         if (isWatched && firstNotWatchedNumber != null && firstNotWatchedNumber < episode.number) {
             view?.showCheckAllPreviousEpisodesPrompt(
                 onCheckAllPrevious = {
-                    markAllEpisodesWatchedUpTo(episode.number)
+                    if (episode.isSpecial) {
+                        markAllSpecialEpisodesWatchedUpTo(episode.number)
+                    } else {
+                        markAllEpisodesWatchedUpTo(episode.number)
+                    }
                 },
                 onCheckOnlyThis = {
                     setEpisodeWatched(episode, isWatched)
@@ -509,6 +517,14 @@ class ShowDetailsPresenter(
         (1..episodeNumber.season).forEach { season ->
             view?.reloadSeason(season)
         }
+    }
+
+    private fun markAllSpecialEpisodesWatchedUpTo(episodeNumber: EpisodeNumber) {
+        seasonsViewModel[episodeNumber.season]?.episodes?.toEpisodes()?.get(1..episodeNumber.episode)?.forEach { episode ->
+            episode.isWatched = true
+        }
+        episodesRepository.markAllWatchedUpTo(episodeNumber = episodeNumber, showTmdbId = showId)
+        view?.reloadSeason(episodeNumber.season)
     }
 
     private fun markAllSeasonsWatchedUpTo(seasonNumber: Int) {
