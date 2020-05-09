@@ -110,7 +110,7 @@ class ShowRepository(
 
         val time = measureTime {
             shows.forEach { showTmdbId ->
-                refreshLatestSeason(showTmdbId)
+                refreshLatestSeasonAndSpecials(showTmdbId)
             }
         }
         log { "Refreshing finished in ${time.inSeconds.toInt()} sec" }
@@ -118,16 +118,20 @@ class ShowRepository(
         isFullRefreshInProgress = false
     }
 
-    private suspend fun refreshLatestSeason(showTmdbId: Int) {
+    private suspend fun refreshLatestSeasonAndSpecials(showTmdbId: Int) {
         val lastSeasonNumber = db.episodeQueries.lastSeason(showTmdbId).executeAsOneOrNull()?.max ?: 1
 
         try {
             val show = showDetails(showTmdbId, noCache = true)
             check(show.isValid) { throw RuntimeException("Can't add invalid show: $show") }
 
-            val seasons = show.seasonNumbers.filter { it >= lastSeasonNumber }.mapNotNull { seasonNumber ->
-                season(showTmdbId = showTmdbId, seasonNumber = seasonNumber, noCache = true)
-            }
+            val seasons = show.seasonNumbers
+                .filter { season ->
+                    season >= lastSeasonNumber || season == 0
+                }
+                .mapNotNull { seasonNumber ->
+                    season(showTmdbId = showTmdbId, seasonNumber = seasonNumber, noCache = true)
+                }
 
             updateShowInDb(show, seasons)
         } catch (e: Throwable) {
