@@ -24,7 +24,7 @@ fun formatEpisodeNumber(number: EpisodeNumber): String {
 }
 
 @OptIn(ExperimentalTime::class)
-fun formatTimeBetween(startDate: GMTDate, endDate: GMTDate): String {
+fun formatTimeBetween(startDate: GMTDate, endDate: GMTDate, noTomorrow: Boolean = false): String {
     val diffInDays = (endDate.timestamp - startDate.timestamp).toDuration(MILLISECONDS).inDays
     val startMinutes = startDate.hours * 60 + startDate.minutes
     val endMinutes = endDate.hours * 60 + endDate.minutes
@@ -34,7 +34,7 @@ fun formatTimeBetween(startDate: GMTDate, endDate: GMTDate): String {
     return when (days) {
         -1 -> "Yesterday"
         0 -> "Today"
-        1 -> "Tomorrow"
+        1 -> if (noTomorrow) "1 day" else "Tomorrow"
         in 2..Int.MAX_VALUE -> "$days days"
         in Int.MIN_VALUE..-2 -> "${endDate.month.fullName} ${endDate.dayOfMonth}"
         else -> "$days days"

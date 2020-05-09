@@ -1,7 +1,5 @@
 package dev.polek.episodetracker.common.utils
 
-import io.ktor.util.date.GMTDate
-import io.ktor.util.date.Month
 import io.ktor.util.date.Month.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -116,5 +114,15 @@ class FormatTimeBetweenTest {
         val formatted = formatTimeBetween(start, end)
 
         assertEquals("June 6", formatted)
+    }
+
+    @Test
+    fun `test noTomorrow arg`() {
+        val start = date(2020, MAY, 4, 12)
+        val end = date(2020, MAY, 5, 1)
+
+        val formatted = formatTimeBetween(start, end, noTomorrow = true)
+
+        assertEquals("1 day", formatted)
     }
 }

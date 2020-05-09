@@ -24,7 +24,7 @@ class EpisodeViewModel(
             return episodes.map { episode ->
                 val isAired = episode.airDateMillis != null && episode.airDateMillis < now.timestamp
                 val timeLeftToRelease = if (!isAired && episode.airDateMillis != null) {
-                    formatTimeBetween(now, GMTDate(episode.airDateMillis)).replace(' ', '\n')
+                    formatTimeBetween(now, GMTDate(episode.airDateMillis), noTomorrow = true).replace(' ', '\n')
                 } else {
                     ""
                 }
