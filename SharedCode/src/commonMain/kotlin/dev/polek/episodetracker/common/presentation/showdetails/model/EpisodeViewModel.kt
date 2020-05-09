@@ -17,6 +17,11 @@ class EpisodeViewModel(
     val timeLeftToRelease: String)
 {
     val number = EpisodeNumber(season = seasonNumber, episode = episodeNumber)
+    val isSpecial = seasonNumber == 0
+    val isCheckboxVisible: Boolean
+        get() = isSpecial || isAired
+    val isTimeLeftVisible: Boolean
+        get() = !isSpecial && !isAired
 
     companion object {
         fun map(episodes: List<Episode>): List<EpisodeViewModel> {

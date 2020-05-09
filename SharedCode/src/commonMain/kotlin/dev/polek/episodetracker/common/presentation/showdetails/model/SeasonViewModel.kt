@@ -12,7 +12,7 @@ data class SeasonViewModel(
     var isWatched: Boolean
         get() = episodes.all(EpisodeViewModel::isWatched)
         set(value) = episodes.forEach { episode ->
-            if (episode.isAired) {
+            if (episode.isAired || episode.isSpecial) {
                 episode.isWatched = value
             }
         }

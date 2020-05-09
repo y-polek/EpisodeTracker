@@ -23,12 +23,7 @@ class EpisodeCell: RippleTableViewCell {
         checkbox.isChecked = episode.isWatched
         timeLeftLabel.text = episode.timeLeftToRelease
         
-        if episode.isAired {
-            checkbox.isHidden = false
-            timeLeftLabel.isHidden = true
-        } else {
-            checkbox.isHidden = true
-            timeLeftLabel.isHidden = false
-        }
+        checkbox.isHidden = !episode.isCheckboxVisible
+        timeLeftLabel.isHidden = !episode.isTimeLeftVisible
     }
 }
