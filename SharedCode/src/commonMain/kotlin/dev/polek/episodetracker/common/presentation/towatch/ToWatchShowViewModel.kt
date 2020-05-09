@@ -6,6 +6,7 @@ import dev.polek.episodetracker.common.utils.formatEpisodeNumber
 data class ToWatchShowViewModel(
     val id: Int,
     val name: String,
+    val isSpecials: Boolean,
     val episodeNumber: String,
     val episodeName: String,
     val episodeCount: Int,
@@ -16,6 +17,7 @@ data class ToWatchShowViewModel(
             return ToWatchShowViewModel(
                 id = show.tmdbId,
                 name = show.name,
+                isSpecials = show.nextEpisodeNumber.season == 0,
                 episodeNumber = formatEpisodeNumber(show.nextEpisodeNumber),
                 episodeName = show.nextEpisodeName,
                 episodeCount = show.episodeCount,
