@@ -1,14 +1,12 @@
 package dev.polek.episodetracker.common.preferences
 
-import com.russhwolf.settings.ExperimentalListener
 import com.russhwolf.settings.Settings
-import com.russhwolf.settings.SettingsListener
 import dev.polek.episodetracker.common.model.Appearance
 import dev.polek.episodetracker.common.preferences.delegates.BooleanPreferenceDelegate
 import dev.polek.episodetracker.common.preferences.delegates.EnumPreferenceDelegate
 import dev.polek.episodetracker.common.preferences.delegates.LongPreferenceDelegate
 
-class Preferences(private val settings: Settings) {
+class Preferences(settings: Settings) {
 
     var appearance: Appearance by EnumPreferenceDelegate(settings, KEY_APPEARANCE,
         defaultValue = Appearance.AUTOMATIC,
@@ -26,11 +24,6 @@ class Preferences(private val settings: Settings) {
 
     var showSpecials by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS, defaultValue = true)
     var showSpecialsInToWatch by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS_IN_TO_WATCH, defaultValue = false)
-
-    @OptIn(ExperimentalListener::class)
-    fun listenShowLastWeekSectionListener(callback: () -> Unit): SettingsListener {
-        return settings.listen(KEY_SHOW_LAST_WEEK_SECTION, callback)
-    }
 
     companion object {
         private const val KEY_APPEARANCE = "key_appearance"

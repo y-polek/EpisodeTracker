@@ -1,7 +1,6 @@
 package dev.polek.episodetracker.common.presentation.myshows
 
 import com.russhwolf.settings.ExperimentalListener
-import com.russhwolf.settings.SettingsListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
@@ -81,9 +80,6 @@ class MyShowsPresenter(
         }
     }
 
-    @OptIn(ExperimentalListener::class)
-    private var showLastWeekSectionListener: SettingsListener? = null
-
     var isLastWeekExpanded: Boolean
         get() = prefs.isLastWeekExpanded
         set(value) {
@@ -117,10 +113,6 @@ class MyShowsPresenter(
         myShowsRepository.setToBeAnnouncedShowsSubscriber(toBeAnnouncedShowsSubscriber)
         myShowsRepository.setEndedShowsSubscriber(endedShowsSubscriber)
         myShowsRepository.setArchivedShowsSubscriber(archivedShowsSubscriber)
-
-        showLastWeekSectionListener = prefs.listenShowLastWeekSectionListener {
-            myShowsRepository.triggerLastWeekShowsSubscriber()
-        }
     }
 
     @OptIn(ExperimentalListener::class)
@@ -130,8 +122,6 @@ class MyShowsPresenter(
         myShowsRepository.removeToBeAnnouncedShowsSubscriber()
         myShowsRepository.removeEndedShowsSubscriber()
         myShowsRepository.removeArchivedShowsSubscriber()
-
-        showLastWeekSectionListener?.deactivate()
 
         super.onViewDisappeared()
     }
