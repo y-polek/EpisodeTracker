@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var addToMyShowsQueue: AddToMyShowsQueue = AddToMyShowsQueue(db: database, tmdbService: tmdbService, connectivity: connectivity, showRepository: showRepository)
     lazy var myShowsRepository: MyShowsRepository = MyShowsRepository(db: database, addToMyShowsQueue: addToMyShowsQueue)
     lazy var discoverRepository: DiscoverRepository = DiscoverRepository(tmdbService: tmdbService)
-    lazy var toWatchRepository: ToWatchRepository = ToWatchRepository(db: database)
+    lazy var toWatchRepository: ToWatchRepository = ToWatchRepository(db: database, preferences: preferences)
     lazy var episodesRepository: EpisodesRepository = EpisodesRepository(db: database)
     
     lazy var presenter = AppPresenter(preferences: preferences, myShowsRepository: myShowsRepository, showRepository: showRepository)

@@ -6,10 +6,13 @@ import dev.polek.episodetracker.common.datasource.db.MultiQueryListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.ToWatchShow
+import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.db.Database
 
-class ToWatchRepository(private val db: Database) {
-
+class ToWatchRepository(
+    private val db: Database,
+    private val preferences: Preferences)
+{
     private var toWatchShowsQueryListener: MultiQueryListener<ToWatchShow, ToWatchShow>? = null
 
     init {
@@ -21,9 +24,14 @@ class ToWatchRepository(private val db: Database) {
 
         val showsQuery = db.myShowQueries.toWatchShows(mapper = ::mapToWatchShow)
         val specialsQuery = db.myShowQueries.toWatchSpecials(mapper = ::mapToWatchShow)
+        val queries = if (preferences.showSpecialsInToWatch) {
+            listOf(showsQuery, specialsQuery)
+        } else {
+            listOf(showsQuery)
+        }
 
         toWatchShowsQueryListener = MultiQueryListener(
-            queries = listOf(showsQuery, specialsQuery),
+            queries = queries,
             subscriber = subscriber,
             notifyImmediately = true,
             extractQueryResult = Query<ToWatchShow>::executeAsList)
