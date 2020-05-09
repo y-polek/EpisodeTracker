@@ -165,7 +165,7 @@ class MyShowsPresenter(
 
     fun onRefreshRequested() {
         launch {
-            showRepository.refreshAllNonArchivedShows()
+            showRepository.refreshAllShows()
             view?.hideRefresh()
         }
     }

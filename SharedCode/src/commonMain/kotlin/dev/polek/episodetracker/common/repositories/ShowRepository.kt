@@ -97,7 +97,7 @@ class ShowRepository(
     }
 
     @OptIn(ExperimentalTime::class)
-    suspend fun refreshAllNonArchivedShows() {
+    suspend fun refreshAllShows() {
         if (isFullRefreshInProgress) {
             log { "Refresh is in progress..." }
             return
@@ -105,7 +105,7 @@ class ShowRepository(
 
         isFullRefreshInProgress = true
 
-        val shows = db.myShowQueries.allNonArchivedShows().executeAsList()
+        val shows = db.myShowQueries.allNonEndedShows().executeAsList()
         log { "Refreshing ${shows.size} shows..." }
 
         val time = measureTime {

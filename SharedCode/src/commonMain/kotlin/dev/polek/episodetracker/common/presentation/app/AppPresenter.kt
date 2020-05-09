@@ -24,7 +24,7 @@ class AppPresenter(
         val lastRefreshDate = GMTDate(preferences.lastRefreshTimestamp)
         if (!lastRefreshDate.isSameDayAs(now)) {
             launch {
-                showRepository.refreshAllNonArchivedShows()
+                showRepository.refreshAllShows()
             }
         }
     }

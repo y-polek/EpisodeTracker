@@ -34,10 +34,10 @@ WHERE tmdbId = ?;
 deleteByTmdbId:
 DELETE FROM MyShow WHERE tmdbId = ?;
 
-allNonArchivedShows:
+allNonEndedShows:
 SELECT tmdbId
 FROM MyShow
-WHERE isArchived = 0;
+WHERE isEnded = 0;
 
 isInMyShows:
 SELECT count(*) > 0
