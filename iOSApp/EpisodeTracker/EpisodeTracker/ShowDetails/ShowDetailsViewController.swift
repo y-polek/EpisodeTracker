@@ -31,7 +31,7 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var headerLabelsContainer: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var ratingButton: UIButton!
     @IBOutlet weak var tabBar: MDCTabBar!
     @IBOutlet weak var aboutView: UIView!
     @IBOutlet weak var episodesView: UIView!
@@ -182,6 +182,10 @@ class ShowDetailsViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func onRatingButtonTapped(_ sender: Any) {
+        presenter.onContentRatingClicked()
+    }
+    
     private func trailerTapCallback(trailer: TrailerViewModel) {
         var url: URL = URL(string: "youtube://\(trailer.youtubeKey)")!
         if !url.canBeOpen() {
@@ -275,7 +279,8 @@ extension ShowDetailsViewController: ShowDetailsView {
         toolbarLabel.text = show.name
         imageView.imageUrl = show.imageUrl
         subheadLabel.text = show.subhead
-        ratingLabel.text = show.rating
+        ratingButton.setTitle(show.rating, for: .normal)
+        ratingButton.isHidden = show.rating.isEmpty
         contentView.isHidden = false
         setToolbarTextColor(.textColorPrimaryInverse)
     }
@@ -377,6 +382,12 @@ extension ShowDetailsViewController: ShowDetailsView {
     func shareText(text: String) {
         let controller = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         present(controller, animated: true, completion: nil)
+    }
+    
+    func displayContentRatingInfo(rating: String, text: String) {
+        let alert = UIAlertController(title: rating, message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func displayShowDetails(show: ShowDetailsViewModel) {

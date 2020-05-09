@@ -63,29 +63,36 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fkf-Zv-uKT" userLabel="Header Labels Stack View">
-                                        <rect key="frame" x="16" y="135.66666666666666" width="343" height="48.333333333333343"/>
+                                        <rect key="frame" x="16" y="129.66666666666666" width="343" height="54.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Trek: Discovery" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNc-d1-kap">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="26.333333333333332"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="TextColorPrimaryInverse"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2GK-WD-zvl">
-                                                <rect key="frame" x="0.0" y="30.333333333333343" width="343" height="18"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2GK-WD-zvl">
+                                                <rect key="frame" x="0.0" y="30.333333333333343" width="343" height="24"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="2017 • CBS All Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-vg-dud">
-                                                        <rect key="frame" x="0.0" y="0.0" width="151.66666666666666" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="2017 • CBS All Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-vg-dud">
+                                                        <rect key="frame" x="0.0" y="3" width="296" height="18"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" name="TextColorPrimaryInverse"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="TV-14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfq-HF-cNm">
-                                                        <rect key="frame" x="301.33333333333331" y="0.0" width="41.666666666666686" height="18"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2H-9M-19l">
+                                                        <rect key="frame" x="301" y="0.0" width="42" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="Gwp-GZ-LbF"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="TV-14">
+                                                            <color key="titleColor" name="TextColorPrimaryInverse"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="onRatingButtonTapped:" destination="7qu-An-85M" eventType="touchUpInside" id="tX6-8Q-9xE"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -243,7 +250,7 @@
                         <outlet property="imageViewHeightConstraint" destination="Gee-wz-moh" id="oZ0-J2-XUx"/>
                         <outlet property="menuButton" destination="x7V-6v-Rqh" id="th1-91-XnJ"/>
                         <outlet property="nameLabel" destination="zNc-d1-kap" id="3zp-pU-ff5"/>
-                        <outlet property="ratingLabel" destination="mfq-HF-cNm" id="Hzv-Wx-DAu"/>
+                        <outlet property="ratingButton" destination="C2H-9M-19l" id="zzs-oD-cFv"/>
                         <outlet property="subheadLabel" destination="DZ1-vg-dud" id="2j3-53-fef"/>
                         <outlet property="tabBar" destination="bz5-Zm-oSn" id="2Mv-lT-gmV"/>
                         <outlet property="toolbar" destination="NmW-en-zZ8" id="gql-SA-Ogi"/>

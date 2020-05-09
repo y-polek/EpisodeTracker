@@ -18,6 +18,7 @@ interface ShowDetailsView {
     fun showCheckAllPreviousEpisodesPrompt(onCheckAllPrevious: () -> Unit, onCheckOnlyThis: () -> Unit, onCancel: () -> Unit)
     fun displayOptionsMenu(isInMyShows: Boolean, isArchived: Boolean)
     fun shareText(text: String)
+    fun displayContentRatingInfo(rating: String, text: String)
 
     fun displayShowDetails(show: ShowDetailsViewModel)
     fun displayTrailers(trailers: List<TrailerViewModel>)

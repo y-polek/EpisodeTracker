@@ -6,6 +6,7 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Compani
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.loge
+import dev.polek.episodetracker.common.model.ContentRating
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.common.preferences.Preferences
@@ -293,6 +294,12 @@ class ShowDetailsPresenter(
                 showProgress = {},
                 hideProgress = { view?.hideRefreshProgress() })
         }
+    }
+
+    fun onContentRatingClicked() {
+        val ratingName = showDetails?.contentRating ?: return
+        val rating = ContentRating.find(ratingName) ?: return
+        view?.displayContentRatingInfo(rating.abbr, rating.info)
     }
 
     private fun displayHeader(show: ShowDetails) {
