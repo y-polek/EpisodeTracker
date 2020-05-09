@@ -14,11 +14,18 @@ data class ToWatchShowViewModel(
 {
     companion object {
         fun map(show: ToWatchShow): ToWatchShowViewModel {
+            val isSpecial = show.nextEpisodeNumber.season == 0
+            val episodeNumber = if (isSpecial) {
+                formatEpisodeNumber(show.nextEpisodeNumber.episode)
+            } else {
+                formatEpisodeNumber(show.nextEpisodeNumber)
+            }
+
             return ToWatchShowViewModel(
                 id = show.tmdbId,
                 name = show.name,
-                isSpecials = show.nextEpisodeNumber.season == 0,
-                episodeNumber = formatEpisodeNumber(show.nextEpisodeNumber),
+                isSpecials = isSpecial,
+                episodeNumber = episodeNumber,
                 episodeName = show.nextEpisodeName,
                 episodeCount = show.episodeCount,
                 imageUrl = show.imageUrl)

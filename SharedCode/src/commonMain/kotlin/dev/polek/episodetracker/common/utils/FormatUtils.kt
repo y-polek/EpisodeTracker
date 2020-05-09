@@ -8,6 +8,11 @@ import kotlin.time.DurationUnit.MILLISECONDS
 import kotlin.time.ExperimentalTime
 import kotlin.time.toDuration
 
+fun formatEpisodeNumber(episode: Int): String {
+    val episodeStr = if (episode < 10) "0$episode" else episode.toString()
+    return "E$episodeStr"
+}
+
 fun formatEpisodeNumber(season: Int, episode: Int): String {
     val seasonStr = if (season < 10) "0$season" else season.toString()
     val episodeStr = if (episode < 10) "0$episode" else episode.toString()
