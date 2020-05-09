@@ -91,7 +91,8 @@ class ShowDetailsViewController: UIViewController {
             showId: Int32(showId),
             myShowsRepository: app.myShowsRepository,
             showRepository: app.showRepository,
-            episodesRepository: app.episodesRepository)
+            episodesRepository: app.episodesRepository,
+            preferences: app.preferences)
         presenter.attachView(view: self)
         
         if openEpisodesTabOnStart {

@@ -8,6 +8,7 @@ import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.loge
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
+import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.showdetails.model.*
 import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetailsView
@@ -22,7 +23,8 @@ class ShowDetailsPresenter(
     private val showId: Int,
     private val myShowsRepository: MyShowsRepository,
     private val showRepository: ShowRepository,
-    private val episodesRepository: EpisodesRepository) : BasePresenter<ShowDetailsView>()
+    private val episodesRepository: EpisodesRepository,
+    private val preferences: Preferences) : BasePresenter<ShowDetailsView>()
 {
     private var showDetails: ShowDetailsEntity? = null
     private var showSeasons: List<Season>? = null
@@ -380,7 +382,10 @@ class ShowDetailsPresenter(
     }
 
     private fun loadEpisodesFromDb() {
-        val seasonsList = episodesRepository.allSeasons(showId).map(SeasonViewModel.Companion::map)
+        val showSpecials = preferences.showSpecials
+        val seasonsList = episodesRepository.allSeasons(showId)
+            .filter { season -> showSpecials || season.number > 0 }
+            .map(SeasonViewModel.Companion::map)
         val oldSeasonsViewModel = seasonsViewModel
         seasonsViewModel = SeasonsViewModel(seasonsList)
         oldSeasonsViewModel.asList().forEach { season ->
@@ -406,7 +411,9 @@ class ShowDetailsPresenter(
 
         launch {
             try {
+                val showSpecials = preferences.showSpecials
                 showSeasons = seasonNumbers
+                    .filter { season -> showSpecials || season > 0 }
                     .mapNotNull { seasonNumber ->
                         log { "map season #$seasonNumber" }
                         showRepository.season(showTmdbId = showId, seasonNumber = seasonNumber, noCache = noCache)
