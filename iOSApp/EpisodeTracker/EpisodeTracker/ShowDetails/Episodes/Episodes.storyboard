@@ -57,6 +57,12 @@
                                                         <constraint firstItem="c8G-Uc-Hg8" firstAttribute="centerX" secondItem="KwJ-BV-Sy5" secondAttribute="centerX" id="uiG-zs-7bU"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42 days" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCX-i6-jfs">
+                                                    <rect key="frame" x="366" y="19.5" width="36" height="41"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="KlR-DL-Ubu">
                                                     <rect key="frame" x="136" y="0.0" width="218" height="80"/>
                                                     <subviews>
@@ -80,13 +86,6 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="42 days" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCX-i6-jfs">
-                                                    <rect key="frame" x="326" y="19.666666666666668" width="36" height="40.666666666666657"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khU-wx-ewX" userLabel="Middle Divider" customClass="Divider" customModule="EpisodeTracker" customModuleProvider="target">
                                                     <rect key="frame" x="136" y="79" width="263" height="1"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -114,15 +113,19 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eRq-Y4-xqs" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" constant="16" id="4pt-Wl-sx9"/>
+                                                <constraint firstItem="BCX-i6-jfs" firstAttribute="centerY" secondItem="KwJ-BV-Sy5" secondAttribute="centerY" id="67U-HL-bfV"/>
                                                 <constraint firstAttribute="bottom" secondItem="khU-wx-ewX" secondAttribute="bottom" id="GFJ-HY-qD5"/>
                                                 <constraint firstItem="eRq-Y4-xqs" firstAttribute="centerY" secondItem="hnL-W1-dqp" secondAttribute="centerY" id="I6y-fU-RfR"/>
+                                                <constraint firstItem="BCX-i6-jfs" firstAttribute="height" secondItem="KwJ-BV-Sy5" secondAttribute="height" multiplier="0.508333" id="JfB-Bi-b5y"/>
                                                 <constraint firstItem="JZt-8U-y1y" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" id="LJf-3Z-pZN"/>
+                                                <constraint firstItem="BCX-i6-jfs" firstAttribute="width" secondItem="KwJ-BV-Sy5" secondAttribute="width" multiplier="0.6" id="LvS-E2-hcs"/>
                                                 <constraint firstAttribute="bottom" secondItem="JZt-8U-y1y" secondAttribute="bottom" id="NfW-xO-xuz"/>
                                                 <constraint firstItem="zbV-Hj-Nv7" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" id="WvF-6L-VSf"/>
                                                 <constraint firstItem="KwJ-BV-Sy5" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" id="Z5H-4s-pLv"/>
                                                 <constraint firstItem="KwJ-BV-Sy5" firstAttribute="leading" secondItem="KlR-DL-Ubu" secondAttribute="trailing" id="Z6C-FB-ofg"/>
                                                 <constraint firstItem="JZt-8U-y1y" firstAttribute="leading" secondItem="hnL-W1-dqp" secondAttribute="leading" id="ai9-0K-eFo"/>
                                                 <constraint firstItem="KlR-DL-Ubu" firstAttribute="top" secondItem="hnL-W1-dqp" secondAttribute="top" id="cDu-52-y3b"/>
+                                                <constraint firstItem="BCX-i6-jfs" firstAttribute="centerX" secondItem="KwJ-BV-Sy5" secondAttribute="centerX" id="ecQ-cG-lcx"/>
                                                 <constraint firstItem="KlR-DL-Ubu" firstAttribute="leading" secondItem="eRq-Y4-xqs" secondAttribute="trailing" constant="16" id="foc-qg-gVl"/>
                                                 <constraint firstAttribute="trailing" secondItem="JZt-8U-y1y" secondAttribute="trailing" id="g65-5x-CiM"/>
                                                 <constraint firstAttribute="trailing" secondItem="zbV-Hj-Nv7" secondAttribute="trailing" id="gJE-rF-6mH"/>
