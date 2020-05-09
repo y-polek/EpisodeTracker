@@ -13,15 +13,19 @@ class SeasonsViewModelTest {
         listOf(
             SeasonViewModel(
                 number = 1,
+                name = "Season 1",
                 episodes = listOf()),
             SeasonViewModel(
                 number = 3,
+                name = "Season 3",
                 episodes = listOf()),
             SeasonViewModel(
                 number = 4,
+                name = "Season 4",
                 episodes = listOf()),
             SeasonViewModel(
                 number = 2,
+                name = "Season 2",
                 episodes = listOf())
         )
     )

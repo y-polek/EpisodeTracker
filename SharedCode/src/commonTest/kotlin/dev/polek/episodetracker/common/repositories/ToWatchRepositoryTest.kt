@@ -1,11 +1,14 @@
 package dev.polek.episodetracker.common.repositories
 
+import com.russhwolf.settings.Settings
+import com.russhwolf.settings.invoke
 import com.squareup.sqldelight.db.SqlDriver
 import dev.polek.episodetracker.common.database.createInMemorySqlDriver
 import dev.polek.episodetracker.common.datasource.db.adapters.ListOfStringsAdapter
 import dev.polek.episodetracker.common.datasource.omdb.OmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.network.Connectivity
+import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.testutils.mockTmdbHttpClient
 import dev.polek.episodetracker.common.utils.parseDate
 import dev.polek.episodetracker.db.Database
@@ -19,6 +22,7 @@ class ToWatchRepositoryTest {
 
     private lateinit var sqlDriver: SqlDriver
     private lateinit var db: Database
+    private lateinit var preferences: Preferences
     private lateinit var myShowsRepository: MyShowsRepository
     private lateinit var toWatchRepository: ToWatchRepository
 
@@ -27,8 +31,8 @@ class ToWatchRepositoryTest {
         sqlDriver = createInMemorySqlDriver()
         db = Database(
             driver = sqlDriver,
-            MyShowAdapter = MyShow.Adapter(genresAdapter = ListOfStringsAdapter, networksAdapter = ListOfStringsAdapter)
-        )
+            MyShowAdapter = MyShow.Adapter(genresAdapter = ListOfStringsAdapter, networksAdapter = ListOfStringsAdapter))
+        preferences = Preferences(Settings())
         val tmdbService = TmdbService(client = mockTmdbHttpClient)
         val omdbService = OmdbService(client = mockTmdbHttpClient)
         val connectivity = object : Connectivity {
@@ -37,9 +41,9 @@ class ToWatchRepositoryTest {
             override fun removeListener(listener: Connectivity.Listener) {}
         }
 
-        val showRepository = ShowRepository(tmdbService, omdbService, db)
+        val showRepository = ShowRepository(tmdbService, omdbService, db, preferences)
         myShowsRepository = MyShowsRepository(db, AddToMyShowsQueue(db, tmdbService, connectivity, showRepository))
-        toWatchRepository = ToWatchRepository(db)
+        toWatchRepository = ToWatchRepository(db, preferences)
     }
 
     @AfterTest

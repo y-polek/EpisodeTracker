@@ -73,6 +73,7 @@ kotlin {
             implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common'
             implementation "io.ktor:ktor-client-mock:$ktor_version"
             implementation "com.willowtreeapps.assertk:assertk:$assertk_version"
+            implementation "com.russhwolf:multiplatform-settings-no-arg:$multiplatform_settings_version"
         }
 
         androidMain.dependencies {
