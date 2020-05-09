@@ -74,6 +74,12 @@ WHERE showTmdbId = ?
   AND seasonNumber > 0
   AND airDateMillis < (SELECT currentTimeMillis FROM Time);
 
+markAllSpecialsWatched:
+UPDATE Episode
+SET isWatched = 1
+WHERE showTmdbId = ?
+  AND seasonNumber = 0;
+
 markAllWatchedUpTo:
 UPDATE Episode
 SET isWatched = 1

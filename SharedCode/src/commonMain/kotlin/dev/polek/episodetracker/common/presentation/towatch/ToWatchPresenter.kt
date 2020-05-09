@@ -49,7 +49,11 @@ class ToWatchPresenter(
     }
 
     fun onMarkAllWatchedClicked(show: ToWatchShowViewModel) {
-        episodesRepository.markAllWatched(show.id)
+        if (show.isSpecials) {
+            episodesRepository.markAllSpecialsWatched(show.id)
+        } else {
+            episodesRepository.markAllWatched(show.id)
+        }
     }
 
     fun onSearchQueryChanged(text: String) {
