@@ -54,6 +54,13 @@
                                                             <rect key="frame" x="16" y="0.0" width="382" height="150"/>
                                                             <color key="backgroundColor" name="Transparent"/>
                                                         </view>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-specials-label" translatesAutoresizingMaskIntoConstraints="NO" id="689-wI-BjH">
+                                                            <rect key="frame" x="338" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="689-wI-BjH" secondAttribute="height" multiplier="1:1" id="ZiU-hk-bWo"/>
+                                                                <constraint firstAttribute="width" constant="60" id="bxs-2x-Qtw"/>
+                                                            </constraints>
+                                                        </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Yig-nx-Yhs">
                                                             <rect key="frame" x="32" y="16" width="350" height="118"/>
                                                             <subviews>
@@ -132,7 +139,9 @@
                                                         <constraint firstItem="KJT-OJ-0OK" firstAttribute="top" secondItem="EIR-RV-Q9J" secondAttribute="top" id="P9Q-UR-xd6"/>
                                                         <constraint firstItem="Yig-nx-Yhs" firstAttribute="leading" secondItem="EIR-RV-Q9J" secondAttribute="leading" constant="16" id="XlU-G5-VYe"/>
                                                         <constraint firstItem="KJT-OJ-0OK" firstAttribute="bottom" secondItem="EIR-RV-Q9J" secondAttribute="bottom" id="dFo-3i-zOo"/>
+                                                        <constraint firstItem="689-wI-BjH" firstAttribute="top" secondItem="EIR-RV-Q9J" secondAttribute="top" id="ezA-bb-TOE"/>
                                                         <constraint firstItem="KJT-OJ-0OK" firstAttribute="trailing" secondItem="EIR-RV-Q9J" secondAttribute="trailing" id="kxL-Ac-sfn"/>
+                                                        <constraint firstItem="689-wI-BjH" firstAttribute="trailing" secondItem="EIR-RV-Q9J" secondAttribute="trailing" id="m9y-kQ-rS1"/>
                                                         <constraint firstItem="EIR-RV-Q9J" firstAttribute="leading" secondItem="XDl-Wf-12q" secondAttribute="leading" constant="16" id="ovX-sN-0eC"/>
                                                         <constraint firstItem="EIR-RV-Q9J" firstAttribute="top" secondItem="XDl-Wf-12q" secondAttribute="top" id="qIz-N8-Tq4"/>
                                                         <constraint firstItem="KJT-OJ-0OK" firstAttribute="leading" secondItem="EIR-RV-Q9J" secondAttribute="leading" id="rGs-Ws-Wmo"/>
@@ -146,6 +155,7 @@
                                                     <outlet property="checkButton" destination="O2i-I4-8cs" id="19E-0V-KHO"/>
                                                     <outlet property="episodeCountLabel" destination="qlh-em-2Db" id="7M1-Ws-Bei"/>
                                                     <outlet property="rippleView" destination="KJT-OJ-0OK" id="GUb-1b-raQ"/>
+                                                    <outlet property="specialsIcon" destination="689-wI-BjH" id="S1f-Fr-NCT"/>
                                                     <outlet property="subtitleLabel" destination="dVG-aA-lu5" id="hbp-aw-jbM"/>
                                                     <outlet property="titleLabel" destination="6bi-xi-v2n" id="xHa-Zl-SRP"/>
                                                 </connections>
@@ -181,6 +191,7 @@
     </scenes>
     <resources>
         <image name="ic-check" width="24" height="24"/>
+        <image name="ic-specials-label" width="56" height="56"/>
         <namedColor name="DividerInverse">
             <color red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

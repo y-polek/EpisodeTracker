@@ -8,6 +8,7 @@ class ToWatchCell: SwipeRippleTableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var episodeCountLabel: UILabel!
     @IBOutlet weak var checkButton: ImageButton!
+    @IBOutlet weak var specialsIcon: UIImageView!
     
     func bind(_ show: ToWatchShowViewModel) {
         selectionStyle = .none
@@ -22,6 +23,8 @@ class ToWatchCell: SwipeRippleTableViewCell {
             font: subtitleLabel.font,
             location: 0,
             length: show.episodeNumber.count)
+        
+        specialsIcon.isHidden = !show.isSpecials
     }
     
     override func shouldBeginRippleWith(_ touch: UITouch) -> Bool {
