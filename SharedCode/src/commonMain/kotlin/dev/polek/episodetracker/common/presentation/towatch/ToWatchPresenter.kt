@@ -37,7 +37,11 @@ class ToWatchPresenter(
     }
 
     fun onWatchedButtonClicked(show: ToWatchShowViewModel) {
-        episodesRepository.markNextEpisodeWatched(showTmdbId = show.id)
+        if (show.isSpecials) {
+            episodesRepository.markNextSpecialEpisodeWatched(showTmdbId = show.id)
+        } else {
+            episodesRepository.markNextEpisodeWatched(showTmdbId = show.id)
+        }
     }
 
     fun onShowClicked(show: ToWatchShowViewModel) {

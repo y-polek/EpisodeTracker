@@ -48,6 +48,20 @@ class EpisodesRepository(private val db: Database) {
         }
     }
 
+    fun markNextSpecialEpisodeWatched(showTmdbId: Int) {
+        db.transaction {
+            val nextEpisode = db.episodeQueries.nextNotWatchedSpecialEpisode(showTmdbId)
+                .executeAsOneOrNull()
+                ?: return@transaction
+
+            db.episodeQueries.setEpisodeWatched(
+                showTmdbId = showTmdbId,
+                seasonNumber = nextEpisode.seasonNumber,
+                episodeNumber = nextEpisode.episodeNumber,
+                isWatched = true)
+        }
+    }
+
     fun markAllWatched(showTmdbId: Int) {
         db.episodeQueries.markAllWatched(showTmdbId)
     }

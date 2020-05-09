@@ -96,6 +96,13 @@ WHERE showTmdbId = ? AND isWatched = 0 AND seasonNumber > 0
 ORDER BY seasonNumber, episodeNumber
 LIMIT 1;
 
+nextNotWatchedSpecialEpisode:
+SELECT seasonNumber, episodeNumber
+FROM Episode
+WHERE showTmdbId = ? AND isWatched = 0 AND seasonNumber = 0
+ORDER BY episodeNumber
+LIMIT 1;
+
 setSeasonWatched:
 UPDATE Episode
 SET isWatched = ?
