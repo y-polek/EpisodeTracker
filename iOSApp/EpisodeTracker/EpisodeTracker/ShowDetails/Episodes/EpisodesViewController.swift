@@ -102,7 +102,7 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SeasonHeaderView.reuseIdentifier) as! SeasonHeaderView
         
         let season = seasons[section]
-        header.title = "Season \(season.number)"
+        header.title = season.name
         header.episodeCount = season.watchedEpisodes
         header.checkbox.isChecked = season.isWatched
         header.isExpanded = season.isExpanded

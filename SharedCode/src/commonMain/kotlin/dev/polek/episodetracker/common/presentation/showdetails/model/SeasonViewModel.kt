@@ -4,6 +4,7 @@ import dev.polek.episodetracker.common.model.Season
 
 data class SeasonViewModel(
     val number: Int,
+    val name: String,
     val episodes: List<EpisodeViewModel>)
 {
     var isExpanded: Boolean = false
@@ -25,8 +26,10 @@ data class SeasonViewModel(
 
     companion object {
         fun map(season: Season): SeasonViewModel {
+            val name = if (season.number == 0) "Specials" else "Season ${season.number}"
             return SeasonViewModel(
                 number = season.number,
+                name = name,
                 episodes = EpisodeViewModel.map(season.episodes))
         }
     }
