@@ -100,7 +100,7 @@ WHERE isArchived = 1
 ORDER BY name;
 
 toWatchShows:
-SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedEpisodes.count
+SELECT MyShow.tmdbId, MyShow.name, MyShow.imageUrl AS showImageUrl, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl AS episodeImageUrl, NotWatchedEpisodes.count
 FROM MyShow
 INNER JOIN NotWatchedEpisodes ON NotWatchedEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedEpisodes.showTmdbId AND (10000 * Episode.seasonNumber + Episode.episodeNumber) = NotWatchedEpisodes.firstNotWatchedEpisodeIndex
@@ -108,7 +108,7 @@ WHERE isArchived = 0
 ORDER BY MyShow.name;
 
 toWatchSpecials:
-SELECT MyShow.tmdbId, MyShow.name, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl, NotWatchedSpecials.count
+SELECT MyShow.tmdbId, MyShow.name, MyShow.imageUrl AS showImageUrl, Episode.seasonNumber, Episode.episodeNumber, Episode.name, Episode.imageUrl AS episodeImageUrl, NotWatchedSpecials.count
 FROM MyShow
 INNER JOIN NotWatchedSpecials ON NotWatchedSpecials.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode ON Episode.showTmdbId = NotWatchedSpecials.showTmdbId

@@ -46,6 +46,7 @@ class ToWatchRepository(
         fun mapToWatchShow(
             showTmdbId: Int,
             showName: String,
+            showImageUrl: String?,
             seasonNumber: Int,
             episodeNumber: Int,
             episodeName: String,
@@ -58,7 +59,7 @@ class ToWatchRepository(
                 nextEpisodeNumber = EpisodeNumber(season = seasonNumber, episode = episodeNumber),
                 nextEpisodeName = episodeName,
                 episodeCount = notWatchedEpisodesCount.toInt(),
-                imageUrl = episodeImageUrl)
+                imageUrl = episodeImageUrl ?: showImageUrl)
         }
     }
 }
