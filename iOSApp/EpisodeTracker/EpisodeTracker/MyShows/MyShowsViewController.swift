@@ -237,7 +237,6 @@ extension MyShowsViewController: MyShowsView {
     private func cancelSearch() {
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        searchBar.showsCancelButton = false
         searchBar.setShowsCancelButton(false, animated: true)
         presenter.onSearchQueryChanged(text: "")
     }

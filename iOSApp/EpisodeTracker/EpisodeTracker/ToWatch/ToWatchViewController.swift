@@ -53,9 +53,7 @@ extension ToWatchViewController: ToWatchView {
             tableView.emptyActionName = "Show All"
             tableView.isEmptyActionHidden = false
             tableView.emptyActionTappedCallback = { [weak self] in
-                self?.searchBar.text = ""
-                self?.searchBar.resignFirstResponder()
-                self?.presenter.onSearchQueryChanged(text: "")
+                self?.cancelSearch()
             }
         } else {
             tableView.emptyText = "No episodes to watch"
@@ -75,6 +73,13 @@ extension ToWatchViewController: ToWatchView {
             openEpisodesTabOnStart: true,
             scrollToEpisodeOnStart: episode)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func cancelSearch() {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.setShowsCancelButton(false, animated: true)
+        presenter.onSearchQueryChanged(text: "")
     }
 }
 
@@ -124,11 +129,20 @@ extension ToWatchViewController: SwipeTableViewCellDelegate {
 
 // MARK: - UISearchBarDelegate implementation
 extension ToWatchViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.onSearchQueryChanged(text: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        cancelSearch()
     }
 }
