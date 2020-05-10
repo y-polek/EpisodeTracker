@@ -59,7 +59,7 @@ SELECT
   ) > 0;
 
 lastWeekShows:
-SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
+SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, MyShow.imageUrl AS showImageUrl, Episode.airDateMillis, Episode.imageUrl AS episodeImageUrl
 FROM MyShow
 INNER JOIN LastWeekNotWatchedEpisodes ON LastWeekNotWatchedEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode
@@ -69,7 +69,7 @@ WHERE isArchived = 0
 ORDER BY Episode.airDateMillis, MyShow.name;
 
 upcomingShows:
-SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, Episode.airDateMillis, Episode.imageUrl
+SELECT tmdbId, MyShow.name, Episode.name, episodeNumber, seasonNumber, MyShow.imageUrl AS showImageUrl, Episode.airDateMillis, Episode.imageUrl AS episodeImageUrl
 FROM MyShow
 INNER JOIN UpcomingEpisodes ON UpcomingEpisodes.showTmdbId = MyShow.tmdbId
 INNER JOIN Episode

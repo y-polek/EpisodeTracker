@@ -212,8 +212,9 @@ class MyShowsRepository(
             episodeName: String,
             episodeNumber: Int,
             seasonNumber: Int,
+            showImageUrl: String?,
             airDateMillis: Long?,
-            imageUrl: String?): UpcomingShowViewModel
+            episodeImageUrl: String?): UpcomingShowViewModel
         {
             val daysLeft: String = if (airDateMillis != null) {
                 formatTimeBetween(now, GMTDate(airDateMillis))
@@ -224,7 +225,7 @@ class MyShowsRepository(
             return UpcomingShowViewModel(
                 id = tmdbId,
                 name = name,
-                backdropUrl = imageUrl,
+                backdropUrl = episodeImageUrl ?: showImageUrl,
                 episodeName = episodeName,
                 episodeNumber = formatEpisodeNumber(season = seasonNumber, episode = episodeNumber),
                 timeLeft = daysLeft)
