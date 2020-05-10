@@ -24,6 +24,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="search" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
                                         <connections>
                                             <outlet property="delegate" destination="gGy-eL-7wF" id="3IU-Qe-RuH"/>
                                         </connections>

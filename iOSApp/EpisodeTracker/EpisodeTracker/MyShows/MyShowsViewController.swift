@@ -188,9 +188,7 @@ extension MyShowsViewController: MyShowsView {
             tableView.emptyActionName = "Show All"
             tableView.isEmptyActionHidden = false
             tableView.emptyActionTappedCallback = { [weak self] in
-                self?.searchBar.text = ""
-                self?.searchBar.resignFirstResponder()
-                self?.presenter.onSearchQueryChanged(text: "")
+                self?.cancelSearch()
             }
         } else {
             tableView.emptyText = "Add some shows on \"Discover\" tab"
@@ -234,6 +232,14 @@ extension MyShowsViewController: MyShowsView {
         let sectionDiff = SectionDiff.diff(oldIndex: oldSectionIndex, newIndex: newSectionIndex)
         
         diff.apply(tableView, deletedSections: sectionDiff.deleted, insertedSections: sectionDiff.inserted)
+    }
+    
+    private func cancelSearch() {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+        searchBar.setShowsCancelButton(false, animated: true)
+        presenter.onSearchQueryChanged(text: "")
     }
 }
 
@@ -425,11 +431,20 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
 // MARK: - UISearchBarDelegate implementation
 extension MyShowsViewController: UISearchBarDelegate {
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        //searchBar.showsCancelButton = true
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.onSearchQueryChanged(text: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        cancelSearch()
     }
 }
