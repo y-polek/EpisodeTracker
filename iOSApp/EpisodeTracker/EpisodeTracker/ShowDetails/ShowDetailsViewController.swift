@@ -5,16 +5,22 @@ import SharedCode
 
 class ShowDetailsViewController: UIViewController {
     
-    static func instantiate(showId: Int, showName: String, openEpisodesTabOnStart: Bool = false) -> ShowDetailsViewController {
+    static func instantiate(
+        showId: Int,
+        showName: String,
+        openEpisodesTabOnStart: Bool = false,
+        scrollToEpisodeOnStart: EpisodeNumber? = nil) -> ShowDetailsViewController
+    {
         let storyboard = UIStoryboard(name: "ShowDetails", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController() as! ShowDetailsViewController
-        vc.setParameters(Int(showId), showName, openEpisodesTabOnStart)
+        vc.setParameters(Int(showId), showName, openEpisodesTabOnStart, scrollToEpisodeOnStart)
         return vc
     }
     
     private var showId: Int!
     private var showName: String!
     private var openEpisodesTabOnStart: Bool!
+    private var scrollToEpisodeOnStart: EpisodeNumber?
     private var presenter: ShowDetailsPresenter!
     private weak var aboutShowViewController: AboutShowViewController?
     private weak var episodesViewController: EpisodesViewController?
@@ -42,10 +48,16 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var toolbarLabel: UILabel!
     @IBOutlet weak var archivedBadge: UIView!
     
-    private func setParameters(_ showId: Int, _ showName: String, _ openEpisodesTabOnStart: Bool) {
+    private func setParameters(
+        _ showId: Int,
+        _ showName: String,
+        _ openEpisodesTabOnStart: Bool,
+        _ scrollToEpisodeOnStart: EpisodeNumber? = nil)
+    {
         self.showId = showId
         self.showName = showName
         self.openEpisodesTabOnStart = openEpisodesTabOnStart
+        self.scrollToEpisodeOnStart = scrollToEpisodeOnStart
     }
     
     override func viewDidLoad() {
@@ -155,6 +167,7 @@ class ShowDetailsViewController: UIViewController {
         case "episodes_view":
             episodesViewController = (segue.destination as! EpisodesViewController)
             episodesViewController!.showId = showId
+            episodesViewController!.scrollToEpisodeOnStart = scrollToEpisodeOnStart
             break
         default:
             break

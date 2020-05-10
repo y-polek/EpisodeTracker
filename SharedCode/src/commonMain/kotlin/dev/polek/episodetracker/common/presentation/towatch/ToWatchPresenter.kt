@@ -45,7 +45,7 @@ class ToWatchPresenter(
     }
 
     fun onShowClicked(show: ToWatchShowViewModel) {
-        view?.openToWatchShowDetails(show)
+        view?.openToWatchShowDetails(show, show.nextEpisodeNumber)
     }
 
     fun onMarkAllWatchedClicked(show: ToWatchShowViewModel) {

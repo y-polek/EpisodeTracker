@@ -5,6 +5,7 @@ class EpisodesViewController: UIViewController {
     
     var showId: Int!
     var seasons = [SeasonViewModel]()
+    var scrollToEpisodeOnStart: EpisodeNumber?
     
     /**
      * Returns `true` if scroll should be blocked (offset set to `0`), `false` otherwise.
@@ -18,11 +19,13 @@ class EpisodesViewController: UIViewController {
     @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    lazy var refreshControl: UIRefreshControl = {
+    private lazy var refreshControl: UIRefreshControl = {
        let control = UIRefreshControl()
         control.addTarget(self, action: #selector(onRefreshRequested), for: .valueChanged)
         return control
     }()
+    
+    private var firstDisplay = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +50,23 @@ class EpisodesViewController: UIViewController {
     
     func displaySeasons(_ seasons: [SeasonViewModel]) {
         self.seasons = seasons
-        tableView.reloadData()
+        if (firstDisplay && scrollToEpisodeOnStart != nil),
+            let seasonIdx = seasons.indexOf(seasonNumber: scrollToEpisodeOnStart!.season)
+        {
+            let season = seasons[seasonIdx]
+            season.isExpanded = true
+            tableView.reloadData()
+            if let episodeIdx = season.episodes.indexOf(episodeNumber: scrollToEpisodeOnStart!.episode) {
+                tableView.scrollToRow(at: IndexPath(row: episodeIdx, section: seasonIdx), at: .top, animated: true)
+            }
+        } else {
+            tableView.reloadData()
+        }
+        firstDisplay = false
     }
     
     func reloadSeason(_ number: Int32) {
-        if let section = seasons.firstIndex(where: { $0.number == number }) {
+        if let section = seasons.indexOf(seasonNumber: number) {
             reloadSection(section)
         }
     }
@@ -157,5 +172,19 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func reloadSection(_ section: Int, animated: Bool = false) {
         tableView.reloadSections(IndexSet(arrayLiteral: section), with: animated ? .automatic : .none)
+    }
+}
+
+extension Array where Element: SeasonViewModel {
+    
+    func indexOf(seasonNumber: Int32) -> Int? {
+        return self.firstIndex(where: { $0.number == seasonNumber })
+    }
+}
+
+extension Array where Element: EpisodeViewModel {
+    
+    func indexOf(episodeNumber: Int32) -> Int? {
+        return self.firstIndex(where: { $0.number.episode == episodeNumber })
     }
 }

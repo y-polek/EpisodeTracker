@@ -18,11 +18,11 @@ class ToWatchCell: SwipeRippleTableViewCell {
         titleLabel.text = show.name
         episodeCountLabel.text = String(show.episodeCount)
         
-        let subtitleText = "\(show.episodeNumber) | \(show.episodeName)"
+        let subtitleText = "\(show.nextEpisodeNumberText) | \(show.nextEpisodeName)"
         subtitleLabel.attributedText = subtitleText.bold(
             font: subtitleLabel.font,
             location: 0,
-            length: show.episodeNumber.count)
+            length: show.nextEpisodeNumberText.count)
         
         specialsIcon.isHidden = !show.isSpecials
     }

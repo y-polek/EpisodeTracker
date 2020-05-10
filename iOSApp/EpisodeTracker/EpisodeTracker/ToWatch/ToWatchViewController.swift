@@ -68,8 +68,12 @@ extension ToWatchViewController: ToWatchView {
         tableView.hideEmptyView()
     }
     
-    func openToWatchShowDetails(show: ToWatchShowViewModel) {
-        let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name, openEpisodesTabOnStart: true)
+    func openToWatchShowDetails(show: ToWatchShowViewModel, episode: EpisodeNumber) {
+        let vc = ShowDetailsViewController.instantiate(
+            showId: show.id.int,
+            showName: show.name,
+            openEpisodesTabOnStart: true,
+            scrollToEpisodeOnStart: episode)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
