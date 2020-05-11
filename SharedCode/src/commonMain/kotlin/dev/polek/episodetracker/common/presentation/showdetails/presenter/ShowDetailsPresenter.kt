@@ -78,6 +78,8 @@ class ShowDetailsPresenter(
         myShowsRepository.setIsAddedOrAddingToMyShowsSubscriber(showId, isShowAddedOrAddingSubscriber)
         myShowsRepository.setIsAddedToMyShowsSubscriber(showId, isShowAddedSubscriber)
         myShowsRepository.setIsArchivedSubscriber(showId, isArchivedSubscriber)
+
+        showDetails?.let(::displayAdditionalInfo)
     }
 
     override fun onViewDisappeared() {
