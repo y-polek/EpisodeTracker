@@ -86,6 +86,13 @@ extension DiscoverViewController: DiscoverView {
         tableView.hideErrorView()
     }
     
+    func displayRemoveShowConfirmation(result: DiscoverResultViewModel, callback: @escaping (KotlinBoolean) -> Void) {
+        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove \"\(result.name)\"?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in callback(true) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in callback(false) }))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func openDiscoverShow(show: DiscoverResultViewModel) {
         let vc = ShowDetailsViewController.instantiate(showId: show.id.int, showName: show.name)
         navigationController?.pushViewController(vc, animated: true)

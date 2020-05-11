@@ -49,15 +49,19 @@ class DiscoverPresenter(
     }
 
     fun onRemoveButtonClicked(show: DiscoverResultViewModel) {
-        show.isAddInProgress = true
-        view?.updateSearchResult(show)
+        view?.displayRemoveShowConfirmation(show) { confirmed ->
+            if (!confirmed) return@displayRemoveShowConfirmation
 
-        launch {
-            myShowsRepository.removeShow(show.id)
-            delay(300)
-            show.isInMyShows = false
-            show.isAddInProgress = false
+            show.isAddInProgress = true
             view?.updateSearchResult(show)
+
+            launch {
+                myShowsRepository.removeShow(show.id)
+                delay(300)
+                show.isInMyShows = false
+                show.isAddInProgress = false
+                view?.updateSearchResult(show)
+            }
         }
     }
 

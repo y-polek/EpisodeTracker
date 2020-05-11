@@ -14,5 +14,6 @@ interface DiscoverView {
     fun hideEmptyMessage()
     fun showError()
     fun hideError()
+    fun displayRemoveShowConfirmation(result: DiscoverResultViewModel, callback: (confirmed: Boolean) -> Unit)
     fun openDiscoverShow(show: DiscoverResultViewModel)
 }
