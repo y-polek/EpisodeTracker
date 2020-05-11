@@ -7,6 +7,10 @@ class ImageButton: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var leftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBInspectable
     var image: UIImage? {
@@ -40,6 +44,15 @@ class ImageButton: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let padding = frame.size.width * 0.2
+        leftConstraint.constant = padding
+        rightConstraint.constant = padding
+        topConstraint.constant = padding
+        bottomConstraint.constant = padding
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
