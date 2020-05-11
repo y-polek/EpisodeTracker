@@ -25,6 +25,7 @@ interface ShowDetailsView {
     fun displayCast(castMembers: List<CastMemberViewModel>)
     fun displayRecommendations(recommendations: List<RecommendationViewModel>)
     fun updateRecommendation(show: RecommendationViewModel)
+    fun displayRemoveRecommendationConfirmation(show: RecommendationViewModel, callback: (confirmed: Boolean) -> Unit)
     fun openRecommendation(show: RecommendationViewModel)
     fun displayImdbRating(rating: Float)
 

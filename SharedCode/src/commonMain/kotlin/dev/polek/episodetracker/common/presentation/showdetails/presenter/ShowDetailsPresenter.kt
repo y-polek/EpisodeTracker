@@ -318,15 +318,19 @@ class ShowDetailsPresenter(
     }
 
     fun onRemoveRecommendationClicked(show: RecommendationViewModel) {
-        show.isAddInProgress = true
-        view?.updateRecommendation(show)
+        view?.displayRemoveRecommendationConfirmation(show) { confirmed ->
+            if (!confirmed) return@displayRemoveRecommendationConfirmation
 
-        launch {
-            myShowsRepository.removeShow(show.showId)
-            delay(300)
-            show.isInMyShows = false
-            show.isAddInProgress = false
+            show.isAddInProgress = true
             view?.updateRecommendation(show)
+
+            launch {
+                myShowsRepository.removeShow(show.showId)
+                delay(300)
+                show.isInMyShows = false
+                show.isAddInProgress = false
+                view?.updateRecommendation(show)
+            }
         }
     }
 
