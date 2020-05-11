@@ -36,5 +36,6 @@ class DiscoverResultCell: RippleTableViewCell {
         subtitleLabel.isHidden = result.year == nil && result.genres.isEmpty
         
         imageButton.image = result.isInMyShows ? DiscoverResultCell.checkImage : DiscoverResultCell.addImage
+        imageButton.isActivityIndicatorHidden = !result.isAddInProgress
     }
 }

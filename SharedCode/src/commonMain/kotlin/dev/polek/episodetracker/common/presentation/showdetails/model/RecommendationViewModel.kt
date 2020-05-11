@@ -5,7 +5,9 @@ class RecommendationViewModel(
     val name: String,
     val imageUrl: String?,
     year: Int?,
-    networks: List<String>)
+    networks: List<String>,
+    var isInMyShows: Boolean,
+    var isAddInProgress: Boolean = false)
 {
     val subhead: String = when {
         year != null && networks.isNotEmpty() -> "$year ∙ ${networks.joinToString(", ")}"

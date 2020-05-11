@@ -380,9 +380,8 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="839-L2-uFK" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="839-L2-uFK" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="color" keyPath="overlayColor">
                                                                                     <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -392,6 +391,28 @@
                                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ITz-Mf-vZj" customClass="MDCRippleView">
                                                                             <rect key="frame" x="0.0" y="0.0" width="192" height="108"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        </view>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdC-45-xk2" customClass="PadView" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                            <rect key="frame" x="148" y="0.0" width="44" height="44"/>
+                                                                            <subviews>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiE-Od-2K8" customClass="ImageButton" customModule="EpisodeTracker" customModuleProvider="target">
+                                                                                    <rect key="frame" x="8" y="8" width="28" height="28"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="28" id="B1d-16-zFA"/>
+                                                                                        <constraint firstAttribute="height" constant="28" id="va3-gS-c2d"/>
+                                                                                    </constraints>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic-add"/>
+                                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircular" value="NO"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </view>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstItem="BiE-Od-2K8" firstAttribute="centerY" secondItem="vdC-45-xk2" secondAttribute="centerY" id="0F1-Th-CIZ"/>
+                                                                                <constraint firstItem="BiE-Od-2K8" firstAttribute="centerX" secondItem="vdC-45-xk2" secondAttribute="centerX" id="DiR-N5-ulY"/>
+                                                                                <constraint firstAttribute="height" constant="44" id="Pyc-qB-aUq"/>
+                                                                                <constraint firstAttribute="width" constant="44" id="Xo3-6F-JYO"/>
+                                                                            </constraints>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Official Trailer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="fgJ-Br-n3p">
                                                                             <rect key="frame" x="8" y="67.5" width="176" height="18"/>
@@ -410,13 +431,20 @@
                                                                         <constraint firstItem="ZRE-Cf-nRO" firstAttribute="top" secondItem="fgJ-Br-n3p" secondAttribute="bottom" id="1J4-wY-ZaW"/>
                                                                         <constraint firstAttribute="bottom" secondItem="ZRE-Cf-nRO" secondAttribute="bottom" constant="8" id="7GY-lt-VW5"/>
                                                                         <constraint firstAttribute="trailing" secondItem="fgJ-Br-n3p" secondAttribute="trailing" constant="8" id="AAZ-7Z-2PN"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="839-L2-uFK" secondAttribute="trailing" id="FN5-2k-1Nb"/>
                                                                         <constraint firstItem="fgJ-Br-n3p" firstAttribute="leading" secondItem="hyb-o1-FIT" secondAttribute="leading" constant="8" id="KRb-CV-e90"/>
+                                                                        <constraint firstItem="839-L2-uFK" firstAttribute="leading" secondItem="hyb-o1-FIT" secondAttribute="leading" id="SyD-Rh-aLD"/>
+                                                                        <constraint firstItem="vdC-45-xk2" firstAttribute="top" secondItem="839-L2-uFK" secondAttribute="top" id="hbB-vS-pgt"/>
+                                                                        <constraint firstItem="vdC-45-xk2" firstAttribute="trailing" secondItem="839-L2-uFK" secondAttribute="trailing" id="kll-wX-ucQ"/>
                                                                         <constraint firstItem="ZRE-Cf-nRO" firstAttribute="leading" secondItem="hyb-o1-FIT" secondAttribute="leading" constant="8" id="mcj-i9-vIB"/>
                                                                         <constraint firstAttribute="trailing" secondItem="ZRE-Cf-nRO" secondAttribute="trailing" constant="8" id="ntZ-eS-9gA"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="839-L2-uFK" secondAttribute="bottom" id="r2I-y4-dwp"/>
+                                                                        <constraint firstItem="839-L2-uFK" firstAttribute="top" secondItem="hyb-o1-FIT" secondAttribute="top" id="tYL-6w-t9g"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <size key="customSize" width="192" height="108"/>
                                                                 <connections>
+                                                                    <outlet property="addButton" destination="BiE-Od-2K8" id="Ck6-4a-Daw"/>
                                                                     <outlet property="backdropImageView" destination="839-L2-uFK" id="nKN-6r-WmU"/>
                                                                     <outlet property="nameLabel" destination="fgJ-Br-n3p" id="9fU-EU-8qY"/>
                                                                     <outlet property="rippleView" destination="ITz-Mf-vZj" id="jZ8-uq-FHF"/>
@@ -481,6 +509,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic-add" width="24" height="24"/>
         <image name="ic-facebook" width="24" height="24"/>
         <image name="ic-instagram" width="24" height="24"/>
         <image name="ic-link" width="24" height="24"/>

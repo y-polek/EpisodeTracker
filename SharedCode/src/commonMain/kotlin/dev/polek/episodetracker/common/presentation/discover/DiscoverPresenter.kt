@@ -45,7 +45,6 @@ class DiscoverPresenter(
             show.isInMyShows = true
             show.isAddInProgress = false
             view?.updateSearchResult(show)
-            view?.hideProgress()
         }
     }
 

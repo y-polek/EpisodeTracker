@@ -120,6 +120,8 @@ class ShowDetailsViewController: UIViewController {
         aboutShowViewController?.trailerTapCallback = trailerTapCallback(trailer:)
         aboutShowViewController?.castMemberTapCallback = castMemberTapCallback(castMember:)
         aboutShowViewController?.recommendationTapCallback = recommendationTapCallback(recommendation:)
+        aboutShowViewController?.recommendationAddCallback = recommendationAddCallback(recommendation:)
+        aboutShowViewController?.recommendationRemoveCallback = recommendationRemoveCallback(recommendation:)
         aboutShowViewController?.refreshRequestedCallback = refreshRequestedCallback
         aboutShowViewController?.scrollCallback = scrollCallback(offset:)
         
@@ -142,6 +144,8 @@ class ShowDetailsViewController: UIViewController {
         aboutShowViewController?.trailerTapCallback = nil
         aboutShowViewController?.castMemberTapCallback = nil
         aboutShowViewController?.recommendationTapCallback = nil
+        aboutShowViewController?.recommendationAddCallback = nil
+        aboutShowViewController?.recommendationRemoveCallback = nil
         aboutShowViewController?.refreshRequestedCallback = nil
         aboutShowViewController?.scrollCallback = nil
         
@@ -213,6 +217,14 @@ class ShowDetailsViewController: UIViewController {
     
     private func recommendationTapCallback(recommendation: RecommendationViewModel) {
         presenter.onRecommendationClicked(recommendation: recommendation)
+    }
+    
+    private func recommendationAddCallback(recommendation: RecommendationViewModel) {
+        presenter.onAddRecommendationClicked(show: recommendation)
+    }
+    
+    private func recommendationRemoveCallback(recommendation: RecommendationViewModel) {
+        presenter.onRemoveRecommendationClicked(show: recommendation)
     }
     
     private func seasonWatchedStateToggleCallback(season: SeasonViewModel) {
@@ -419,12 +431,16 @@ extension ShowDetailsViewController: ShowDetailsView {
         aboutShowViewController?.displayRecommendations(recommendations)
     }
     
-    func displayImdbRating(rating: Float) {
-        aboutShowViewController?.displayImdbRating(rating)
+    func updateRecommendation(show: RecommendationViewModel) {
+        aboutShowViewController?.updateRecommendation(show)
     }
     
     func openRecommendation(show: RecommendationViewModel) {
         aboutShowViewController?.openRecommendation(show)
+    }
+    
+    func displayImdbRating(rating: Float) {
+        aboutShowViewController?.displayImdbRating(rating)
     }
     
     func displayEpisodes(seasons: [SeasonViewModel]) {

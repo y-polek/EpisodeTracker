@@ -106,12 +106,11 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "discover_cell", for: indexPath) as! DiscoverResultCell
         cell.bind(result: result)
         cell.divider.isHidden = row == (count - 1)
-        cell.imageButton.isActivityIndicatorHidden = !result.isAddInProgress
-        cell.imageButton.tapCallback = {
+        cell.imageButton.tapCallback = { [weak self] in
             if result.isInMyShows {
-                self.presenter.onRemoveButtonClicked(show: result)
+                self?.presenter.onRemoveButtonClicked(show: result)
             } else {
-                self.presenter.onAddButtonClicked(show: result)
+                self?.presenter.onAddButtonClicked(show: result)
             }
         }
         

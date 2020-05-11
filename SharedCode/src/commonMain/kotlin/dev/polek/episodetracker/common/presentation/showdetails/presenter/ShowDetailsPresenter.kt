@@ -302,6 +302,32 @@ class ShowDetailsPresenter(
         view?.displayContentRatingInfo(rating.abbr, rating.info)
     }
 
+    fun onAddRecommendationClicked(show: RecommendationViewModel) {
+        show.isAddInProgress = true
+        view?.updateRecommendation(show)
+
+        launch {
+            myShowsRepository.addShow(show.showId)
+            delay(300)
+            show.isInMyShows = true
+            show.isAddInProgress = false
+            view?.updateRecommendation(show)
+        }
+    }
+
+    fun onRemoveRecommendationClicked(show: RecommendationViewModel) {
+        show.isAddInProgress = true
+        view?.updateRecommendation(show)
+
+        launch {
+            myShowsRepository.removeShow(show.showId)
+            delay(300)
+            show.isInMyShows = false
+            show.isAddInProgress = false
+            view?.updateRecommendation(show)
+        }
+    }
+
     private fun displayHeader(show: ShowDetails) {
         val headerViewModel = ShowHeaderViewModel(
             name = show.name,
@@ -363,11 +389,12 @@ class ShowDetailsPresenter(
         }
         val recommendations = show.recommendations.map { recommendation ->
             RecommendationViewModel(
-                showId = recommendation.tmdbId ?: 0,
+                showId = recommendation.tmdbId!!,
                 name = recommendation.name.orEmpty(),
                 imageUrl = recommendation.backdropPath?.let(::backdropImageUrl),
                 year = recommendation.year,
-                networks = recommendation.networks)
+                networks = recommendation.networks,
+                isInMyShows = myShowsRepository.isAddedOrAddingToMyShows(recommendation.tmdbId))
         }
 
         view?.displayTrailers(trailers)

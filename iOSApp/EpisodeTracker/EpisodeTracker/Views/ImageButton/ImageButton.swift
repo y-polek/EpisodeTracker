@@ -42,6 +42,14 @@ class ImageButton: UIView {
         setup()
     }
     
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if superview is PadView {
+            return true
+        } else {
+            return super.point(inside: point, with: event)
+        }
+    }
+    
     private func setup() {
         Bundle(for: ImageButton.self).loadNibNamed("ImageButton", owner: self, options: nil)
         addSubview(contentView)

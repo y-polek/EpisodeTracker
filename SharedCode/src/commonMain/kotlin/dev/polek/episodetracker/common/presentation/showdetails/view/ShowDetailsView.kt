@@ -24,8 +24,9 @@ interface ShowDetailsView {
     fun displayTrailers(trailers: List<TrailerViewModel>)
     fun displayCast(castMembers: List<CastMemberViewModel>)
     fun displayRecommendations(recommendations: List<RecommendationViewModel>)
-    fun displayImdbRating(rating: Float)
+    fun updateRecommendation(show: RecommendationViewModel)
     fun openRecommendation(show: RecommendationViewModel)
+    fun displayImdbRating(rating: Float)
 
     fun displayEpisodes(seasons: List<SeasonViewModel>)
     fun showEpisodesProgress()

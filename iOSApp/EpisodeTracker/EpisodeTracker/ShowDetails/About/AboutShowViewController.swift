@@ -48,6 +48,16 @@ class AboutShowViewController: UIViewController {
     }
     var castMemberTapCallback: ((_ castMember: CastMemberViewModel) -> Void)?
     var recommendationTapCallback: ((_ recommendation: RecommendationViewModel) -> Void)?
+    var recommendationAddCallback: ((_ recommendation: RecommendationViewModel) -> Void)? {
+        didSet {
+            recommendationsDataSource.recommendationAddCallback = self.recommendationAddCallback
+        }
+    }
+    var recommendationRemoveCallback: ((_ recommendation: RecommendationViewModel) -> Void)? {
+        didSet {
+            recommendationsDataSource.recommendationRemoveCallback = self.recommendationRemoveCallback
+        }
+    }
     var refreshRequestedCallback: (() -> Void)?
     
     private let rippleController = MDCRippleTouchController()
@@ -140,13 +150,19 @@ class AboutShowViewController: UIViewController {
         recommendationsContainer.isHidden = recommendations.isEmpty
     }
     
-    func displayImdbRating(_ rating: Float) {
-        imdbBadge.rating = rating
+    func updateRecommendation(_ show: RecommendationViewModel) {
+        if let row = recommendations.firstIndex(where: { $0.showId == show.showId }) {
+            recommendationsCollectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+        }
     }
     
     func openRecommendation(_ show: RecommendationViewModel) {
         let vc = ShowDetailsViewController.instantiate(showId: show.showId.int, showName: show.name)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func displayImdbRating(_ rating: Float) {
+        imdbBadge.rating = rating
     }
     
     func setBottomInset(_ inset: CGFloat) {
@@ -274,6 +290,8 @@ class CastDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
 class RecommendationsDataSource: NSObject, UICollectionViewDataSource {
     
     var recommendations = [RecommendationViewModel]()
+    var recommendationAddCallback: ((_ recommendation: RecommendationViewModel) -> Void)?
+    var recommendationRemoveCallback: ((_ recommendation: RecommendationViewModel) -> Void)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recommendations.count
@@ -282,11 +300,14 @@ class RecommendationsDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendation_cell", for: indexPath) as! RecommendationsCell
         let show = recommendations[indexPath.row]
-        
-        cell.backdropImageView.imageUrl = show.imageUrl
-        cell.nameLabel.text = show.name
-        cell.subheadLabel.text = show.subhead
-        cell.subheadLabel.isHidden = show.subhead.isEmpty
+        cell.bind(show: show)
+        cell.addButton.tapCallback = { [weak self] in
+            if show.isInMyShows {
+                self?.recommendationRemoveCallback?(show)
+            } else {
+                self?.recommendationAddCallback?(show)
+            }
+        }
         
         return cell
     }
