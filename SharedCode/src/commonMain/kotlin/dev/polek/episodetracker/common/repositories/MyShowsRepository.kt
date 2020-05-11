@@ -23,7 +23,6 @@ class MyShowsRepository(
     private var endedShowsQueryListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var archivedShowsQueueListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var isAddedOrAddingQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
-    private var isAddedToMyShowsQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
     private var isArchivedQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
 
     fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean = false, archive: Boolean = false) {
@@ -68,20 +67,6 @@ class MyShowsRepository(
 
     fun removeIsAddedOrAddingToMyShowsSubscriber(showTmdbId: Int) {
         isAddedOrAddingQueryListeners.remove(showTmdbId)?.destroy()
-    }
-
-    fun setIsAddedToMyShowsSubscriber(showTmdbId: Int, subscriber: Subscriber<Boolean>) {
-        removeIsAddedToMyShowsSubscriber(showTmdbId)
-
-        isAddedToMyShowsQueryListeners[showTmdbId] = QueryListener(
-            query = db.myShowQueries.isInMyShows(showTmdbId),
-            subscriber = subscriber,
-            notifyImmediately = true,
-            extractQueryResult = Query<Boolean>::executeAsOne)
-    }
-
-    fun removeIsAddedToMyShowsSubscriber(showTmdbId: Int) {
-        isAddedToMyShowsQueryListeners.remove(showTmdbId)?.destroy()
     }
 
     fun setIsArchivedSubscriber(showTmdbId: Int, subscriber: Subscriber<Boolean>) {
