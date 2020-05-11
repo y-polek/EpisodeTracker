@@ -391,7 +391,7 @@ extension ShowDetailsViewController: ShowDetailsView {
             }
             
             alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] action in
-                self?.confirmRemoval()
+                self?.presenter.onRemoveShowClicked()
             }))
         } else {
             alert.addAction(UIAlertAction(title: "Add to My Shows", style: .default, handler: { [weak self] action in
@@ -401,6 +401,13 @@ extension ShowDetailsViewController: ShowDetailsView {
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func displayRemoveConfirmation(callback: @escaping (KotlinBoolean) -> Void) {
+        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove this show?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in callback(true)}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in callback(false) }))
         present(alert, animated: true, completion: nil)
     }
     
@@ -495,15 +502,6 @@ extension ShowDetailsViewController: ShowDetailsView {
     func hideRefreshProgress() {
         aboutShowViewController?.hideRefreshProgress()
         episodesViewController?.hideRefreshProgress()
-    }
-    
-    private func confirmRemoval() {
-        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove this show?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] _ in
-            self?.presenter.onRemoveShowClicked()
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }
 

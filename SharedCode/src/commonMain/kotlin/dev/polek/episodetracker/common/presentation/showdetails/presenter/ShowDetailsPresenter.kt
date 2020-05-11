@@ -152,7 +152,10 @@ class ShowDetailsPresenter(
     }
 
     fun onRemoveShowClicked() {
-        myShowsRepository.removeShow(showId)
+        view?.displayRemoveConfirmation { confirmed ->
+            if (!confirmed) return@displayRemoveConfirmation
+            myShowsRepository.removeShow(showId)
+        }
     }
 
     fun onArchiveShowClicked() {
