@@ -163,3 +163,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
+
+// MARK: - Scrollable implementation
+extension SettingsViewController: Scrollable {
+    
+    func scrollToTop() {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    }
+}
