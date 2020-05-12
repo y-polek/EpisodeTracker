@@ -144,6 +144,7 @@ class ShowDetailsPresenter(
         view?.displayRemoveConfirmation { confirmed ->
             if (!confirmed) return@displayRemoveConfirmation
             myShowsRepository.removeShow(showId)
+            clearWatchedState()
         }
     }
 
@@ -569,6 +570,13 @@ class ShowDetailsPresenter(
 
         (1..seasonNumber).forEach { season ->
             view?.reloadSeason(season)
+        }
+    }
+
+    private fun clearWatchedState() {
+        seasonsViewModel.asList().forEach { season ->
+            season.isWatched = false
+            view?.reloadSeason(season.number)
         }
     }
 
