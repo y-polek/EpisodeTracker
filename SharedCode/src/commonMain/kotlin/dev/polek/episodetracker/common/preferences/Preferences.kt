@@ -22,7 +22,7 @@ class Preferences(settings: Settings) {
 
     var showLastWeekSection by BooleanPreferenceDelegate(settings, KEY_SHOW_LAST_WEEK_SECTION, defaultValue = true)
 
-    var showSpecials by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS, defaultValue = true)
+    var showSpecials by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS, defaultValue = false)
     var showSpecialsInToWatch by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS_IN_TO_WATCH, defaultValue = false)
 
     companion object {
