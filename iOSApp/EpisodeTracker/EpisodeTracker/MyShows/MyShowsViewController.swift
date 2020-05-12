@@ -447,3 +447,11 @@ extension MyShowsViewController: UISearchBarDelegate {
         cancelSearch()
     }
 }
+
+// MARK: - Scrollable implementation
+extension MyShowsViewController: Scrollable {
+    
+    func scrollToTop() {
+        tableView.scrollToTop(animated: true)
+    }
+}

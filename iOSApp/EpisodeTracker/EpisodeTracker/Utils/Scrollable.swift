@@ -1,0 +1,4 @@
+protocol Scrollable {
+    
+    func scrollToTop()
+}

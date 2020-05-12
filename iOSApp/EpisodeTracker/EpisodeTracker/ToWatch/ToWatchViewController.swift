@@ -146,3 +146,11 @@ extension ToWatchViewController: UISearchBarDelegate {
         cancelSearch()
     }
 }
+
+// MARK: - Scrollable implementation
+extension ToWatchViewController: Scrollable {
+    
+    func scrollToTop() {
+        tableView.scrollToTop(animated: true)
+    }
+}

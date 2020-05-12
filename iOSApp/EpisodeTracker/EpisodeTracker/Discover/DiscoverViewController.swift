@@ -99,6 +99,7 @@ extension DiscoverViewController: DiscoverView {
     }
 }
 
+// MARK: - UITableView delegate and datasource
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,10 +132,19 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - UISearchBar delegate
 extension DiscoverViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         presenter.onSearchQuerySubmitted(query: searchBar.text ?? "")
         searchBar.resignFirstResponder()
+    }
+}
+
+// MARK: - Scrollable implementation
+extension DiscoverViewController: Scrollable {
+    
+    func scrollToTop() {
+        tableView.scrollToTop(animated: true)
     }
 }
