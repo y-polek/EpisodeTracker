@@ -27,14 +27,14 @@ CREATE VIEW UpcomingEpisodes AS
 SELECT showTmdbId, min(10000 * seasonNumber + episodeNumber) AS upcomingEpisodeIndex
 FROM Episode
 JOIN Time
-WHERE airDateMillis > Time.currentTimeMillis
+WHERE seasonNumber > 0 AND airDateMillis > Time.currentTimeMillis
 GROUP BY showTmdbId;
 
 CREATE VIEW LastWeekNotWatchedEpisodes AS
 SELECT showTmdbId, max(10000 * seasonNumber + episodeNumber) AS episodeIndex
 FROM Episode
 JOIN Time
-WHERE isWatched = 0 AND airDateMillis < currentTimeMillis AND airDateMillis > (currentTimeMillis - 7 * 24 * 60 * 60 * 1000)
+WHERE isWatched = 0 AND seasonNumber > 0 AND airDateMillis < currentTimeMillis AND airDateMillis > (currentTimeMillis - 7 * 24 * 60 * 60 * 1000)
 GROUP BY showTmdbId;
 
 insert:
