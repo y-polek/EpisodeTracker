@@ -414,9 +414,10 @@ class ShowDetailsPresenter(
     }
 
     private fun loadEpisodesFromDb() {
+        showSeasons = episodesRepository.allSeasons(showId)
+
         val showSpecials = preferences.showSpecials
-        val seasonsList = episodesRepository.allSeasons(showId)
-            .filter { season -> showSpecials || season.number > 0 }
+        val seasonsList = showSeasons!!.filter { season -> showSpecials || season.number > 0 }
             .map(SeasonViewModel.Companion::map)
         val oldSeasonsViewModel = seasonsViewModel
         seasonsViewModel = SeasonsViewModel(seasonsList)
