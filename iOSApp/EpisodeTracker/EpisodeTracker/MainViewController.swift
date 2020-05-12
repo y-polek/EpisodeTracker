@@ -2,15 +2,20 @@ import UIKit
 
 class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
-    private var previousSelectedViewController: UIViewController? = nil
+    private var previousSelectedViewController: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        previousSelectedViewController = selectedViewController
+    }
+    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if (previousSelectedViewController == nil) || (previousSelectedViewController == viewController) {
+        if previousSelectedViewController == viewController {
             scrollToTop(viewController)
         }
         previousSelectedViewController = viewController
