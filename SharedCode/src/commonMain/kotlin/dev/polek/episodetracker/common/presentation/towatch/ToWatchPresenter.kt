@@ -5,11 +5,13 @@ import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.model.ToWatchShow
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.repositories.EpisodesRepository
+import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ToWatchRepository
 
 class ToWatchPresenter(
     private val toWatchRepository: ToWatchRepository,
-    private val episodesRepository: EpisodesRepository) : BasePresenter<ToWatchView>()
+    private val episodesRepository: EpisodesRepository,
+    private val myShowsRepository: MyShowsRepository) : BasePresenter<ToWatchView>()
 {
     private var shows = emptyList<ToWatchShowViewModel>()
     private var searchQuery = ""
@@ -54,6 +56,10 @@ class ToWatchPresenter(
         } else {
             episodesRepository.markAllWatched(show.id)
         }
+    }
+
+    fun onArchiveShowClicked(show: ToWatchShowViewModel) {
+        myShowsRepository.archiveShow(show.id)
     }
 
     fun onSearchQueryChanged(text: String) {

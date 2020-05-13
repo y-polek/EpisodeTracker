@@ -10,7 +10,8 @@ class ToWatchViewController: UIViewController {
     
     private let presenter = ToWatchPresenter(
         toWatchRepository: AppDelegate.instance().toWatchRepository,
-        episodesRepository: AppDelegate.instance().episodesRepository)
+        episodesRepository: AppDelegate.instance().episodesRepository,
+        myShowsRepository: AppDelegate.instance().myShowsRepository)
     private var shows: [ToWatchShowViewModel]? = nil
     
     override func viewDidLoad() {
@@ -115,15 +116,22 @@ extension ToWatchViewController: UITableViewDelegate {
 extension ToWatchViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
         let show = shows![indexPath.row]
-        let markWatched = SwipeAction(style: .default, title: "Mark All Watched") { [weak self] (action, indexPath) in
-            self?.presenter.onMarkAllWatchedClicked(show: show)
-        }
-        markWatched.image = UIImage(named: "ic-check-all")
         
-        return [markWatched]
+        switch orientation {
+        case .right:
+            let markWatched = SwipeAction(style: .default, title: "Mark All Watched") { [weak self] (action, indexPath) in
+                self?.presenter.onMarkAllWatchedClicked(show: show)
+            }
+            markWatched.image = UIImage(named: "ic-check-all")
+            return [markWatched]
+        case .left:
+            let archive = SwipeAction(style: .default, title: "Archive") { [weak self] (action, indexPath) in
+                self?.presenter.onArchiveShowClicked(show: show)
+            }
+            archive.image = UIImage(named: "ic-archive")
+            return [archive]
+        }
     }
 }
 
