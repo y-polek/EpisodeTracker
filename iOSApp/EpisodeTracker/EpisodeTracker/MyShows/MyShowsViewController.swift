@@ -407,12 +407,16 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
                 self?.presenter.onUnarchiveShowClicked(show: show)
             }
             unarchive.image = UIImage(named: "ic-unarchive")
+            unarchive.backgroundColor = .darkGray
+            unarchive.textColor = .textColorPrimaryInverse
             return [unarchive, remove]
         } else {
             let archive = SwipeAction(style: .default, title: "Archive") { [weak self] (action, indexPath) in
                 self?.presenter.onArchiveShowClicked(show: show)
             }
             archive.image = UIImage(named: "ic-archive")
+            archive.backgroundColor = .darkGray
+            archive.textColor = .textColorPrimaryInverse
             return [archive, remove]
         }
     }

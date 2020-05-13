@@ -124,12 +124,16 @@ extension ToWatchViewController: SwipeTableViewCellDelegate {
                 self?.presenter.onMarkAllWatchedClicked(show: show)
             }
             markWatched.image = UIImage(named: "ic-check-all")
+            markWatched.backgroundColor = .darkGray
+            markWatched.textColor = .textColorPrimaryInverse
             return [markWatched]
         case .left:
             let archive = SwipeAction(style: .default, title: "Archive") { [weak self] (action, indexPath) in
                 self?.presenter.onArchiveShowClicked(show: show)
             }
             archive.image = UIImage(named: "ic-archive")
+            archive.backgroundColor = .darkGray
+            archive.textColor = .textColorPrimaryInverse
             return [archive]
         }
     }
