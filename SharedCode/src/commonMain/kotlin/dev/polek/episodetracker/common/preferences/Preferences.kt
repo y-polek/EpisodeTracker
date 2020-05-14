@@ -24,8 +24,15 @@ class Preferences(private val settings: Settings) {
 
     var showLastWeekSection by BooleanPreferenceDelegate(settings, KEY_SHOW_LAST_WEEK_SECTION, defaultValue = true)
 
+    var showToWatchBadge by BooleanPreferenceDelegate(settings, KEY_SHOW_TO_WATCH_BADGE, defaultValue = true)
+
     var showSpecials by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS, defaultValue = false)
     var showSpecialsInToWatch by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS_IN_TO_WATCH, defaultValue = false)
+
+    @OptIn(ExperimentalListener::class)
+    fun listenShowToWatchBadge(callback: () -> Unit): SettingsListener {
+        return settings.listen(KEY_SHOW_TO_WATCH_BADGE, callback)
+    }
 
     @OptIn(ExperimentalListener::class)
     fun listenShowSpecialsInToWatch(callback: () -> Unit): SettingsListener {
@@ -42,7 +49,10 @@ class Preferences(private val settings: Settings) {
         private const val KEY_IS_TBA_EXPANDED = "key_is_tba_expanded"
         private const val KEY_IS_ENDED_EXPANDED = "key_is_ended_expanded"
         private const val KEY_IS_ARCHIVED_EXPANDED = "key_is_archived_expanded"
+
         private const val KEY_SHOW_LAST_WEEK_SECTION = "key_show_last_week_section"
+
+        private const val KEY_SHOW_TO_WATCH_BADGE = "key_show_to_watch_badge"
 
         private const val KEY_SHOW_SPECIALS = "key_show_specials"
         private const val KEY_SHOW_SPECIALS_IN_TO_WATCH = "key_show_specials_in_to_watch"

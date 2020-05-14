@@ -8,6 +8,7 @@ class SettingsViewController: UIViewController {
     private var presenter: SettingsPresenter!
     private var appearance: Appearance = .automatic
     private var showLastWeekSection: Bool = false
+    private var showToWatchBadge: Bool = false
     private var showSpecials: Bool = false
     private var showSpecialsInToWatch: Bool = false
     private var showSpecialsInToWatchEnabled: Bool = false
@@ -49,6 +50,12 @@ extension SettingsViewController: SettingsView {
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
+    func setShowToWatchBadge(showBadge: Bool) {
+        self.showToWatchBadge = showBadge
+        let indexPath = IndexPath(row: ToWatchOption.showBadge.rawValue, section: PreferenceSection.toWatch.index)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
     func setShowSpecials(showSpecials: Bool) {
         self.showSpecials = showSpecials
         let indexPath = IndexPath(row: SpecialsOption.showSpecials.rawValue, section: PreferenceSection.specials.index)
@@ -74,6 +81,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         switch PreferenceSection.atIndex(section) {
         case .appearance: return AppearanceOption.allCases.count
         case .myShows: return MyShowsOption.allCases.count
+        case .toWatch: return ToWatchOption.allCases.count
         case .specials: return SpecialsOption.allCases.count
         }
     }
@@ -90,6 +98,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return appearanceCell(tableView, indexPath)
         case .myShows:
             return myShowsCell(tableView, indexPath)
+        case .toWatch:
+            return toWatchCell(tableView, indexPath)
         case .specials:
             return specialsCell(tableView, indexPath)
         }
@@ -129,6 +139,25 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.checkbox.isOn = showLastWeekSection
             cell.switchCallback = { [weak self] isOn in
                 self?.presenter.onShowLastWeekSectionChanged(isChecked: isOn)
+            }
+        case .none:
+            break
+        }
+        
+        return cell
+    }
+    
+    private func toWatchCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "switch_cell", for: indexPath) as! SwitchPreferenceCell
+        cell.selectionStyle = .none
+        
+        let option = ToWatchOption(rawValue: indexPath.row)
+        cell.nameLabel.text = option?.description
+        switch option {
+        case .showBadge:
+            cell.checkbox.isOn = showToWatchBadge
+            cell.switchCallback = { [weak self] isOn in
+                self?.presenter.onShowToWatchBadgeChanged(isChecked: isOn)
             }
         case .none:
             break

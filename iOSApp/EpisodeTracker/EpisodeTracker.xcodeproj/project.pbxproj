@@ -66,6 +66,7 @@
 		D2BEEF2223A248820077F125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF2123A248820077F125 /* Assets.xcassets */; };
 		D2BEEF2523A248820077F125 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BEEF2323A248820077F125 /* LaunchScreen.storyboard */; };
 		D2BEEF2E23A24A1D0077F125 /* MyShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */; };
+		D2C08E36246DD8AC00952E3A /* ToWatchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C08E35246DD8AC00952E3A /* ToWatchOption.swift */; };
 		D2C1762023FEAFF600BE0137 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1761F23FEAFF600BE0137 /* Urls.swift */; };
 		D2C201372433E11800BA5622 /* MyShowViewModel+ListDiffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C201362433E11800BA5622 /* MyShowViewModel+ListDiffable.swift */; };
 		D2C283C523E9F648002BEE91 /* SeasonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */; };
@@ -163,6 +164,7 @@
 		D2BEEF2423A248820077F125 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BEEF2623A248820077F125 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2BEEF2D23A24A1D0077F125 /* MyShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsViewController.swift; sourceTree = "<group>"; };
+		D2C08E35246DD8AC00952E3A /* ToWatchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToWatchOption.swift; sourceTree = "<group>"; };
 		D2C1761F23FEAFF600BE0137 /* Urls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		D2C201362433E11800BA5622 /* MyShowViewModel+ListDiffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyShowViewModel+ListDiffable.swift"; sourceTree = "<group>"; };
 		D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonHeaderView.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				D28D38F3245C0FE700E9894B /* PreferenceSection.swift */,
 				D28D38F8245C2EDE00E9894B /* AppearanceOption.swift */,
 				D28D38FC245C5DC100E9894B /* MyShowsOption.swift */,
+				D2C08E35246DD8AC00952E3A /* ToWatchOption.swift */,
 				D28D38FE245C6F4000E9894B /* SpecialsOption.swift */,
 			);
 			path = Model;
@@ -665,6 +668,7 @@
 				D2EDA463241EB56700EAD144 /* ConnectivityImpl.swift in Sources */,
 				D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */,
 				D238771623E5745300688E01 /* ShowDetailsViewController.swift in Sources */,
+				D2C08E36246DD8AC00952E3A /* ToWatchOption.swift in Sources */,
 				D28D38F6245C141A00E9894B /* MultichoicePreferenceCell.swift in Sources */,
 				D234846823FEBF79001BA5E5 /* IconButton.swift in Sources */,
 				D2C7E97923FC629100DA8C4E /* RecommendationCell.swift in Sources */,

@@ -10,8 +10,8 @@ class SettingsPresenter(private val prefs: Preferences) : BasePresenter<Settings
         super.attachView(view)
 
         view.setAppearance(prefs.appearance)
-
         view.setShowLastWeekSection(prefs.showLastWeekSection)
+        view.setShowToWatchBadge(prefs.showToWatchBadge)
 
         val showSpecials = prefs.showSpecials
         view.setShowSpecials(showSpecials)
@@ -27,6 +27,10 @@ class SettingsPresenter(private val prefs: Preferences) : BasePresenter<Settings
 
     fun onShowLastWeekSectionChanged(isChecked: Boolean) {
         prefs.showLastWeekSection = isChecked
+    }
+
+    fun onShowToWatchBadgeChanged(isChecked: Boolean) {
+        prefs.showToWatchBadge = isChecked
     }
 
     fun onShowSpecialsChanged(isChecked: Boolean) {

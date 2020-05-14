@@ -24,21 +24,47 @@ class MainPresenter(
     @OptIn(ExperimentalListener::class)
     private var showSpecialsListener: SettingsListener? = null
 
+    @OptIn(ExperimentalListener::class)
+    private var showToWatchBadge: SettingsListener? = null
+
     override fun onViewAppeared() {
         super.onViewAppeared()
 
-        toWatchRepository.setNumberOfToWatchEpisodesSubscriber(numberOfToWatchEpisodesSubscriber)
+        showToWatchBadge = preferences.listenShowToWatchBadge {
+            setupBadge()
+        }
 
+        setupBadge()
+    }
+
+    @OptIn(ExperimentalListener::class)
+    override fun onViewDisappeared() {
+        showToWatchBadge?.deactivate()
+        showSpecialsListener?.deactivate()
+        toWatchRepository.removeNumberOfToWatchEpisodesSubscriber()
+
+        super.onViewDisappeared()
+    }
+
+    private fun setupBadge() {
+        if (preferences.showToWatchBadge) {
+            showBadge()
+        } else {
+            hideBadge()
+        }
+    }
+
+    private fun showBadge() {
+        toWatchRepository.setNumberOfToWatchEpisodesSubscriber(numberOfToWatchEpisodesSubscriber)
         showSpecialsListener = preferences.listenShowSpecialsInToWatch {
             toWatchRepository.setNumberOfToWatchEpisodesSubscriber(numberOfToWatchEpisodesSubscriber)
         }
     }
 
     @OptIn(ExperimentalListener::class)
-    override fun onViewDisappeared() {
-        showSpecialsListener?.deactivate()
+    private fun hideBadge() {
         toWatchRepository.removeNumberOfToWatchEpisodesSubscriber()
-
-        super.onViewDisappeared()
+        showSpecialsListener?.deactivate()
+        view?.hideToWatchBadge()
     }
 }

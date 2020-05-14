@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ImageCache.default.calculateDiskStorageSize { result in
             switch result {
             case .success(let size):
-                log(self) { "Disk cache size: \(size / 1024 / 1024) MB" }
+                log(self) { "Disk image cache size: \(size / 1024 / 1024) MB" }
             case .failure(let error):
                 log(self) { "\(error)" }
             }
