@@ -127,3 +127,15 @@ lastSeason:
 SELECT max(seasonNumber)
 FROM Episode
 WHERE showTmdbId = ?;
+
+numberOfNotWatchedEpisodes:
+SELECT count(*) AS numberOfNotWatchedEpisodes
+FROM Episode
+INNER JOIN MyShow ON Episode.showTmdbId = MyShow.tmdbId
+WHERE isArchived = 0 AND isWatched = 0;
+
+numberOfNotWatchedEpisodesExcludingSpecials:
+SELECT count(*) AS numberOfNotWatchedEpisodes
+FROM Episode
+INNER JOIN MyShow ON Episode.showTmdbId = MyShow.tmdbId
+WHERE isArchived = 0 AND isWatched = 0 AND seasonNumber > 0;
