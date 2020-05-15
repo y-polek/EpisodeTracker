@@ -132,10 +132,17 @@ numberOfNotWatchedEpisodes:
 SELECT count(*) AS numberOfNotWatchedEpisodes
 FROM Episode
 INNER JOIN MyShow ON Episode.showTmdbId = MyShow.tmdbId
-WHERE isArchived = 0 AND isWatched = 0;
+JOIN Time
+WHERE isArchived = 0
+  AND isWatched = 0
+  AND (seasonNumber = 0 OR airDateMillis < Time.currentTimeMillis);
 
 numberOfNotWatchedEpisodesExcludingSpecials:
 SELECT count(*) AS numberOfNotWatchedEpisodes
 FROM Episode
 INNER JOIN MyShow ON Episode.showTmdbId = MyShow.tmdbId
-WHERE isArchived = 0 AND isWatched = 0 AND seasonNumber > 0;
+JOIN Time
+WHERE isArchived = 0
+  AND isWatched = 0
+  AND airDateMillis < Time.currentTimeMillis
+  AND seasonNumber > 0;
