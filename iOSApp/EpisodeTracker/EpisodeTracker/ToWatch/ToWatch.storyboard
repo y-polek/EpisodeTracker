@@ -41,6 +41,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EIR-RV-Q9J" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="0.0" width="382" height="150"/>
+                                                            <color key="backgroundColor" name="PlaceholderColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="150" id="p7m-0o-VbD"/>
                                                             </constraints>
@@ -198,6 +199,9 @@
         <image name="ic-specials-label" width="56" height="56"/>
         <namedColor name="DividerInverse">
             <color red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PlaceholderColor">
+            <color red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Transparent">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

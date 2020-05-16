@@ -34,6 +34,7 @@
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-Y4-xqs" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="10" width="104" height="60"/>
+                                                    <color key="backgroundColor" name="PlaceholderColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="g1u-z0-P6k"/>
                                                     </constraints>
@@ -189,6 +190,9 @@
         </namedColor>
         <namedColor name="DividerPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PlaceholderColor">
+            <color red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextColorPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
