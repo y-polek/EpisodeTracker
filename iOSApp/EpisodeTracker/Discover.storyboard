@@ -151,6 +151,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="emptyText" value="Nothing found"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="errorText" value="Can't load search results"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isEmptyActionHidden" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="bg-empty-search"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="ejl-jr-g1o" id="HHQ-hO-eD3"/>
@@ -181,6 +182,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bg-empty-search" width="1242" height="843"/>
         <image name="ic-add" width="24" height="24"/>
         <namedColor name="DividerPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
