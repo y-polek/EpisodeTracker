@@ -182,6 +182,9 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="bg-myshows"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="gGy-eL-7wF" id="ftA-2u-uqZ"/>
                                             <outlet property="delegate" destination="gGy-eL-7wF" id="SXv-SX-kdI"/>
@@ -211,6 +214,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bg-myshows" width="1242" height="843"/>
         <namedColor name="DividerInverse">
             <color red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

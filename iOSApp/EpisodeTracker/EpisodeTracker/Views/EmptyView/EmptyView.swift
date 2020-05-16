@@ -5,6 +5,7 @@ import MaterialComponents.MaterialButtons
 class EmptyView: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var actionButton: MDCButton!
     

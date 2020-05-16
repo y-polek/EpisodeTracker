@@ -18,6 +18,13 @@ class TableView: UITableView {
     }
     
     @IBInspectable
+    var emptyImage: UIImage? = nil {
+        didSet {
+            emptyView.imageView.image = emptyImage
+        }
+    }
+    
+    @IBInspectable
     var emptyActionName: String = "" {
         didSet {
             emptyView.actionName = emptyActionName

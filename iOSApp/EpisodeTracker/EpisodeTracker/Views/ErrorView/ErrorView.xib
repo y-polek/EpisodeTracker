@@ -25,8 +25,8 @@
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vmJ-b8-8Jm">
                     <rect key="frame" x="0.0" y="44" width="414" height="522"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ax0-9m-7q4">
-                            <rect key="frame" x="0.0" y="91" width="414" height="340.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ax0-9m-7q4">
+                            <rect key="frame" x="0.0" y="101" width="414" height="320.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-error" translatesAutoresizingMaskIntoConstraints="NO" id="E3V-w5-8Le">
                                     <rect key="frame" x="16" y="8" width="382" height="200"/>
@@ -35,13 +35,13 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqw-NI-zkl">
-                                    <rect key="frame" x="188" y="238" width="38" height="20.5"/>
+                                    <rect key="frame" x="188" y="228" width="38" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="textColor" name="TextColorPrimary"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zy7-Ec-hdn" customClass="MDCButton">
-                                    <rect key="frame" x="165" y="288.5" width="84" height="44"/>
+                                    <rect key="frame" x="165" y="268.5" width="84" height="44"/>
                                     <color key="backgroundColor" name="Accent"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="EnR-Y9-9AT"/>
@@ -73,7 +73,7 @@
         </view>
     </objects>
     <resources>
-        <image name="bg-error" width="354" height="290"/>
+        <image name="bg-error" width="1242" height="843"/>
         <namedColor name="Accent">
             <color red="0.0" green="0.34999999403953552" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
