@@ -66,7 +66,7 @@ kotlin {
             implementation "co.touchlab:stately-concurrency:$stately_version"
 
             // Multiplatform Settings
-            implementation "com.russhwolf:multiplatform-settings:$multiplatform_settings_version"
+            api "com.russhwolf:multiplatform-settings:$multiplatform_settings_version"
         }
         commonTest.dependencies {
             implementation 'org.jetbrains.kotlin:kotlin-test-common'
@@ -92,8 +92,8 @@ kotlin {
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
 
-            // SQLDelight
-            implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
+            // Javax Inject
+            implementation "javax.inject:javax.inject:$javaxinject_version"
         }
 
         androidTest.dependencies {

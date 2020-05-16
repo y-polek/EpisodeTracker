@@ -1,5 +1,6 @@
 package dev.polek.episodetracker.common.presentation.discover
 
+import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.common.repositories.DiscoverRepository
@@ -7,7 +8,7 @@ import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class DiscoverPresenter(
+class DiscoverPresenter @Inject constructor(
     private val discoverRepository: DiscoverRepository,
     private val myShowsRepository: MyShowsRepository) : BasePresenter<DiscoverView>()
 {

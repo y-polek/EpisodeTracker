@@ -3,6 +3,7 @@ package dev.polek.episodetracker.common.repositories
 import com.squareup.sqldelight.Query
 import dev.polek.episodetracker.common.datasource.db.QueryListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
+import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.UpcomingShowViewModel
@@ -13,7 +14,7 @@ import dev.polek.episodetracker.db.Database
 import dev.polek.episodetracker.db.ShowDetails
 import io.ktor.util.date.GMTDate
 
-class MyShowsRepository(
+class MyShowsRepository @Inject constructor(
     private val db: Database,
     private val addToMyShowsQueue: AddToMyShowsQueue)
 {

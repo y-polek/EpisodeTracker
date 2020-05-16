@@ -6,6 +6,7 @@ import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Compani
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.EpisodeEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.SeasonEntity
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
+import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.logw
 import dev.polek.episodetracker.common.model.Episode
@@ -17,7 +18,7 @@ import dev.polek.episodetracker.db.Database
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-class ShowRepository(
+class ShowRepository @Inject constructor(
     private val tmdbService: TmdbService,
     private val omdbService: OmdbService,
     private val db: Database,

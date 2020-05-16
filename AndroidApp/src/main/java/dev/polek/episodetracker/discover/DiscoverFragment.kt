@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import dev.polek.episodetracker.R
+import dev.polek.episodetracker.common.presentation.discover.DiscoverPresenter
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
@@ -22,6 +23,8 @@ class DiscoverFragment : Fragment() {
 
     private lateinit var binding: DiscoverFragmentBinding
     private val discoverAdapter = DiscoverAdapter()
+
+    //private val presenter = DiscoverPresenter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
