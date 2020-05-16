@@ -1,11 +1,10 @@
 package dev.polek.episodetracker.discover
 
-import android.net.Uri
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import dev.polek.episodetracker.databinding.DiscoverResultLayoutBinding
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
+import dev.polek.episodetracker.databinding.DiscoverResultLayoutBinding
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 
@@ -35,7 +34,7 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
         holder.binding.network.text = ""
         holder.binding.overview.text = result.overview
         Glide.with(holder.itemView)
-            .load(Uri.parse(result.posterUrl))
+            .load(result.posterUrl)
             .into(holder.binding.image)
     }
 

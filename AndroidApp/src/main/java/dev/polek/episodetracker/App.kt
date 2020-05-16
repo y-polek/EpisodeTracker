@@ -7,13 +7,18 @@ import dev.polek.episodetracker.di.SingletonComponent
 
 class App : Application() {
 
-    lateinit var component: SingletonComponent
+    lateinit var di: SingletonComponent
 
     override fun onCreate() {
+        instance = this
         super.onCreate()
 
-        component = DaggerSingletonComponent.builder()
+        di = DaggerSingletonComponent.builder()
             .contextModule(ContextModule(this))
             .build()
+    }
+
+    companion object {
+        lateinit var instance: App
     }
 }

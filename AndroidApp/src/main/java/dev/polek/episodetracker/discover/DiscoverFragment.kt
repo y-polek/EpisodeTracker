@@ -10,8 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
+import dev.polek.episodetracker.App
 import dev.polek.episodetracker.R
-import dev.polek.episodetracker.common.presentation.discover.DiscoverPresenter
+import dev.polek.episodetracker.common.presentation.discover.DiscoverView
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
@@ -19,12 +20,12 @@ import dev.polek.episodetracker.utils.scrollFlags
 import dev.polek.episodetracker.utils.setTopMargin
 import dev.polek.episodetracker.utils.setTopPadding
 
-class DiscoverFragment : Fragment() {
+class DiscoverFragment : Fragment(), DiscoverView {
 
     private lateinit var binding: DiscoverFragmentBinding
-    private val discoverAdapter = DiscoverAdapter()
+    private val adapter = DiscoverAdapter()
 
-    //private val presenter = DiscoverPresenter()
+    private val presenter = App.instance.di.discoverPresenter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,10 +37,10 @@ class DiscoverFragment : Fragment() {
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = discoverAdapter
             addOnScrollListener(HideKeyboardScrollListener())
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
+        binding.recyclerView.adapter = adapter
 
         binding.appBarLayout.outlineProvider = null
 
@@ -49,8 +50,9 @@ class DiscoverFragment : Fragment() {
                 return true
             }
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 binding.searchView.clearFocus()
+                presenter.onSearchQuerySubmitted(query.trim())
                 return true
             }
         })
@@ -73,10 +75,82 @@ class DiscoverFragment : Fragment() {
 
 
         val results = listOf<DiscoverResultViewModel>()
-        discoverAdapter.results = results
+        adapter.results = results
 
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.attachView(this)
+    }
+
+    override fun onDestroyView() {
+        presenter.detachView()
+        super.onDestroyView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onViewAppeared()
+    }
+
+    override fun onPause() {
+        presenter.onViewDisappeared()
+        super.onPause()
+    }
+
+    override fun showPrompt() {
+
+    }
+
+    override fun hidePrompt() {
+
+    }
+
+    override fun showProgress() {
+
+    }
+
+    override fun hideProgress() {
+
+    }
+
+    override fun showSearchResults(results: List<DiscoverResultViewModel>) {
+        adapter.results = results
+    }
+
+    override fun updateSearchResult(result: DiscoverResultViewModel) {
+
+    }
+
+    override fun updateSearchResults() {
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun showEmptyMessage() {
+
+    }
+
+    override fun hideEmptyMessage() {
+
+    }
+
+    override fun showError() {
+
+    }
+
+    override fun hideError() {
+
+    }
+
+    override fun displayRemoveShowConfirmation(result: DiscoverResultViewModel, callback: (confirmed: Boolean) -> Unit) {
+
+    }
+
+    override fun openDiscoverShow(show: DiscoverResultViewModel) {
+
     }
 
     private fun setSearchBarBehaviour(showAlways: Boolean) {
