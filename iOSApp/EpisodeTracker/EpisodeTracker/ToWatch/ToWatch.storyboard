@@ -161,6 +161,9 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="bg-towatch"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="tua-Su-vU1" id="v0j-8Z-L9t"/>
                                             <outlet property="delegate" destination="tua-Su-vU1" id="4wf-M7-Gfn"/>
@@ -190,6 +193,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bg-towatch" width="1242" height="843"/>
         <image name="ic-check" width="24" height="24"/>
         <image name="ic-specials-label" width="56" height="56"/>
         <namedColor name="DividerInverse">
