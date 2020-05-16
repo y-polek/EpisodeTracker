@@ -22,7 +22,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="htr-Op-cRr" customClass="ImageView" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                        <color key="backgroundColor" name="PlaceholderColor"/>
+                                        <color key="backgroundColor" name="PlaceholderColorShadowed"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="Gee-wz-moh"/>
                                         </constraints>
@@ -286,8 +286,8 @@
         <namedColor name="Accent">
             <color red="0.0" green="0.34999999403953552" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="PlaceholderColor">
-            <color red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="PlaceholderColorShadowed">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextColorPrimaryInverse">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
