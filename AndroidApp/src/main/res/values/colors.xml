@@ -7,4 +7,6 @@
     <color name="textColorPrimaryInverse">#FFFFFF</color>
 
     <color name="dividerColor">#1F000000</color>
+
+    <color name="bottomNavigationBackground">#F8F7F8</color>
 </resources>
