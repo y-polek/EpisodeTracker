@@ -6,14 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.polek.episodetracker.R
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.*
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.databinding.GroupHeaderLayoutBinding
 import dev.polek.episodetracker.databinding.MyShowLayoutBinding
 import dev.polek.episodetracker.databinding.UpcomingShowLayoutBinding
 import dev.polek.episodetracker.myshows.MyShowsAdapter.ViewHolder.*
-import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
-import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.*
-import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.GroupViewModel.*
-import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsViewModel
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 
@@ -22,7 +21,7 @@ class MyShowsAdapter(private val onGroupVisibilityChanged: () -> Unit) : Recycle
     var viewModel: MyShowsViewModel? = null
         set(value) {
             field = value
-            items = value?.items.orEmpty()
+
         }
 
     private var items: List<MyShowsListItem> = emptyList()
@@ -44,21 +43,7 @@ class MyShowsAdapter(private val onGroupVisibilityChanged: () -> Unit) : Recycle
             GroupHeaderViewHolder(
                 GroupHeaderLayoutBinding.inflate(parent.layoutInflater, parent, false),
                 onExpandClicked = { position ->
-                    val group = items[position] as GroupViewModel
-                    val isExpanded = !group.expanded
-                    when (group) {
-                        is UpcomingGroupViewModel -> {
-                            viewModel?.setUpcomingExpanded(isExpanded)
-                        }
-                        is ToBeAnnouncedGroupViewModel -> {
-                            viewModel?.setToBeAnnouncedExpanded(isExpanded)
-                        }
-                        is EndedGroupViewModel -> {
-                            viewModel?.setEndedExpanded(isExpanded)
-                        }
-                    }
-                    items = viewModel?.items.orEmpty()
-                    onGroupVisibilityChanged()
+
                 })
         }
         R.id.view_type_upcoming_show -> {
