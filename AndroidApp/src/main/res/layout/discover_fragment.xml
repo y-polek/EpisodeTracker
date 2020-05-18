@@ -1,40 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
     >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
+    <FrameLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="@dimen/search_bar_margin_top"
+        android:layout_marginBottom="@dimen/search_bar_margin_bottom"
+        android:background="@drawable/rounded_corners_background"
+        android:elevation="8dp"
+        app:layout_scrollFlags="scroll|enterAlways"
         >
-        <FrameLayout
-            android:id="@+id/search_bar"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="@dimen/search_bar_margin_top"
-            android:layout_marginBottom="@dimen/search_bar_margin_bottom"
-            android:background="@drawable/rounded_corners_background"
-            android:elevation="8dp"
-            app:layout_scrollFlags="scroll|enterAlways"
-            >
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:iconifiedByDefault="false"
-                app:queryHint="@string/my_shows_search_query_hint"
-                app:queryBackground="@android:color/transparent"
-                />
-        </FrameLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/my_shows_search_query_hint"
+            app:queryBackground="@android:color/transparent"
+            />
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -42,8 +36,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:scrollbars="vertical"
-        app:layout_behavior=".utils.ScrollingBehavior"
         tools:listitem="@layout/my_show_layout"
         />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
