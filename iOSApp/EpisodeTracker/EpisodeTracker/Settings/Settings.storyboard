@@ -126,7 +126,7 @@
     <resources>
         <image name="ic-check" width="24" height="24"/>
         <namedColor name="HeaderBackground">
-            <color red="0.94999999999999996" green="0.94999999999999996" blue="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94999998807907104" green="0.94999998807907104" blue="0.97000002861022949" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextColorPrimary">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

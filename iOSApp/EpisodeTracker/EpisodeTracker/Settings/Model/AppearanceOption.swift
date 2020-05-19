@@ -9,9 +9,9 @@ enum AppearanceOption: Int, CaseIterable, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .automatic: return "Automatic"
-        case .light: return "Light"
-        case .dark: return "Dark"
+        case .automatic: return string(R.str.prefs_automatic)
+        case .light: return string(R.str.prefs_light)
+        case .dark: return string(R.str.prefs_dark)
         }
     }
     

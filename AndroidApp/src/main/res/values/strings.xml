@@ -1,10 +1,5 @@
 <resources>
     <string name="app_name">Episode Tracker</string>
 
-    <string name="my_shows">My Shows</string>
-    <string name="to_watch">To Watch</string>
-    <string name="discover">Discover</string>
-    <string name="settings">Settings</string>
-
     <string name="my_shows_search_query_hint">Search…</string>
 </resources>

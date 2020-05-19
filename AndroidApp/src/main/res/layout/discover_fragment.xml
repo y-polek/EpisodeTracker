@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
     >
 
     <FrameLayout
@@ -18,7 +17,6 @@
         android:layout_marginBottom="@dimen/search_bar_margin_bottom"
         android:background="@drawable/rounded_corners_background"
         android:elevation="8dp"
-        app:layout_scrollFlags="scroll|enterAlways"
         >
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"

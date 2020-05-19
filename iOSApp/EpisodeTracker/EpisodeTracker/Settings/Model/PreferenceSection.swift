@@ -7,7 +7,7 @@ enum PreferenceSection: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .appearance: return "Appearance"
+        case .appearance: return string(R.str.prefs_appearance)
         case .myShows: return "My Shows"
         case .toWatch: return "To Watch"
         case .specials: return "Specials"
