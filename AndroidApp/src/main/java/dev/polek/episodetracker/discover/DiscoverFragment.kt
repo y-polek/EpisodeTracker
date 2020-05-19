@@ -92,11 +92,11 @@ class DiscoverFragment : Fragment(), DiscoverView {
     }
 
     override fun showSearchResults(results: List<DiscoverResultViewModel>) {
-        adapter.results = results
+        adapter.setResults(results)
     }
 
     override fun updateSearchResult(result: DiscoverResultViewModel) {
-
+        adapter.updateResult(result)
     }
 
     override fun updateSearchResults() {

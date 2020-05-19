@@ -10,11 +10,20 @@ import dev.polek.episodetracker.utils.layoutInflater
 
 class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
 
-    var results: List<DiscoverResultViewModel> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+    private var results: MutableList<DiscoverResultViewModel> = mutableListOf()
+
+    fun setResults(results: List<DiscoverResultViewModel>) {
+        this.results = results.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    fun updateResult(result: DiscoverResultViewModel) {
+        val position = results.indexOfFirst { it.id == result.id }
+        if (position >= 0) {
+            results[position] = result
+            notifyItemChanged(position)
         }
+    }
 
     override fun getItemCount() = results.size
 
