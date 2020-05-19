@@ -93,6 +93,9 @@ kotlin {
             implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
             implementation "io.ktor:ktor-client-serialization-jvm:$ktor_version"
 
+            // OkHttp
+            implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
             // Serialization
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
 
