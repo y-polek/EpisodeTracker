@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,6 +50,8 @@ class DiscoverFragment : Fragment(), DiscoverView {
             }
         })
 
+        binding.swipeRefresh.isEnabled = false
+
         return binding.root
     }
 
@@ -73,19 +76,19 @@ class DiscoverFragment : Fragment(), DiscoverView {
     }
 
     override fun showPrompt() {
-
+        binding.promptView.isVisible = true
     }
 
     override fun hidePrompt() {
-
+        binding.promptView.isVisible = false
     }
 
     override fun showProgress() {
-
+        binding.swipeRefresh.isRefreshing = true
     }
 
     override fun hideProgress() {
-
+        binding.swipeRefresh.isRefreshing = false
     }
 
     override fun showSearchResults(results: List<DiscoverResultViewModel>) {
