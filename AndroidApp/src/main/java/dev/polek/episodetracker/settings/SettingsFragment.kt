@@ -11,6 +11,7 @@ import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.model.Appearance
 import dev.polek.episodetracker.common.presentation.settings.SettingsView
 import dev.polek.episodetracker.databinding.SettingsFragmentBinding
+import dev.polek.episodetracker.utils.apply
 import dev.polek.episodetracker.utils.doOnClick
 
 class SettingsFragment : Fragment(), SettingsView {
@@ -58,6 +59,7 @@ class SettingsFragment : Fragment(), SettingsView {
     }
 
     override fun setAppearance(appearance: Appearance) {
+        appearance.apply()
         currentTheme = Theme.byAppearance(appearance)
         binding.themeSubtitle.setText(currentTheme.nameRes)
     }

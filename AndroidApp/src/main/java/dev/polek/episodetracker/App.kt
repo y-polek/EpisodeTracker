@@ -1,6 +1,7 @@
 package dev.polek.episodetracker
 
 import android.app.Application
+import dev.polek.episodetracker.common.presentation.app.AppView
 import dev.polek.episodetracker.di.ContextModule
 import dev.polek.episodetracker.di.DaggerSingletonComponent
 import dev.polek.episodetracker.di.SingletonComponent
