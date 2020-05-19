@@ -104,11 +104,11 @@ class DiscoverFragment : Fragment(), DiscoverView {
     }
 
     override fun showEmptyMessage() {
-
+        binding.emptyView.isVisible = true
     }
 
     override fun hideEmptyMessage() {
-
+        binding.emptyView.isVisible = false
     }
 
     override fun showError() {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="discover_prompt">Search for TV Show</string>
+    <string name="discover_prompt_message">Search for TV Show</string>
+    <string name="discover_empty_message">Nothing found</string>
 </resources>
