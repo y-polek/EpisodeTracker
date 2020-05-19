@@ -14,6 +14,7 @@ import dev.polek.episodetracker.common.presentation.discover.DiscoverView
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.doOnClick
 
 class DiscoverFragment : Fragment(), DiscoverView {
 
@@ -51,6 +52,10 @@ class DiscoverFragment : Fragment(), DiscoverView {
         })
 
         binding.swipeRefresh.isEnabled = false
+
+        binding.retryButton.doOnClick {
+            presenter.onRetryButtonClicked()
+        }
 
         return binding.root
     }
@@ -112,11 +117,11 @@ class DiscoverFragment : Fragment(), DiscoverView {
     }
 
     override fun showError() {
-
+        binding.errorView.isVisible = true
     }
 
     override fun hideError() {
-
+        binding.errorView.isVisible = false
     }
 
     override fun displayRemoveShowConfirmation(result: DiscoverResultViewModel, callback: (confirmed: Boolean) -> Unit) {

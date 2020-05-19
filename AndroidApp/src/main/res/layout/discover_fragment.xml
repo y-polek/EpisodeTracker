@@ -58,7 +58,7 @@
             android:layout_gravity="center"
             android:text="@string/discover_prompt_message"
             android:visibility="gone"
-            style="@style/PromptText"
+            style="@style/BackgroundMessageText"
             />
         
         <LinearLayout
@@ -83,7 +83,42 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="center_horizontal"
                 android:text="@string/discover_empty_message"
-                style="@style/EmptyText"
+                style="@style/BackgroundMessageText"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/error_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="UseCompoundDrawables"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/bg_error"
+                tools:ignore="ContentDescription"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center_horizontal"
+                android:text="@string/discover_error_message"
+                style="@style/BackgroundMessageText"
+                />
+            <Button
+                android:id="@+id/retry_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/action_retry"
+                style="@style/ActionButton"
                 />
         </LinearLayout>
     </FrameLayout>

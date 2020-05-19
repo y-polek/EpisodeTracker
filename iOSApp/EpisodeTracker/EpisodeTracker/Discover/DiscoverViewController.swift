@@ -16,6 +16,7 @@ class DiscoverViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         tableView.promptText = string(R.str.discover_prompt_message)
         tableView.emptyText = string(R.str.discover_empty_message)
+        tableView.errorText = string(R.str.discover_error_message)
         presenter.attachView(view: self)
     }
     

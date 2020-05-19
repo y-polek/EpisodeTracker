@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -31,12 +31,11 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="PromptText" parent="TextAppearance.AppCompat.Medium">
+    <style name="BackgroundMessageText" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="EmptyText" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    <style name="ActionButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
     </style>
 
 </resources>
