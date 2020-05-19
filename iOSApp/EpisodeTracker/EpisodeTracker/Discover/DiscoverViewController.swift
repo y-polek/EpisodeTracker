@@ -14,6 +14,7 @@ class DiscoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
+        tableView.promptText = string(R.str.discover_prompt)
         presenter.attachView(view: self)
     }
     

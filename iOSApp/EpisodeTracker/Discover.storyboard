@@ -148,7 +148,6 @@
                                             </tableViewCell>
                                         </prototypes>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="promptText" value="Search for TV Show"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="emptyText" value="Nothing found"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="errorText" value="Can't load search results"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isEmptyActionHidden" value="YES"/>

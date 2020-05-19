@@ -1,6 +1,7 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'com.squareup.sqldelight'
+apply plugin: 'dev.icerock.mobile.multiplatform-resources'
 apply plugin: 'com.android.library'
 
 android {
@@ -67,6 +68,9 @@ kotlin {
 
             // Multiplatform Settings
             api "com.russhwolf:multiplatform-settings:$multiplatform_settings_version"
+
+            // Moko Resources
+            api "dev.icerock.moko:resources:$moko_resources_version"
         }
         commonTest.dependencies {
             implementation 'org.jetbrains.kotlin:kotlin-test-common'
@@ -128,6 +132,10 @@ sqldelight {
     Database {
         packageName = "dev.polek.episodetracker.db"
     }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "dev.polek.episodetracker"
 }
 
 task packForXCode(type: Sync) {
