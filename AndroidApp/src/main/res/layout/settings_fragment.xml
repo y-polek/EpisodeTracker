@@ -51,6 +51,8 @@
 
             </LinearLayout>
 
+            <include layout="@layout/divider" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

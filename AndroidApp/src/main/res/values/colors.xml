@@ -2,11 +2,12 @@
 <resources>
     <color name="colorPrimary">#0059BF</color>
     <color name="colorPrimaryDark">#004088</color>
-    <color name="colorAccent">#525AFF</color>
+    <color name="colorAccent">#0059BF</color>
     <color name="textColorPrimary">#000000</color>
     <color name="textColorPrimaryInverse">#FFFFFF</color>
 
-    <color name="dividerColor">#1F000000</color>
+    <color name="dividerColor">#33000000</color>
+    <color name="dividerColorInverse">#40FFFFFF</color>
 
     <color name="bottomNavigationBackground">#F8F7F8</color>
 </resources>
