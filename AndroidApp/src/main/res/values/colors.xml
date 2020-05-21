@@ -8,4 +8,6 @@
     <color name="dividerColorInverse">#40FFFFFF</color>
 
     <color name="bottomNavigationBackground">#F8F7F8</color>
+
+    <color name="semitransparent">#80000000</color>
 </resources>

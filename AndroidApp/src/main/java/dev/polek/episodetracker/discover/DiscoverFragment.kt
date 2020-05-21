@@ -9,19 +9,31 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.polek.episodetracker.App
+import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.discover.DiscoverView
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
 
-class DiscoverFragment : Fragment(), DiscoverView {
+class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
 
     private lateinit var binding: DiscoverFragmentBinding
     private val adapter = DiscoverAdapter()
 
     private val presenter = App.instance.di.discoverPresenter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter.listener = this
+    }
+
+    override fun onDestroy() {
+        adapter.listener = null
+        super.onDestroy()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,6 +92,18 @@ class DiscoverFragment : Fragment(), DiscoverView {
         super.onPause()
     }
 
+    override fun onResultClicked(result: DiscoverResultViewModel) {
+        presenter.onShowClicked(result)
+    }
+
+    override fun onAddButtonClicked(result: DiscoverResultViewModel) {
+        presenter.onAddButtonClicked(result)
+    }
+
+    override fun onRemoveButtonClicked(result: DiscoverResultViewModel) {
+        presenter.onRemoveButtonClicked(result)
+    }
+
     override fun showPrompt() {
         binding.promptView.isVisible = true
     }
@@ -125,7 +149,11 @@ class DiscoverFragment : Fragment(), DiscoverView {
     }
 
     override fun displayRemoveShowConfirmation(result: DiscoverResultViewModel, callback: (confirmed: Boolean) -> Unit) {
-
+        MaterialAlertDialogBuilder(context)
+            .setTitle(getString(R.string.remove_show_confirmation, result.name))
+            .setPositiveButton(R.string.action_remove) { _, _ -> callback(true) }
+            .setNegativeButton(R.string.action_cancel) { _, _ -> callback(false) }
+            .show()
     }
 
     override fun openDiscoverShow(show: DiscoverResultViewModel) {

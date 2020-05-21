@@ -16,7 +16,7 @@ class DatabaseModule {
     @Singleton
     fun database(appContext: Context): Database {
         return Database(
-            driver = AndroidSqliteDriver(Database.Schema, appContext),
+            driver = AndroidSqliteDriver(Database.Schema, appContext, "episode_tracker.db"),
             MyShowAdapter = MyShow.Adapter(
                 genresAdapter = ListOfStringsAdapter,
                 networksAdapter = ListOfStringsAdapter)

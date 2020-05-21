@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     android:orientation="horizontal"
     android:background="?android:attr/selectableItemBackground"
     >
@@ -26,6 +26,23 @@
             android:foreground="@drawable/shadow"
             tools:src="@tools:sample/backgrounds/scenic"
             tools:ignore="ContentDescription"
+            />
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_add"
+            android:tint="?android:attr/textColorPrimaryInverse"
+            android:background="@drawable/square_button_background"
+            />
+        <ProgressBar
+            android:id="@+id/add_button_progress"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="?android:attr/textColorPrimaryInverse"
             />
     </androidx.cardview.widget.CardView>
 
