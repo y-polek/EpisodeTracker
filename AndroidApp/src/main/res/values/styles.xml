@@ -7,8 +7,6 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="android:colorBackground">@color/backgroundColor</item>
 
-        <item name="android:navigationBarColor">@color/bottomNavigationBackground</item>
-
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
