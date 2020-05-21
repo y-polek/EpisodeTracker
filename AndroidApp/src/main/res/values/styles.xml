@@ -4,10 +4,10 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:colorBackground">@color/backgroundColor</item>
+
+        <item name="android:navigationBarColor">@color/bottomNavigationBackground</item>
 
         <item name="android:windowTranslucentStatus">true</item>
     </style>
@@ -36,6 +36,7 @@
     </style>
 
     <style name="ActionButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        
     </style>
 
     <style name="PreferenceGroup" parent="TextAppearance.MaterialComponents.Body1">
