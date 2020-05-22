@@ -25,7 +25,7 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
         val position = results.indexOfFirst { it.id == result.id }
         if (position >= 0) {
             results[position] = result
-            notifyItemChanged(position)
+            notifyItemChanged(position, Payload.IN_MY_SHOWS_STATUS)
         }
     }
 
@@ -59,6 +59,22 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
             .load(result.posterUrl)
             .into(holder.binding.image)
 
+        bindAddButton(holder, result)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
+        payloads.forEach { payload ->
+            when (payload) {
+                Payload.IN_MY_SHOWS_STATUS -> {
+                    bindAddButton(holder, results[position])
+                }
+            }
+        }
+
+        super.onBindViewHolder(holder, position, payloads)
+    }
+
+    private fun bindAddButton(holder: ViewHolder, result: DiscoverResultViewModel) {
         holder.binding.addButtonProgress.isVisible = result.isAddInProgress
         if (result.isAddInProgress) {
             holder.binding.button.setImageDrawable(null)
@@ -92,5 +108,9 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
         fun onResultClicked(result: DiscoverResultViewModel)
         fun onAddButtonClicked(result: DiscoverResultViewModel)
         fun onRemoveButtonClicked(result: DiscoverResultViewModel)
+    }
+
+    private enum class Payload {
+        IN_MY_SHOWS_STATUS
     }
 }
