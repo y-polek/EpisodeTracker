@@ -61,12 +61,12 @@
             android:layout_marginEnd="16dp"
             android:maxLines="2"
             tools:text="Star Trek: Discovery"
-            style="@style/AppTheme.ShowItemTitle"
+            style="@style/Title"
             />
         <LinearLayout
+            android:id="@+id/subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:orientation="horizontal"
             >
@@ -74,24 +74,27 @@
                 android:id="@+id/year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 tools:text="2017"
-                style="@style/AppTheme.ShowItemSubtitle"
+                style="@style/Subtitle"
                 />
             <TextView
+                android:id="@+id/subtitle_divider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text=" | "
                 tools:ignore="HardcodedText"
-                style="@style/AppTheme.ShowItemSubtitle"
+                style="@style/Subtitle"
                 />
             <TextView
-                android:id="@+id/network"
+                android:id="@+id/genres"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:singleLine="true"
-                tools:text="CBS All Access"
-                style="@style/AppTheme.ShowItemSubtitle"
+                tools:text="Sci-Fi"
+                style="@style/Subtitle"
                 />
         </LinearLayout>
 
@@ -105,7 +108,7 @@
             android:maxLines="5"
             android:ellipsize="end"
             tools:text="Follow the voyages of Starfleet on their missions to discover new worlds and new life forms, and one Starfleet officer who must learn that to truly understand all things alien, you must first understand yourself."
-            style="@style/AppTheme.ShowOverview"
+            style="@style/Description"
             />
 
     </LinearLayout>

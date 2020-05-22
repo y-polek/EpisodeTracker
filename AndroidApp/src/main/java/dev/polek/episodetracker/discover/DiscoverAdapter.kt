@@ -52,9 +52,18 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = results[position]
         holder.binding.name.text = result.name
+
         holder.binding.year.text = result.year.toString()
-        holder.binding.network.text = ""
+        holder.binding.year.isVisible = result.year != null
+
+        holder.binding.genres.text = result.genres.joinToString(separator = ", ")
+        holder.binding.genres.isVisible = result.genres.isNotEmpty()
+
+        holder.binding.subtitleDivider.isVisible = (result.year != null) and result.genres.isNotEmpty()
+        holder.binding.subtitle.isVisible = (result.year != null) or result.genres.isNotEmpty()
+
         holder.binding.overview.text = result.overview
+
         Glide.with(holder.itemView)
             .load(result.posterUrl)
             .into(holder.binding.image)
