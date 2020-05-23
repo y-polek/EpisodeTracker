@@ -47,9 +47,7 @@
                     style="@style/PreferenceSubtitle"
                     />
             </LinearLayout>
-
-            <include layout="@layout/divider" />
-
+            
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,8 +72,6 @@
                 android:text="@string/prefs_show_last_week"
                 />
 
-            <include layout="@layout/divider" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,8 +95,6 @@
                 android:textAppearance="@style/PreferenceTitle"
                 android:text="@string/prefs_show_badge"
                 />
-
-            <include layout="@layout/divider" />
 
             <TextView
                 android:layout_width="wrap_content"
