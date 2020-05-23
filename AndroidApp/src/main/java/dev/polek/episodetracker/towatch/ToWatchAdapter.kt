@@ -1,6 +1,5 @@
 package dev.polek.episodetracker.towatch
 
-import android.graphics.drawable.Drawable
 import android.text.Html
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -9,8 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.bumptech.glide.request.transition.Transition
-import com.bumptech.glide.request.transition.TransitionFactory
+import com.bumptech.glide.request.transition.NoTransition
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
 import dev.polek.episodetracker.databinding.ToWatchShowLayoutBinding
@@ -59,12 +57,12 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
 
         Glide.with(holder.itemView)
             .load(show.imageUrl)
-            .transition(DrawableTransitionOptions.with(object : TransitionFactory<Drawable> {
-                override fun build(dataSource: DataSource?, isFirstResource: Boolean): Transition<Drawable>? {
-                    if (dataSource == DataSource.DATA_DISK_CACHE || dataSource == DataSource.RESOURCE_DISK_CACHE) return null
-                    return DrawableCrossFadeFactory.Builder(200).build().build(dataSource, isFirstResource)
+            .transition(DrawableTransitionOptions.with { dataSource, isFirstResource ->
+                when (dataSource) {
+                    DataSource.REMOTE -> DrawableCrossFadeFactory.Builder(200).build().build(dataSource, isFirstResource)
+                    else -> NoTransition.get()
                 }
-            }))
+            })
             .into(binding.image)
     }
 
