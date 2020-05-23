@@ -14,6 +14,7 @@ import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchView
 import dev.polek.episodetracker.databinding.ToWatchFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.doOnClick
 
 class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
 
@@ -57,6 +58,11 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
                 return true
             }
         })
+
+        binding.showAllButton.doOnClick {
+            binding.searchView.setQuery("", true)
+            binding.searchView.clearFocus()
+        }
 
         return binding.root
     }
