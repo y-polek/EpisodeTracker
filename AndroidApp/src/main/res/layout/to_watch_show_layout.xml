@@ -37,7 +37,7 @@
             android:layout_marginBottom="4dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_check"
-            android:tint="?android:attr/textColorPrimaryInverse"
+            android:tint="?attr/colorOnPrimarySurface"
             android:background="@drawable/circular_button_background"
             />
 
@@ -88,7 +88,7 @@
                     android:id="@+id/episodes_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorOnSurface"
+                    android:textColor="?attr/colorOnPrimarySurface"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
                     android:textStyle="bold"
                     android:includeFontPadding="false"
@@ -98,7 +98,7 @@
                     android:id="@+id/episodes_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorOnSurface"
+                    android:textColor="?attr/colorOnPrimarySurface"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                     android:includeFontPadding="false"
                     tools:text="episodes"

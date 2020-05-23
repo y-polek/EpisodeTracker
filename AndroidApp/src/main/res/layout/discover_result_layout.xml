@@ -33,7 +33,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_add"
-            android:tint="?android:attr/textColorPrimaryInverse"
+            android:tint="?attr/colorOnPrimarySurface"
             android:background="@drawable/square_button_background"
             />
         <ProgressBar
@@ -42,7 +42,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:indeterminate="true"
-            android:indeterminateTint="?android:attr/textColorPrimaryInverse"
+            android:indeterminateTint="?attr/colorOnPrimarySurface"
             />
     </androidx.cardview.widget.CardView>
 

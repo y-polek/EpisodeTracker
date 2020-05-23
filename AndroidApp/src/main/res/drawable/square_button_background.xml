@@ -3,7 +3,7 @@
     <item>
         <shape>
             <solid android:color="@color/semitransparent"/>
-            <stroke android:color="?android:attr/textColorPrimaryInverse" android:width="2dp"/>
+            <stroke android:color="?attr/colorOnPrimarySurface" android:width="2dp"/>
             <corners android:radius="4dp"/>
         </shape>
     </item>

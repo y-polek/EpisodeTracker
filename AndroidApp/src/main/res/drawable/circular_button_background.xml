@@ -3,7 +3,7 @@
     <item>
         <shape android:shape="oval">
             <solid android:color="@color/semitransparent"/>
-            <stroke android:color="?android:attr/textColorPrimaryInverse" android:width="2dp"/>
+            <stroke android:color="?attr/colorOnPrimarySurface" android:width="2dp"/>
         </shape>
     </item>
 </ripple>
