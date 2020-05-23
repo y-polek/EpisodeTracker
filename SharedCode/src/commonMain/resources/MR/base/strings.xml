@@ -30,5 +30,9 @@
     <string name="prefs_to_watch">To Watch</string>
     <string name="prefs_show_badge">Show number of episodes in a badge</string>
 
+    <string name="prefs_specials">Specials</string>
+    <string name="prefs_show_specials">Show special episodes</string>
+    <string name="prefs_show_specials_in_to_watch">Show specials in \"To Watch\" list</string>
+
     <string name="remove_show_confirmation">Are you sure you want to remove \"%s\"?</string>
 </resources>

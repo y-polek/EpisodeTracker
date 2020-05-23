@@ -102,6 +102,45 @@
 
             <include layout="@layout/divider" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="?attr/colorAccent"
+                android:text="@string/prefs_specials"
+                style="@style/PreferenceGroup"
+                />
+
+            <CheckBox
+                android:id="@+id/show_specials_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                android:background="?android:attr/selectableItemBackground"
+                android:textAppearance="@style/PreferenceTitle"
+                android:text="@string/prefs_show_specials"
+                />
+
+            <include layout="@layout/divider" />
+
+            <CheckBox
+                android:id="@+id/show_specials_in_to_watch_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                android:background="?android:attr/selectableItemBackground"
+                android:textAppearance="@style/PreferenceTitle"
+                android:text="@string/prefs_show_specials_in_to_watch"
+                />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

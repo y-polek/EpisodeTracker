@@ -43,6 +43,14 @@ class SettingsFragment : Fragment(), SettingsView {
             presenter.onShowToWatchBadgeChanged(isChecked)
         }
 
+        binding.showSpecialsCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            presenter.onShowSpecialsChanged(isChecked)
+        }
+
+        binding.showSpecialsInToWatchCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            presenter.onShowSpecialsInToWatchChanged(isChecked)
+        }
+
         return binding.root
     }
 
@@ -81,11 +89,12 @@ class SettingsFragment : Fragment(), SettingsView {
     }
 
     override fun setShowSpecials(showSpecials: Boolean) {
-        // TODO("not implemented")
+        binding.showSpecialsCheckbox.isChecked = showSpecials
     }
 
     override fun setShowSpecialsInToWatch(showSpecialsInToWatch: Boolean, isEnabled: Boolean) {
-        // TODO("not implemented")
+        binding.showSpecialsInToWatchCheckbox.isChecked = showSpecialsInToWatch
+        binding.showSpecialsInToWatchCheckbox.isEnabled = isEnabled
     }
 
     private fun openThemesDialog() {
