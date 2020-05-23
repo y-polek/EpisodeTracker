@@ -5,12 +5,13 @@ import com.squareup.sqldelight.Query
 import dev.polek.episodetracker.common.datasource.db.MultiQueryListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
+import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.ToWatchShow
 import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.db.Database
 
-class ToWatchRepository(
+class ToWatchRepository @Inject constructor(
     private val db: Database,
     private val preferences: Preferences)
 {

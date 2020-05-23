@@ -51,22 +51,24 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = results[position]
-        holder.binding.name.text = result.name
+        val binding = holder.binding
 
-        holder.binding.year.text = result.year.toString()
-        holder.binding.year.isVisible = result.year != null
+        binding.name.text = result.name
 
-        holder.binding.genres.text = result.genres.joinToString(separator = ", ")
-        holder.binding.genres.isVisible = result.genres.isNotEmpty()
+        binding.year.text = result.year.toString()
+        binding.year.isVisible = result.year != null
 
-        holder.binding.subtitleDivider.isVisible = (result.year != null) and result.genres.isNotEmpty()
-        holder.binding.subtitle.isVisible = (result.year != null) or result.genres.isNotEmpty()
+        binding.genres.text = result.genres.joinToString(separator = ", ")
+        binding.genres.isVisible = result.genres.isNotEmpty()
 
-        holder.binding.overview.text = result.overview
+        binding.subtitleDivider.isVisible = (result.year != null) and result.genres.isNotEmpty()
+        binding.subtitle.isVisible = (result.year != null) or result.genres.isNotEmpty()
+
+        binding.overview.text = result.overview
 
         Glide.with(holder.itemView)
             .load(result.posterUrl)
-            .into(holder.binding.image)
+            .into(binding.image)
 
         bindAddButton(holder, result)
     }

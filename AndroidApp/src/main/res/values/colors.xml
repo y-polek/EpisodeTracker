@@ -4,6 +4,8 @@
     <color name="colorSecondary">#0059BF</color>
     <color name="backgroundColor">#FFFFFF</color>
 
+    <color name="colorOnSurface">#FFFFFF</color>
+
     <color name="dividerColor">#33000000</color>
     <color name="dividerColorInverse">#40FFFFFF</color>
 

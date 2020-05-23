@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/card_view_height"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:foreground="@drawable/gradient_shadow"
+        tools:src="@tools:sample/backgrounds/scenic"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        >
+        <ImageButton
+            android:id="@+id/check_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="4dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_check"
+            android:tint="?android:attr/textColorPrimaryInverse"
+            android:background="@drawable/circular_button_background"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    tools:text="Star Trek: Discovery"
+                    style="@style/CardTitle"
+                    />
+
+                <include layout="@layout/divider_inverse" />
+
+                <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:singleLine="true"
+                    tools:text="S01 E01 | The Vulcan Hello"
+                    style="@style/CardSubtitle"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/episodes_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorOnSurface"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                    android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    tools:text="42"
+                    />
+                <TextView
+                    android:id="@+id/episodes_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorOnSurface"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:includeFontPadding="false"
+                    tools:text="episodes"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/specials_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:src="@drawable/ic_specials"
+        tools:ignore="RtlHardcoded"
+        />
+
+</androidx.cardview.widget.CardView>

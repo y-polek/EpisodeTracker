@@ -2,13 +2,14 @@ package dev.polek.episodetracker.common.presentation.towatch
 
 import co.touchlab.stately.ensureNeverFrozen
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
+import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.model.ToWatchShow
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.repositories.EpisodesRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ToWatchRepository
 
-class ToWatchPresenter(
+class ToWatchPresenter @Inject constructor(
     private val toWatchRepository: ToWatchRepository,
     private val episodesRepository: EpisodesRepository,
     private val myShowsRepository: MyShowsRepository) : BasePresenter<ToWatchView>()

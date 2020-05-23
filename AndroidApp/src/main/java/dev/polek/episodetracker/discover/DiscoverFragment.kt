@@ -20,10 +20,10 @@ import dev.polek.episodetracker.utils.doOnClick
 
 class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
 
+    private val presenter = App.instance.di.discoverPresenter()
+
     private lateinit var binding: DiscoverFragmentBinding
     private val adapter = DiscoverAdapter()
-
-    private val presenter = App.instance.di.discoverPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +43,10 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
         binding = DiscoverFragmentBinding.inflate(inflater)
 
         binding.recyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(context)
             addOnScrollListener(HideKeyboardScrollListener())
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            setHasFixedSize(true)
         }
         binding.recyclerView.adapter = adapter
 
