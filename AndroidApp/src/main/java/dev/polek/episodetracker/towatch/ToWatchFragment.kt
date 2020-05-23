@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.polek.episodetracker.App
@@ -36,7 +37,7 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View?
     {
-        val binding = ToWatchFragmentBinding.inflate(inflater)
+        binding = ToWatchFragmentBinding.inflate(inflater)
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -96,11 +97,13 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
     }
 
     override fun showEmptyMessage(isFiltered: Boolean) {
-        // TODO("not implemented")
+        binding.emptySearchView.isVisible = isFiltered
+        binding.emptyView.isVisible = !isFiltered
     }
 
     override fun hideEmptyMessage() {
-        // TODO("not implemented")
+        binding.emptyView.isVisible = false
+        binding.emptySearchView.isVisible = false
     }
 
     override fun openToWatchShowDetails(show: ToWatchShowViewModel, episode: EpisodeNumber) {

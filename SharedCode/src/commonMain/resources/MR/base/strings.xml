@@ -8,10 +8,14 @@
     <string name="action_retry">Retry</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_remove">Remove</string>
+    <string name="action_show_all">Show All</string>
 
     <string name="discover_prompt_message">Search for TV Show</string>
     <string name="discover_empty_message">Nothing found</string>
     <string name="discover_error_message">Can\'t load search results</string>
+
+    <string name="to_watch_empty_message">No episodes to watch</string>
+    <string name="to_watch_empty_search_message">No shows found</string>
 
     <string name="prefs_appearance">Appearance</string>
     <string name="prefs_theme">Theme</string>
