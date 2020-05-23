@@ -39,6 +39,10 @@ class SettingsFragment : Fragment(), SettingsView {
             presenter.onShowLastWeekSectionChanged(isChecked)
         }
 
+        binding.showBadgeCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            presenter.onShowToWatchBadgeChanged(isChecked)
+        }
+
         return binding.root
     }
 
@@ -73,7 +77,7 @@ class SettingsFragment : Fragment(), SettingsView {
     }
 
     override fun setShowToWatchBadge(showBadge: Boolean) {
-        // TODO("not implemented")
+        binding.showBadgeCheckbox.isChecked = showBadge
     }
 
     override fun setShowSpecials(showSpecials: Boolean) {

@@ -27,5 +27,8 @@
     <string name="prefs_my_shows">My Shows</string>
     <string name="prefs_show_last_week">Show \"Last Week\" section</string>
 
+    <string name="prefs_to_watch">To Watch</string>
+    <string name="prefs_show_badge">Show number of episodes in a badge</string>
+
     <string name="remove_show_confirmation">Are you sure you want to remove \"%s\"?</string>
 </resources>
