@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.polek.episodetracker.App
 import dev.polek.episodetracker.common.model.EpisodeNumber
@@ -14,12 +13,22 @@ import dev.polek.episodetracker.common.presentation.towatch.ToWatchView
 import dev.polek.episodetracker.databinding.ToWatchFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 
-class ToWatchFragment : Fragment(), ToWatchView {
+class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
 
     private val presenter = App.instance.di.toWatchPresenter()
 
     private lateinit var binding: ToWatchFragmentBinding
     private val adapter = ToWatchAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter.listener = this
+    }
+
+    override fun onDestroy() {
+        adapter.listener = null
+        super.onDestroy()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +67,16 @@ class ToWatchFragment : Fragment(), ToWatchView {
         super.onPause()
     }
 
-    //region ToWatchView implementation
+    override fun onShowClicked(show: ToWatchShowViewModel) {
+        presenter.onShowClicked(show)
+    }
+
+    override fun onCheckButtonClicked(show: ToWatchShowViewModel) {
+        presenter.onWatchedButtonClicked(show)
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // region ToWatchView implementation
 
     override fun displayShows(shows: List<ToWatchShowViewModel>) {
         adapter.shows = shows
@@ -75,7 +93,8 @@ class ToWatchFragment : Fragment(), ToWatchView {
     override fun openToWatchShowDetails(show: ToWatchShowViewModel, episode: EpisodeNumber) {
         // TODO("not implemented")
     }
-    //endregion
+    // endregion
+    ///////////////////////////////////////////////////////////////////////////
 
     companion object {
         fun instance() = ToWatchFragment()
