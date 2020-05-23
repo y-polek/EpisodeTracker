@@ -51,7 +51,6 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
         binding.recyclerView.adapter = adapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
             override fun onQueryTextSubmit(query: String): Boolean {
                 binding.searchView.clearFocus()
                 presenter.onSearchQuerySubmitted(query.trim())

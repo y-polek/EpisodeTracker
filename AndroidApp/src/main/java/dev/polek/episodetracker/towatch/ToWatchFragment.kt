@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.polek.episodetracker.App
@@ -43,6 +44,18 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
             setHasFixedSize(true)
         }
         binding.recyclerView.adapter = adapter
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                binding.searchView.clearFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                presenter.onSearchQueryChanged(query)
+                return true
+            }
+        })
 
         return binding.root
     }
