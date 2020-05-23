@@ -35,6 +35,10 @@ class SettingsFragment : Fragment(), SettingsView {
             openThemesDialog()
         }
 
+        binding.showLastWeekCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            presenter.onShowLastWeekSectionChanged(isChecked)
+        }
+
         return binding.root
     }
 
@@ -65,7 +69,7 @@ class SettingsFragment : Fragment(), SettingsView {
     }
 
     override fun setShowLastWeekSection(showLastWeekSection: Boolean) {
-        // TODO("not implemented")
+        binding.showLastWeekCheckbox.isChecked = showLastWeekSection
     }
 
     override fun setShowToWatchBadge(showBadge: Boolean) {

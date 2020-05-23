@@ -26,7 +26,7 @@
     <style name="ActionButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
     </style>
 
-    <style name="PreferenceGroup" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="PreferenceGroup" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">?android:attr/colorAccent</item>
     </style>
 

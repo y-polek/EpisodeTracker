@@ -24,7 +24,6 @@
             android:orientation="vertical"
             >
 
-
             <LinearLayout
                 android:id="@+id/theme_layout"
                 android:layout_width="match_parent"
@@ -34,7 +33,6 @@
                 android:paddingVertical="16dp"
                 android:background="?android:attr/selectableItemBackground"
                 >
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,8 +46,32 @@
                     tools:text="Dark"
                     style="@style/PreferenceSubtitle"
                     />
-
             </LinearLayout>
+
+            <include layout="@layout/divider" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:textColor="?attr/colorAccent"
+                android:text="@string/prefs_my_shows"
+                style="@style/PreferenceGroup"
+                />
+
+            <CheckBox
+                android:id="@+id/show_last_week_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                android:background="?android:attr/selectableItemBackground"
+                android:textAppearance="@style/PreferenceTitle"
+                android:text="@string/prefs_show_last_week"
+                />
 
             <include layout="@layout/divider" />
 

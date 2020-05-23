@@ -24,5 +24,8 @@
     <string name="prefs_automatic">Automatic</string>
     <string name="prefs_system_default">System default</string>
 
+    <string name="prefs_my_shows">My Shows</string>
+    <string name="prefs_show_last_week">Show \"Last Week\" section</string>
+
     <string name="remove_show_confirmation">Are you sure you want to remove \"%s\"?</string>
 </resources>
