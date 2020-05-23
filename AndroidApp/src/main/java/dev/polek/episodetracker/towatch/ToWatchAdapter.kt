@@ -3,6 +3,7 @@ package dev.polek.episodetracker.towatch
 import android.text.Html
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -21,8 +22,9 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
 
     var shows: List<ToWatchShowViewModel> = emptyList()
         set(value) {
+            val diff = DiffUtil.calculateDiff(DiffUtilCallback(oldList = shows, newList = value))
             field = value
-            notifyDataSetChanged()
+            diff.dispatchUpdatesTo(this)
         }
 
     override fun getItemCount() = shows.size
@@ -89,5 +91,22 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
     interface Listener {
         fun onShowClicked(show: ToWatchShowViewModel)
         fun onCheckButtonClicked(show: ToWatchShowViewModel)
+    }
+
+    private class DiffUtilCallback(
+        val oldList: List<ToWatchShowViewModel>,
+        val newList: List<ToWatchShowViewModel>) : DiffUtil.Callback()
+    {
+        override fun getOldListSize() = oldList.size
+
+        override fun getNewListSize() = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].id == newList[newItemPosition].id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
     }
 }
