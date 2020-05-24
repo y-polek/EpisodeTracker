@@ -20,6 +20,8 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
         notifyDataSetChanged()
     })
 
+    var listener: Listener? = null
+
     override fun getItemCount() = model.count()
 
     override fun getItemViewType(position: Int) = model.viewType(position)
@@ -28,17 +30,23 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
         R.id.view_type_group -> {
             GroupHeaderViewHolder(
                 GroupHeaderLayoutBinding.inflate(parent.layoutInflater, parent, false),
-                onExpandClicked = { position ->
+                onClicked = { position ->
 
                 })
         }
         R.id.view_type_upcoming_show -> {
             UpcomingShowViewHolder(
-                UpcomingShowLayoutBinding.inflate(parent.layoutInflater, parent, false))
+                UpcomingShowLayoutBinding.inflate(parent.layoutInflater, parent, false),
+                onClicked = { position ->
+                    listener?.onShowClicked(model.itemAt(position) as MyShowsListItem.UpcomingShowViewModel)
+                })
         }
         R.id.view_type_show -> {
             ShowViewHolder(
-                MyShowLayoutBinding.inflate(parent.layoutInflater, parent, false))
+                MyShowLayoutBinding.inflate(parent.layoutInflater, parent, false),
+                onClicked = { position ->
+                    listener?.onShowClicked(model.itemAt(position) as MyShowsListItem.ShowViewModel)
+                })
         }
         else -> throw NotImplementedError("Unknown view type: $viewType")
     }
@@ -61,25 +69,22 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
         }
     }
 
-    sealed class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    sealed class ViewHolder(itemView: View, onClicked: (position: Int) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
-        class GroupHeaderViewHolder(
-            val binding: GroupHeaderLayoutBinding,
-            onExpandClicked: (position: Int) -> Unit) : ViewHolder(binding.root)
-        {
-            init {
-                binding.root.doOnClick {
-                    val position = adapterPosition
-                    if (position == RecyclerView.NO_POSITION) return@doOnClick
+        init {
+            itemView.doOnClick {
+                val position = adapterPosition
+                if (position == RecyclerView.NO_POSITION) return@doOnClick
 
-                    onExpandClicked(position)
-                }
+                onClicked(position)
             }
         }
 
-        class UpcomingShowViewHolder(val binding: UpcomingShowLayoutBinding) : ViewHolder(binding.root)
+        class GroupHeaderViewHolder(val binding: GroupHeaderLayoutBinding, onClicked: (position: Int) -> Unit) : ViewHolder(binding.root, onClicked)
 
-        class ShowViewHolder(val binding: MyShowLayoutBinding) : ViewHolder(binding.root)
+        class UpcomingShowViewHolder(val binding: UpcomingShowLayoutBinding, onClicked: (position: Int) -> Unit) : ViewHolder(binding.root, onClicked)
+
+        class ShowViewHolder(val binding: MyShowLayoutBinding, onClicked: (position: Int) -> Unit) : ViewHolder(binding.root, onClicked)
     }
 
     class Model(private val onModelModified: () -> Unit) {
@@ -145,5 +150,14 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
                 }
             }
         }
+    }
+
+    interface Listener {
+        fun onShowClicked(show: MyShowsListItem.ShowViewModel)
+        fun onLastWeekSectionClicked()
+        fun onUpcomingSectionClicked()
+        fun onTbaSectionClicked()
+        fun onEndedSectionClicked()
+        fun onArchivedSectionClicked()
     }
 }

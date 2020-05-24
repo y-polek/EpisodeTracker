@@ -13,12 +13,22 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 
-class MyShowsFragment : Fragment(), MyShowsView {
+class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapter.Listener {
 
     private val presenter = App.instance.di.myShowsPresenter()
 
     private lateinit var binding: MyShowsFragmentBinding
     private val adapter = MyShowsAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter.listener = this
+    }
+
+    override fun onDestroy() {
+        adapter.listener = null
+        super.onDestroy()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,6 +81,30 @@ class MyShowsFragment : Fragment(), MyShowsView {
     override fun onPause() {
         presenter.onViewDisappeared()
         super.onPause()
+    }
+
+    override fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
+        presenter.onShowClicked(show)
+    }
+
+    override fun onLastWeekSectionClicked() {
+        presenter.isLastWeekExpanded = !presenter.isLastWeekExpanded
+    }
+
+    override fun onUpcomingSectionClicked() {
+        presenter.isUpcomingExpanded = !presenter.isUpcomingExpanded
+    }
+
+    override fun onTbaSectionClicked() {
+        presenter.isTbaExpanded = !presenter.isTbaExpanded
+    }
+
+    override fun onEndedSectionClicked() {
+        presenter.isEndedExpanded = !presenter.isEndedExpanded
+    }
+
+    override fun onArchivedSectionClicked() {
+        presenter.isArchivedExpanded = !presenter.isArchivedExpanded
     }
 
     ///////////////////////////////////////////////////////////////////////////
