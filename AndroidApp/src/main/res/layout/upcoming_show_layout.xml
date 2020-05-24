@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="8dp"
+    android:layout_height="@dimen/card_view_height"
+    android:layout_marginHorizontal="@dimen/card_view_margin_horizontal"
+    android:layout_marginBottom="@dimen/card_view_margin_bottom"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/card_view_corner_radius"
     >
 
     <ImageView
@@ -17,7 +17,6 @@
         android:scaleType="centerCrop"
         android:foreground="@drawable/gradient_shadow"
         tools:src="@tools:sample/backgrounds/scenic"
-        tools:ignore="ContentDescription"
         />
 
     <LinearLayout
@@ -26,7 +25,7 @@
         android:layout_gravity="bottom"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         >
         <LinearLayout
@@ -41,21 +40,23 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="16dp"
-                android:maxLines="2"
-                tools:text="Game of Thrones"
-                style="@style/AppTheme.ShowCardTitle"
+                android:singleLine="true"
+                android:ellipsize="end"
+                tools:text="Star Trek: Discovery"
+                style="@style/CardTitle"
                 />
             <TextView
                 android:id="@+id/time_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:singleLine="true"
                 tools:text="4 days"
-                style="@style/AppTheme.ShowCardTitle"
+                style="@style/CardTitle"
                 />
         </LinearLayout>
+
         <include layout="@layout/divider_inverse" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,16 +67,16 @@
                 android:id="@+id/episode_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="S01E01"
                 android:textStyle="bold"
-                style="@style/AppTheme.ShowCardSubtitle"
+                tools:text="S01E01"
+                style="@style/CardSubtitle"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" | "
                 tools:ignore="HardcodedText"
-                style="@style/AppTheme.ShowCardSubtitle"
+                style="@style/CardSubtitle"
                 />
             <TextView
                 android:id="@+id/episode_name"
@@ -84,7 +85,7 @@
                 android:layout_weight="1"
                 android:singleLine="true"
                 tools:text="TBA"
-                style="@style/AppTheme.ShowCardSubtitle"
+                style="@style/CardSubtitle"
                 />
         </LinearLayout>
 
