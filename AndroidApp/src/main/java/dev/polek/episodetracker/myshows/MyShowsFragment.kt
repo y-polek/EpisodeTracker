@@ -5,24 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
-import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-import dev.polek.episodetracker.R
+import dev.polek.episodetracker.App
+import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
+import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
-import dev.polek.episodetracker.utils.scrollFlags
-import dev.polek.episodetracker.utils.setTopMargin
-import dev.polek.episodetracker.utils.setTopPadding
 
-class MyShowsFragment : Fragment() {
+class MyShowsFragment : Fragment(), MyShowsView {
+
+    private val presenter = App.instance.di.myShowsPresenter()
 
     private lateinit var binding: MyShowsFragmentBinding
+    private val adapter = MyShowsAdapter(onGroupVisibilityChanged = {
 
-    private val showsAdapter = MyShowsAdapter(onGroupVisibilityChanged = {
-        makeSearchBarVisible()
     })
 
     override fun onCreateView(
@@ -33,57 +30,91 @@ class MyShowsFragment : Fragment() {
         binding = MyShowsFragmentBinding.inflate(inflater)
 
         binding.recyclerView.apply {
-            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = showsAdapter
             addOnScrollListener(HideKeyboardScrollListener())
+            setHasFixedSize(true)
         }
-
-        binding.appBarLayout.outlineProvider = null
+        binding.recyclerView.adapter = adapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(query: String): Boolean {
-                setSearchBarBehaviour(showAlways = query.isNotBlank())
-                return true
-            }
-
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.searchView.clearFocus()
                 return true
             }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                presenter.onSearchQueryChanged(query)
+                return true
+            }
         })
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            val searchBarMarginTop = resources.getDimensionPixelOffset(R.dimen.search_bar_margin_top)
-            val searchBarMarginBottom = resources.getDimensionPixelOffset(R.dimen.search_bar_margin_bottom)
-            binding.searchBar.setTopMargin(searchBarMarginTop + insets.systemWindowInsetTop)
-
-            val recyclerViewTopPadding =
-                searchBarMarginTop + searchBarMarginBottom + binding.searchBar.height + insets.systemWindowInsetTop
-            if (binding.recyclerView.paddingTop != recyclerViewTopPadding) {
-                binding.recyclerView.setTopPadding(recyclerViewTopPadding)
-                binding.recyclerView.scrollToPosition(0)
-            }
-
-            return@setOnApplyWindowInsetsListener insets
+        binding.swipeRefresh.setOnRefreshListener {
+            presenter.onRefreshRequested()
         }
-
-
 
         return binding.root
     }
 
-    private fun setSearchBarBehaviour(showAlways: Boolean) {
-        binding.searchBar.scrollFlags = if (showAlways) 0 else SCROLL_FLAG_SCROLL or SCROLL_FLAG_ENTER_ALWAYS
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.attachView(this)
     }
 
-    private fun makeSearchBarVisible() {
-        val scrollFlags = binding.searchBar.scrollFlags
-        binding.searchBar.scrollFlags = 0
-        binding.root.post {
-            binding.searchBar.scrollFlags = scrollFlags
-        }
+    override fun onDestroyView() {
+        presenter.detachView()
+        super.onDestroyView()
     }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onViewAppeared()
+    }
+
+    override fun onPause() {
+        presenter.onViewDisappeared()
+        super.onPause()
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //region MyShowsView implementation
+
+    override fun displayLastWeekShows(shows: List<MyShowsListItem.UpcomingShowViewModel>, isVisible: Boolean) {
+        // TODO("not implemented")
+    }
+
+    override fun displayUpcomingShows(shows: List<MyShowsListItem.UpcomingShowViewModel>) {
+        // TODO("not implemented")
+    }
+
+    override fun displayToBeAnnouncedShows(shows: List<MyShowsListItem.ShowViewModel>) {
+        // TODO("not implemented")
+    }
+
+    override fun displayEndedShows(shows: List<MyShowsListItem.ShowViewModel>) {
+        // TODO("not implemented")
+    }
+
+    override fun displayArchivedShows(shows: List<MyShowsListItem.ShowViewModel>) {
+        // TODO("not implemented")
+    }
+
+    override fun showEmptyMessage(isFiltered: Boolean) {
+        // TODO("not implemented")
+    }
+
+    override fun hideEmptyMessage() {
+        // TODO("not implemented")
+    }
+
+    override fun hideRefresh() {
+        binding.swipeRefresh.isRefreshing = false
+    }
+
+    override fun openMyShowDetails(show: MyShowsListItem.ShowViewModel) {
+        // TODO("not implemented")
+    }
+    //endregion
+    ///////////////////////////////////////////////////////////////////////////
 
     companion object {
         fun instance() = MyShowsFragment()

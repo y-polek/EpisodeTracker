@@ -50,7 +50,7 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 binding.searchView.clearFocus()
-                return false
+                return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
