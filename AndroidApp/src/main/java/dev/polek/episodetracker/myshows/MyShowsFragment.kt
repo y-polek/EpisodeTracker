@@ -18,9 +18,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
     private val presenter = App.instance.di.myShowsPresenter()
 
     private lateinit var binding: MyShowsFragmentBinding
-    private val adapter = MyShowsAdapter(onGroupVisibilityChanged = {
-
-    })
+    private val adapter = MyShowsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
