@@ -5,4 +5,6 @@
     <!-- My Shows -->
     <item name="view_type_upcoming_show" type="id"/>
     <item name="view_type_show" type="id"/>
+
+    <item name="glide_request_manager_tag" type="id"/>
 </resources>

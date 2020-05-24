@@ -5,16 +5,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.bumptech.glide.request.transition.NoTransition
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
 import dev.polek.episodetracker.databinding.ToWatchShowLayoutBinding
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
+import dev.polek.episodetracker.utils.loadImage
 
 class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
 
@@ -56,16 +52,7 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
 
         binding.specialsBadge.isVisible = show.isSpecials
 
-
-        Glide.with(holder.itemView)
-            .load(show.imageUrl)
-            .transition(DrawableTransitionOptions.with { dataSource, isFirstResource ->
-                when (dataSource) {
-                    DataSource.REMOTE -> DrawableCrossFadeFactory.Builder(200).build().build(dataSource, isFirstResource)
-                    else -> NoTransition.get()
-                }
-            })
-            .into(binding.image)
+        binding.image.loadImage(show.imageUrl)
     }
 
     class ViewHolder(

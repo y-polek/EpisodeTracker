@@ -4,11 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.bumptech.glide.request.transition.NoTransition
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.GroupHeaderLayoutBinding
@@ -17,6 +12,7 @@ import dev.polek.episodetracker.databinding.UpcomingShowLayoutBinding
 import dev.polek.episodetracker.myshows.MyShowsAdapter.ViewHolder.*
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
+import dev.polek.episodetracker.utils.loadImage
 
 class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
 
@@ -55,28 +51,12 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
                 holder.binding.episodeName.text = show.episodeName
                 holder.binding.episodeNumber.text = show.episodeNumber
                 holder.binding.timeLeft.text = show.timeLeft
-                Glide.with(holder.itemView)
-                    .load(show.backdropUrl)
-                    .transition(DrawableTransitionOptions.with { dataSource, isFirstResource ->
-                        when (dataSource) {
-                            DataSource.REMOTE -> DrawableCrossFadeFactory.Builder(200).build().build(dataSource, isFirstResource)
-                            else -> NoTransition.get()
-                        }
-                    })
-                    .into(holder.binding.image)
+                holder.binding.image.loadImage(show.backdropUrl)
             }
             is ShowViewHolder -> {
                 val show = model.itemAt(position) as MyShowsListItem.ShowViewModel
                 holder.binding.name.text = show.name
-                Glide.with(holder.itemView)
-                    .load(show.backdropUrl)
-                    .transition(DrawableTransitionOptions.with { dataSource, isFirstResource ->
-                        when (dataSource) {
-                            DataSource.REMOTE -> DrawableCrossFadeFactory.Builder(200).build().build(dataSource, isFirstResource)
-                            else -> NoTransition.get()
-                        }
-                    })
-                    .into(holder.binding.image)
+                holder.binding.image.loadImage(show.backdropUrl)
             }
         }
     }
