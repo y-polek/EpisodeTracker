@@ -10,6 +10,12 @@
     <string name="action_remove">Remove</string>
     <string name="action_show_all">Show All</string>
 
+    <string name="my_shows_last_week">Last Week</string>
+    <string name="my_shows_upcoming">Upcoming</string>
+    <string name="my_shows_tba">To Be Announced</string>
+    <string name="my_shows_ended">Ended</string>
+    <string name="my_shows_archived">Archived</string>
+
     <string name="discover_prompt_message">Search for TV Show</string>
     <string name="discover_empty_message">Nothing found</string>
     <string name="discover_error_message">Can\'t load search results</string>

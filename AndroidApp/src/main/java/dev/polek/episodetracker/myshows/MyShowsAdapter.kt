@@ -2,7 +2,6 @@ package dev.polek.episodetracker.myshows
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
@@ -38,23 +37,30 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
             UpcomingShowViewHolder(
                 UpcomingShowLayoutBinding.inflate(parent.layoutInflater, parent, false),
                 onClicked = { position ->
-                    listener?.onShowClicked(model.itemAt(position) as MyShowsListItem.UpcomingShowViewModel)
+                    val show = model.sectionAt(position).showAt(position)
+                    listener?.onShowClicked(show as MyShowsListItem.UpcomingShowViewModel)
                 })
         }
         R.id.view_type_show -> {
             ShowViewHolder(
                 MyShowLayoutBinding.inflate(parent.layoutInflater, parent, false),
                 onClicked = { position ->
-                    listener?.onShowClicked(model.itemAt(position) as MyShowsListItem.ShowViewModel)
+                    val show = model.sectionAt(position).showAt(position)
+                    listener?.onShowClicked(show as MyShowsListItem.ShowViewModel)
                 })
         }
         else -> throw NotImplementedError("Unknown view type: $viewType")
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val section = model.sectionAt(position)
+
         when (holder) {
+            is GroupHeaderViewHolder -> {
+                holder.binding.name.setText(section.nameRes)
+            }
             is UpcomingShowViewHolder -> {
-                val show = model.itemAt(position) as MyShowsListItem.UpcomingShowViewModel
+                val show = section.showAt(position) as MyShowsListItem.UpcomingShowViewModel
                 holder.binding.name.text = show.name
                 holder.binding.episodeName.text = show.episodeName
                 holder.binding.episodeNumber.text = show.episodeNumber
@@ -62,7 +68,7 @@ class MyShowsAdapter : RecyclerView.Adapter<MyShowsAdapter.ViewHolder>() {
                 holder.binding.image.loadImage(show.backdropUrl)
             }
             is ShowViewHolder -> {
-                val show = model.itemAt(position) as MyShowsListItem.ShowViewModel
+                val show = section.showAt(position) as MyShowsListItem.ShowViewModel
                 holder.binding.name.text = show.name
                 holder.binding.image.loadImage(show.backdropUrl)
             }

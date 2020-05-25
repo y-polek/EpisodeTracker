@@ -111,23 +111,23 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapter.Listener {
     //region MyShowsView implementation
 
     override fun displayLastWeekShows(shows: List<MyShowsListItem.UpcomingShowViewModel>, isVisible: Boolean) {
-        adapter.model.lastWeekShows = shows
+        adapter.model.setLastWeekShows(shows)
     }
 
     override fun displayUpcomingShows(shows: List<MyShowsListItem.UpcomingShowViewModel>) {
-        adapter.model.upcomingShows = shows
+        adapter.model.setUpcomingShows(shows)
     }
 
     override fun displayToBeAnnouncedShows(shows: List<MyShowsListItem.ShowViewModel>) {
-        adapter.model.tbaShows = shows
+        adapter.model.setTbaShows(shows)
     }
 
     override fun displayEndedShows(shows: List<MyShowsListItem.ShowViewModel>) {
-        adapter.model.endedShows = shows
+        adapter.model.setEndedShows(shows)
     }
 
     override fun displayArchivedShows(shows: List<MyShowsListItem.ShowViewModel>) {
-        adapter.model.archivedShow = shows
+        adapter.model.setArchivedShows(shows)
     }
 
     override fun showEmptyMessage(isFiltered: Boolean) {
