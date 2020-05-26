@@ -5,13 +5,19 @@ import androidx.annotation.StringRes
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 
-class MyShowsModel(private val onModelModified: () -> Unit) {
-
-    val lastWeekSection = Section(R.string.my_shows_last_week)
-    val upcomingSection = Section(R.string.my_shows_upcoming)
-    val tbaSection = Section(R.string.my_shows_tba)
-    val endedSection = Section(R.string.my_shows_ended)
-    val archivedSection = Section(R.string.my_shows_archived)
+class MyShowsModel(
+    isLastWeekExpanded: Boolean,
+    isUpcomingExpanded: Boolean,
+    isTbaExpanded: Boolean,
+    isEndedExpanded: Boolean,
+    isArchivedExpanded: Boolean,
+    private val onModelModified: () -> Unit)
+{
+    val lastWeekSection = Section(R.string.my_shows_last_week, isLastWeekExpanded)
+    val upcomingSection = Section(R.string.my_shows_upcoming, isUpcomingExpanded)
+    val tbaSection = Section(R.string.my_shows_tba, isTbaExpanded)
+    val endedSection = Section(R.string.my_shows_ended, isEndedExpanded)
+    val archivedSection = Section(R.string.my_shows_archived, isArchivedExpanded)
 
     fun setLastWeekShows(shows: List<MyShowsListItem.UpcomingShowViewModel>) {
         lastWeekSection.shows = shows
@@ -88,7 +94,7 @@ class MyShowsModel(private val onModelModified: () -> Unit) {
         archivedSection.positions = archivedStart..(archivedStart + archivedSection.shows.size)
     }
 
-    class Section(@StringRes val nameRes: Int) {
+    class Section(@StringRes val nameRes: Int, var isExpanded: Boolean) {
         var shows: List<MyShowsListItem> = emptyList()
         var positions: IntRange = IntRange.EMPTY
 

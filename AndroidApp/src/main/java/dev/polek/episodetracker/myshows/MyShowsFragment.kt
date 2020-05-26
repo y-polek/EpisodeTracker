@@ -18,7 +18,12 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapter.Listener {
     private val presenter = App.instance.di.myShowsPresenter()
 
     private lateinit var binding: MyShowsFragmentBinding
-    private val adapter = MyShowsAdapter()
+    private val adapter = MyShowsAdapter(
+        isLastWeekExpanded = presenter.isLastWeekExpanded,
+        isUpcomingExpanded = presenter.isUpcomingExpanded,
+        isTbaExpanded = presenter.isTbaExpanded,
+        isEndedExpanded = presenter.isEndedExpanded,
+        isArchivedExpanded = presenter.isArchivedExpanded)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,24 +92,34 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapter.Listener {
         presenter.onShowClicked(show)
     }
 
-    override fun onLastWeekSectionClicked() {
-        presenter.isLastWeekExpanded = !presenter.isLastWeekExpanded
+    override fun onLastWeekSectionClicked(): Boolean {
+        val isExpanded = !presenter.isLastWeekExpanded
+        presenter.isLastWeekExpanded = isExpanded
+        return isExpanded
     }
 
-    override fun onUpcomingSectionClicked() {
-        presenter.isUpcomingExpanded = !presenter.isUpcomingExpanded
+    override fun onUpcomingSectionClicked(): Boolean {
+        val isExpanded = !presenter.isUpcomingExpanded
+        presenter.isUpcomingExpanded = isExpanded
+        return isExpanded
     }
 
-    override fun onTbaSectionClicked() {
-        presenter.isTbaExpanded = !presenter.isTbaExpanded
+    override fun onTbaSectionClicked(): Boolean {
+        val isExpanded = !presenter.isTbaExpanded
+        presenter.isTbaExpanded = isExpanded
+        return isExpanded
     }
 
-    override fun onEndedSectionClicked() {
-        presenter.isEndedExpanded = !presenter.isEndedExpanded
+    override fun onEndedSectionClicked(): Boolean {
+        val isExpanded = !presenter.isEndedExpanded
+        presenter.isEndedExpanded = isExpanded
+        return isExpanded
     }
 
-    override fun onArchivedSectionClicked() {
-        presenter.isArchivedExpanded = !presenter.isArchivedExpanded
+    override fun onArchivedSectionClicked(): Boolean {
+        val isExpanded = !presenter.isArchivedExpanded
+        presenter.isArchivedExpanded = isExpanded
+        return isExpanded
     }
 
     ///////////////////////////////////////////////////////////////////////////
