@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
 import dev.polek.episodetracker.App
+import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
@@ -19,11 +20,11 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapterListener {
     private val presenter = App.instance.di.myShowsPresenter()
 
     private lateinit var binding: MyShowsFragmentBinding
-    private val lastWeekAdapter = UpcomingShowsAdapter()
-    private val upcomingAdapter = UpcomingShowsAdapter()
-    private val tbaAdapter = ShowsAdapter()
-    private val endedAdapter = ShowsAdapter()
-    private val archivedAdapter = ShowsAdapter()
+    private val lastWeekAdapter = UpcomingShowsAdapter(R.string.my_shows_last_week, presenter.isLastWeekExpanded)
+    private val upcomingAdapter = UpcomingShowsAdapter(R.string.my_shows_upcoming, presenter.isUpcomingExpanded)
+    private val tbaAdapter = ShowsAdapter(R.string.my_shows_tba, presenter.isTbaExpanded)
+    private val endedAdapter = ShowsAdapter(R.string.my_shows_ended, presenter.isEndedExpanded)
+    private val archivedAdapter = ShowsAdapter(R.string.my_shows_archived, presenter.isArchivedExpanded)
     private val adapter = MergeAdapter(adapterConfig, lastWeekAdapter, upcomingAdapter, tbaAdapter, endedAdapter, archivedAdapter)
 
     override fun onCreate(savedInstanceState: Bundle?) {
