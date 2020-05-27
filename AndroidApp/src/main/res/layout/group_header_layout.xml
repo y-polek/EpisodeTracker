@@ -9,6 +9,7 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:drawableEnd="@drawable/ic_arrow_down"
+    android:drawableTint="?attr/colorOnSurface"
     android:background="?android:attr/selectableItemBackground"
     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
     tools:text="To Be Announced"
