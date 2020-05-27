@@ -25,6 +25,7 @@ class ShowsAdapter(
     private var isExpanded: Boolean = isExpanded
         set(value) {
             field = value
+            notifyItemChanged(0)
             if (isExpanded) {
                 notifyItemRangeInserted(1, shows.size)
             } else {
