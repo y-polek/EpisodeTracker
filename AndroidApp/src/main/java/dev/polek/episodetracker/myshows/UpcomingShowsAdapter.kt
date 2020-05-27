@@ -10,11 +10,19 @@ import dev.polek.episodetracker.databinding.UpcomingShowLayoutBinding
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
 
-class UpcomingShowsAdapter(@StringRes val titleRes: Int, var isExpanded: Boolean) : RecyclerView.Adapter<MyShowsViewHolder>() {
-
-    var listener: MyShowsAdapterListener? = null
-
+class UpcomingShowsAdapter(
+    @StringRes val titleRes: Int,
+    isExpanded: Boolean,
+    val onShowClicked: (show: MyShowsListItem.ShowViewModel) -> Unit,
+    val onExpandStateChanged: (isExpanded: Boolean) -> Unit) : RecyclerView.Adapter<MyShowsViewHolder>()
+{
     var shows: List<MyShowsListItem.UpcomingShowViewModel> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    private var isExpanded: Boolean = isExpanded
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -33,14 +41,15 @@ class UpcomingShowsAdapter(@StringRes val titleRes: Int, var isExpanded: Boolean
         return when (viewType) {
             R.layout.group_header_layout -> {
                 val binding = GroupHeaderLayoutBinding.inflate(parent.layoutInflater, parent, false)
-                MyShowsViewHolder.GroupHeaderViewHolder(binding, onClicked = { position ->
-                    // TODO("not implemented")
+                MyShowsViewHolder.GroupHeaderViewHolder(binding, onClicked = {
+                    isExpanded = !isExpanded
+                    onExpandStateChanged(isExpanded)
                 })
             }
             R.layout.upcoming_show_layout -> {
                 val binding = UpcomingShowLayoutBinding.inflate(parent.layoutInflater, parent, false)
                 MyShowsViewHolder.UpcomingShowViewHolder(binding, onClicked = { position ->
-                    listener?.onShowClicked(shows[position])
+                    onShowClicked(shows[position])
                 })
             }
             else -> throw IllegalStateException("Unknown view type: $viewType")

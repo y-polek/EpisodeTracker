@@ -10,11 +10,19 @@ import dev.polek.episodetracker.databinding.MyShowLayoutBinding
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
 
-class ShowsAdapter(@StringRes val titleRes: Int, var isExpanded: Boolean) : RecyclerView.Adapter<MyShowsViewHolder>() {
-
-    var listener: MyShowsAdapterListener? = null
-
+class ShowsAdapter(
+    @StringRes val titleRes: Int,
+    isExpanded: Boolean,
+    val onShowClicked: (show: MyShowsListItem.ShowViewModel) -> Unit,
+    val onExpandStateChanged: (isExpanded: Boolean) -> Unit) : RecyclerView.Adapter<MyShowsViewHolder>()
+{
     var shows: List<MyShowsListItem.ShowViewModel> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    private var isExpanded: Boolean = isExpanded
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -34,13 +42,14 @@ class ShowsAdapter(@StringRes val titleRes: Int, var isExpanded: Boolean) : Recy
             R.layout.group_header_layout -> {
                 val binding = GroupHeaderLayoutBinding.inflate(parent.layoutInflater, parent, false)
                 MyShowsViewHolder.GroupHeaderViewHolder(binding, onClicked = { position ->
-                    // TODO("not implemented")
+                    isExpanded = !isExpanded
+                    onExpandStateChanged(isExpanded)
                 })
             }
             R.layout.my_show_layout -> {
                 val binding = MyShowLayoutBinding.inflate(parent.layoutInflater, parent, false)
                 return MyShowsViewHolder.ShowViewHolder(binding, onClicked = { position ->
-                    listener?.onShowClicked(shows[position])
+                    onShowClicked(shows[position])
                 })
             }
             else -> throw IllegalStateException("Unknown view type: $viewType")

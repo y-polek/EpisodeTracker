@@ -15,35 +15,53 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 
-class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapterListener {
+class MyShowsFragment : Fragment(), MyShowsView {
 
     private val presenter = App.instance.di.myShowsPresenter()
 
     private lateinit var binding: MyShowsFragmentBinding
-    private val lastWeekAdapter = UpcomingShowsAdapter(R.string.my_shows_last_week, presenter.isLastWeekExpanded)
-    private val upcomingAdapter = UpcomingShowsAdapter(R.string.my_shows_upcoming, presenter.isUpcomingExpanded)
-    private val tbaAdapter = ShowsAdapter(R.string.my_shows_tba, presenter.isTbaExpanded)
-    private val endedAdapter = ShowsAdapter(R.string.my_shows_ended, presenter.isEndedExpanded)
-    private val archivedAdapter = ShowsAdapter(R.string.my_shows_archived, presenter.isArchivedExpanded)
-    private val adapter = MergeAdapter(adapterConfig, lastWeekAdapter, upcomingAdapter, tbaAdapter, endedAdapter, archivedAdapter)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        lastWeekAdapter.listener = this
-        upcomingAdapter.listener = this
-        tbaAdapter.listener = this
-        endedAdapter.listener = this
-        archivedAdapter.listener = this
-    }
+    private val lastWeekAdapter = UpcomingShowsAdapter(
+        R.string.my_shows_last_week,
+        presenter.isLastWeekExpanded,
+        onShowClicked = ::onShowClicked,
+        onExpandStateChanged = { isExpanded ->
+            presenter.isLastWeekExpanded = isExpanded
+        })
 
-    override fun onDestroy() {
-        lastWeekAdapter.listener = null
-        upcomingAdapter.listener = null
-        tbaAdapter.listener = null
-        endedAdapter.listener = null
-        archivedAdapter.listener = null
-        super.onDestroy()
-    }
+    private val upcomingAdapter = UpcomingShowsAdapter(
+        R.string.my_shows_upcoming,
+        presenter.isUpcomingExpanded,
+        onShowClicked = ::onShowClicked,
+        onExpandStateChanged = { isExpanded ->
+            presenter.isUpcomingExpanded = isExpanded
+        })
+
+    private val tbaAdapter = ShowsAdapter(
+        R.string.my_shows_tba,
+        presenter.isTbaExpanded,
+        onShowClicked = ::onShowClicked,
+        onExpandStateChanged = { isExpanded ->
+            presenter.isTbaExpanded = isExpanded
+        })
+
+    private val endedAdapter = ShowsAdapter(
+        R.string.my_shows_ended,
+        presenter.isEndedExpanded,
+        onShowClicked = ::onShowClicked,
+        onExpandStateChanged = { isExpanded ->
+            presenter.isEndedExpanded = isExpanded
+        })
+
+    private val archivedAdapter = ShowsAdapter(
+        R.string.my_shows_archived,
+        presenter.isArchivedExpanded,
+        onShowClicked = ::onShowClicked,
+        onExpandStateChanged = { isExpanded ->
+            presenter.isArchivedExpanded = isExpanded
+        })
+
+    private val adapter = MergeAdapter(lastWeekAdapter, upcomingAdapter, tbaAdapter, endedAdapter, archivedAdapter)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,7 +116,7 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapterListener {
         super.onPause()
     }
 
-    override fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
+    fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
         presenter.onShowClicked(show)
     }
 
@@ -144,10 +162,6 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapterListener {
     ///////////////////////////////////////////////////////////////////////////
 
     companion object {
-        private val adapterConfig = MergeAdapter.Config.Builder()
-            .setIsolateViewTypes(false)
-            .build()
-
         fun instance() = MyShowsFragment()
     }
 }
