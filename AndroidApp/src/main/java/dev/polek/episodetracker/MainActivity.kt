@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import dev.polek.episodetracker.common.presentation.app.AppPresenter
 import dev.polek.episodetracker.common.presentation.main.MainPresenter
 import dev.polek.episodetracker.common.presentation.main.MainView
 import dev.polek.episodetracker.databinding.MainActivityBinding
@@ -16,6 +17,7 @@ import dev.polek.episodetracker.towatch.ToWatchFragment
 class MainActivity : AppCompatActivity(), MainView {
 
     private val presenter: MainPresenter = App.instance.di.mainPresenter()
+    private val appPresenter: AppPresenter = App.instance.di.appPresenter()
     private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +58,16 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onPause() {
         presenter.onViewDisappeared()
         super.onPause()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        appPresenter.onViewAppeared()
+    }
+
+    override fun onStop() {
+        appPresenter.onViewDisappeared()
+        super.onStop()
     }
 
     ///////////////////////////////////////////////////////////////////////////

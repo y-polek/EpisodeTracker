@@ -28,10 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupImageCache()
         
-        if #available(iOS 13.0, *) {
-            setAppearance(preferences.appearance)
-        }
-        
         presenter.attachView(view: self)
         
         return true
@@ -46,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @available(iOS 13.0, *)
-    func setAppearance(_ appearance: Appearance) {
+    func applyAppearance(_ appearance: Appearance) {
         var style: UIUserInterfaceStyle
         switch appearance {
         case .automatic:
@@ -84,4 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - AppView implementation
 extension AppDelegate: AppView {
     
+    func setAppearance(appearance: Appearance) {
+        if #available(iOS 13.0, *) {
+            applyAppearance(appearance)
+        }
+    }
 }

@@ -40,7 +40,7 @@ extension SettingsViewController: SettingsView {
         tableView.reloadSections(IndexSet(arrayLiteral: PreferenceSection.appearance.index), with: .automatic)
         
         if #available(iOS 13.0, *) {
-            AppDelegate.instance().setAppearance(appearance)
+            AppDelegate.instance().applyAppearance(appearance)
         }
     }
     
