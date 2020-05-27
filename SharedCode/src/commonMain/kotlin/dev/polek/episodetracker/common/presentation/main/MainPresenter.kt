@@ -3,19 +3,19 @@ package dev.polek.episodetracker.common.presentation.main
 import com.russhwolf.settings.ExperimentalListener
 import com.russhwolf.settings.SettingsListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
+import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.repositories.ToWatchRepository
 
-class MainPresenter(
+class MainPresenter @Inject constructor(
     private val toWatchRepository: ToWatchRepository,
     private val preferences: Preferences) : BasePresenter<MainView>() {
 
     private var numberOfToWatchEpisodesSubscriber = object : Subscriber<Long> {
         override fun onQueryResult(result: Long) {
             when {
-                result > 999 -> view?.showToWatchBadge("999+")
-                result > 0 -> view?.showToWatchBadge(result.toString())
+                result > 0 -> view?.showToWatchBadge(result.toInt())
                 else -> view?.hideToWatchBadge()
             }
         }

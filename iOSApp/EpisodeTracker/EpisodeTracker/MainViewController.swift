@@ -49,8 +49,8 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
 // MARK: - MainView implementation
 extension MainViewController: MainView {
     
-    func showToWatchBadge(text: String) {
-        toWatchTabItem.badgeValue = text
+    func showToWatchBadge(count: Int32) {
+        toWatchTabItem.badgeValue = count > 999 ? "999+" : String(count)
     }
     
     func hideToWatchBadge() {

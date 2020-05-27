@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import dev.polek.episodetracker.common.presentation.main.MainPresenter
+import dev.polek.episodetracker.common.presentation.main.MainView
 import dev.polek.episodetracker.databinding.MainActivityBinding
 import dev.polek.episodetracker.discover.DiscoverFragment
 import dev.polek.episodetracker.myshows.MyShowsFragment
 import dev.polek.episodetracker.settings.SettingsFragment
 import dev.polek.episodetracker.towatch.ToWatchFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
+    private val presenter: MainPresenter = App.instance.di.mainPresenter()
     private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +38,39 @@ class MainActivity : AppCompatActivity() {
             binding.pager.setCurrentItem(pagePosition, false)
             return@setOnNavigationItemSelectedListener true
         }
+
+        presenter.attachView(this)
     }
 
     override fun onDestroy() {
+        presenter.detachView()
         binding.bottomNavigation.setOnNavigationItemSelectedListener(null)
         super.onDestroy()
     }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onViewAppeared()
+    }
+
+    override fun onPause() {
+        presenter.onViewDisappeared()
+        super.onPause()
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //region MainView implementation
+
+    override fun showToWatchBadge(count: Int) {
+        val badge = binding.bottomNavigation.getOrCreateBadge(R.id.action_to_watch)
+        badge.number = count
+    }
+
+    override fun hideToWatchBadge() {
+        binding.bottomNavigation.removeBadge(R.id.action_to_watch)
+    }
+    //endregion
+    ///////////////////////////////////////////////////////////////////////////
 
     private class PageAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
         override fun getItemCount() = NUMBER_OF_PAGES
