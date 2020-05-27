@@ -144,6 +144,8 @@ class MyShowsPresenter @Inject constructor(
     }
 
     fun onSearchQueryChanged(text: String) {
+        val query = text.trim()
+        if (searchQuery == query) return
         searchQuery = text.trim()
 
         filteredLastWeekShows = lastWeekShows.filtered()
