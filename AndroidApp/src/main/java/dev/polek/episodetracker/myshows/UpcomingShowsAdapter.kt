@@ -28,7 +28,13 @@ class UpcomingShowsAdapter(
             notifyDataSetChanged()
         }
 
-    override fun getItemCount() = 1/* header */ + shows.size
+    override fun getItemCount(): Int {
+        return when {
+            shows.isEmpty() -> 0
+            isExpanded -> 1/*header*/ + shows.size
+            else -> 1/*header*/
+        }
+    }
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
