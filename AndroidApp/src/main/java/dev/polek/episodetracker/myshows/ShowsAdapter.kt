@@ -2,6 +2,7 @@ package dev.polek.episodetracker.myshows
 
 import android.view.ViewGroup
 import androidx.annotation.StringRes
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
@@ -18,8 +19,9 @@ class ShowsAdapter(
 {
     var shows: List<MyShowsListItem.ShowViewModel> = emptyList()
         set(value) {
+            val diff = DiffUtil.calculateDiff(MyShowsDiffUtilCallback(oldShows = field, newShows = value, isExpanded = isExpanded))
             field = value
-            notifyDataSetChanged()
+            diff.dispatchUpdatesTo(this)
         }
 
     private var isExpanded: Boolean = isExpanded
