@@ -8,6 +8,13 @@
         <item name="android:colorBackground">@color/backgroundColor</item>
 
         <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="badgeStyle">@style/Badge</item>
+    </style>
+
+    <style name="Badge" parent="@style/Widget.MaterialComponents.Badge">
+        <item name="backgroundColor">@color/badgeColor</item>
+        <item name="badgeTextColor">@color/badgeTextColor</item>
     </style>
 
     <style name="BackgroundMessageText" parent="TextAppearance.MaterialComponents.Body1">

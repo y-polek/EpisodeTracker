@@ -10,4 +10,7 @@
     <color name="bottomNavigationBackground">#F8F7F8</color>
 
     <color name="semitransparent">#80000000</color>
+
+    <color name="badgeColor">#FF443A</color>
+    <color name="badgeTextColor">@android:color/white</color>
 </resources>
