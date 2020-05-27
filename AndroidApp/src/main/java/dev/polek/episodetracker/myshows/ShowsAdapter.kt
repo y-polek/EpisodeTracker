@@ -25,7 +25,11 @@ class ShowsAdapter(
     private var isExpanded: Boolean = isExpanded
         set(value) {
             field = value
-            notifyDataSetChanged()
+            if (isExpanded) {
+                notifyItemRangeInserted(1, shows.size)
+            } else {
+                notifyItemRangeRemoved(1, shows.size)
+            }
         }
 
     override fun getItemCount(): Int {
