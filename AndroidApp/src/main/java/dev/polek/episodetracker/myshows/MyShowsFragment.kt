@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
@@ -14,6 +15,7 @@ import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.doOnClick
 
 class MyShowsFragment : Fragment(), MyShowsView {
 
@@ -93,6 +95,15 @@ class MyShowsFragment : Fragment(), MyShowsView {
             presenter.onRefreshRequested()
         }
 
+        binding.showAllButton.doOnClick {
+            binding.searchView.setQuery("", true)
+            binding.searchView.clearFocus()
+        }
+
+        binding.discoverButton.doOnClick {
+            // TODO("not implemented")
+        }
+
         return binding.root
     }
 
@@ -116,7 +127,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
         super.onPause()
     }
 
-    fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
+    private fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
         presenter.onShowClicked(show)
     }
 
@@ -144,11 +155,13 @@ class MyShowsFragment : Fragment(), MyShowsView {
     }
 
     override fun showEmptyMessage(isFiltered: Boolean) {
-        // TODO("not implemented")
+        binding.promptView.isVisible = !isFiltered
+        binding.emptySearchView.isVisible = isFiltered
     }
 
     override fun hideEmptyMessage() {
-        // TODO("not implemented")
+        binding.promptView.isVisible = false
+        binding.emptySearchView.isVisible = false
     }
 
     override fun hideRefresh() {
