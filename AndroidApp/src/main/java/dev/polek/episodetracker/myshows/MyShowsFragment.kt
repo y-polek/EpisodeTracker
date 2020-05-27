@@ -7,31 +7,40 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.MergeAdapter
 import dev.polek.episodetracker.App
 import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 
-class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapter.Listener {
+class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapterListener {
 
     private val presenter = App.instance.di.myShowsPresenter()
 
     private lateinit var binding: MyShowsFragmentBinding
-    private val adapter = MyShowsAdapter(
-        isLastWeekExpanded = presenter.isLastWeekExpanded,
-        isUpcomingExpanded = presenter.isUpcomingExpanded,
-        isTbaExpanded = presenter.isTbaExpanded,
-        isEndedExpanded = presenter.isEndedExpanded,
-        isArchivedExpanded = presenter.isArchivedExpanded)
+    private val lastWeekAdapter = UpcomingShowsAdapter()
+    private val upcomingAdapter = UpcomingShowsAdapter()
+    private val tbaAdapter = ShowsAdapter()
+    private val endedAdapter = ShowsAdapter()
+    private val archivedAdapter = ShowsAdapter()
+    private val adapter = MergeAdapter(lastWeekAdapter, upcomingAdapter, tbaAdapter, endedAdapter, archivedAdapter)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter.listener = this
+        lastWeekAdapter.listener = this
+        upcomingAdapter.listener = this
+        tbaAdapter.listener = this
+        endedAdapter.listener = this
+        archivedAdapter.listener = this
     }
 
     override fun onDestroy() {
-        adapter.listener = null
+        lastWeekAdapter.listener = null
+        upcomingAdapter.listener = null
+        tbaAdapter.listener = null
+        endedAdapter.listener = null
+        archivedAdapter.listener = null
         super.onDestroy()
     }
 
@@ -92,57 +101,27 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapter.Listener {
         presenter.onShowClicked(show)
     }
 
-    override fun onLastWeekSectionClicked(): Boolean {
-        val isExpanded = !presenter.isLastWeekExpanded
-        presenter.isLastWeekExpanded = isExpanded
-        return isExpanded
-    }
-
-    override fun onUpcomingSectionClicked(): Boolean {
-        val isExpanded = !presenter.isUpcomingExpanded
-        presenter.isUpcomingExpanded = isExpanded
-        return isExpanded
-    }
-
-    override fun onTbaSectionClicked(): Boolean {
-        val isExpanded = !presenter.isTbaExpanded
-        presenter.isTbaExpanded = isExpanded
-        return isExpanded
-    }
-
-    override fun onEndedSectionClicked(): Boolean {
-        val isExpanded = !presenter.isEndedExpanded
-        presenter.isEndedExpanded = isExpanded
-        return isExpanded
-    }
-
-    override fun onArchivedSectionClicked(): Boolean {
-        val isExpanded = !presenter.isArchivedExpanded
-        presenter.isArchivedExpanded = isExpanded
-        return isExpanded
-    }
-
     ///////////////////////////////////////////////////////////////////////////
     //region MyShowsView implementation
 
     override fun displayLastWeekShows(shows: List<MyShowsListItem.UpcomingShowViewModel>, isVisible: Boolean) {
-        adapter.model.setLastWeekShows(shows)
+        lastWeekAdapter.shows = shows
     }
 
     override fun displayUpcomingShows(shows: List<MyShowsListItem.UpcomingShowViewModel>) {
-        adapter.model.setUpcomingShows(shows)
+        upcomingAdapter.shows = shows
     }
 
     override fun displayToBeAnnouncedShows(shows: List<MyShowsListItem.ShowViewModel>) {
-        adapter.model.setTbaShows(shows)
+        tbaAdapter.shows = shows
     }
 
     override fun displayEndedShows(shows: List<MyShowsListItem.ShowViewModel>) {
-        adapter.model.setEndedShows(shows)
+        endedAdapter.shows = shows
     }
 
     override fun displayArchivedShows(shows: List<MyShowsListItem.ShowViewModel>) {
-        adapter.model.setArchivedShows(shows)
+        archivedAdapter.shows = shows
     }
 
     override fun showEmptyMessage(isFiltered: Boolean) {
