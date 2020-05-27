@@ -24,7 +24,7 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapterListener {
     private val tbaAdapter = ShowsAdapter()
     private val endedAdapter = ShowsAdapter()
     private val archivedAdapter = ShowsAdapter()
-    private val adapter = MergeAdapter(lastWeekAdapter, upcomingAdapter, tbaAdapter, endedAdapter, archivedAdapter)
+    private val adapter = MergeAdapter(adapterConfig, lastWeekAdapter, upcomingAdapter, tbaAdapter, endedAdapter, archivedAdapter)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,6 +143,10 @@ class MyShowsFragment : Fragment(), MyShowsView, MyShowsAdapterListener {
     ///////////////////////////////////////////////////////////////////////////
 
     companion object {
+        private val adapterConfig = MergeAdapter.Config.Builder()
+            .setIsolateViewTypes(false)
+            .build()
+
         fun instance() = MyShowsFragment()
     }
 }
