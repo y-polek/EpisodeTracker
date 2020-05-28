@@ -16,7 +16,7 @@
     <string name="my_shows_tba">To Be Announced</string>
     <string name="my_shows_ended">Ended</string>
     <string name="my_shows_archived">Archived</string>
-    <string name="my_shows_prompt_message">Add some shows on "Discover" tab</string>
+    <string name="my_shows_prompt_message">Add some shows on \"Discover\" tab</string>
 
     <string name="discover_prompt_message">Search for TV Show</string>
     <string name="discover_empty_message">Nothing found</string>
