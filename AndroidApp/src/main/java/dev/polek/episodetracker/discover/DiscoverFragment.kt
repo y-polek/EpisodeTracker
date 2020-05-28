@@ -17,6 +17,7 @@ import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResul
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
 import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
+import dev.polek.episodetracker.utils.showKeyboard
 
 class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
 
@@ -91,6 +92,14 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
         super.onPause()
     }
 
+    fun focusSearch() {
+        binding.searchView.requestFocus()
+        context?.showKeyboard(binding.searchView)
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // region DiscoverView implementation
+
     override fun onResultClicked(result: DiscoverResultViewModel) {
         presenter.onShowClicked(result)
     }
@@ -156,8 +165,10 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
     }
 
     override fun openDiscoverShow(show: DiscoverResultViewModel) {
-
+        // TODO("not implemented")
     }
+    //endregion
+    ///////////////////////////////////////////////////////////////////////////
 
     companion object {
         fun instance() = DiscoverFragment()

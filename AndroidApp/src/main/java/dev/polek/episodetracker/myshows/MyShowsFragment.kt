@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
 import dev.polek.episodetracker.App
+import dev.polek.episodetracker.MainActivity
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
@@ -101,7 +102,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
         }
 
         binding.discoverButton.doOnClick {
-            // TODO("not implemented")
+            presenter.onDiscoverButtonClicked()
         }
 
         return binding.root
@@ -166,6 +167,10 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
     override fun hideRefresh() {
         binding.swipeRefresh.isRefreshing = false
+    }
+
+    override fun openDiscoverScreen() {
+        (activity as MainActivity).openDiscoverTab()
     }
 
     override fun openMyShowDetails(show: MyShowsListItem.ShowViewModel) {

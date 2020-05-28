@@ -11,5 +11,6 @@ interface MyShowsView {
     fun showEmptyMessage(isFiltered: Boolean)
     fun hideEmptyMessage()
     fun hideRefresh()
+    fun openDiscoverScreen()
     fun openMyShowDetails(show: MyShowsListItem.ShowViewModel)
 }

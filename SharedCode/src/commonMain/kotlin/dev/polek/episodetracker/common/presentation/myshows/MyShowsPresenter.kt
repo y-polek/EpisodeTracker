@@ -173,6 +173,10 @@ class MyShowsPresenter @Inject constructor(
         }
     }
 
+    fun onDiscoverButtonClicked() {
+        view?.openDiscoverScreen()
+    }
+
     private fun showOrHideEmptyMessage() {
         if (filteredLastWeekShows.isEmpty()
             && filteredUpcomingShows.isEmpty()

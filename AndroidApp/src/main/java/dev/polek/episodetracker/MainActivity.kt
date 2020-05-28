@@ -70,6 +70,12 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onStop()
     }
 
+    fun openDiscoverTab() {
+        binding.bottomNavigation.selectedItemId = R.id.action_discover
+        val discoverFragment = supportFragmentManager.fragments.firstOrNull { it is DiscoverFragment } as DiscoverFragment?
+        discoverFragment?.focusSearch()
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     //region MainView implementation
 
