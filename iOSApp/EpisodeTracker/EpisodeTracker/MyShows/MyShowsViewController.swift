@@ -195,7 +195,7 @@ extension MyShowsViewController: MyShowsView {
             tableView.emptyActionName = "Discover Shows"
             tableView.isEmptyActionHidden = false
             tableView.emptyActionTappedCallback = { [weak self] in
-                self?.tabBarController?.selectedIndex = 2
+                self?.presenter.onDiscoverButtonClicked()
             }
         }
         tableView.showEmptyView()
@@ -207,6 +207,14 @@ extension MyShowsViewController: MyShowsView {
     
     func hideRefresh() {
         tableView.refreshControl?.endRefreshing()
+    }
+    
+    func openDiscoverScreen() {
+        tabBarController?.selectedIndex = 2
+        let discoverViewController =
+            (tabBarController?.viewControllers?[2] as? UINavigationController)?
+                .topViewController as? DiscoverViewController
+        discoverViewController?.focusSearch()
     }
     
     func openMyShowDetails(show: MyShowsListItem.ShowViewModel) {

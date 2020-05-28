@@ -6,10 +6,13 @@ class DiscoverViewController: UIViewController {
     private var results: [DiscoverResultViewModel] = []
     
     @IBOutlet weak var tableView: TableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private let presenter = DiscoverPresenter(
         discoverRepository: AppDelegate.instance().discoverRepository,
         myShowsRepository: AppDelegate.instance().myShowsRepository)
+    
+    private var searchOnLoad: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +21,11 @@ class DiscoverViewController: UIViewController {
         tableView.emptyText = string(R.str.discover_empty_message)
         tableView.errorText = string(R.str.discover_error_message)
         presenter.attachView(view: self)
+        
+        if searchOnLoad {
+            focusSearch()
+            searchOnLoad = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +42,14 @@ class DiscoverViewController: UIViewController {
         presenter.onViewDisappeared()
         
         tableView.retryTappedCallback = nil
+    }
+    
+    func focusSearch() {
+        if isViewLoaded {
+            searchBar.becomeFirstResponder()
+        } else {
+            searchOnLoad = true
+        }
     }
 }
 

@@ -172,6 +172,7 @@
                     <navigationItem key="navigationItem" id="Avy-mB-Wnr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="searchBar" destination="0wq-y5-bg3" id="PfA-cd-fCq"/>
                         <outlet property="tableView" destination="QqJ-tf-7WG" id="8gb-Le-lRe"/>
                     </connections>
                 </viewController>
