@@ -137,6 +137,11 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
     override fun displayLastWeekShows(shows: List<MyShowsListItem.UpcomingShowViewModel>, isVisible: Boolean) {
         lastWeekAdapter.shows = shows
+        if (isVisible) {
+            adapter.addAdapter(0, lastWeekAdapter)
+        } else {
+            adapter.removeAdapter(lastWeekAdapter)
+        }
     }
 
     override fun displayUpcomingShows(shows: List<MyShowsListItem.UpcomingShowViewModel>) {
