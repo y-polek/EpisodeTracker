@@ -62,7 +62,7 @@ class UpcomingShowsAdapter(
             R.layout.upcoming_show_layout -> {
                 val binding = UpcomingShowLayoutBinding.inflate(parent.layoutInflater, parent, false)
                 MyShowsViewHolder.UpcomingShowViewHolder(binding, onClicked = { position ->
-                    onShowClicked(shows[position])
+                    onShowClicked(showAtPosition(position))
                 })
             }
             else -> throw IllegalStateException("Unknown view type: $viewType")
@@ -77,7 +77,7 @@ class UpcomingShowsAdapter(
                 holder.binding.name.setCompoundDrawablesWithIntrinsicBounds(0, 0, arrowIcon, 0)
             }
             is MyShowsViewHolder.UpcomingShowViewHolder -> {
-                val show = shows[position - 1]
+                val show = showAtPosition(position)
                 holder.binding.name.text = show.name
                 holder.binding.episodeName.text = show.episodeName
                 holder.binding.episodeNumber.text = show.episodeNumber
@@ -85,5 +85,9 @@ class UpcomingShowsAdapter(
                 holder.binding.image.loadImage(show.backdropUrl)
             }
         }
+    }
+
+    private fun showAtPosition(position: Int): MyShowsListItem.UpcomingShowViewModel {
+        return shows[position - 1]
     }
 }

@@ -62,13 +62,13 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
     {
         init {
             binding.root.doOnClick {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onShowClicked(position)
             }
 
             binding.checkButton.doOnClick {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onCheckButtonClicked(position)
             }

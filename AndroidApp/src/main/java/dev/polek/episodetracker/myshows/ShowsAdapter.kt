@@ -62,7 +62,7 @@ class ShowsAdapter(
             R.layout.my_show_layout -> {
                 val binding = MyShowLayoutBinding.inflate(parent.layoutInflater, parent, false)
                 return MyShowsViewHolder.ShowViewHolder(binding, onClicked = { position ->
-                    onShowClicked(shows[position])
+                    onShowClicked(showAtPosition(position))
                 })
             }
             else -> throw IllegalStateException("Unknown view type: $viewType")
@@ -77,10 +77,14 @@ class ShowsAdapter(
                 holder.binding.name.setCompoundDrawablesWithIntrinsicBounds(0, 0, arrowIcon, 0)
             }
             is MyShowsViewHolder.ShowViewHolder -> {
-                val show = shows[position - 1]
+                val show = showAtPosition(position)
                 holder.binding.name.text = show.name
                 holder.binding.image.loadImage(show.backdropUrl)
             }
         }
+    }
+
+    private fun showAtPosition(position: Int): MyShowsListItem.ShowViewModel {
+        return shows[position - 1]
     }
 }
