@@ -13,4 +13,6 @@
 
     <color name="badgeColor">#FF443A</color>
     <color name="badgeTextColor">@android:color/white</color>
+
+    <color name="swipeActionBackground">#555555</color>
 </resources>

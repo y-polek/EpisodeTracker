@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.towatch
 
 import android.text.Html
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
@@ -11,6 +12,7 @@ import dev.polek.episodetracker.databinding.ToWatchShowLayoutBinding
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
+import dev.polek.episodetracker.utils.swipeactions.SwipeActionExtension
 
 class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
 
@@ -58,20 +60,40 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
     class ViewHolder(
         val binding: ToWatchShowLayoutBinding,
         onShowClicked: (position: Int) -> Unit,
-        onCheckButtonClicked: (position: Int) -> Unit) : RecyclerView.ViewHolder(binding.root)
+        onCheckButtonClicked: (position: Int) -> Unit) : RecyclerView.ViewHolder(binding.root), SwipeActionExtension
     {
         init {
-            binding.root.doOnClick {
-                val position = adapterPosition
+            binding.contentView.doOnClick {
+                val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onShowClicked(position)
             }
 
             binding.checkButton.doOnClick {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onCheckButtonClicked(position)
             }
+
+            binding.archiveButton.doOnClick {
+                val position = bindingAdapterPosition
+                if (position == RecyclerView.NO_POSITION) return@doOnClick
+                // TODO("not implemented")
+            }
+
+            binding.markAllWatchedButton.doOnClick {
+                val position = bindingAdapterPosition
+                if (position == RecyclerView.NO_POSITION) return@doOnClick
+                // TODO("not implemented")
+            }
+        }
+
+        override fun getContentView(): View {
+            return binding.contentView
+        }
+
+        override fun getActionWidth(): Float {
+            return itemView.resources.getDimensionPixelSize(R.dimen.swipe_action_width).toFloat()
         }
     }
 

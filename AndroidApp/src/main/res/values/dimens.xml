@@ -7,4 +7,6 @@
     <dimen name="card_view_corner_radius">8dp</dimen>
     <dimen name="card_view_margin_horizontal">16dp</dimen>
     <dimen name="card_view_margin_bottom">8dp</dimen>
+
+    <dimen name="swipe_action_width">100dp</dimen>
 </resources>

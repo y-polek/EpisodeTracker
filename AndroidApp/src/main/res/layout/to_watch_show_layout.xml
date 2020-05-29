@@ -1,120 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/card_view_height"
-    android:layout_marginHorizontal="@dimen/card_view_margin_horizontal"
-    android:layout_marginBottom="@dimen/card_view_margin_bottom"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="@dimen/card_view_corner_radius"
+    android:layout_height="wrap_content"
     >
 
-    <ImageView
-        android:id="@+id/image"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:foreground="@drawable/gradient_shadow"
-        tools:src="@tools:sample/backgrounds/scenic"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/card_view_margin_bottom"
+        android:background="@color/swipeActionBackground"
         >
-        <ImageButton
-            android:id="@+id/check_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="4dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_check"
-            android:tint="?attr/colorOnPrimarySurface"
-            android:background="@drawable/circular_button_background"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+        <FrameLayout
+            android:id="@+id/archive_button"
+            android:layout_width="@dimen/swipe_action_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="bottom"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    tools:text="Star Trek: Discovery"
-                    style="@style/CardTitle"
-                    />
-
-                <include layout="@layout/divider_inverse" />
-
-                <TextView
-                    android:id="@+id/subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:singleLine="true"
-                    tools:text="S01 E01 | The Vulcan Hello"
-                    style="@style/CardSubtitle"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:gravity="center"
+                android:paddingHorizontal="8dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/ic_archive"
+                android:text="@string/action_archive"
+                style="@style/SwipeAction"
+                />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mark_all_watched_button"
+            android:layout_width="@dimen/swipe_action_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/ic_check_all"
+                android:text="@string/action_mark_all_watched"
+                style="@style/SwipeAction"
+                />
+        </FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        tools:translationX="150dp"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_view_height"
+            android:layout_marginHorizontal="@dimen/card_view_margin_horizontal"
+            android:layout_marginBottom="@dimen/card_view_margin_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/card_view_corner_radius"
+            >
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:foreground="@drawable/gradient_shadow"
+                tools:src="@tools:sample/backgrounds/scenic"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="vertical"
                 >
-                <TextView
-                    android:id="@+id/episodes_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnPrimarySurface"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-                    android:textStyle="bold"
-                    android:includeFontPadding="false"
-                    tools:text="42"
+                <ImageButton
+                    android:id="@+id/check_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_check"
+                    android:tint="?attr/colorOnPrimarySurface"
+                    android:background="@drawable/circular_button_background"
                     />
-                <TextView
-                    android:id="@+id/episodes_label"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnPrimarySurface"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:includeFontPadding="false"
-                    tools:text="episodes"
-                    />
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            tools:text="Star Trek: Discovery"
+                            style="@style/CardTitle"
+                            />
+
+                        <include layout="@layout/divider_inverse" />
+
+                        <TextView
+                            android:id="@+id/subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:singleLine="true"
+                            tools:text="S01 E01 | The Vulcan Hello"
+                            style="@style/CardSubtitle"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/episodes_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/colorOnPrimarySurface"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                            android:textStyle="bold"
+                            android:includeFontPadding="false"
+                            tools:text="42"
+                            />
+                        <TextView
+                            android:id="@+id/episodes_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/colorOnPrimarySurface"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                            android:includeFontPadding="false"
+                            tools:text="episodes"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/specials_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:src="@drawable/ic_specials"
+                tools:ignore="RtlHardcoded"
+                />
 
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/specials_badge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
-        android:src="@drawable/ic_specials"
-        tools:ignore="RtlHardcoded"
-        />
-
-</androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</FrameLayout>
