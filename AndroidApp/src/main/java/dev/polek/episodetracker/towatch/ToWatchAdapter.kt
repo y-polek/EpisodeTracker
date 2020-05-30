@@ -34,9 +34,11 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>(), CloseS
             binding,
             onShowClicked = { position ->
                 listener?.onShowClicked(shows[position])
+                closeSwipeActions()
             },
             onCheckButtonClicked = { position ->
                 listener?.onCheckButtonClicked(shows[position])
+                closeSwipeActions()
             },
             onArchiveButtonClicked = { position ->
                 listener?.onArchiveButtonClicked(shows[position])
