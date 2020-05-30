@@ -74,6 +74,7 @@ class MyShowsAdapter(
                     },
                     onRemoveButtonClicked = { position ->
                         onRemoveButtonClicked(showAtPosition(position))
+                        notifyItemChanged(position, Payload.CloseSwipeAction)
                     },
                     onArchiveButtonClicked = { position ->
                         onArchiveButtonClicked(showAtPosition(position))
@@ -94,6 +95,7 @@ class MyShowsAdapter(
                     },
                     onRemoveButtonClicked = { position ->
                         onRemoveButtonClicked(showAtPosition(position))
+                        notifyItemChanged(position, Payload.CloseSwipeAction)
                     },
                     onArchiveButtonClicked = { position ->
                         onArchiveButtonClicked(showAtPosition(position))

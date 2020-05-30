@@ -11,6 +11,7 @@ interface MyShowsView {
     fun showEmptyMessage(isFiltered: Boolean)
     fun hideEmptyMessage()
     fun hideRefresh()
+    fun displayRemoveShowConfirmation(show: MyShowsListItem.ShowViewModel, callback: (confirmed: Boolean) -> Unit)
     fun openDiscoverScreen()
     fun openMyShowDetails(show: MyShowsListItem.ShowViewModel)
 }

@@ -209,6 +209,13 @@ extension MyShowsViewController: MyShowsView {
         tableView.refreshControl?.endRefreshing()
     }
     
+    func displayRemoveShowConfirmation(show: MyShowsListItem.ShowViewModel, callback: @escaping (KotlinBoolean) -> Void) {
+        let alert = UIAlertController(title: nil, message: string(R.str.remove_show_confirmation, show.name), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in callback(true) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in callback(false) }))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func openDiscoverScreen() {
         tabBarController?.selectedIndex = 2
         let discoverViewController =
@@ -406,7 +413,7 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
         let show = showAt(indexPath)
         
         let remove = SwipeAction(style: .destructive, title: "Remove") { [weak self] (action, indexPath) in
-            self?.confirmRemoval(show: show)
+            self?.presenter.onRemoveShowClicked(show: show)
         }
         remove.image = UIImage(named: "ic-remove")
         
@@ -427,15 +434,6 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
             archive.textColor = .textColorPrimaryInverse
             return [archive, remove]
         }
-    }
-    
-    private func confirmRemoval(show: MyShowsListItem.ShowViewModel) {
-        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove \"\(show.name)\"?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] _ in
-            self?.presenter.onRemoveShowClicked(show: show)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }
 

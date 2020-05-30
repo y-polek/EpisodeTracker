@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.polek.episodetracker.App
 import dev.polek.episodetracker.MainActivity
 import dev.polek.episodetracker.R
@@ -148,7 +149,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
     private fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
         presenter.onShowClicked(show)
-        
+
         adapter.adapters.forEach {
             (it as? CloseSwipeActionsScrollListener.SwipeActionsClosable)?.closeSwipeActions()
         }
@@ -194,6 +195,17 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
     override fun hideRefresh() {
         binding.swipeRefresh.isRefreshing = false
+    }
+
+    override fun displayRemoveShowConfirmation(
+        show: MyShowsListItem.ShowViewModel,
+        callback: (confirmed: Boolean) -> Unit)
+    {
+        MaterialAlertDialogBuilder(context)
+            .setTitle(getString(R.string.remove_show_confirmation, show.name))
+            .setPositiveButton(R.string.action_remove) { _, _ -> callback(true) }
+            .setNegativeButton(R.string.action_cancel) { _, _ -> callback(false) }
+            .show()
     }
 
     override fun openDiscoverScreen() {

@@ -132,7 +132,11 @@ class MyShowsPresenter @Inject constructor(
     }
 
     fun onRemoveShowClicked(show: ShowViewModel) {
-        myShowsRepository.removeShow(show.id)
+        view?.displayRemoveShowConfirmation(show) { confirmed ->
+            if (confirmed) {
+                myShowsRepository.removeShow(show.id)
+            }
+        }
     }
 
     fun onArchiveShowClicked(show: ShowViewModel) {
