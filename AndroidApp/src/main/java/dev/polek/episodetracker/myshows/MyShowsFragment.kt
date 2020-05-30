@@ -148,6 +148,10 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
     private fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
         presenter.onShowClicked(show)
+        
+        adapter.adapters.forEach {
+            (it as? CloseSwipeActionsScrollListener.SwipeActionsClosable)?.closeSwipeActions()
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////

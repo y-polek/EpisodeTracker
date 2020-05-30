@@ -71,7 +71,6 @@ class MyShowsAdapter(
                 MyShowsViewHolder.UpcomingShowViewHolder(binding,
                     onClicked = { position ->
                         onShowClicked(showAtPosition(position))
-                        closeSwipeActions()
                     },
                     onRemoveButtonClicked = { position ->
                         onRemoveButtonClicked(showAtPosition(position))
@@ -92,7 +91,6 @@ class MyShowsAdapter(
                 return MyShowsViewHolder.ShowViewHolder(binding,
                     onClicked = { position ->
                         onShowClicked(showAtPosition(position))
-                        closeSwipeActions()
                     },
                     onRemoveButtonClicked = { position ->
                         onRemoveButtonClicked(showAtPosition(position))
