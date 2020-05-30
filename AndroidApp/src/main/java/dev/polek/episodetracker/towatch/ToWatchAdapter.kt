@@ -12,8 +12,9 @@ import dev.polek.episodetracker.databinding.ToWatchShowLayoutBinding
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
+import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
 
-class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
+class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>(), CloseSwipeActionsScrollListener.SwipeActionsClosable {
 
     var listener: Listener? = null
 
@@ -80,6 +81,10 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
                 else -> throw NotImplementedError("Unknown payload: $payload")
             }
         }
+    }
+
+    override fun closeSwipeActions() {
+        notifyItemRangeChanged(0, itemCount, Payload.CloseSwipeAction)
     }
 
     class ViewHolder(

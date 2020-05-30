@@ -15,7 +15,7 @@ import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.discover.DiscoverView
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
-import dev.polek.episodetracker.utils.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.showKeyboard
 
@@ -45,7 +45,7 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            addOnScrollListener(HideKeyboardScrollListener())
+            addOnScrollListener(HideKeyboardScrollListener)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             setHasFixedSize(true)
         }

@@ -15,7 +15,7 @@ import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
-import dev.polek.episodetracker.utils.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
 
 class MyShowsFragment : Fragment(), MyShowsView {
@@ -75,7 +75,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            addOnScrollListener(HideKeyboardScrollListener())
+            addOnScrollListener(HideKeyboardScrollListener)
             setHasFixedSize(true)
         }
         binding.recyclerView.adapter = adapter

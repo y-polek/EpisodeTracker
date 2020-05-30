@@ -13,8 +13,9 @@ import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchView
 import dev.polek.episodetracker.databinding.ToWatchFragmentBinding
-import dev.polek.episodetracker.utils.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
+import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
+import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 
 class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
 
@@ -40,12 +41,14 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
     {
         binding = ToWatchFragmentBinding.inflate(inflater)
 
-        binding.recyclerView.apply {
+        val recyclerView = binding.recyclerView
+        recyclerView.adapter = adapter
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            addOnScrollListener(HideKeyboardScrollListener())
+            addOnScrollListener(HideKeyboardScrollListener)
+            addOnScrollListener(CloseSwipeActionsScrollListener)
             setHasFixedSize(true)
         }
-        binding.recyclerView.adapter = adapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
