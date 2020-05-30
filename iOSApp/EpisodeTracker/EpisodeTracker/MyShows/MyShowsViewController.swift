@@ -184,15 +184,15 @@ extension MyShowsViewController: MyShowsView {
     
     func showEmptyMessage(isFiltered: Bool) {
         if isFiltered {
-            tableView.emptyText = "No shows found"
-            tableView.emptyActionName = "Show All"
+            tableView.emptyText = string(R.str.my_shows_empty_search_message)
+            tableView.emptyActionName = string(R.str.action_show_all)
             tableView.isEmptyActionHidden = false
             tableView.emptyActionTappedCallback = { [weak self] in
                 self?.cancelSearch()
             }
         } else {
-            tableView.emptyText = "Add some shows on \"Discover\" tab"
-            tableView.emptyActionName = "Discover Shows"
+            tableView.emptyText = string(R.str.my_shows_prompt_message)
+            tableView.emptyActionName = string(R.str.action_discover)
             tableView.isEmptyActionHidden = false
             tableView.emptyActionTappedCallback = { [weak self] in
                 self?.presenter.onDiscoverButtonClicked()
@@ -211,8 +211,8 @@ extension MyShowsViewController: MyShowsView {
     
     func displayRemoveShowConfirmation(show: MyShowsListItem.ShowViewModel, callback: @escaping (KotlinBoolean) -> Void) {
         let alert = UIAlertController(title: nil, message: string(R.str.remove_show_confirmation, show.name), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in callback(true) }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in callback(false) }))
+        alert.addAction(UIAlertAction(title: string(R.str.action_remove), style: .destructive, handler: { _ in callback(true) }))
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: { _ in callback(false) }))
         present(alert, animated: true, completion: nil)
     }
     
@@ -291,7 +291,7 @@ extension MyShowsViewController: UITableViewDataSource {
         
         switch section {
         case lastWeekSectionIndex():
-            header.title = "Last Week"
+            header.title = string(R.str.my_shows_last_week)
             header.isExpanded = presenter.isLastWeekExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
@@ -300,7 +300,7 @@ extension MyShowsViewController: UITableViewDataSource {
                 }
             }
         case upcomingSectionIndex():
-            header.title = "Upcoming"
+            header.title = string(R.str.my_shows_upcoming)
             header.isExpanded = presenter.isUpcomingExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
@@ -309,7 +309,7 @@ extension MyShowsViewController: UITableViewDataSource {
                 }
             }
         case tbaSectionIndex():
-            header.title = "To Be Announced"
+            header.title = string(R.str.my_shows_tba)
             header.isExpanded = presenter.isTbaExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
@@ -318,7 +318,7 @@ extension MyShowsViewController: UITableViewDataSource {
                 }
             }
         case endedSectionIndex():
-            header.title = "Ended"
+            header.title = string(R.str.my_shows_ended)
             header.isExpanded = presenter.isEndedExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
@@ -327,7 +327,7 @@ extension MyShowsViewController: UITableViewDataSource {
                 }
             }
         case archivedSectionIndex():
-            header.title = "Archived"
+            header.title = string(R.str.my_shows_archived)
             header.isExpanded = presenter.isArchivedExpanded
             header.tapCallback = { [weak self] in
                 if let vc = self {
@@ -412,14 +412,14 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
         
         let show = showAt(indexPath)
         
-        let remove = SwipeAction(style: .destructive, title: "Remove") { [weak self] (action, indexPath) in
+        let remove = SwipeAction(style: .destructive, title: string(R.str.action_remove)) { [weak self] (action, indexPath) in
             self?.presenter.onRemoveShowClicked(show: show)
             (tableView.cellForRow(at: indexPath) as? SwipeTableViewCell)?.hideSwipe(animated: true)
         }
         remove.image = UIImage(named: "ic-remove")
         
         if indexPath.section == archivedSectionIndex() {
-            let unarchive = SwipeAction(style: .default, title: "Unarchive") { [weak self] (action, indexPath) in
+            let unarchive = SwipeAction(style: .default, title: string(R.str.action_unarchive)) { [weak self] (action, indexPath) in
                 self?.presenter.onUnarchiveShowClicked(show: show)
             }
             unarchive.image = UIImage(named: "ic-unarchive")
@@ -427,7 +427,7 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
             unarchive.textColor = .textColorPrimaryInverse
             return [unarchive, remove]
         } else {
-            let archive = SwipeAction(style: .default, title: "Archive") { [weak self] (action, indexPath) in
+            let archive = SwipeAction(style: .default, title: string(R.str.action_archive)) { [weak self] (action, indexPath) in
                 self?.presenter.onArchiveShowClicked(show: show)
             }
             archive.image = UIImage(named: "ic-archive")

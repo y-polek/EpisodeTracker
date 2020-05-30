@@ -103,7 +103,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center_horizontal"
-                android:text="@string/to_watch_empty_search_message"
+                android:text="@string/my_shows_empty_search_message"
                 style="@style/BackgroundMessageText"
                 />
             <Button
