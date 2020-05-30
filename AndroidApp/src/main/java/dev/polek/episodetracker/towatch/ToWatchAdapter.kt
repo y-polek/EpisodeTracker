@@ -12,6 +12,7 @@ import dev.polek.episodetracker.databinding.ToWatchShowLayoutBinding
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
+import dev.polek.episodetracker.utils.recyclerview.AbstractSwipeListener
 import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
 
 class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>(), CloseSwipeActionsScrollListener.SwipeActionsClosable {
@@ -96,22 +97,12 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>(), CloseS
         onActionStartOpen: (position: Int) -> Unit) : RecyclerView.ViewHolder(binding.root)
     {
         init {
-            binding.swipeLayout.addSwipeListener(object : SwipeLayout.SwipeListener {
-                override fun onOpen(layout: SwipeLayout) {}
-
-                override fun onUpdate(layout: SwipeLayout, leftOffset: Int, topOffset: Int) {}
-
+            binding.swipeLayout.addSwipeListener(object : AbstractSwipeListener() {
                 override fun onStartOpen(layout: SwipeLayout) {
                     val position = bindingAdapterPosition
                     if (position == RecyclerView.NO_POSITION) return
                     onActionStartOpen(position)
                 }
-
-                override fun onStartClose(layout: SwipeLayout) {}
-
-                override fun onHandRelease(layout: SwipeLayout, xvel: Float, yvel: Float) {}
-
-                override fun onClose(layout: SwipeLayout) {}
             })
 
             binding.cardView.doOnClick {
