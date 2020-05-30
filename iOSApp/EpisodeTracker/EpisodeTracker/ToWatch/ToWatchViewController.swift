@@ -50,14 +50,14 @@ extension ToWatchViewController: ToWatchView {
     
     func showEmptyMessage(isFiltered: Bool) {
         if isFiltered {
-            tableView.emptyText = "No shows found"
-            tableView.emptyActionName = "Show All"
+            tableView.emptyText = string(R.str.to_watch_empty_search_message)
+            tableView.emptyActionName = string(R.str.action_show_all)
             tableView.isEmptyActionHidden = false
             tableView.emptyActionTappedCallback = { [weak self] in
                 self?.cancelSearch()
             }
         } else {
-            tableView.emptyText = "No episodes to watch"
+            tableView.emptyText = string(R.str.to_watch_empty_message)
             tableView.isEmptyActionHidden = true
         }
         tableView.showEmptyView()
@@ -120,7 +120,7 @@ extension ToWatchViewController: SwipeTableViewCellDelegate {
         
         switch orientation {
         case .right:
-            let markWatched = SwipeAction(style: .default, title: "Mark All Watched") { [weak self] (action, indexPath) in
+            let markWatched = SwipeAction(style: .default, title: string(R.str.action_mark_all_watched)) { [weak self] (action, indexPath) in
                 self?.presenter.onMarkAllWatchedClicked(show: show)
             }
             markWatched.image = UIImage(named: "ic-check-all")
@@ -128,7 +128,7 @@ extension ToWatchViewController: SwipeTableViewCellDelegate {
             markWatched.textColor = .textColorPrimaryInverse
             return [markWatched]
         case .left:
-            let archive = SwipeAction(style: .default, title: "Archive") { [weak self] (action, indexPath) in
+            let archive = SwipeAction(style: .default, title: string(R.str.action_archive)) { [weak self] (action, indexPath) in
                 self?.presenter.onArchiveShowClicked(show: show)
             }
             archive.image = UIImage(named: "ic-archive")
