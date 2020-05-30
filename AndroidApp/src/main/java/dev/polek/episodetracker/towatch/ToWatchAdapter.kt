@@ -1,18 +1,17 @@
 package dev.polek.episodetracker.towatch
 
 import android.text.Html
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.daimajia.swipe.SwipeLayout
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
 import dev.polek.episodetracker.databinding.ToWatchShowLayoutBinding
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
-import dev.polek.episodetracker.utils.swipeactions.SwipeActionExtension
 
 class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
 
@@ -36,6 +35,19 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
             },
             onCheckButtonClicked = { position ->
                 listener?.onCheckButtonClicked(shows[position])
+            },
+            onArchiveButtonClicked = { position ->
+                listener?.onArchiveButtonClicked(shows[position])
+            },
+            onMarkAllWatchedButtonClicked = { position ->
+                listener?.onMarkAllWatchedButtonClicked(shows[position])
+            },
+            onActionStartOpen = { position ->
+                for (i in 0 until itemCount) {
+                    if (i != position) {
+                        notifyItemChanged(i, Payload.CloseSwipeAction)
+                    }
+                }
             }
         )
     }
@@ -57,13 +69,47 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
         binding.image.loadImage(show.imageUrl)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
+        if (payloads.isEmpty()) return super.onBindViewHolder(holder, position, payloads)
+
+        payloads.forEach { payload ->
+            when (payload) {
+                is Payload.CloseSwipeAction -> {
+                    holder.binding.swipeLayout.close()
+                }
+                else -> throw NotImplementedError("Unknown payload: $payload")
+            }
+        }
+    }
+
     class ViewHolder(
         val binding: ToWatchShowLayoutBinding,
         onShowClicked: (position: Int) -> Unit,
-        onCheckButtonClicked: (position: Int) -> Unit) : RecyclerView.ViewHolder(binding.root), SwipeActionExtension
+        onCheckButtonClicked: (position: Int) -> Unit,
+        onArchiveButtonClicked: (position: Int) -> Unit,
+        onMarkAllWatchedButtonClicked: (position: Int) -> Unit,
+        onActionStartOpen: (position: Int) -> Unit) : RecyclerView.ViewHolder(binding.root)
     {
         init {
-            binding.contentView.doOnClick {
+            binding.swipeLayout.addSwipeListener(object : SwipeLayout.SwipeListener {
+                override fun onOpen(layout: SwipeLayout) {}
+
+                override fun onUpdate(layout: SwipeLayout, leftOffset: Int, topOffset: Int) {}
+
+                override fun onStartOpen(layout: SwipeLayout) {
+                    val position = bindingAdapterPosition
+                    if (position == RecyclerView.NO_POSITION) return
+                    onActionStartOpen(position)
+                }
+
+                override fun onStartClose(layout: SwipeLayout) {}
+
+                override fun onHandRelease(layout: SwipeLayout, xvel: Float, yvel: Float) {}
+
+                override fun onClose(layout: SwipeLayout) {}
+            })
+
+            binding.cardView.doOnClick {
                 val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onShowClicked(position)
@@ -78,28 +124,22 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
             binding.archiveButton.doOnClick {
                 val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
-                // TODO("not implemented")
+                onArchiveButtonClicked(position)
             }
 
             binding.markAllWatchedButton.doOnClick {
                 val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
-                // TODO("not implemented")
+                onMarkAllWatchedButtonClicked(position)
             }
-        }
-
-        override fun getContentView(): View {
-            return binding.contentView
-        }
-
-        override fun getActionWidth(): Float {
-            return itemView.resources.getDimensionPixelSize(R.dimen.swipe_action_width).toFloat()
         }
     }
 
     interface Listener {
         fun onShowClicked(show: ToWatchShowViewModel)
         fun onCheckButtonClicked(show: ToWatchShowViewModel)
+        fun onArchiveButtonClicked(show: ToWatchShowViewModel)
+        fun onMarkAllWatchedButtonClicked(show: ToWatchShowViewModel)
     }
 
     private class DiffUtilCallback(
@@ -117,5 +157,9 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>() {
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldList[oldItemPosition] == newList[newItemPosition]
         }
+    }
+
+    private sealed class Payload {
+        object CloseSwipeAction
     }
 }

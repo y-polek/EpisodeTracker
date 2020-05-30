@@ -1,69 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<com.daimajia.swipe.SwipeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/card_view_margin_bottom"
+    app:show_mode="pull_out"
+    app:drag_edge="left|right"
+    app:clickToClose="true"
     >
 
     <FrameLayout
-        android:layout_width="match_parent"
+        android:id="@+id/archive_button"
+        android:layout_width="@dimen/swipe_action_width"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/card_view_margin_bottom"
+        android:layout_gravity="start"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:background="@color/swipeActionBackground"
         >
-        <FrameLayout
-            android:id="@+id/archive_button"
-            android:layout_width="@dimen/swipe_action_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="8dp"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:drawableTop="@drawable/ic_archive"
-                android:text="@string/action_archive"
-                style="@style/SwipeAction"
-                />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/mark_all_watched_button"
-            android:layout_width="@dimen/swipe_action_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="8dp"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:drawableTop="@drawable/ic_check_all"
-                android:text="@string/action_mark_all_watched"
-                style="@style/SwipeAction"
-                />
-        </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ic_archive"
+            android:text="@string/action_archive"
+            style="@style/SwipeAction"
+            />
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/content_view"
+        android:id="@+id/mark_all_watched_button"
+        android:layout_width="@dimen/swipe_action_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:background="@color/swipeActionBackground"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ic_check_all"
+            android:text="@string/action_mark_all_watched"
+            style="@style/SwipeAction"
+            />
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
-        tools:translationX="150dp"
         >
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_view_height"
             android:layout_marginHorizontal="@dimen/card_view_margin_horizontal"
-            android:layout_marginBottom="@dimen/card_view_margin_bottom"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="@dimen/card_view_corner_radius"
             >
@@ -101,6 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:baselineAligned="false"
                     >
                     <LinearLayout
                         android:layout_width="0dp"
@@ -176,4 +175,4 @@
 
         </androidx.cardview.widget.CardView>
     </FrameLayout>
-</FrameLayout>
+</com.daimajia.swipe.SwipeLayout>
