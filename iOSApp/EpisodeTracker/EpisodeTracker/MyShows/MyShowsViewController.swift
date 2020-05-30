@@ -414,6 +414,7 @@ extension MyShowsViewController: SwipeTableViewCellDelegate {
         
         let remove = SwipeAction(style: .destructive, title: "Remove") { [weak self] (action, indexPath) in
             self?.presenter.onRemoveShowClicked(show: show)
+            (tableView.cellForRow(at: indexPath) as? SwipeTableViewCell)?.hideSwipe(animated: true)
         }
         remove.image = UIImage(named: "ic-remove")
         
