@@ -12,6 +12,7 @@
     <string name="action_discover">Discover Shows</string>
     <string name="action_mark_all_watched">Mark All Watched</string>
     <string name="action_archive">Archive</string>
+    <string name="action_unarchive">Unarchive</string>
 
     <string name="my_shows_last_week">Last Week</string>
     <string name="my_shows_upcoming">Upcoming</string>

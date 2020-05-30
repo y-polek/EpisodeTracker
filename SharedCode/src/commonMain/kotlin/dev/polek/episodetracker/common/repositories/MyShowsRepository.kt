@@ -160,7 +160,7 @@ class MyShowsRepository @Inject constructor(
         removeArchivedShowsSubscriber()
 
         archivedShowsQueueListener = QueryListener(
-            query = db.myShowQueries.archivedShows(mapper = ::mapShowViewModel),
+            query = db.myShowQueries.archivedShows(mapper = ::mapArchivedShowViewModel),
             subscriber = subscriber,
             notifyImmediately = true,
             extractQueryResult = Query<ShowViewModel>::executeAsList)
@@ -186,10 +186,19 @@ class MyShowsRepository @Inject constructor(
     companion object {
 
         fun mapShowViewModel(tmdbId: Int, name: String, imageUrl: String?): ShowViewModel {
+            return mapShowViewModel(tmdbId, name, imageUrl, isArchived = false)
+        }
+
+        fun mapArchivedShowViewModel(tmdbId: Int, name: String, imageUrl: String?): ShowViewModel {
+            return mapShowViewModel(tmdbId, name, imageUrl, isArchived = true)
+        }
+
+        private fun mapShowViewModel(tmdbId: Int, name: String, imageUrl: String?, isArchived: Boolean): ShowViewModel {
             return ShowViewModel(
                 id = tmdbId,
                 name = name,
-                backdropUrl = imageUrl)
+                backdropUrl = imageUrl,
+                isArchived = isArchived)
         }
 
         fun mapUpcomingShowViewModel(

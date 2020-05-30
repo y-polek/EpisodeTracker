@@ -5,7 +5,8 @@ sealed class MyShowsListItem {
     open class ShowViewModel(
         val id: Int,
         val name: String,
-        val backdropUrl: String?): MyShowsListItem()
+        val backdropUrl: String?,
+        val isArchived: Boolean): MyShowsListItem()
     {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -35,7 +36,7 @@ sealed class MyShowsListItem {
         backdropUrl: String?,
         val episodeNumber: String,
         val episodeName: String,
-        val timeLeft: String): ShowViewModel(id, name, backdropUrl)
+        val timeLeft: String): ShowViewModel(id, name, backdropUrl, isArchived = false)
     {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true

@@ -25,46 +25,57 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
     private lateinit var binding: MyShowsFragmentBinding
 
-    private val lastWeekAdapter = UpcomingShowsAdapter(
+    private val lastWeekAdapter = MyShowsAdapter(
         R.string.my_shows_last_week,
         presenter.isLastWeekExpanded,
         onShowClicked = ::onShowClicked,
         onRemoveButtonClicked = presenter::onRemoveShowClicked,
         onArchiveButtonClicked = presenter::onArchiveShowClicked,
+        onUnarchiveButtonClicked = presenter::onUnarchiveShowClicked,
         onExpandStateChanged = { isExpanded ->
             presenter.isLastWeekExpanded = isExpanded
         })
 
-    private val upcomingAdapter = UpcomingShowsAdapter(
+    private val upcomingAdapter = MyShowsAdapter(
         R.string.my_shows_upcoming,
         presenter.isUpcomingExpanded,
         onShowClicked = ::onShowClicked,
         onRemoveButtonClicked = presenter::onRemoveShowClicked,
         onArchiveButtonClicked = presenter::onArchiveShowClicked,
+        onUnarchiveButtonClicked = presenter::onUnarchiveShowClicked,
         onExpandStateChanged = { isExpanded ->
             presenter.isUpcomingExpanded = isExpanded
         })
 
-    private val tbaAdapter = ShowsAdapter(
+    private val tbaAdapter = MyShowsAdapter(
         R.string.my_shows_tba,
         presenter.isTbaExpanded,
         onShowClicked = ::onShowClicked,
+        onRemoveButtonClicked = presenter::onRemoveShowClicked,
+        onArchiveButtonClicked = presenter::onArchiveShowClicked,
+        onUnarchiveButtonClicked = presenter::onUnarchiveShowClicked,
         onExpandStateChanged = { isExpanded ->
             presenter.isTbaExpanded = isExpanded
         })
 
-    private val endedAdapter = ShowsAdapter(
+    private val endedAdapter = MyShowsAdapter(
         R.string.my_shows_ended,
         presenter.isEndedExpanded,
         onShowClicked = ::onShowClicked,
+        onRemoveButtonClicked = presenter::onRemoveShowClicked,
+        onArchiveButtonClicked = presenter::onArchiveShowClicked,
+        onUnarchiveButtonClicked = presenter::onUnarchiveShowClicked,
         onExpandStateChanged = { isExpanded ->
             presenter.isEndedExpanded = isExpanded
         })
 
-    private val archivedAdapter = ShowsAdapter(
+    private val archivedAdapter = MyShowsAdapter(
         R.string.my_shows_archived,
         presenter.isArchivedExpanded,
         onShowClicked = ::onShowClicked,
+        onRemoveButtonClicked = presenter::onRemoveShowClicked,
+        onArchiveButtonClicked = presenter::onArchiveShowClicked,
+        onUnarchiveButtonClicked = presenter::onUnarchiveShowClicked,
         onExpandStateChanged = { isExpanded ->
             presenter.isArchivedExpanded = isExpanded
         })
