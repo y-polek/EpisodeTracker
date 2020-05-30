@@ -10,12 +10,15 @@ import dev.polek.episodetracker.databinding.GroupHeaderLayoutBinding
 import dev.polek.episodetracker.databinding.UpcomingShowLayoutBinding
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
+import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
 
 class UpcomingShowsAdapter(
     @StringRes val titleRes: Int,
     isExpanded: Boolean,
     val onShowClicked: (show: MyShowsListItem.ShowViewModel) -> Unit,
-    val onExpandStateChanged: (isExpanded: Boolean) -> Unit) : RecyclerView.Adapter<MyShowsViewHolder>()
+    val onRemoveButtonClicked: (show: MyShowsListItem.ShowViewModel) -> Unit,
+    val onArchiveButtonClicked: (show: MyShowsListItem.ShowViewModel) -> Unit,
+    val onExpandStateChanged: (isExpanded: Boolean) -> Unit) : RecyclerView.Adapter<MyShowsViewHolder>(), CloseSwipeActionsScrollListener.SwipeActionsClosable
 {
     var shows: List<MyShowsListItem.UpcomingShowViewModel> = emptyList()
         set(value) {
@@ -61,9 +64,24 @@ class UpcomingShowsAdapter(
             }
             R.layout.upcoming_show_layout -> {
                 val binding = UpcomingShowLayoutBinding.inflate(parent.layoutInflater, parent, false)
-                MyShowsViewHolder.UpcomingShowViewHolder(binding, onClicked = { position ->
-                    onShowClicked(showAtPosition(position))
-                })
+                MyShowsViewHolder.UpcomingShowViewHolder(binding,
+                    onClicked = { position ->
+                        onShowClicked(showAtPosition(position))
+                        closeSwipeActions()
+                    },
+                    onRemoveButtonClicked = { position ->
+                        onRemoveButtonClicked(showAtPosition(position))
+                    },
+                    onArchiveButtonClicked = { position ->
+                        onArchiveButtonClicked(showAtPosition(position))
+                    },
+                    onActionStartOpen = { position ->
+                        for (i in 0 until itemCount) {
+                            if (i != position) {
+                                notifyItemChanged(i, Payload.CloseSwipeAction)
+                            }
+                        }
+                    })
             }
             else -> throw IllegalStateException("Unknown view type: $viewType")
         }
@@ -87,7 +105,29 @@ class UpcomingShowsAdapter(
         }
     }
 
+    override fun onBindViewHolder(holder: MyShowsViewHolder, position: Int, payloads: MutableList<Any>) {
+        if (payloads.isEmpty()) return super.onBindViewHolder(holder, position, payloads)
+        if (holder !is MyShowsViewHolder.UpcomingShowViewHolder) return super.onBindViewHolder(holder, position, payloads)
+
+        payloads.forEach { payload ->
+            when (payload) {
+                is Payload.CloseSwipeAction -> {
+                    holder.binding.swipeLayout.close()
+                }
+                else -> throw NotImplementedError("Unknown payload: $payload")
+            }
+        }
+    }
+
+    override fun closeSwipeActions() {
+        notifyItemRangeChanged(0, itemCount, Payload.CloseSwipeAction)
+    }
+
     private fun showAtPosition(position: Int): MyShowsListItem.UpcomingShowViewModel {
         return shows[position - 1]
+    }
+
+    sealed class Payload {
+        object CloseSwipeAction
     }
 }

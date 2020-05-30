@@ -1,94 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.daimajia.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/card_view_height"
-    android:layout_marginHorizontal="@dimen/card_view_margin_horizontal"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/card_view_margin_bottom"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="@dimen/card_view_corner_radius"
+    app:show_mode="pull_out"
+    app:drag_edge="right"
+    app:clickToClose="true"
     >
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:foreground="@drawable/gradient_shadow"
-        tools:src="@tools:sample/backgrounds/scenic"
-        />
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal"
+        <FrameLayout
+            android:id="@+id/remove_button"
+            android:layout_width="@dimen/swipe_action_width"
+            android:layout_height="match_parent"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:background="@color/swipeActionBackgroundAccent"
             >
             <TextView
-                android:id="@+id/name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="16dp"
-                android:singleLine="true"
-                android:ellipsize="end"
-                tools:text="Star Trek: Discovery"
-                style="@style/CardTitle"
-                />
-            <TextView
-                android:id="@+id/time_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                tools:text="4 days"
-                style="@style/CardTitle"
+                android:paddingHorizontal="8dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/ic_remove"
+                android:text="@string/action_remove"
+                style="@style/SwipeAction"
                 />
-        </LinearLayout>
-
-        <include layout="@layout/divider_inverse" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal"
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/archive_button"
+            android:layout_width="@dimen/swipe_action_width"
+            android:layout_height="match_parent"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:background="@color/swipeActionBackground"
             >
             <TextView
-                android:id="@+id/episode_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                tools:text="S01E01"
-                style="@style/CardSubtitle"
+                android:paddingHorizontal="8dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/ic_archive"
+                android:text="@string/action_archive"
+                style="@style/SwipeAction"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" | "
-                tools:ignore="HardcodedText"
-                style="@style/CardSubtitle"
-                />
-            <TextView
-                android:id="@+id/episode_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:singleLine="true"
-                tools:text="TBA"
-                style="@style/CardSubtitle"
-                />
-        </LinearLayout>
-
+        </FrameLayout>
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_view_height"
+            android:layout_marginHorizontal="@dimen/card_view_margin_horizontal"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/card_view_corner_radius"
+            >
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:foreground="@drawable/gradient_shadow"
+                tools:src="@tools:sample/backgrounds/scenic"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        tools:text="Star Trek: Discovery"
+                        style="@style/CardTitle"
+                        />
+                    <TextView
+                        android:id="@+id/time_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        tools:text="4 days"
+                        style="@style/CardTitle"
+                        />
+                </LinearLayout>
+
+                <include layout="@layout/divider_inverse" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/episode_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        tools:text="S01E01"
+                        style="@style/CardSubtitle"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" | "
+                        tools:ignore="HardcodedText"
+                        style="@style/CardSubtitle"
+                        />
+                    <TextView
+                        android:id="@+id/episode_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        tools:text="TBA"
+                        style="@style/CardSubtitle"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</com.daimajia.swipe.SwipeLayout>

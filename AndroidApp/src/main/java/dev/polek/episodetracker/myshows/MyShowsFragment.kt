@@ -17,6 +17,7 @@ import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListIte
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
+import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
 
 class MyShowsFragment : Fragment(), MyShowsView {
 
@@ -28,6 +29,8 @@ class MyShowsFragment : Fragment(), MyShowsView {
         R.string.my_shows_last_week,
         presenter.isLastWeekExpanded,
         onShowClicked = ::onShowClicked,
+        onRemoveButtonClicked = presenter::onRemoveShowClicked,
+        onArchiveButtonClicked = presenter::onArchiveShowClicked,
         onExpandStateChanged = { isExpanded ->
             presenter.isLastWeekExpanded = isExpanded
         })
@@ -36,6 +39,8 @@ class MyShowsFragment : Fragment(), MyShowsView {
         R.string.my_shows_upcoming,
         presenter.isUpcomingExpanded,
         onShowClicked = ::onShowClicked,
+        onRemoveButtonClicked = presenter::onRemoveShowClicked,
+        onArchiveButtonClicked = presenter::onArchiveShowClicked,
         onExpandStateChanged = { isExpanded ->
             presenter.isUpcomingExpanded = isExpanded
         })
@@ -73,12 +78,14 @@ class MyShowsFragment : Fragment(), MyShowsView {
     {
         binding = MyShowsFragmentBinding.inflate(inflater)
 
-        binding.recyclerView.apply {
+        val recyclerView = binding.recyclerView
+        recyclerView.adapter = adapter
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             addOnScrollListener(HideKeyboardScrollListener)
+            addOnScrollListener(CloseSwipeActionsScrollListener)
             setHasFixedSize(true)
         }
-        binding.recyclerView.adapter = adapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

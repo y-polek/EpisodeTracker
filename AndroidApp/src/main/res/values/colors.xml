@@ -15,4 +15,5 @@
     <color name="badgeTextColor">@android:color/white</color>
 
     <color name="swipeActionBackground">#555555</color>
+    <color name="swipeActionBackgroundAccent">#FF3B30</color>
 </resources>

@@ -99,14 +99,6 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>(), CloseS
         onActionStartOpen: (position: Int) -> Unit) : RecyclerView.ViewHolder(binding.root)
     {
         init {
-            binding.swipeLayout.addSwipeListener(object : AbstractSwipeListener() {
-                override fun onStartOpen(layout: SwipeLayout) {
-                    val position = bindingAdapterPosition
-                    if (position == RecyclerView.NO_POSITION) return
-                    onActionStartOpen(position)
-                }
-            })
-
             binding.cardView.doOnClick {
                 val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
@@ -130,6 +122,14 @@ class ToWatchAdapter : RecyclerView.Adapter<ToWatchAdapter.ViewHolder>(), CloseS
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onMarkAllWatchedButtonClicked(position)
             }
+
+            binding.swipeLayout.addSwipeListener(object : AbstractSwipeListener() {
+                override fun onStartOpen(layout: SwipeLayout) {
+                    val position = bindingAdapterPosition
+                    if (position == RecyclerView.NO_POSITION) return
+                    onActionStartOpen(position)
+                }
+            })
         }
     }
 
