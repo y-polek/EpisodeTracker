@@ -6,6 +6,7 @@ import dev.polek.episodetracker.common.presentation.discover.DiscoverPresenter
 import dev.polek.episodetracker.common.presentation.main.MainPresenter
 import dev.polek.episodetracker.common.presentation.myshows.MyShowsPresenter
 import dev.polek.episodetracker.common.presentation.settings.SettingsPresenter
+import dev.polek.episodetracker.common.presentation.showdetails.presenter.ShowDetailsPresenter
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchPresenter
 import javax.inject.Singleton
 
@@ -23,4 +24,5 @@ interface SingletonComponent {
     fun toWatchPresenter(): ToWatchPresenter
     fun discoverPresenter(): DiscoverPresenter
     fun settingsPresenter(): SettingsPresenter
+    fun showDetailsPresenterFactory(): ShowDetailsPresenter.Factory
 }

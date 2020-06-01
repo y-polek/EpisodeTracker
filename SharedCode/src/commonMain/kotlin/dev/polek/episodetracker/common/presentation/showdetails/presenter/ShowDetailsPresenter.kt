@@ -4,6 +4,7 @@ import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
 import dev.polek.episodetracker.common.datasource.themoviedb.entities.ShowDetailsEntity
+import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.loge
 import dev.polek.episodetracker.common.model.ContentRating
@@ -592,6 +593,17 @@ class ShowDetailsPresenter(
                     append("\n$homePageUrl")
                 }
             }
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val myShowsRepository: MyShowsRepository,
+        private val showRepository: ShowRepository,
+        private val episodesRepository: EpisodesRepository,
+        private val preferences: Preferences)
+    {
+        fun create(showId: Int): ShowDetailsPresenter {
+            return ShowDetailsPresenter(showId, myShowsRepository, showRepository, episodesRepository, preferences)
         }
     }
 }
