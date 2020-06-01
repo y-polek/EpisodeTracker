@@ -17,6 +17,7 @@ import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetails
 import dev.polek.episodetracker.databinding.ShowDetailsActivityBinding
 import dev.polek.episodetracker.showdetails.about.AboutShowFragment
 import dev.polek.episodetracker.showdetails.episodes.EpisodesFragment
+import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.loadImage
 
 class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
@@ -44,6 +45,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.collapsingToolbar.title = showName
+
+        binding.rating.doOnClick {
+            presenter.onContentRatingClicked()
+        }
 
         binding.viewPager.adapter = PagerAdapter(this)
         binding.viewPager.isUserInputEnabled = false
@@ -90,6 +95,9 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
 
     override fun displayShowHeader(show: ShowHeaderViewModel) {
         binding.imageView.loadImage(show.imageUrl)
+        binding.collapsingToolbar.title = showName
+        binding.subtitle.text = show.subhead
+        binding.rating.text = show.rating
     }
 
     override fun showProgress() {

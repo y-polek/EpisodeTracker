@@ -71,4 +71,8 @@
         <item name="android:textColor">?attr/colorOnPrimarySurface</item>
     </style>
 
+    <style name="TextAppearance.App.CollapsingToolbar.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">?attr/colorOnPrimarySurface</item>
+    </style>
+
 </resources>
