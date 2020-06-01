@@ -50,22 +50,14 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onDestroy()
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.onViewAppeared()
-    }
-
-    override fun onPause() {
-        presenter.onViewDisappeared()
-        super.onPause()
-    }
-
     override fun onStart() {
         super.onStart()
         appPresenter.onViewAppeared()
+        presenter.onViewAppeared()
     }
 
     override fun onStop() {
+        presenter.onViewDisappeared()
         appPresenter.onViewDisappeared()
         super.onStop()
     }
@@ -77,7 +69,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    //region MainView implementation
+    // region MainView implementation
 
     override fun showToWatchBadge(count: Int) {
         val badge = binding.bottomNavigation.getOrCreateBadge(R.id.action_to_watch)
@@ -87,7 +79,7 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun hideToWatchBadge() {
         binding.bottomNavigation.removeBadge(R.id.action_to_watch)
     }
-    //endregion
+    // endregion
     ///////////////////////////////////////////////////////////////////////////
 
     private class PageAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {

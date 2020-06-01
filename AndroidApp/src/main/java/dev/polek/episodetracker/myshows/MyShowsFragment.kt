@@ -16,6 +16,7 @@ import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
+import dev.polek.episodetracker.showdetails.ShowDetailsActivity
 import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
@@ -213,7 +214,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
     }
 
     override fun openMyShowDetails(show: MyShowsListItem.ShowViewModel) {
-        // TODO("not implemented")
+        startActivity(ShowDetailsActivity.intent(context!!, show.id, show.name))
     }
     //endregion
     ///////////////////////////////////////////////////////////////////////////

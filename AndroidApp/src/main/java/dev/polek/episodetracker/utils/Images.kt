@@ -19,6 +19,7 @@ fun ImageView.loadImage(url: String?) {
 
     requestManager
         .load(url)
+        .centerCrop()
         .transition(DrawableTransitionOptions.with(CrossFadeRemoteTransitionFactory))
         .into(this)
 }

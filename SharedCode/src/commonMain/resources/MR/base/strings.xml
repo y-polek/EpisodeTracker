@@ -47,4 +47,7 @@
     <string name="prefs_show_specials_in_to_watch">Show specials in \"To Watch\" list</string>
 
     <string name="remove_show_confirmation">Are you sure you want to remove \"%s\"?</string>
+
+    <string name="tab_about">About</string>
+    <string name="tab_episodes">Episodes</string>
 </resources>
