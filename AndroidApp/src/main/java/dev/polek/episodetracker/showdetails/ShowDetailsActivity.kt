@@ -3,6 +3,7 @@ package dev.polek.episodetracker.showdetails
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -39,7 +40,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
         binding = ShowDetailsActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.title = showName
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.collapsingToolbar.title = showName
 
         binding.viewPager.adapter = PagerAdapter(this)
         binding.viewPager.isUserInputEnabled = false
@@ -69,6 +73,16 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
     override fun onStop() {
         presenter.onViewDisappeared()
         super.onStop()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.show_details_menu, menu)
+        return true
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     ///////////////////////////////////////////////////////////////////////////

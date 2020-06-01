@@ -21,7 +21,7 @@
         >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar"
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -39,6 +39,7 @@
                 />
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
