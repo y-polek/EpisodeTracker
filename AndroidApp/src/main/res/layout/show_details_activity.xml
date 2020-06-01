@@ -30,6 +30,8 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="bottom"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed"
             >
 
             <ImageView
@@ -47,6 +49,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
                 app:layout_collapseMode="pin"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
                 />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
