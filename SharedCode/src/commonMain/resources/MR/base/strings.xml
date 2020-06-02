@@ -53,4 +53,8 @@
 
     <string name="tab_about">About</string>
     <string name="tab_episodes">Episodes</string>
+
+    <string name="about_show_trailers">Trailers</string>
+    <string name="about_show_cast">Cast</string>
+    <string name="about_show_recommendations">Recommendations</string>
 </resources>

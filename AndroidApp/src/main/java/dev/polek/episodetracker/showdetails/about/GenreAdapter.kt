@@ -8,6 +8,10 @@ import dev.polek.episodetracker.utils.layoutInflater
 class GenreAdapter : RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
 
     var genres: List<String> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun getItemCount() = genres.size
 
