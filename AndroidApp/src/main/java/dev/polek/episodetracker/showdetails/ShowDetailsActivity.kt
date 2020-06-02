@@ -25,16 +25,16 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
     private val showId: Int by lazy {
         intent.getIntExtra(KEY_SHOW_ID, -1)
     }
-
     private val showName: String by lazy {
         requireNotNull(intent.getStringExtra(KEY_SHOW_NAME))
     }
-
     private val presenter: ShowDetailsPresenter by lazy {
         App.instance.di.showDetailsPresenterFactory().create(showId)
     }
-
     private lateinit var binding: ShowDetailsActivityBinding
+    private var aboutFragment: AboutShowFragment? = null
+
+    private var show: ShowDetailsViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +63,20 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
         }.attach()
 
         presenter.attachView(this)
+    }
+
+    override fun onAttachFragment(fragment: Fragment) {
+        super.onAttachFragment(fragment)
+
+        when (fragment) {
+            is AboutShowFragment -> {
+                aboutFragment = fragment
+                show?.let(fragment::displayShowDetails)
+            }
+            is EpisodesFragment -> {
+
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -168,7 +182,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
     }
 
     override fun displayShowDetails(show: ShowDetailsViewModel) {
-        // TODO("not implemented")
+        this.show = show
+        aboutFragment?.displayShowDetails(show)
     }
 
     override fun displayTrailers(trailers: List<TrailerViewModel>) {
