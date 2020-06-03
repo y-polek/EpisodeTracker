@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import dev.polek.episodetracker.common.presentation.showdetails.model.CastMemberViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.RecommendationViewModel
@@ -51,6 +52,10 @@ class AboutShowFragment : Fragment() {
         binding.castRecyclerView.adapter = castAdapter
         binding.recommendationsRecyclerView.adapter = recommendationAdapter
 
+        binding.trailersLayout.isVisible = trailerAdapter.itemCount > 0
+        binding.castLayout.isVisible = castAdapter.itemCount > 0
+        binding.recommendationsLayout.isVisible = recommendationAdapter.itemCount > 0
+
         bindShow()
 
         return binding.root
@@ -63,14 +68,17 @@ class AboutShowFragment : Fragment() {
 
     fun displayTrailers(trailers: List<TrailerViewModel>) {
         trailerAdapter.trailers = trailers
+        binding?.trailersLayout?.isVisible = trailers.isNotEmpty()
     }
 
     fun displayCast(cast: List<CastMemberViewModel>) {
         castAdapter.cast = cast
+        binding?.castLayout?.isVisible = cast.isNotEmpty()
     }
 
     fun displayRecommendations(recommendations: List<RecommendationViewModel>) {
         recommendationAdapter.setRecommendations(recommendations)
+        binding?.recommendationsLayout?.isVisible = recommendations.isNotEmpty()
     }
 
     fun updateRecommendation(recommendation: RecommendationViewModel) {
