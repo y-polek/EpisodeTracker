@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             tools:text="@tools:sample/lorem"
             />
@@ -39,6 +38,7 @@
             android:id="@+id/trailers_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="vertical"
             >
             <include layout="@layout/divider" />
@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:text="@string/about_show_trailers"
                 />
@@ -61,6 +62,37 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/trailer_layout"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cast_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            >
+            <include layout="@layout/divider" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:text="@string/about_show_cast"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cast_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:clipToPadding="false"
+                android:scrollbars="none"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/cast_member_layout"
                 />
         </LinearLayout>
 

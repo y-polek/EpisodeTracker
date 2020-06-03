@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dev.polek.episodetracker.common.presentation.showdetails.model.CastMemberViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.TrailerViewModel
 import dev.polek.episodetracker.databinding.AboutShowFragmentBinding
@@ -13,7 +14,10 @@ class AboutShowFragment : Fragment() {
 
     private val genreAdapter = GenreAdapter()
     private val trailerAdapter = TrailerAdapter(onPlayClicked = { trailer ->
-
+        // TODO("not implemented")
+    })
+    private val castAdapter = CastAdapter(onClicked = { castMember ->
+        // TODO("not implemented")
     })
 
     private var binding: AboutShowFragmentBinding? = null
@@ -29,6 +33,7 @@ class AboutShowFragment : Fragment() {
 
         binding.genresRecyclerView.adapter = genreAdapter
         binding.trailersRecyclerView.adapter = trailerAdapter
+        binding.castRecyclerView.adapter = castAdapter
 
         bindShow()
 
@@ -42,6 +47,10 @@ class AboutShowFragment : Fragment() {
 
     fun displayTrailers(trailers: List<TrailerViewModel>) {
         trailerAdapter.trailers = trailers
+    }
+
+    fun displayCast(cast: List<CastMemberViewModel>) {
+        castAdapter.cast = cast
     }
 
     private fun bindShow() {

@@ -36,6 +36,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
 
     private var show: ShowDetailsViewModel? = null
     private var trailers: List<TrailerViewModel>? = null
+    private var cast: List<CastMemberViewModel>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +75,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
                 aboutFragment = fragment
                 show?.let(fragment::displayShowDetails)
                 trailers?.let(fragment::displayTrailers)
+                cast?.let(fragment::displayCast)
             }
             is EpisodesFragment -> {
 
@@ -194,7 +196,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
     }
 
     override fun displayCast(castMembers: List<CastMemberViewModel>) {
-        // TODO("not implemented")
+        this.cast = castMembers
+        aboutFragment?.displayCast(castMembers)
     }
 
     override fun displayRecommendations(recommendations: List<RecommendationViewModel>) {
