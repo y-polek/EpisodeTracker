@@ -80,7 +80,9 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
             }
         }
 
-        super.onBindViewHolder(holder, position, payloads)
+        if (payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads)
+        }
     }
 
     private fun bindAddButton(holder: ViewHolder, result: DiscoverResultViewModel) {
@@ -100,13 +102,13 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
     {
         init {
             binding.root.doOnClick {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onResultClicked(position)
             }
 
             binding.button.doOnClick {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position == RecyclerView.NO_POSITION) return@doOnClick
                 onAddButtonClicked(position)
             }

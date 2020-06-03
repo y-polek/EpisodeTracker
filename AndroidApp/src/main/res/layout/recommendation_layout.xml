@@ -25,36 +25,61 @@
             tools:src="@tools:sample/backgrounds/scenic"
             />
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            android:layout_gravity="top|end"
+            >
+            <ImageButton
+                android:id="@+id/add_button"
+                android:layout_width="@dimen/small_button_size"
+                android:layout_height="@dimen/small_button_size"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add"
+                android:tint="?attr/colorOnPrimarySurface"
+                android:background="@drawable/square_button_background"
+                />
+            <ProgressBar
+                android:id="@+id/add_button_progress"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="?attr/colorOnPrimarySurface"
+                />
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
             >
-            <ImageButton
-                android:id="@+id/play_button"
-                android:layout_width="@dimen/small_button_size"
-                android:layout_height="@dimen/small_button_size"
-                android:layout_marginBottom="4dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_play"
-                android:tint="?attr/colorOnPrimarySurface"
-                android:background="@drawable/circular_button_background"
-                />
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="8dp"
+                android:maxLines="2"
                 android:ellipsize="end"
-                android:lines="2"
                 tools:text="@tools:sample/lorem"
                 style="@style/SmallCardTitle"
+                />
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="@tools:sample/lorem"
+                style="@style/SmallCardSubtitle"
                 />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
 </FrameLayout>
+

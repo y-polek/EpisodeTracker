@@ -12,4 +12,7 @@
     <dimen name="small_card_view_height">120dp</dimen>
 
     <dimen name="swipe_action_width">100dp</dimen>
+
+    <dimen name="button_size">40dp</dimen>
+    <dimen name="small_button_size">32dp</dimen>
 </resources>

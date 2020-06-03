@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dev.polek.episodetracker.common.presentation.showdetails.model.CastMemberViewModel
+import dev.polek.episodetracker.common.presentation.showdetails.model.RecommendationViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.TrailerViewModel
 import dev.polek.episodetracker.databinding.AboutShowFragmentBinding
@@ -19,9 +20,23 @@ class AboutShowFragment : Fragment() {
     private val castAdapter = CastAdapter(onClicked = { castMember ->
         // TODO("not implemented")
     })
+    private val recommendationAdapter = RecommendationAdapter(
+        onClicked = { recommendation ->
+            // TODO("not implemented")
+        },
+        onAddButtonClicked = { recommendation ->
+            listener?.onAddRecommendationClicked(recommendation)
+        },
+        onRemoveButtonClicked = { recommendation ->
+            listener?.onRemoveRecommendationClicked(recommendation)
+        }
+    )
 
     private var binding: AboutShowFragmentBinding? = null
     private var show: ShowDetailsViewModel? = null
+
+    private val listener: Listener?
+        get() = activity as? Listener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +49,7 @@ class AboutShowFragment : Fragment() {
         binding.genresRecyclerView.adapter = genreAdapter
         binding.trailersRecyclerView.adapter = trailerAdapter
         binding.castRecyclerView.adapter = castAdapter
+        binding.recommendationsRecyclerView.adapter = recommendationAdapter
 
         bindShow()
 
@@ -53,6 +69,14 @@ class AboutShowFragment : Fragment() {
         castAdapter.cast = cast
     }
 
+    fun displayRecommendations(recommendations: List<RecommendationViewModel>) {
+        recommendationAdapter.setRecommendations(recommendations)
+    }
+
+    fun updateRecommendation(recommendation: RecommendationViewModel) {
+        recommendationAdapter.updateRecommendation(recommendation)
+    }
+
     private fun bindShow() {
         val binding = this.binding ?: return
         val show = this.show ?: return
@@ -63,5 +87,10 @@ class AboutShowFragment : Fragment() {
 
     companion object {
         fun instance() = AboutShowFragment()
+    }
+
+    interface Listener {
+        fun onAddRecommendationClicked(show: RecommendationViewModel)
+        fun onRemoveRecommendationClicked(show: RecommendationViewModel)
     }
 }

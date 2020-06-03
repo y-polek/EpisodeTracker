@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.polek.episodetracker.App
 import dev.polek.episodetracker.R
@@ -20,7 +21,7 @@ import dev.polek.episodetracker.showdetails.episodes.EpisodesFragment
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.loadImage
 
-class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
+class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragment.Listener {
 
     private val showId: Int by lazy {
         intent.getIntExtra(KEY_SHOW_ID, -1)
@@ -37,6 +38,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
     private var show: ShowDetailsViewModel? = null
     private var trailers: List<TrailerViewModel>? = null
     private var cast: List<CastMemberViewModel>? = null
+    private var recommendations: List<RecommendationViewModel>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,9 +78,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
                 show?.let(fragment::displayShowDetails)
                 trailers?.let(fragment::displayTrailers)
                 cast?.let(fragment::displayCast)
+                recommendations?.let(fragment::displayRecommendations)
             }
             is EpisodesFragment -> {
-
+                // TODO("not implemented")
             }
         }
     }
@@ -106,6 +109,14 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    override fun onAddRecommendationClicked(show: RecommendationViewModel) {
+        presenter.onAddRecommendationClicked(show)
+    }
+
+    override fun onRemoveRecommendationClicked(show: RecommendationViewModel) {
+        presenter.onRemoveRecommendationClicked(show)
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -201,18 +212,23 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView {
     }
 
     override fun displayRecommendations(recommendations: List<RecommendationViewModel>) {
-        // TODO("not implemented")
+        this.recommendations = recommendations
+        aboutFragment?.displayRecommendations(recommendations)
     }
 
     override fun updateRecommendation(show: RecommendationViewModel) {
-        // TODO("not implemented")
+        aboutFragment?.updateRecommendation(show)
     }
 
     override fun displayRemoveRecommendationConfirmation(
         show: RecommendationViewModel,
         callback: (confirmed: Boolean) -> Unit)
     {
-        // TODO("not implemented")
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.remove_show_confirmation, show.name))
+            .setPositiveButton(R.string.action_remove) { _, _ -> callback(true) }
+            .setNegativeButton(R.string.action_cancel) { _, _ -> callback(false) }
+            .show()
     }
 
     override fun openRecommendation(show: RecommendationViewModel) {
