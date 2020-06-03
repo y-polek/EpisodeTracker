@@ -416,8 +416,8 @@ extension ShowDetailsViewController: ShowDetailsView {
         present(controller, animated: true, completion: nil)
     }
     
-    func displayContentRatingInfo(rating: String, text: String) {
-        let alert = UIAlertController(title: rating, message: text, preferredStyle: .alert)
+    func displayContentRatingInfo(rating: String, text: ResourcesStringDesc) {
+        let alert = UIAlertController(title: rating, message: text.localized(), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }

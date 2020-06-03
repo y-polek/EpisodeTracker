@@ -5,8 +5,9 @@
     <string name="discover">Discover</string>
     <string name="settings">Settings</string>
 
-    <string name="action_retry">Retry</string>
+    <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
+    <string name="action_retry">Retry</string>
     <string name="action_remove">Remove</string>
     <string name="action_show_all">Show All</string>
     <string name="action_discover">Discover Shows</string>
@@ -57,4 +58,11 @@
     <string name="about_show_trailers">Trailers</string>
     <string name="about_show_cast">Cast</string>
     <string name="about_show_recommendations">Recommendations</string>
+
+    <string name="rating_info_tv_y">This program is designed to be appropriate for all children.</string>
+    <string name="rating_info_tv_y7">This program is designed for children age 7 and above.</string>
+    <string name="rating_info_tv_g">This program is suitable for all ages.</string>
+    <string name="rating_info_tv_pg">This program contains material that parents may find unsuitable for younger children.</string>
+    <string name="rating_info_tv_14">This program contains some material that many parents would find unsuitable for children under 14 years of age.</string>
+    <string name="rating_info_tv_ma">This program is specifically designed to be viewed by adults and therefore may be unsuitable for children under 17.</string>
 </resources>

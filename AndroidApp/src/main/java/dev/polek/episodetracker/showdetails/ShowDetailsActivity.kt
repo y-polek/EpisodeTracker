@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
+import dev.icerock.moko.resources.desc.StringDesc
 import dev.polek.episodetracker.App
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.showdetails.model.*
@@ -196,8 +197,12 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragm
         // TODO("not implemented")
     }
 
-    override fun displayContentRatingInfo(rating: String, text: String) {
-        // TODO("not implemented")
+    override fun displayContentRatingInfo(rating: String, text: StringDesc) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(rating)
+            .setMessage(text.toString(this))
+            .setPositiveButton(R.string.action_ok, null)
+            .show()
     }
 
     override fun displayShowDetails(show: ShowDetailsViewModel) {

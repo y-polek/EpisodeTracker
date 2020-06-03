@@ -1,5 +1,6 @@
 package dev.polek.episodetracker.common.presentation.showdetails.view
 
+import dev.icerock.moko.resources.desc.StringDesc
 import dev.polek.episodetracker.common.presentation.showdetails.model.*
 
 interface ShowDetailsView {
@@ -19,7 +20,7 @@ interface ShowDetailsView {
     fun displayOptionsMenu(isInMyShows: Boolean, isArchived: Boolean)
     fun displayRemoveConfirmation(callback: (confirmed: Boolean) -> Unit)
     fun shareText(text: String)
-    fun displayContentRatingInfo(rating: String, text: String)
+    fun displayContentRatingInfo(rating: String, text: StringDesc)
 
     fun displayShowDetails(show: ShowDetailsViewModel)
     fun displayTrailers(trailers: List<TrailerViewModel>)

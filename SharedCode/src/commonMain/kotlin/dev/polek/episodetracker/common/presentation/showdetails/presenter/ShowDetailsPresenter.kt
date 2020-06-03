@@ -17,6 +17,7 @@ import dev.polek.episodetracker.common.presentation.showdetails.view.ShowDetails
 import dev.polek.episodetracker.common.repositories.EpisodesRepository
 import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
+import dev.polek.episodetracker.common.utils.string
 import dev.polek.episodetracker.db.ShowDetails
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -295,7 +296,7 @@ class ShowDetailsPresenter(
     fun onContentRatingClicked() {
         val ratingName = showDetails?.contentRating ?: return
         val rating = ContentRating.find(ratingName) ?: return
-        view?.displayContentRatingInfo(rating.abbr, rating.info)
+        view?.displayContentRatingInfo(rating.abbr, string(rating.info))
     }
 
     fun onAddRecommendationClicked(show: RecommendationViewModel) {
