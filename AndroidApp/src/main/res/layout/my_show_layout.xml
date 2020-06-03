@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:foreground="@drawable/gradient_shadow"
+                android:foreground="@drawable/gradient_scrim"
                 tools:src="@tools:sample/backgrounds/scenic"
                 />
 
