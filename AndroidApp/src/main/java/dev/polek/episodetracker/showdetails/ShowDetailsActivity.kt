@@ -111,6 +111,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragm
         return true
     }
 
+    override fun onRecommendationClicked(show: RecommendationViewModel) {
+        presenter.onRecommendationClicked(show)
+    }
+
     override fun onAddRecommendationClicked(show: RecommendationViewModel) {
         presenter.onAddRecommendationClicked(show)
     }
@@ -232,7 +236,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragm
     }
 
     override fun openRecommendation(show: RecommendationViewModel) {
-        // TODO("not implemented")
+        startActivity(intent(this, show.showId, show.name))
     }
 
     override fun displayImdbRating(rating: Float) {

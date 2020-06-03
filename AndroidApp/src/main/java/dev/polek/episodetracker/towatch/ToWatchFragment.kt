@@ -13,6 +13,7 @@ import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchView
 import dev.polek.episodetracker.databinding.ToWatchFragmentBinding
+import dev.polek.episodetracker.showdetails.ShowDetailsActivity
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
 import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
@@ -124,7 +125,7 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
     }
 
     override fun openToWatchShowDetails(show: ToWatchShowViewModel, episode: EpisodeNumber) {
-        // TODO("not implemented")
+        startActivity(ShowDetailsActivity.intent(requireContext(), show.id, show.name))
     }
     // endregion
     ///////////////////////////////////////////////////////////////////////////

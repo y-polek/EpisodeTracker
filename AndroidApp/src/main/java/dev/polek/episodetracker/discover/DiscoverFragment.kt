@@ -15,6 +15,7 @@ import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.discover.DiscoverView
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
+import dev.polek.episodetracker.showdetails.ShowDetailsActivity
 import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.showKeyboard
@@ -165,7 +166,7 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
     }
 
     override fun openDiscoverShow(show: DiscoverResultViewModel) {
-        // TODO("not implemented")
+        startActivity(ShowDetailsActivity.intent(requireContext(), show.id, show.name))
     }
     //endregion
     ///////////////////////////////////////////////////////////////////////////

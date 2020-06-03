@@ -22,14 +22,14 @@ class AboutShowFragment : Fragment() {
         // TODO("not implemented")
     })
     private val recommendationAdapter = RecommendationAdapter(
-        onClicked = { recommendation ->
-            // TODO("not implemented")
+        onClicked = { show ->
+            listener?.onRecommendationClicked(show)
         },
-        onAddButtonClicked = { recommendation ->
-            listener?.onAddRecommendationClicked(recommendation)
+        onAddButtonClicked = { show ->
+            listener?.onAddRecommendationClicked(show)
         },
-        onRemoveButtonClicked = { recommendation ->
-            listener?.onRemoveRecommendationClicked(recommendation)
+        onRemoveButtonClicked = { show ->
+            listener?.onRemoveRecommendationClicked(show)
         }
     )
 
@@ -98,6 +98,7 @@ class AboutShowFragment : Fragment() {
     }
 
     interface Listener {
+        fun onRecommendationClicked(show: RecommendationViewModel)
         fun onAddRecommendationClicked(show: RecommendationViewModel)
         fun onRemoveRecommendationClicked(show: RecommendationViewModel)
     }
