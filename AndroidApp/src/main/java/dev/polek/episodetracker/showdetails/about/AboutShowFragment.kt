@@ -1,5 +1,7 @@
 package dev.polek.episodetracker.showdetails.about
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,10 +18,10 @@ class AboutShowFragment : Fragment() {
 
     private val genreAdapter = GenreAdapter()
     private val trailerAdapter = TrailerAdapter(onPlayClicked = { trailer ->
-        // TODO("not implemented")
+        openUrl(trailer.url)
     })
     private val castAdapter = CastAdapter(onClicked = { castMember ->
-        // TODO("not implemented")
+        openUrl(castMember.wikipediaUrl)
     })
     private val recommendationAdapter = RecommendationAdapter(
         onClicked = { show ->
@@ -91,6 +93,14 @@ class AboutShowFragment : Fragment() {
 
         genreAdapter.genres = show.genres
         binding.overview.text = show.overview
+    }
+
+    private fun openUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val pm = activity?.packageManager ?: return
+        if (intent.resolveActivity(pm) != null) {
+            startActivity(intent)
+        }
     }
 
     companion object {

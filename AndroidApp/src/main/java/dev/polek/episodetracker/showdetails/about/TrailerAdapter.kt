@@ -39,8 +39,9 @@ class TrailerAdapter(val onPlayClicked: (trailer: TrailerViewModel) -> Unit) : R
         init {
             val listener: (View) -> Unit = {
                 val position = bindingAdapterPosition
-                if (position == RecyclerView.NO_POSITION)
-                onPlayClicked(position)
+                if (position != RecyclerView.NO_POSITION) {
+                    onPlayClicked(position)
+                }
             }
             binding.cardView.doOnClick(listener)
             binding.playButton.doOnClick(listener)
