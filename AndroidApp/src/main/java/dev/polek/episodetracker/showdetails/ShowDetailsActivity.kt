@@ -111,10 +111,15 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_more) {
-            presenter.onMenuClicked()
+        return when (item.itemId) {
+            R.id.action_more -> {
+                presenter.onMenuClicked()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
