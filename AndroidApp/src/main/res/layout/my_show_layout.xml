@@ -67,7 +67,7 @@
                 android:paddingHorizontal="8dp"
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
-                android:drawableTop="@drawable/ic_archive"
+                android:drawableTop="@drawable/ic_unarchive"
                 android:text="@string/action_unarchive"
                 style="@style/SwipeAction"
                 />
