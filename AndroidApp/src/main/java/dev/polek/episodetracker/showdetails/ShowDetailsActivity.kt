@@ -233,7 +233,12 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun shareText(text: String) {
-        // TODO("not implemented")
+        val intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text)
+            type = "text/plain"
+        }
+        startActivity(Intent.createChooser(intent, null))
     }
 
     override fun displayContentRatingInfo(rating: String, text: StringDesc) {
