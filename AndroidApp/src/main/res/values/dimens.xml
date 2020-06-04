@@ -14,4 +14,6 @@
     <dimen name="swipe_action_width">100dp</dimen>
 
     <dimen name="button_size">40dp</dimen>
+
+    <dimen name="bottom_sheet_menu_icon_padding">32dp</dimen>
 </resources>

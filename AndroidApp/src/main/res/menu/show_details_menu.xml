@@ -3,33 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_share"
-        android:title="@string/action_share"
-        app:showAsAction="never"
-        />
-    <item
-        android:id="@+id/action_mark_watched"
-        android:title="@string/action_mark_watched"
-        app:showAsAction="never"
-        />
-    <item
-        android:id="@+id/action_add_to_my_shows"
-        android:title="@string/action_add_to_my_shows"
-        app:showAsAction="never"
-        />
-    <item
-        android:id="@+id/action_remove"
-        android:title="@string/action_remove"
-        app:showAsAction="never"
-        />
-    <item
-        android:id="@+id/action_archive"
-        android:title="@string/action_archive"
-        app:showAsAction="never"
-        />
-    <item
-        android:id="@+id/action_unarchive"
-        android:title="@string/action_unarchive"
-        app:showAsAction="never"
+        android:id="@+id/action_more"
+        android:title=""
+        android:icon="@drawable/ic_more"
+        app:iconTint="?attr/colorOnPrimary"
+        app:showAsAction="always"
         />
 </menu>

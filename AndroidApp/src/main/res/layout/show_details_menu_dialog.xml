@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/menu_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/ic_share"
+        android:drawablePadding="@dimen/bottom_sheet_menu_icon_padding"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:text="@string/action_share"
+        android:background="?android:attr/selectableItemBackground"
+        />
+
+    <TextView
+        android:id="@+id/menu_mark_watched"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/ic_check_all"
+        android:drawablePadding="@dimen/bottom_sheet_menu_icon_padding"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:text="@string/action_mark_watched"
+        android:background="?android:attr/selectableItemBackground"
+        />
+
+    <TextView
+        android:id="@+id/menu_archive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/ic_archive"
+        android:drawablePadding="@dimen/bottom_sheet_menu_icon_padding"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:text="@string/action_archive"
+        android:background="?android:attr/selectableItemBackground"
+        />
+
+    <TextView
+        android:id="@+id/menu_unarchive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/ic_unarchive"
+        android:drawablePadding="@dimen/bottom_sheet_menu_icon_padding"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:text="@string/action_unarchive"
+        android:background="?android:attr/selectableItemBackground"
+        />
+
+    <TextView
+        android:id="@+id/menu_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/ic_add"
+        android:drawablePadding="@dimen/bottom_sheet_menu_icon_padding"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:text="@string/action_add_to_my_shows"
+        android:background="?android:attr/selectableItemBackground"
+        />
+
+    <TextView
+        android:id="@+id/menu_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/ic_remove"
+        android:drawablePadding="@dimen/bottom_sheet_menu_icon_padding"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:textColor="@color/alertColor"
+        android:drawableTint="@color/alertColor"
+        android:text="@string/action_remove"
+        android:background="?android:attr/selectableItemBackground"
+        />
+
+</LinearLayout>

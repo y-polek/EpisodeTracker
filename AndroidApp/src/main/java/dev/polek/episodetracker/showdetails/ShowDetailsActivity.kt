@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -22,7 +23,9 @@ import dev.polek.episodetracker.showdetails.episodes.EpisodesFragment
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.loadImage
 
-class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragment.Listener {
+class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
+    AboutShowFragment.Listener, ShowDetailsMenuDialog.Listener
+{
 
     private val showId: Int by lazy {
         intent.getIntExtra(KEY_SHOW_ID, -1)
@@ -107,6 +110,13 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragm
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_more) {
+            presenter.onMenuClicked()
+        }
+        return true
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
@@ -122,6 +132,30 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragm
 
     override fun onRemoveRecommendationClicked(show: RecommendationViewModel) {
         presenter.onRemoveRecommendationClicked(show)
+    }
+
+    override fun onShareMenuClicked() {
+        presenter.onShareShowClicked()
+    }
+
+    override fun onMarkWatchedMenuClicked() {
+        presenter.onMarkWatchedClicked()
+    }
+
+    override fun onArchiveMenuClicked() {
+        presenter.onArchiveShowClicked()
+    }
+
+    override fun onUnarchiveMenuClicked() {
+        presenter.onUnarchiveShowClicked()
+    }
+
+    override fun onAddMenuClicked() {
+        presenter.onAddToMyShowsClicked()
+    }
+
+    override fun onRemoveMenuClicked() {
+        presenter.onRemoveShowClicked()
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -186,7 +220,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragm
     }
 
     override fun displayOptionsMenu(isInMyShows: Boolean, isArchived: Boolean) {
-        // TODO("not implemented")
+        ShowDetailsMenuDialog.instance(isInMyShows = isInMyShows, isArchived = isArchived)
+            .show(supportFragmentManager, TAG_MENU_DIALOG)
     }
 
     override fun displayRemoveConfirmation(callback: (confirmed: Boolean) -> Unit) {
@@ -282,6 +317,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView, AboutShowFragm
 
         private const val KEY_SHOW_ID = "key_show_id"
         private const val KEY_SHOW_NAME = "key_show_name"
+
+        private const val TAG_MENU_DIALOG = "tag_menu_dialog"
 
         fun intent(context: Context, showId: Int, showName: String): Intent {
             return Intent(context, ShowDetailsActivity::class.java)
