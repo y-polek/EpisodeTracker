@@ -1,11 +1,11 @@
 package dev.polek.episodetracker.showdetails.about
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import dev.polek.episodetracker.common.presentation.showdetails.model.CastMemberViewModel
@@ -96,11 +96,10 @@ class AboutShowFragment : Fragment() {
     }
 
     private fun openUrl(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        val pm = activity?.packageManager ?: return
-        if (intent.resolveActivity(pm) != null) {
-            startActivity(intent)
-        }
+        val intent = CustomTabsIntent.Builder()
+            .addDefaultShareMenuItem()
+            .build()
+        intent.launchUrl(requireContext(), Uri.parse(url))
     }
 
     companion object {
