@@ -28,14 +28,14 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginVertical="4dp"
             android:layout_gravity="top|end"
             >
             <ImageButton
                 android:id="@+id/add_button"
-                android:layout_width="@dimen/small_button_size"
-                android:layout_height="@dimen/small_button_size"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_add"
                 android:tint="?attr/colorOnPrimarySurface"
@@ -43,8 +43,8 @@
                 />
             <ProgressBar
                 android:id="@+id/add_button_progress"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:indeterminate="true"
                 android:indeterminateTint="?attr/colorOnPrimarySurface"

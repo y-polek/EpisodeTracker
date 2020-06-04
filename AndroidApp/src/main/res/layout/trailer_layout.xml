@@ -33,8 +33,8 @@
             >
             <ImageButton
                 android:id="@+id/play_button"
-                android:layout_width="@dimen/small_button_size"
-                android:layout_height="@dimen/small_button_size"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginBottom="4dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_play"
