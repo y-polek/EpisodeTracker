@@ -225,7 +225,11 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun displayRemoveConfirmation(callback: (confirmed: Boolean) -> Unit) {
-        // TODO("not implemented")
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.remove_show_confirmation, showName))
+            .setPositiveButton(R.string.action_remove) { _, _ -> callback(true) }
+            .setNegativeButton(R.string.action_cancel) { _, _ -> callback(false) }
+            .show()
     }
 
     override fun shareText(text: String) {
