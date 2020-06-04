@@ -65,7 +65,7 @@
     </style>
 
     <style name="SmallCardSubtitle" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textColor">?android:attr/textColorSecondaryInverse</item>
+        <item name="android:textColor">@color/cardSubtitleColor</item>
     </style>
 
     <style name="SectionTitle" parent="TextAppearance.MaterialComponents.Subtitle2">
