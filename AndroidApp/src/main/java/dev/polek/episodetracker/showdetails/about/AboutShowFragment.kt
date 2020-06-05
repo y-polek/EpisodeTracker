@@ -92,7 +92,9 @@ class AboutShowFragment : Fragment() {
         val show = this.show ?: return
 
         genreAdapter.genres = show.genres
+
         binding.overview.text = show.overview
+        binding.overview.isVisible = show.overview.isNotBlank()
     }
 
     private fun openUrl(url: String) {
