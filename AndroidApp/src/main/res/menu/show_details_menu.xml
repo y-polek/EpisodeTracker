@@ -6,7 +6,7 @@
         android:id="@+id/action_more"
         android:title=""
         android:icon="@drawable/ic_more"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnPrimarySurface"
         app:showAsAction="always"
         />
 </menu>
