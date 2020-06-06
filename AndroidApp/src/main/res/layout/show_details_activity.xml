@@ -29,7 +29,7 @@
             android:fitsSystemWindows="true"
             app:expandedTitleMarginStart="16dp"
             app:expandedTitleMarginBottom="48dp"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/toolbarColor"
             app:expandedTitleGravity="bottom"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"

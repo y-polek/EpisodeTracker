@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2979ff</color>
+    <color name="colorPrimary">#2979FF</color>
     <color name="backgroundColor">#000000</color>
 
     <color name="dividerColor">#33FFFFFF</color>
 
     <color name="bottomNavigationBackground">#121312</color>
+
+    <color name="toolbarColor">#1D1D1D</color>
 </resources>

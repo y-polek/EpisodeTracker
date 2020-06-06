@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0d47a1</color>
+    <color name="colorPrimary">#0D47A1</color>
     <color name="colorSecondary">#0059BF</color>
     <color name="backgroundColor">#FFFFFF</color>
     <color name="cardSubtitleColor">#CCFFFFFF</color>
@@ -19,4 +19,6 @@
 
     <color name="swipeActionBackground">#555555</color>
     <color name="swipeActionBackgroundAccent">#FF3B30</color>
+    
+    <color name="toolbarColor">#0D47A1</color>
 </resources>
