@@ -16,6 +16,8 @@ import dev.polek.episodetracker.common.presentation.showdetails.model.TrailerVie
 import dev.polek.episodetracker.common.utils.anyNotNull
 import dev.polek.episodetracker.databinding.AboutShowFragmentBinding
 import dev.polek.episodetracker.utils.doOnClick
+import dev.polek.episodetracker.utils.setBottomPadding
+import dev.polek.episodetracker.utils.setTopPadding
 
 class AboutShowFragment : Fragment() {
 
@@ -120,6 +122,10 @@ class AboutShowFragment : Fragment() {
 
     fun hideRefreshProgress() {
         binding?.swipeRefresh?.isRefreshing = false
+    }
+
+    fun setBottomPadding(padding: Int) {
+        binding?.scrollView?.setBottomPadding(padding)
     }
 
     private fun bindShow() {

@@ -29,6 +29,10 @@ class EpisodesFragment : Fragment() {
         // TODO("not implemented")
     }
 
+    fun setBottomPadding(padding: Int) {
+        // TODO("not implemented")
+    }
+
     companion object {
         fun instance() = EpisodesFragment()
     }

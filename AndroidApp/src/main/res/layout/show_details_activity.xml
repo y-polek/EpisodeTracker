@@ -18,7 +18,7 @@
     <RelativeLayout
         android:id="@+id/add_button_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/add_button_layout_height"
         android:layout_gravity="bottom"
         android:visibility="gone"
         tools:visibility="visible"
@@ -27,8 +27,7 @@
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:paddingVertical="10dp"
             android:drawableLeft="@drawable/ic_add"
             android:drawableTint="@color/add_button_icon_tint"

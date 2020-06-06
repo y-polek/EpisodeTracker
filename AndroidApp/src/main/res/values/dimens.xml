@@ -16,4 +16,7 @@
     <dimen name="button_size">40dp</dimen>
 
     <dimen name="bottom_sheet_menu_icon_padding">32dp</dimen>
+
+    <dimen name="add_button_layout_height">72dp</dimen>
+    <dimen name="scroll_view_bottom_padding">16dp</dimen>
 </resources>
