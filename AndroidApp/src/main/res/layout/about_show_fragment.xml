@@ -28,6 +28,30 @@
             tools:listitem="@layout/genre_card"
             />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            >
+            <TextView
+                android:id="@+id/imdb_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="72dp"
+                android:gravity="end"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:drawableStart="@drawable/ic_imdb"
+                android:drawableTint="?attr/colorOnBackground"
+                android:textColor="?attr/colorOnBackground"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/square_border_button_background"
+                android:textSize="18dp"
+                android:text="—"
+                tools:ignore="SpUsage"
+                />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/overview"
             android:layout_width="match_parent"

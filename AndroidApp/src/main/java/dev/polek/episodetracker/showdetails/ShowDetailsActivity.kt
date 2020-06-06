@@ -43,6 +43,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     private var trailers: List<TrailerViewModel>? = null
     private var cast: List<CastMemberViewModel>? = null
     private var recommendations: List<RecommendationViewModel>? = null
+    private var imdbRating: Float? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +84,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
                 trailers?.let(fragment::displayTrailers)
                 cast?.let(fragment::displayCast)
                 recommendations?.let(fragment::displayRecommendations)
+                imdbRating?.let(fragment::displayImdbRating)
             }
             is EpisodesFragment -> {
                 // TODO("not implemented")
@@ -294,7 +296,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun displayImdbRating(rating: Float) {
-        // TODO("not implemented")
+        this.imdbRating = rating
+        aboutFragment?.displayImdbRating(rating)
     }
 
     override fun displayEpisodes(seasons: List<SeasonViewModel>) {

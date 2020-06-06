@@ -1,5 +1,6 @@
 package dev.polek.episodetracker.showdetails.about
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import dev.polek.episodetracker.common.presentation.showdetails.model.Recommenda
 import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.TrailerViewModel
 import dev.polek.episodetracker.databinding.AboutShowFragmentBinding
+import dev.polek.episodetracker.utils.doOnClick
 
 class AboutShowFragment : Fragment() {
 
@@ -37,6 +39,7 @@ class AboutShowFragment : Fragment() {
 
     private var binding: AboutShowFragmentBinding? = null
     private var show: ShowDetailsViewModel? = null
+    private var imdbRating: Float? = null
 
     private val listener: Listener?
         get() = activity as? Listener
@@ -58,7 +61,13 @@ class AboutShowFragment : Fragment() {
         binding.castLayout.isVisible = castAdapter.itemCount > 0
         binding.recommendationsLayout.isVisible = recommendationAdapter.itemCount > 0
 
+        binding.imdbButton.doOnClick {
+            val imdbUrl = show?.imdbUrl ?: return@doOnClick
+            openUrl(imdbUrl)
+        }
+
         bindShow()
+        bindImdbRating()
 
         return binding.root
     }
@@ -66,6 +75,11 @@ class AboutShowFragment : Fragment() {
     fun displayShowDetails(show: ShowDetailsViewModel) {
         this.show = show
         bindShow()
+    }
+
+    fun displayImdbRating(rating: Float) {
+        imdbRating = rating
+        bindImdbRating()
     }
 
     fun displayTrailers(trailers: List<TrailerViewModel>) {
@@ -95,6 +109,14 @@ class AboutShowFragment : Fragment() {
 
         binding.overview.text = show.overview
         binding.overview.isVisible = show.overview.isNotBlank()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun bindImdbRating() {
+        val binding = this.binding ?: return
+        val rating = this.imdbRating ?: return
+
+        binding.imdbButton.text = "%.1f".format(rating)
     }
 
     private fun openUrl(url: String) {
