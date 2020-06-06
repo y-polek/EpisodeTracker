@@ -1,205 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:clipToPadding="false"
     >
-
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
         >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/genres_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:paddingHorizontal="10dp"
-            android:clipToPadding="false"
-            android:scrollbars="none"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/genre_card"
-            />
-
         <LinearLayout
-            android:id="@+id/social_networks_layout"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginHorizontal="16dp"
-            >
-            <TextView
-                android:id="@+id/imdb_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:minWidth="72dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="end|center_vertical"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="2dp"
-                android:drawableStart="@drawable/ic_imdb"
-                android:drawableTint="?attr/colorOnBackground"
-                android:textColor="?attr/colorOnBackground"
-                android:fontFamily="sans-serif-medium"
-                android:background="@drawable/square_border_button_background"
-                android:textSize="18dp"
-                android:text="—"
-                tools:ignore="HardcodedText,SpUsage"
-                />
-            <ImageButton
-                android:id="@+id/home_page_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="4dp"
-                android:layout_marginEnd="8dp"
-                android:tint="?attr/colorOnBackground"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_link"
-                />
-            <ImageButton
-                android:id="@+id/instagram_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="4dp"
-                android:layout_marginEnd="8dp"
-                android:tint="?attr/colorOnBackground"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_instagram"
-                />
-            <ImageButton
-                android:id="@+id/facebook_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="4dp"
-                android:layout_marginEnd="8dp"
-                android:tint="?attr/colorOnBackground"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_facebook"
-                />
-            <ImageButton
-                android:id="@+id/twitter_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="4dp"
-                android:layout_marginEnd="8dp"
-                android:tint="?attr/colorOnBackground"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_twitter"
-                />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginHorizontal="16dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            tools:text="@tools:sample/lorem"
-            />
-
-        <LinearLayout
-            android:id="@+id/trailers_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:orientation="vertical"
             >
-            <include layout="@layout/divider" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
-                android:textAppearance="@style/SectionTitle"
-                android:text="@string/about_show_trailers"
-                />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trailers_recycler_view"
+                android:id="@+id/genres_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:paddingHorizontal="10dp"
                 android:clipToPadding="false"
                 android:scrollbars="none"
-                android:nestedScrollingEnabled="false"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/trailer_layout"
+                tools:listitem="@layout/genre_card"
                 />
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/cast_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            >
-            <include layout="@layout/divider" />
+            <LinearLayout
+                android:id="@+id/social_networks_layout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="16dp"
+                >
+                <TextView
+                    android:id="@+id/imdb_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minWidth="72dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end|center_vertical"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:drawableStart="@drawable/ic_imdb"
+                    android:drawableTint="?attr/colorOnBackground"
+                    android:textColor="?attr/colorOnBackground"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/square_border_button_background"
+                    android:textSize="18dp"
+                    android:text="—"
+                    tools:ignore="HardcodedText,SpUsage"
+                    />
+                <ImageButton
+                    android:id="@+id/home_page_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:tint="?attr/colorOnBackground"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_link"
+                    />
+                <ImageButton
+                    android:id="@+id/instagram_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:tint="?attr/colorOnBackground"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_instagram"
+                    />
+                <ImageButton
+                    android:id="@+id/facebook_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:tint="?attr/colorOnBackground"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_facebook"
+                    />
+                <ImageButton
+                    android:id="@+id/twitter_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:tint="?attr/colorOnBackground"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_twitter"
+                    />
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
-                android:textAppearance="@style/SectionTitle"
-                android:text="@string/about_show_cast"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cast_recycler_view"
+                android:id="@+id/overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:nestedScrollingEnabled="false"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/cast_member_layout"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/recommendations_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            >
-            <include layout="@layout/divider" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
-                android:textAppearance="@style/SectionTitle"
-                android:text="@string/about_show_recommendations"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                tools:text="@tools:sample/lorem"
                 />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recommendations_recycler_view"
+            <LinearLayout
+                android:id="@+id/trailers_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:nestedScrollingEnabled="false"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/recommendation_layout"
-                />
-        </LinearLayout>
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                >
+                <include layout="@layout/divider" />
 
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:textAppearance="@style/SectionTitle"
+                    android:text="@string/about_show_trailers"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/trailers_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="none"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/trailer_layout"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cast_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                >
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:textAppearance="@style/SectionTitle"
+                    android:text="@string/about_show_cast"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cast_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="none"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/cast_member_layout"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/recommendations_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                >
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:textAppearance="@style/SectionTitle"
+                    android:text="@string/about_show_recommendations"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recommendations_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="none"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/recommendation_layout"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

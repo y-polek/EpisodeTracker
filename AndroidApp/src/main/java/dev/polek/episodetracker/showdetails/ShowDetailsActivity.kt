@@ -38,6 +38,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
     private lateinit var binding: ShowDetailsActivityBinding
     private var aboutFragment: AboutShowFragment? = null
+    private var episodesFragment: EpisodesFragment? = null
 
     private var show: ShowDetailsViewModel? = null
     private var trailers: List<TrailerViewModel>? = null
@@ -87,6 +88,9 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
                 imdbRating?.let(fragment::displayImdbRating)
             }
             is EpisodesFragment -> {
+                episodesFragment = fragment
+
+
                 // TODO("not implemented")
             }
         }
@@ -139,6 +143,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
 
     override fun onRemoveRecommendationClicked(show: RecommendationViewModel) {
         presenter.onRemoveRecommendationClicked(show)
+    }
+
+    override fun onShowSwipeRefresh() {
+        presenter.onRefreshRequested()
     }
 
     override fun onShareMenuClicked() {
@@ -325,7 +333,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun hideRefreshProgress() {
-        // TODO("not implemented")
+        aboutFragment?.hideRefreshProgress()
+        episodesFragment?.hideRefreshProgress()
     }
     // endregion
     ///////////////////////////////////////////////////////////////////////////

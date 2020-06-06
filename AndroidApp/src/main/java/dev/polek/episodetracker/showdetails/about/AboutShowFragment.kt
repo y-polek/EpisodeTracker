@@ -79,6 +79,10 @@ class AboutShowFragment : Fragment() {
             show?.twitterUrl?.let(::openUrl)
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            listener?.onShowSwipeRefresh()
+        }
+
         bindShow()
         bindImdbRating()
 
@@ -112,6 +116,10 @@ class AboutShowFragment : Fragment() {
 
     fun updateRecommendation(recommendation: RecommendationViewModel) {
         recommendationAdapter.updateRecommendation(recommendation)
+    }
+
+    fun hideRefreshProgress() {
+        binding?.swipeRefresh?.isRefreshing = false
     }
 
     private fun bindShow() {
@@ -154,5 +162,6 @@ class AboutShowFragment : Fragment() {
         fun onRecommendationClicked(show: RecommendationViewModel)
         fun onAddRecommendationClicked(show: RecommendationViewModel)
         fun onRemoveRecommendationClicked(show: RecommendationViewModel)
+        fun onShowSwipeRefresh()
     }
 }
