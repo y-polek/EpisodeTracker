@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -58,6 +59,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
 
         binding.rating.doOnClick {
             presenter.onContentRatingClicked()
+        }
+
+        binding.addButton.doOnClick {
+            presenter.onAddToMyShowsClicked()
         }
 
         binding.viewPager.adapter = PagerAdapter(this)
@@ -200,15 +205,18 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun displayAddToMyShowsButton() {
-        // TODO("not implemented")
+        binding.addButtonLayout.isVisible = true
+        binding.addButtonProgress.isVisible = false
+        binding.addButton.isEnabled = true
     }
 
     override fun displayAddToMyShowsProgress() {
-        // TODO("not implemented")
+        binding.addButtonProgress.isVisible = true
+        binding.addButton.isEnabled = false
     }
 
     override fun hideAddToMyShowsButton() {
-        // TODO("not implemented")
+        binding.addButtonLayout.isVisible = false
     }
 
     override fun displayArchivedBadge() {

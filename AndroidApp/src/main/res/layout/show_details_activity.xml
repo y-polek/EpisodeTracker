@@ -15,6 +15,45 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
+    <RelativeLayout
+        android:id="@+id/add_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:layout_centerHorizontal="true"
+            android:paddingVertical="10dp"
+            android:drawableLeft="@drawable/ic_add"
+            android:drawableTint="@color/add_button_icon_tint"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/action_add_to_my_shows"
+            tools:ignore="RtlHardcoded"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            />
+        <ProgressBar
+            android:id="@+id/add_button_progress"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignLeft="@id/add_button"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="?attr/colorOnPrimary"
+            android:elevation="8dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="RtlHardcoded"
+            />
+    </RelativeLayout>
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
