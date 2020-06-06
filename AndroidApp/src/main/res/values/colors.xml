@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#0D47A1</color>
     <color name="colorSecondary">#0059BF</color>
+    <color name="colorSecondarySemitransparent">#880059BF</color>
     <color name="backgroundColor">#FFFFFF</color>
     <color name="cardSubtitleColor">#CCFFFFFF</color>
 
@@ -21,4 +22,7 @@
     <color name="swipeActionBackgroundAccent">#FF3B30</color>
     
     <color name="toolbarColor">#0D47A1</color>
+
+    <color name="add_button_text_color_enabled">#FFFFFF</color>
+    <color name="add_button_text_color_disabled">#88FFFFFF</color>
 </resources>
