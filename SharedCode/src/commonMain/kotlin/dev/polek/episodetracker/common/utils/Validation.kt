@@ -6,3 +6,10 @@ fun allNotNull(vararg values: Any?): Boolean {
     }
     return true
 }
+
+fun anyNotNull(vararg values: Any?): Boolean {
+    for (value in values) {
+        if (value != null) return true
+    }
+    return false
+}

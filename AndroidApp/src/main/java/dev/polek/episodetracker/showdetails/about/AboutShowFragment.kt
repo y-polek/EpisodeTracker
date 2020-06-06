@@ -13,6 +13,7 @@ import dev.polek.episodetracker.common.presentation.showdetails.model.CastMember
 import dev.polek.episodetracker.common.presentation.showdetails.model.RecommendationViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.TrailerViewModel
+import dev.polek.episodetracker.common.utils.anyNotNull
 import dev.polek.episodetracker.databinding.AboutShowFragmentBinding
 import dev.polek.episodetracker.utils.doOnClick
 
@@ -65,6 +66,18 @@ class AboutShowFragment : Fragment() {
             val imdbUrl = show?.imdbUrl ?: return@doOnClick
             openUrl(imdbUrl)
         }
+        binding.homePageButton.doOnClick {
+            show?.homePageUrl?.let(::openUrl)
+        }
+        binding.instagramButton.doOnClick {
+            show?.instagramUrl?.let(::openUrl)
+        }
+        binding.facebookButton.doOnClick {
+            show?.facebookUrl?.let(::openUrl)
+        }
+        binding.twitterButton.doOnClick {
+            show?.twitterUrl?.let(::openUrl)
+        }
 
         bindShow()
         bindImdbRating()
@@ -106,6 +119,13 @@ class AboutShowFragment : Fragment() {
         val show = this.show ?: return
 
         genreAdapter.genres = show.genres
+
+        binding.imdbButton.isVisible = show.imdbUrl != null
+        binding.homePageButton.isVisible = show.homePageUrl != null
+        binding.instagramButton.isVisible = show.instagramUrl != null
+        binding.facebookButton.isVisible = show.facebookUrl != null
+        binding.twitterButton.isVisible = show.twitterUrl != null
+        binding.socialNetworksLayout.isVisible = anyNotNull(show.imdbUrl, show.homePageUrl, show.instagramUrl, show.facebookUrl, show.twitterUrl)
 
         binding.overview.text = show.overview
         binding.overview.isVisible = show.overview.isNotBlank()

@@ -29,16 +29,19 @@
             />
 
         <LinearLayout
+            android:id="@+id/social_networks_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="4dp"
             android:layout_marginHorizontal="16dp"
             >
             <TextView
                 android:id="@+id/imdb_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:minWidth="72dp"
-                android:gravity="end"
+                android:layout_marginEnd="8dp"
+                android:gravity="end|center_vertical"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="2dp"
                 android:drawableStart="@drawable/ic_imdb"
@@ -48,7 +51,47 @@
                 android:background="@drawable/square_border_button_background"
                 android:textSize="18dp"
                 android:text="—"
-                tools:ignore="SpUsage"
+                tools:ignore="HardcodedText,SpUsage"
+                />
+            <ImageButton
+                android:id="@+id/home_page_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="4dp"
+                android:layout_marginEnd="8dp"
+                android:tint="?attr/colorOnBackground"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_link"
+                />
+            <ImageButton
+                android:id="@+id/instagram_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="4dp"
+                android:layout_marginEnd="8dp"
+                android:tint="?attr/colorOnBackground"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_instagram"
+                />
+            <ImageButton
+                android:id="@+id/facebook_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="4dp"
+                android:layout_marginEnd="8dp"
+                android:tint="?attr/colorOnBackground"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_facebook"
+                />
+            <ImageButton
+                android:id="@+id/twitter_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="4dp"
+                android:layout_marginEnd="8dp"
+                android:tint="?attr/colorOnBackground"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_twitter"
                 />
         </LinearLayout>
 
