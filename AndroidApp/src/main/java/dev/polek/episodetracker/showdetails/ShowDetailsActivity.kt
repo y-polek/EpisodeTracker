@@ -65,6 +65,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
             presenter.onAddToMyShowsClicked()
         }
 
+        binding.retryButton.doOnClick {
+            presenter.onRetryButtonClicked()
+        }
+
         binding.viewPager.adapter = PagerAdapter(this)
         binding.viewPager.isUserInputEnabled = false
 
@@ -192,22 +196,25 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         binding.collapsingToolbar.title = showName
         binding.subtitle.text = show.subhead
         binding.rating.text = show.rating
+        binding.contentLayout.isVisible = true
     }
 
     override fun showProgress() {
-        // TODO("not implemented")
+        binding.contentLayout.isVisible = false
+        binding.progressbar.isVisible = true
     }
 
     override fun hideProgress() {
-        // TODO("not implemented")
+        binding.progressbar.isVisible = false
     }
 
     override fun showError() {
-        // TODO("not implemented")
+        binding.contentLayout.isVisible = false
+        binding.errorView.isVisible = true
     }
 
     override fun hideError() {
-        // TODO("not implemented")
+        binding.errorView.isVisible = false
     }
 
     override fun displayAddToMyShowsButton() {

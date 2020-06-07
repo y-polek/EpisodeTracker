@@ -53,6 +53,8 @@
 
     <string name="remove_show_confirmation">Are you sure you want to remove \"%s\"?</string>
 
+    <string name="show_details_error">Can\'t load data</string>
+
     <string name="tab_about">About</string>
     <string name="tab_episodes">Episodes</string>
 
