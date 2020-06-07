@@ -69,6 +69,17 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
             presenter.onRetryButtonClicked()
         }
 
+        binding.archivedBadge.doOnClick {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.unarchive_show_confirmation_title)
+                .setMessage(R.string.unarchive_show_confirmation_message)
+                .setNegativeButton(R.string.action_cancel, null)
+                .setPositiveButton(R.string.action_unarchive) { _, _ ->
+                    presenter.onUnarchiveShowClicked()
+                }
+                .show()
+        }
+
         binding.viewPager.adapter = PagerAdapter(this)
         binding.viewPager.isUserInputEnabled = false
 
@@ -235,11 +246,11 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun displayArchivedBadge() {
-        // TODO("not implemented")
+        binding.archivedBadge.isVisible = true
     }
 
     override fun hideArchivedBadge() {
-        // TODO("not implemented")
+        binding.archivedBadge.isVisible = false
     }
 
     override fun displayAddToMyShowsConfirmation(
