@@ -13,6 +13,8 @@
 
         <item name="actionOverflowButtonStyle">@style/ActionOverflowButtonStyle</item>
         <item name="homeAsUpIndicator">@drawable/ic_back</item>
+
+        <item name="materialAlertDialogTheme">@style/DialogTheme</item>
     </style>
 
     <style name="Badge" parent="@style/Widget.MaterialComponents.Badge">
@@ -92,6 +94,14 @@
 
     <style name="TextAppearance.App.CollapsingToolbar.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">?attr/colorOnPrimarySurface</item>
+    </style>
+
+    <style name="DialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="buttonBarPositiveButtonStyle">@style/DialogPositiveButton</item>
+    </style>
+
+    <style name="DialogPositiveButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/alertColor</item>
     </style>
 
 </resources>
