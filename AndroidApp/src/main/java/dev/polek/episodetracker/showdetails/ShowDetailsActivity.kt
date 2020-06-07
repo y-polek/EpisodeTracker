@@ -95,6 +95,11 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         presenter.attachView(this)
     }
 
+    override fun onDestroy() {
+        presenter.detachView()
+        super.onDestroy()
+    }
+
     override fun onAttachFragment(fragment: Fragment) {
         super.onAttachFragment(fragment)
 
@@ -114,21 +119,17 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
                 // TODO("not implemented")
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         if (binding.addButtonLayout.isVisible) {
             setBottomPadding()
         } else {
             removeBottomPadding()
         }
-    }
 
-    override fun onDestroy() {
-        presenter.detachView()
-        super.onDestroy()
-    }
-
-    override fun onStart() {
-        super.onStart()
         presenter.onViewAppeared()
     }
 
