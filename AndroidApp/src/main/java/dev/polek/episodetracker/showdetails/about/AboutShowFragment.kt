@@ -17,7 +17,6 @@ import dev.polek.episodetracker.common.utils.anyNotNull
 import dev.polek.episodetracker.databinding.AboutShowFragmentBinding
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.setBottomPadding
-import dev.polek.episodetracker.utils.setTopPadding
 
 class AboutShowFragment : Fragment() {
 
@@ -43,6 +42,7 @@ class AboutShowFragment : Fragment() {
     private var binding: AboutShowFragmentBinding? = null
     private var show: ShowDetailsViewModel? = null
     private var imdbRating: Float? = null
+    private var bottomPadding: Int? = null
 
     private val listener: Listener?
         get() = activity as? Listener
@@ -87,6 +87,7 @@ class AboutShowFragment : Fragment() {
 
         bindShow()
         bindImdbRating()
+        bottomPadding?.let(::setBottomPadding)
 
         return binding.root
     }
@@ -125,6 +126,7 @@ class AboutShowFragment : Fragment() {
     }
 
     fun setBottomPadding(padding: Int) {
+        bottomPadding = padding
         binding?.scrollView?.setBottomPadding(padding)
     }
 

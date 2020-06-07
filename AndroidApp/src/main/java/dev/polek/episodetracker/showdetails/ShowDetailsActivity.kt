@@ -99,6 +99,12 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
                 // TODO("not implemented")
             }
         }
+
+        if (binding.addButtonLayout.isVisible) {
+            setBottomPadding()
+        } else {
+            removeBottomPadding()
+        }
     }
 
     override fun onDestroy() {
