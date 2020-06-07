@@ -144,38 +144,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/cast_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                >
-                <include layout="@layout/divider" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginVertical="8dp"
-                    android:textAppearance="@style/SectionTitle"
-                    android:text="@string/about_show_cast"
-                    />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cast_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:clipToPadding="false"
-                    android:scrollbars="none"
-                    android:nestedScrollingEnabled="false"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/cast_member_layout"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/recommendations_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -204,6 +172,38 @@
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/recommendation_layout"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cast_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                >
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:textAppearance="@style/SectionTitle"
+                    android:text="@string/about_show_cast"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cast_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="none"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/cast_member_layout"
                     />
             </LinearLayout>
 
