@@ -16,7 +16,13 @@ import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.layoutInflater
 import dev.polek.episodetracker.utils.loadImage
 
-class SeasonAdapter(private val season: SeasonViewModel) : RecyclerView.Adapter<SeasonAdapter.ViewHolder>() {
+class SeasonAdapter(
+    val season: SeasonViewModel,
+    private val listener: Listener) : RecyclerView.Adapter<SeasonAdapter.ViewHolder>()
+{
+    fun reload() {
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
         return if (season.isExpanded) {
@@ -39,17 +45,26 @@ class SeasonAdapter(private val season: SeasonViewModel) : RecyclerView.Adapter<
                 SeasonViewHolder(
                     binding = SeasonLayoutBinding.inflate(parent.layoutInflater, parent, false),
                     onClicked = {
-                        if (season.isExpanded) {
-                            collapse()
-                        } else {
-                            expand()
+                        if (season.isExpanded) collapse() else expand()
+                    },
+                    onCheckedChanged = { isChecked ->
+                        if (season.isWatched != isChecked) {
+                            listener.onSeasonWatchedStateToggled(season)
                         }
-                    })
+                    }
+                )
             }
             R.layout.episode_layout -> {
                 EpisodeViewHolder(
                     binding = EpisodeLayoutBinding.inflate(parent.layoutInflater, parent, false),
-                    onClicked = {})
+                    onClicked = {},
+                    onCheckedChanged = { position, isChecked ->
+                        val episode = episodeAtPosition(position)
+                        if (episode.isWatched != isChecked) {
+                            listener.onEpisodeWatchedStateToggled(episode)
+                        }
+                    }
+                )
             }
             else -> throw NotImplementedError("Unknown view type: $viewType")
         }
@@ -107,10 +122,17 @@ class SeasonAdapter(private val season: SeasonViewModel) : RecyclerView.Adapter<
 
     sealed class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        class SeasonViewHolder(onClicked: () -> Unit, val binding: SeasonLayoutBinding) : ViewHolder(binding.root) {
+        class SeasonViewHolder(
+            onClicked: () -> Unit, val binding: SeasonLayoutBinding,
+            onCheckedChanged: (isChecked: Boolean) -> Unit) : ViewHolder(binding.root)
+        {
             init {
                 binding.root.doOnClick {
                     onClicked()
+                }
+
+                binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
+                    onCheckedChanged(isChecked)
                 }
             }
 
@@ -119,19 +141,33 @@ class SeasonAdapter(private val season: SeasonViewModel) : RecyclerView.Adapter<
                 binding.title.setCompoundDrawablesWithIntrinsicBounds(arrowIcon, 0, 0, 0)
             }
         }
-        class EpisodeViewHolder(onClicked: (position: Int) -> Unit, val binding: EpisodeLayoutBinding) : ViewHolder(binding.root) {
+        class EpisodeViewHolder(
+            onClicked: (position: Int) -> Unit,
+            onCheckedChanged: (position: Int, isChecked: Boolean) -> Unit,
+            val binding: EpisodeLayoutBinding) : ViewHolder(binding.root)
+        {
             init {
                 binding.root.doOnClick {
                     val position = bindingAdapterPosition
                     if (position == RecyclerView.NO_POSITION) return@doOnClick
-
                     onClicked(position)
+                }
+
+                binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
+                    val position = bindingAdapterPosition
+                    if (position == RecyclerView.NO_POSITION) return@setOnCheckedChangeListener
+                    onCheckedChanged(position, isChecked)
                 }
             }
         }
     }
 
-    enum class Payload {
+    interface Listener {
+        fun onSeasonWatchedStateToggled(season: SeasonViewModel)
+        fun onEpisodeWatchedStateToggled(episode: EpisodeViewModel)
+    }
+
+    private enum class Payload {
         EXPANSION_STATE_CHANGED
     }
 }

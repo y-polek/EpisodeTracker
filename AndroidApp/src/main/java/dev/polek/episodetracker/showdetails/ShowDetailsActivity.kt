@@ -26,7 +26,8 @@ import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.loadImage
 
 class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
-    AboutShowFragment.Listener, ShowDetailsMenuDialog.Listener
+    AboutShowFragment.Listener, EpisodesFragment.Listener,
+    ShowDetailsMenuDialog.Listener
 {
 
     private val showId: Int by lazy {
@@ -184,6 +185,14 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
 
     override fun onShowSwipeRefresh() {
         presenter.onRefreshRequested()
+    }
+
+    override fun onSeasonWatchedStateToggled(season: SeasonViewModel) {
+        presenter.onSeasonWatchedStateToggled(season)
+    }
+
+    override fun onEpisodeWatchedStateToggled(episode: EpisodeViewModel) {
+        presenter.onEpisodeWatchedStateToggled(episode)
     }
 
     override fun onShareMenuClicked() {
@@ -375,7 +384,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun reloadSeason(number: Int) {
-        // TODO("not implemented")
+        episodesFragment?.reloadSeason(number)
     }
 
     override fun hideRefreshProgress() {

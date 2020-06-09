@@ -6,9 +6,8 @@ import dev.polek.episodetracker.common.utils.formatDate
 import dev.polek.episodetracker.common.utils.formatTimeBetween
 import io.ktor.util.date.GMTDate
 
-class EpisodeViewModel(
-    episodeNumber: Int,
-    seasonNumber: Int,
+data class EpisodeViewModel(
+    val number: EpisodeNumber,
     val name: String,
     val airDate: String,
     val imageUrl: String?,
@@ -16,12 +15,30 @@ class EpisodeViewModel(
     val isAired: Boolean,
     val timeLeftToRelease: String)
 {
-    val number = EpisodeNumber(season = seasonNumber, episode = episodeNumber)
-    val isSpecial = seasonNumber == 0
+    val isSpecial = number.season == 0
     val isCheckboxVisible: Boolean
         get() = isSpecial || isAired
     val isTimeLeftVisible: Boolean
         get() = !isSpecial && !isAired
+
+    constructor(
+        episodeNumber: Int,
+        seasonNumber: Int,
+        name: String,
+        airDate: String,
+        imageUrl: String?,
+        isWatched: Boolean,
+        isAired: Boolean,
+        timeLeftToRelease: String
+    ) : this(
+        number = EpisodeNumber(season = seasonNumber, episode = episodeNumber),
+        name = name,
+        airDate = airDate,
+        imageUrl = imageUrl,
+        isWatched = isWatched,
+        isAired = isAired,
+        timeLeftToRelease = timeLeftToRelease
+    )
 
     companion object {
         fun map(episodes: List<Episode>): List<EpisodeViewModel> {
