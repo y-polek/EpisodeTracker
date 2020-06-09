@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.MergeAdapter
-import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.common.presentation.showdetails.model.EpisodeViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.SeasonViewModel
 import dev.polek.episodetracker.databinding.EpisodesFragmentBinding
+import dev.polek.episodetracker.utils.setBottomPadding
 
 class EpisodesFragment : Fragment(), SeasonAdapter.Listener {
 
     private var binding: EpisodesFragmentBinding? = null
     private var adapter: MergeAdapter? = null
+
+    private var bottomPadding: Int? = null
 
     private val listener: Listener?
         get() = activity as? Listener
@@ -28,6 +30,8 @@ class EpisodesFragment : Fragment(), SeasonAdapter.Listener {
         this.binding = binding
 
         binding.recyclerView.adapter = adapter
+
+        bottomPadding?.let(::setBottomPadding)
 
         return binding.root
     }
@@ -50,7 +54,8 @@ class EpisodesFragment : Fragment(), SeasonAdapter.Listener {
     }
 
     fun setBottomPadding(padding: Int) {
-        // TODO("not implemented")
+        bottomPadding = padding
+        binding?.recyclerView?.setBottomPadding(padding)
     }
 
     fun reloadSeason(number: Int) {
