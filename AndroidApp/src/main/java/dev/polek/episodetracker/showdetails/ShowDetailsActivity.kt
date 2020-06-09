@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.icerock.moko.resources.desc.StringDesc
@@ -46,6 +47,15 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     private var cast: List<CastMemberViewModel>? = null
     private var recommendations: List<RecommendationViewModel>? = null
     private var imdbRating: Float? = null
+    private var seasons: List<SeasonViewModel>? = null
+
+    private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            if (position == 1) {
+                presenter.onEpisodesTabSelected()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +92,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
 
         binding.viewPager.adapter = PagerAdapter(this)
         binding.viewPager.isUserInputEnabled = false
+        binding.viewPager.registerOnPageChangeCallback(pageChangeCallback)
 
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             val textResId = when (position) {
@@ -97,6 +108,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
 
     override fun onDestroy() {
         presenter.detachView()
+        binding.viewPager.unregisterOnPageChangeCallback(pageChangeCallback)
         super.onDestroy()
     }
 
@@ -114,9 +126,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
             }
             is EpisodesFragment -> {
                 episodesFragment = fragment
-
-
-                // TODO("not implemented")
+                seasons?.let(fragment::displayEpisodes)
             }
         }
     }
@@ -344,7 +354,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun displayEpisodes(seasons: List<SeasonViewModel>) {
-        // TODO("not implemented")
+        this.seasons = seasons
+        episodesFragment?.displayEpisodes(seasons)
     }
 
     override fun showEpisodesProgress() {
