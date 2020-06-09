@@ -3,6 +3,7 @@ package dev.polek.episodetracker.showdetails.episodes
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.common.presentation.showdetails.model.EpisodeViewModel
@@ -82,6 +83,10 @@ class SeasonAdapter(private val season: SeasonViewModel) : RecyclerView.Adapter<
                 holder.binding.title.text = "${episode.number.episode}. ${episode.name}"
                 holder.binding.subtitle.text = episode.airDate
                 holder.binding.checkbox.isChecked = episode.isWatched
+
+                val isLastEpisode = position == itemCount - 1
+                holder.binding.divider.root.isVisible = !isLastEpisode
+                holder.binding.fullDivider.root.isVisible = isLastEpisode
             }
         }
     }
