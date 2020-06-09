@@ -18,6 +18,8 @@
     <string name="action_share">Share</string>
     <string name="action_add_to_my_shows">Add to My Shows</string>
     <string name="action_more">More</string>
+    <string name="action_check_all_previous">Check All Previous</string>
+    <string name="action_check_one">Check One</string>
 
     <string name="my_shows_last_week">Last Week</string>
     <string name="my_shows_upcoming">Upcoming</string>
@@ -65,6 +67,8 @@
     <string name="about_show_trailers">Trailers</string>
     <string name="about_show_cast">Cast</string>
     <string name="about_show_recommendations">Recommendations</string>
+
+    <string name="episodes_check_previous_confirmation">Check all previous episodes as watched?</string>
 
     <string name="rating_info_tv_y">This program is designed to be appropriate for all children.</string>
     <string name="rating_info_tv_y7">This program is designed for children age 7 and above.</string>

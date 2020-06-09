@@ -285,7 +285,18 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         onCheckOnlyThis: () -> Unit,
         onCancel: () -> Unit)
     {
-        // TODO("not implemented")
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.episodes_check_previous_confirmation)
+            .setPositiveButton(R.string.action_check_all_previous) { _, _ ->
+                onCheckAllPrevious()
+            }
+            .setNegativeButton(R.string.action_check_one) { _, _ ->
+                onCheckOnlyThis()
+            }
+            .setOnCancelListener {
+                onCancel()
+            }
+            .show()
     }
 
     override fun displayOptionsMenu(isInMyShows: Boolean, isArchived: Boolean) {
