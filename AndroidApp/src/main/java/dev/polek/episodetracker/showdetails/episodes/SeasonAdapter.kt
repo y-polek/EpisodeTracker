@@ -90,6 +90,7 @@ class SeasonAdapter(
             is SeasonViewHolder -> {
                 holder.binding.title.text = season.name
                 holder.binding.checkbox.isChecked = season.isWatched
+                holder.binding.countText.text = season.watchedEpisodes
                 holder.bindExpansionIcon(season.isExpanded)
             }
             is EpisodeViewHolder -> {

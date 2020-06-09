@@ -19,14 +19,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_vertical"
             android:drawableStart="@drawable/ic_arrow_down"
             android:drawablePadding="16dp"
+            android:drawableTint="?attr/colorOnBackground"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:ellipsize="end"
             tools:text="Season 1"
+            />
+
+        <TextView
+            android:id="@+id/count_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="0/10"
             />
 
         <CheckBox
