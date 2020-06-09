@@ -277,7 +277,15 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         showName: String,
         callback: (confirmed: Boolean) -> Unit)
     {
-        // TODO("not implemented")
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.episodes_add_to_my_shows_confirmation, showName))
+            .setPositiveButton(R.string.action_add) { _, _ ->
+                callback(true)
+            }
+            .setNegativeButton(R.string.action_cancel) { _, _ ->
+                callback(false)
+            }
+            .show()
     }
 
     override fun showCheckAllPreviousEpisodesPrompt(
