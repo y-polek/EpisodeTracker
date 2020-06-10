@@ -1,12 +1,10 @@
 package dev.polek.episodetracker.showdetails.about
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import dev.polek.episodetracker.common.presentation.showdetails.model.CastMemberViewModel
@@ -16,6 +14,7 @@ import dev.polek.episodetracker.common.presentation.showdetails.model.TrailerVie
 import dev.polek.episodetracker.common.utils.anyNotNull
 import dev.polek.episodetracker.databinding.AboutShowFragmentBinding
 import dev.polek.episodetracker.utils.doOnClick
+import dev.polek.episodetracker.utils.openUrl
 import dev.polek.episodetracker.utils.setBottomPadding
 
 class AboutShowFragment : Fragment() {
@@ -156,10 +155,7 @@ class AboutShowFragment : Fragment() {
     }
 
     private fun openUrl(url: String) {
-        val intent = CustomTabsIntent.Builder()
-            .addDefaultShareMenuItem()
-            .build()
-        intent.launchUrl(requireContext(), Uri.parse(url))
+        context?.openUrl(url)
     }
 
     companion object {

@@ -54,6 +54,13 @@
     <string name="prefs_show_specials">Show special episodes</string>
     <string name="prefs_show_specials_in_to_watch">Show specials in \"To Watch\" list</string>
 
+    <string name="prefs_about">About</string>
+    <string name="prefs_version">Version %s</string>
+
+    <string name="prefs_credits">Credits</string>
+    <string name="prefs_tmdb_attribution">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+    <string name="prefs_tmdb_url">https://www.themoviedb.org/</string>
+
     <string name="remove_show_confirmation">Are you sure you want to remove \"%s\"?</string>
 
     <string name="unarchive_show_confirmation_title">Do you want to unarchive this show?</string>

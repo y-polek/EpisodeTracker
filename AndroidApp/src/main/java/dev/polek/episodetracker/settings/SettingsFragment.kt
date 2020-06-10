@@ -13,6 +13,7 @@ import dev.polek.episodetracker.common.presentation.settings.SettingsView
 import dev.polek.episodetracker.databinding.SettingsFragmentBinding
 import dev.polek.episodetracker.utils.apply
 import dev.polek.episodetracker.utils.doOnClick
+import dev.polek.episodetracker.utils.openUrl
 
 class SettingsFragment : Fragment(), SettingsView {
 
@@ -49,6 +50,10 @@ class SettingsFragment : Fragment(), SettingsView {
 
         binding.showSpecialsInToWatchCheckbox.setOnCheckedChangeListener { _, isChecked ->
             presenter.onShowSpecialsInToWatchChanged(isChecked)
+        }
+
+        binding.tmdbLogo.doOnClick {
+            context?.openUrl(getString(R.string.prefs_tmdb_url))
         }
 
         return binding.root

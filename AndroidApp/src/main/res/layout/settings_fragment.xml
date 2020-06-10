@@ -135,6 +135,39 @@
                 android:text="@string/prefs_show_specials_in_to_watch"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="?attr/colorAccent"
+                android:text="@string/prefs_credits"
+                style="@style/PreferenceGroup"
+                />
+
+            <LinearLayout
+                android:id="@+id/tmdb_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                >
+                <ImageView
+                    android:layout_width="95dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/tmdb_logo"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:text="@string/prefs_tmdb_attribution"
+                    />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
