@@ -130,17 +130,12 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
                 seasons?.let(fragment::displayEpisodes)
             }
         }
+
+        updateBottomPadding()
     }
 
     override fun onStart() {
         super.onStart()
-
-        if (binding.addButtonLayout.isVisible) {
-            setBottomPadding()
-        } else {
-            removeBottomPadding()
-        }
-
         presenter.onViewAppeared()
     }
 
@@ -252,7 +247,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         binding.addButtonLayout.isVisible = true
         binding.addButtonProgress.isVisible = false
         binding.addButton.isEnabled = true
-        setBottomPadding()
+        updateBottomPadding()
     }
 
     override fun displayAddToMyShowsProgress() {
@@ -262,7 +257,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
 
     override fun hideAddToMyShowsButton() {
         binding.addButtonLayout.isVisible = false
-        removeBottomPadding()
+        updateBottomPadding()
     }
 
     override fun displayArchivedBadge() {
@@ -413,14 +408,14 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     // endregion
     ///////////////////////////////////////////////////////////////////////////
 
-    private fun setBottomPadding() {
-        val padding = resources.getDimensionPixelOffset(R.dimen.add_button_layout_height)
-        aboutFragment?.setBottomPadding(padding)
-        episodesFragment?.setBottomPadding(padding)
-    }
+    private fun updateBottomPadding() {
+        if (!this::binding.isInitialized) return
 
-    private fun removeBottomPadding() {
-        val padding = resources.getDimensionPixelOffset(R.dimen.scroll_view_bottom_padding)
+        val padding = if (binding.addButtonLayout.isVisible) {
+            resources.getDimensionPixelOffset(R.dimen.add_button_layout_height)
+        } else {
+            resources.getDimensionPixelOffset(R.dimen.scroll_view_bottom_padding)
+        }
         aboutFragment?.setBottomPadding(padding)
         episodesFragment?.setBottomPadding(padding)
     }
