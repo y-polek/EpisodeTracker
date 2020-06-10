@@ -98,7 +98,12 @@ class SeasonAdapter(
                 holder.binding.image.loadImage(episode.imageUrl)
                 holder.binding.title.text = "${episode.number.episode}. ${episode.name}"
                 holder.binding.subtitle.text = episode.airDate
+
                 holder.binding.checkbox.isChecked = episode.isWatched
+                holder.binding.checkbox.isVisible = episode.isAired
+
+                holder.binding.timeLeftText.text = episode.timeLeftToRelease
+                holder.binding.timeLeftText.isVisible = !episode.isAired
 
                 val isLastEpisode = position == itemCount - 1
                 holder.binding.divider.root.isVisible = !isLastEpisode
