@@ -71,6 +71,7 @@
 
     <string name="episodes_check_previous_confirmation">Check all previous episodes as watched?</string>
     <string name="episodes_add_to_my_shows_confirmation">Add \"%s\" to My Shows?</string>
+    <string name="episodes_error_message">Can\'t load episodes list</string>
 
     <string name="rating_info_tv_y">This program is designed to be appropriate for all children.</string>
     <string name="rating_info_tv_y7">This program is designed for children age 7 and above.</string>

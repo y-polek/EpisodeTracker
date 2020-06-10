@@ -49,6 +49,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     private var recommendations: List<RecommendationViewModel>? = null
     private var imdbRating: Float? = null
     private var seasons: List<SeasonViewModel>? = null
+    private var episodesProgressVisible: Boolean = false
+    private var episodesErrorVisible: Boolean = false
 
     private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
@@ -128,6 +130,8 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
             is EpisodesFragment -> {
                 episodesFragment = fragment
                 seasons?.let(fragment::displayEpisodes)
+                if (episodesProgressVisible) fragment.showProgress() else fragment.hideProgress()
+                if (episodesErrorVisible) fragment.showError() else fragment.hideError()
             }
         }
 
@@ -192,6 +196,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
 
     override fun onEpisodesSwipeRefresh() {
         presenter.onRefreshRequested()
+    }
+
+    override fun onEpisodesRetryButtonClicked() {
+        presenter.onEpisodesRetryButtonClicked()
     }
 
     override fun onShareMenuClicked() {
@@ -386,19 +394,23 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
     }
 
     override fun showEpisodesProgress() {
-        // TODO("not implemented")
+        episodesProgressVisible = true
+        episodesFragment?.showProgress()
     }
 
     override fun hideEpisodesProgress() {
-        // TODO("not implemented")
+        episodesProgressVisible = false
+        episodesFragment?.hideProgress()
     }
 
     override fun showEpisodesError() {
-        // TODO("not implemented")
+        episodesErrorVisible = true
+        episodesFragment?.showError()
     }
 
     override fun hideEpisodesError() {
-        // TODO("not implemented")
+        episodesErrorVisible = false
+        episodesFragment?.hideError()
     }
 
     override fun reloadSeason(number: Int) {
