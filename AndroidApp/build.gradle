@@ -38,6 +38,9 @@ android {
 dependencies {
     implementation project(':SharedCode')
 
+    // LeakCanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
+
     // Kotlin
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
