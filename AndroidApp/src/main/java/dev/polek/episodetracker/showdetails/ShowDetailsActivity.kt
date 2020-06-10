@@ -190,6 +190,10 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         presenter.onEpisodeWatchedStateToggled(episode)
     }
 
+    override fun onEpisodesSwipeRefresh() {
+        presenter.onRefreshRequested()
+    }
+
     override fun onShareMenuClicked() {
         presenter.onShareShowClicked()
     }

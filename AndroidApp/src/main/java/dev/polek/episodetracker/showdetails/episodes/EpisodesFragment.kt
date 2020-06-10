@@ -31,6 +31,10 @@ class EpisodesFragment : Fragment(), SeasonAdapter.Listener {
 
         binding.recyclerView.adapter = adapter
 
+        binding.swipeRefresh.setOnRefreshListener {
+            listener?.onEpisodesSwipeRefresh()
+        }
+
         bottomPadding?.let(::setBottomPadding)
 
         return binding.root
@@ -50,7 +54,7 @@ class EpisodesFragment : Fragment(), SeasonAdapter.Listener {
     }
 
     fun hideRefreshProgress() {
-        // TODO("not implemented")
+        binding?.swipeRefresh?.isRefreshing = false
     }
 
     fun setBottomPadding(padding: Int) {
@@ -75,5 +79,6 @@ class EpisodesFragment : Fragment(), SeasonAdapter.Listener {
     interface Listener {
         fun onSeasonWatchedStateToggled(season: SeasonViewModel)
         fun onEpisodeWatchedStateToggled(episode: EpisodeViewModel)
+        fun onEpisodesSwipeRefresh()
     }
 }
