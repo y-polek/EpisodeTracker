@@ -17,10 +17,6 @@
         <item name="materialAlertDialogTheme">@style/DialogTheme</item>
     </style>
 
-    <style name="SplashScreen" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
     <style name="Badge" parent="@style/Widget.MaterialComponents.Badge">
         <item name="backgroundColor">@color/badgeColor</item>
         <item name="badgeTextColor">@color/badgeTextColor</item>
