@@ -1,11 +1,11 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
+
+        <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="android:colorBackground">@color/backgroundColor</item>
+        <item name="colorSurface">@color/colorSurface</item>
 
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">@bool/is_in_night_mode</item>

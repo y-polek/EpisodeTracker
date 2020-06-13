@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="backgroundColor">#FFFFFF</color>
     <color name="colorPrimary">#0D47A1</color>
     <color name="colorSecondary">#0059BF</color>
     <color name="colorSecondarySemitransparent">#880059BF</color>
-    <color name="backgroundColor">#FFFFFF</color>
+    <color name="colorSurface">#F8F7F8</color>
     <color name="cardSubtitleColor">#CCFFFFFF</color>
 
     <color name="dividerColor">#33000000</color>
