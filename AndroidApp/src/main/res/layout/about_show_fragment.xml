@@ -51,12 +51,12 @@
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
                     android:drawableStart="@drawable/ic_imdb"
-                    android:drawableTint="?attr/colorOnBackground"
                     android:textColor="?attr/colorOnBackground"
                     android:fontFamily="sans-serif-medium"
                     android:background="@drawable/square_border_button_background"
                     android:textSize="18dp"
                     android:text="—"
+                    app:drawableTint="?attr/colorOnBackground"
                     tools:ignore="HardcodedText,SpUsage"
                     />
                 <ImageButton

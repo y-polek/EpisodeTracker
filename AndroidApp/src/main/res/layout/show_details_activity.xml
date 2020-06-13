@@ -36,12 +36,12 @@
                 android:layout_centerInParent="true"
                 android:paddingVertical="10dp"
                 android:drawableLeft="@drawable/ic_add"
-                android:drawableTint="@color/add_button_icon_tint"
                 android:textColor="@color/add_button_text_color"
                 android:backgroundTint="@color/add_button_background_color"
                 android:fontFamily="sans-serif-medium"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                 android:text="@string/action_add_to_my_shows"
+                app:drawableTint="@color/add_button_icon_tint"
                 tools:ignore="RtlHardcoded"
                 style="@style/Widget.MaterialComponents.FloatingActionButton"
                 />
