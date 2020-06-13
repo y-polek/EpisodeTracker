@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.polek.episodetracker.R
 import dev.polek.episodetracker.databinding.ShowDetailsMenuDialogBinding
@@ -52,6 +53,15 @@ class ShowDetailsMenuDialog : BottomSheetDialogFragment() {
         binding.menuRemove.isVisible = isInMyShows
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val bottomSheet = view?.parent as? View
+        if (bottomSheet != null) {
+            BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+        }
     }
 
     companion object {
