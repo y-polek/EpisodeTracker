@@ -1,0 +1,5 @@
+<resources>
+    <style name="AppTheme" parent="BaseTheme">
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+    </style>
+</resources>

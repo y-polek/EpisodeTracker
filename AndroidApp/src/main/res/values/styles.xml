@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -8,7 +8,6 @@
         <item name="colorSurface">@color/colorSurface</item>
 
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">@bool/is_in_night_mode</item>
 
         <item name="badgeStyle">@style/Badge</item>
 
@@ -16,6 +15,9 @@
         <item name="homeAsUpIndicator">@drawable/ic_back</item>
 
         <item name="materialAlertDialogTheme">@style/DialogTheme</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseTheme">
     </style>
 
     <style name="Badge" parent="@style/Widget.MaterialComponents.Badge">
