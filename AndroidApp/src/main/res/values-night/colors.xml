@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="backgroundColor">#000000</color>
-    <color name="colorPrimary">#2979FF</color>
+    <color name="colorPrimary">#90caf9</color>
+    <color name="colorSecondary">#5d99c6</color>
     <color name="colorSurface">#1F1F1F</color>
 
     <color name="dividerColor">#33FFFFFF</color>
