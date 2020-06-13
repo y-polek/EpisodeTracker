@@ -1,15 +1,17 @@
 package dev.polek.episodetracker.common.logging
 
-import dev.polek.episodetracker.common.utils.formatTimestamp
-
 inline fun Any.log(tag: String = this::class.simpleName.orEmpty(), message: () -> String) {
-    println("${formatTimestamp()} $tag: ${message()}")
+    printLog(tag = tag, message = message())
 }
 
 inline fun Any.logw(tag: String = this::class.simpleName.orEmpty(), message: () -> String) {
-    println("${formatTimestamp()} WARNING/$tag: ${message()}")
+    printWarningLog(tag = tag, message = message())
 }
 
 inline fun Any.loge(tag: String = this::class.simpleName.orEmpty(), message: () -> String) {
-    println("${formatTimestamp()} ERROR/$tag: ${message()}")
+    printErrorLog(tag = tag, message = message())
 }
+
+expect fun printLog(tag: String, message: String)
+expect fun printWarningLog(tag: String, message: String)
+expect fun printErrorLog(tag: String, message: String)
