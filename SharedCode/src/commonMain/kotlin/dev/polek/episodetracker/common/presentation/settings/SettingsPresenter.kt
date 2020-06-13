@@ -1,10 +1,12 @@
 package dev.polek.episodetracker.common.presentation.settings
 
 import dev.polek.episodetracker.common.di.Inject
+import dev.polek.episodetracker.common.di.Singleton
 import dev.polek.episodetracker.common.model.Appearance
 import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
 
+@Singleton
 class SettingsPresenter @Inject constructor(private val prefs: Preferences) : BasePresenter<SettingsView>() {
 
     override fun attachView(view: SettingsView) {

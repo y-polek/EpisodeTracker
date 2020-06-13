@@ -5,6 +5,7 @@ import dev.polek.episodetracker.common.coroutines.ui
 import dev.polek.episodetracker.common.datasource.db.QueryListener
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.di.Inject
+import dev.polek.episodetracker.common.di.Singleton
 import dev.polek.episodetracker.common.logging.log
 import dev.polek.episodetracker.common.logging.loge
 import dev.polek.episodetracker.common.logging.logw
@@ -16,6 +17,7 @@ import dev.polek.episodetracker.db.Database
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
+@Singleton
 class AddToMyShowsQueue @Inject constructor(
     private val db: Database,
     private val tmdbService: TmdbService,

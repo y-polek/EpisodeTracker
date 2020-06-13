@@ -4,11 +4,13 @@ import com.russhwolf.settings.ExperimentalListener
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.SettingsListener
 import dev.polek.episodetracker.common.di.Inject
+import dev.polek.episodetracker.common.di.Singleton
 import dev.polek.episodetracker.common.model.Appearance
 import dev.polek.episodetracker.common.preferences.delegates.BooleanPreferenceDelegate
 import dev.polek.episodetracker.common.preferences.delegates.EnumPreferenceDelegate
 import dev.polek.episodetracker.common.preferences.delegates.LongPreferenceDelegate
 
+@Singleton
 class Preferences @Inject constructor(private val settings: Settings) {
 
     var appearance: Appearance by EnumPreferenceDelegate(settings, KEY_APPEARANCE,

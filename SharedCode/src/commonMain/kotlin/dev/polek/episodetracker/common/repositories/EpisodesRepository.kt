@@ -1,11 +1,13 @@
 package dev.polek.episodetracker.common.repositories
 
 import dev.polek.episodetracker.common.di.Inject
+import dev.polek.episodetracker.common.di.Singleton
 import dev.polek.episodetracker.common.model.Episode
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.model.Season
 import dev.polek.episodetracker.db.Database
 
+@Singleton
 class EpisodesRepository @Inject constructor(private val db: Database) {
 
     fun allSeasons(showTmdbId: Int): List<Season> {

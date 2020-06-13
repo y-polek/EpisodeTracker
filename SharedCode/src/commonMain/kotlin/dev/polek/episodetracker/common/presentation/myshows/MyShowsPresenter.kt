@@ -3,6 +3,7 @@ package dev.polek.episodetracker.common.presentation.myshows
 import com.russhwolf.settings.ExperimentalListener
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.di.Inject
+import dev.polek.episodetracker.common.di.Singleton
 import dev.polek.episodetracker.common.preferences.Preferences
 import dev.polek.episodetracker.common.presentation.BasePresenter
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem.ShowViewModel
@@ -11,6 +12,7 @@ import dev.polek.episodetracker.common.repositories.MyShowsRepository
 import dev.polek.episodetracker.common.repositories.ShowRepository
 import kotlinx.coroutines.launch
 
+@Singleton
 class MyShowsPresenter @Inject constructor(
     private val myShowsRepository: MyShowsRepository,
     private val showRepository: ShowRepository,
