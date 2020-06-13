@@ -8,14 +8,15 @@
     android:orientation="vertical"
     >
 
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="@dimen/search_bar_margin_top"
-        android:background="@drawable/rounded_corners_background"
-        android:elevation="8dp"
+        android:layout_marginBottom="@dimen/search_bar_margin_bottom"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
         >
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
@@ -25,7 +26,7 @@
             app:queryHint="@string/my_shows_search_query_hint"
             app:queryBackground="@android:color/transparent"
             />
-    </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,8 +36,6 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="8dp"
-            android:clipToPadding="false"
             tools:listitem="@layout/to_watch_show_layout"
             />
 
