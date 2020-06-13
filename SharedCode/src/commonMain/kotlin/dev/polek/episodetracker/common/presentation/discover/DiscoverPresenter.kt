@@ -18,7 +18,11 @@ class DiscoverPresenter @Inject constructor(
 
     override fun attachView(view: DiscoverView) {
         super.attachView(view)
-        view.showPrompt()
+        if (searchResults == null) {
+            view.showPrompt()
+        } else {
+            view.showSearchResults(searchResults!!)
+        }
     }
 
     override fun onViewAppeared() {
