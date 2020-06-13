@@ -8,6 +8,7 @@
         <item name="android:colorBackground">@color/backgroundColor</item>
 
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">@bool/is_in_night_mode</item>
 
         <item name="badgeStyle">@style/Badge</item>
 
