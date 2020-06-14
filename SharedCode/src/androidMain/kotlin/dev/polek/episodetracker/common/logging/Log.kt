@@ -1,4 +1,4 @@
-@file:JvmName("LogImpl")
+@file:JvmName("LogActual")
 package dev.polek.episodetracker.common.logging
 
 import android.util.Log

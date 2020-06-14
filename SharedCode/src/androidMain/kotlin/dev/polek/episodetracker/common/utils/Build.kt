@@ -1,3 +1,4 @@
+@file:JvmName("BuildActual")
 package dev.polek.episodetracker.common.utils
 
 import dev.polek.episodetracker.BuildConfig

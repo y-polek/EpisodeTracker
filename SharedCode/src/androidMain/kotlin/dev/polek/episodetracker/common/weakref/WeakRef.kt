@@ -1,3 +1,4 @@
+@file:JvmName("WeakRefActual")
 package dev.polek.episodetracker.common.weakref
 
 import java.lang.ref.WeakReference

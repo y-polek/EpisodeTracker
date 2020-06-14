@@ -1,3 +1,4 @@
+@file:JvmName("CoroutinesActual")
 package dev.polek.episodetracker.common.coroutines
 
 import kotlinx.coroutines.Dispatchers

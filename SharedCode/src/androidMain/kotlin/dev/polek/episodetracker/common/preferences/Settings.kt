@@ -1,3 +1,4 @@
+@file:JvmName("SettingsActual")
 package dev.polek.episodetracker.common.preferences
 
 import com.russhwolf.settings.AndroidSettings

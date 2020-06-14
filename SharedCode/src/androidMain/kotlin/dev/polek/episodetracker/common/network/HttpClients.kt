@@ -1,3 +1,4 @@
+@file:JvmName("HttpClientsActual")
 package dev.polek.episodetracker.common.network
 
 import io.ktor.client.HttpClient
