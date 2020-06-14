@@ -340,7 +340,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         MaterialAlertDialogBuilder(this)
             .setTitle(rating)
             .setMessage(text.toString(this))
-            .setPositiveButton(R.string.action_ok, null)
+            .setNegativeButton(R.string.action_ok, null)
             .show()
     }
 
