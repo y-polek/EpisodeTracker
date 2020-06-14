@@ -12,6 +12,9 @@
     android:drawableEnd="@drawable/ic_arrow_down"
     android:background="?android:attr/selectableItemBackground"
     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+    android:fontFamily="sans-serif-medium"
+    android:maxLines="1"
+    android:ellipsize="end"
     app:drawableTint="?attr/colorOnSurface"
     tools:text="To Be Announced"
     />
