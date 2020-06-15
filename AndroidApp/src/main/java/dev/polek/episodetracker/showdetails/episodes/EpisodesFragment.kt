@@ -50,6 +50,11 @@ class EpisodesFragment : Fragment(), SeasonAdapter.Listener {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     override fun onSeasonWatchedStateToggled(season: SeasonViewModel) {
         listener?.onSeasonWatchedStateToggled(season)
     }

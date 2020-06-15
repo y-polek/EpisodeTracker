@@ -19,7 +19,8 @@ class SettingsFragment : Fragment(), SettingsView {
 
     private val presenter = App.instance.di.settingsPresenter()
 
-    private lateinit var binding: SettingsFragmentBinding
+    private var _binding: SettingsFragmentBinding? = null
+    private val binding get() = _binding!!
     private var currentTheme = Theme.SYSTEM_DEFAULT
     private val themeNames: Array<String> by lazy {
         Theme.values().map { context!!.getString(it.nameRes) }.toTypedArray()
@@ -30,7 +31,7 @@ class SettingsFragment : Fragment(), SettingsView {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View?
     {
-        binding = SettingsFragmentBinding.inflate(inflater)
+        _binding = SettingsFragmentBinding.inflate(inflater)
 
         binding.themeLayout.doOnClick {
             openThemesDialog()
@@ -67,6 +68,7 @@ class SettingsFragment : Fragment(), SettingsView {
     override fun onDestroyView() {
         presenter.detachView()
         super.onDestroyView()
+        _binding = null
     }
 
     override fun onResume() {

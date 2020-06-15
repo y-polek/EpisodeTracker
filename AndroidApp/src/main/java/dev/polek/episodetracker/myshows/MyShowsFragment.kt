@@ -25,7 +25,8 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
     private val presenter = App.instance.di.myShowsPresenter()
 
-    private lateinit var binding: MyShowsFragmentBinding
+    private var _binding: MyShowsFragmentBinding? = null
+    private val binding get() = _binding!!
 
     private val lastWeekAdapter = MyShowsAdapter(
         R.string.my_shows_last_week,
@@ -89,7 +90,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View?
     {
-        binding = MyShowsFragmentBinding.inflate(inflater)
+        _binding = MyShowsFragmentBinding.inflate(inflater)
 
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
@@ -136,6 +137,7 @@ class MyShowsFragment : Fragment(), MyShowsView {
     override fun onDestroyView() {
         presenter.detachView()
         super.onDestroyView()
+        _binding = null
     }
 
     override fun onResume() {

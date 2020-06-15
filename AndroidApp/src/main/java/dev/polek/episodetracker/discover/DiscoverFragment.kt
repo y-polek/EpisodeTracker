@@ -24,7 +24,8 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
 
     private val presenter = App.instance.di.discoverPresenter()
 
-    private lateinit var binding: DiscoverFragmentBinding
+    private var _binding: DiscoverFragmentBinding? = null
+    private val binding get() = _binding!!
     private val adapter = DiscoverAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +43,7 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View?
     {
-        binding = DiscoverFragmentBinding.inflate(inflater)
+        _binding = DiscoverFragmentBinding.inflate(inflater)
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -81,6 +82,7 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
     override fun onDestroyView() {
         presenter.detachView()
         super.onDestroyView()
+        _binding = null
     }
 
     override fun onResume() {

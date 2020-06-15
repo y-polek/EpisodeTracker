@@ -91,6 +91,11 @@ class AboutShowFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     fun displayShowDetails(show: ShowDetailsViewModel) {
         this.show = show
         bindShow()

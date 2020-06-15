@@ -22,7 +22,8 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
 
     private val presenter = App.instance.di.toWatchPresenter()
 
-    private lateinit var binding: ToWatchFragmentBinding
+    private var _binding: ToWatchFragmentBinding? = null
+    private val binding get() = _binding!!
     private val adapter = ToWatchAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +41,7 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View?
     {
-        binding = ToWatchFragmentBinding.inflate(inflater)
+        _binding = ToWatchFragmentBinding.inflate(inflater)
 
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
@@ -79,6 +80,7 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
     override fun onDestroyView() {
         presenter.detachView()
         super.onDestroyView()
+        _binding = null
     }
 
     override fun onResume() {
