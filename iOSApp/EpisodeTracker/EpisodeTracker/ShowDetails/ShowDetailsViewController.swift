@@ -75,8 +75,8 @@ class ShowDetailsViewController: UIViewController {
         archivedBadge.alpha = 1
         
         tabBar.items = [
-            UITabBarItem(title: "About", image: nil, tag: 0),
-            UITabBarItem(title: "Episodes", image: nil, tag: 1)
+            UITabBarItem(title: string(R.str.tab_about), image: nil, tag: 0),
+            UITabBarItem(title: string(R.str.tab_episodes), image: nil, tag: 1)
         ]
         tabBar.itemAppearance = .titles
         tabBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
@@ -191,11 +191,11 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @IBAction func onArchivedButtonTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Do you want to unarchive this show?", message: "Archived shows are not shown in \"Upcoming\" or \"To Watch\" lists.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { action in
+        let alert = UIAlertController(title: string(R.str.unarchive_show_confirmation_title), message: string(R.str.unarchive_show_confirmation_message), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: string(R.str.action_unarchive), style: .default, handler: { action in
             self.presenter.onUnarchiveShowClicked()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
@@ -358,11 +358,11 @@ extension ShowDetailsViewController: ShowDetailsView {
     }
     
     func displayAddToMyShowsConfirmation(showName: String, callback: @escaping (KotlinBoolean) -> Void) {
-        let alert = UIAlertController(title: nil, message: "Add \"\(showName)\" to My Shows?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+        let alert = UIAlertController(title: nil, message: string(R.str.episodes_add_to_my_shows_confirmation, showName), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: string(R.str.action_add), style: .default, handler: { action in
             callback(true)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: { action in
             callback(false)
         }))
         present(alert, animated: true, completion: nil)
@@ -371,43 +371,43 @@ extension ShowDetailsViewController: ShowDetailsView {
     func displayOptionsMenu(isInMyShows: Bool, isArchived: Bool) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { [weak self] action in
+        alert.addAction(UIAlertAction(title: string(R.str.action_share), style: .default, handler: { [weak self] action in
             self?.presenter.onShareShowClicked()
         }))
         
-        alert.addAction(UIAlertAction(title: "Mark as Watched", style: .default, handler: { [weak self] action in
+        alert.addAction(UIAlertAction(title: string(R.str.action_mark_watched), style: .default, handler: { [weak self] action in
             self?.presenter.onMarkWatchedClicked()
         }))
         
         if isInMyShows {
             if isArchived {
-                alert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { [weak self] action in
+                alert.addAction(UIAlertAction(title: string(R.str.action_unarchive), style: .default, handler: { [weak self] action in
                     self?.presenter.onUnarchiveShowClicked()
                 }))
             } else {
-                alert.addAction(UIAlertAction(title: "Archive", style: .default, handler: { [weak self] action in
+                alert.addAction(UIAlertAction(title: string(R.str.action_archive), style: .default, handler: { [weak self] action in
                     self?.presenter.onArchiveShowClicked()
                 }))
             }
             
-            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] action in
+            alert.addAction(UIAlertAction(title: string(R.str.action_remove), style: .destructive, handler: { [weak self] action in
                 self?.presenter.onRemoveShowClicked()
             }))
         } else {
-            alert.addAction(UIAlertAction(title: "Add to My Shows", style: .default, handler: { [weak self] action in
+            alert.addAction(UIAlertAction(title: string(R.str.action_add_to_my_shows), style: .default, handler: { [weak self] action in
                 self?.presenter.onAddToMyShowsClicked()
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: nil))
         
         present(alert, animated: true, completion: nil)
     }
     
     func displayRemoveConfirmation(callback: @escaping (KotlinBoolean) -> Void) {
-        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove this show?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in callback(true)}))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in callback(false) }))
+        let alert = UIAlertController(title: nil, message: string(R.str.remove_show_confirmation, showName ?? ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: string(R.str.action_remove), style: .destructive, handler: { _ in callback(true)}))
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: { _ in callback(false) }))
         present(alert, animated: true, completion: nil)
     }
     
@@ -418,7 +418,7 @@ extension ShowDetailsViewController: ShowDetailsView {
     
     func displayContentRatingInfo(rating: String, text: ResourcesStringDesc) {
         let alert = UIAlertController(title: rating, message: text.localized(), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: string(R.str.action_ok), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
@@ -443,9 +443,9 @@ extension ShowDetailsViewController: ShowDetailsView {
     }
     
     func displayRemoveRecommendationConfirmation(show: RecommendationViewModel, callback: @escaping (KotlinBoolean) -> Void) {
-        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove \"\(show.name)\"?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in callback(true) }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in callback(false) }))
+        let alert = UIAlertController(title: nil, message: string(R.str.remove_show_confirmation, show.name), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: string(R.str.action_remove), style: .destructive, handler: { _ in callback(true) }))
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: { _ in callback(false) }))
         present(alert, animated: true, completion: nil)
     }
     
@@ -470,14 +470,14 @@ extension ShowDetailsViewController: ShowDetailsView {
         onCheckOnlyThis: @escaping () -> Void,
         onCancel: @escaping () -> Void)
     {
-        let alert = UIAlertController(title: "Check all previous episodes as watched?", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Check All Previous", style: .default, handler: { _ in
+        let alert = UIAlertController(title: string(R.str.episodes_check_previous_confirmation), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: string(R.str.action_check_all_previous), style: .default, handler: { _ in
             onCheckAllPrevious()
         }))
-        alert.addAction(UIAlertAction(title: "Check One", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: string(R.str.action_check_one), style: .default, handler: { _ in
             onCheckOnlyThis()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: { _ in
             onCancel()
         }))
         present(alert, animated: true, completion: nil)
