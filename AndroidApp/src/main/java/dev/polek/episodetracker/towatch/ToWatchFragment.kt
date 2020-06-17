@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
 import dev.polek.episodetracker.App
 import dev.polek.episodetracker.common.model.EpisodeNumber
 import dev.polek.episodetracker.common.presentation.towatch.ToWatchShowViewModel
@@ -17,6 +18,7 @@ import dev.polek.episodetracker.showdetails.ShowDetailsActivity
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
 import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.scrollFlags
 
 class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
 
@@ -60,6 +62,11 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
 
             override fun onQueryTextChange(query: String): Boolean {
                 presenter.onSearchQueryChanged(query)
+                binding.searchBar.scrollFlags = if (query.trim().isEmpty()) {
+                    AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+                } else {
+                    AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+                }
                 return true
             }
         })
