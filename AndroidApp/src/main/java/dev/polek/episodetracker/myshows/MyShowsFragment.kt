@@ -9,6 +9,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
+import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.polek.episodetracker.App
 import dev.polek.episodetracker.MainActivity
@@ -17,9 +19,10 @@ import dev.polek.episodetracker.common.presentation.myshows.MyShowsView
 import dev.polek.episodetracker.common.presentation.myshows.model.MyShowsListItem
 import dev.polek.episodetracker.databinding.MyShowsFragmentBinding
 import dev.polek.episodetracker.showdetails.ShowDetailsActivity
-import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
 import dev.polek.episodetracker.utils.recyclerview.CloseSwipeActionsScrollListener
+import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
+import dev.polek.episodetracker.utils.scrollFlags
 
 class MyShowsFragment : Fragment(), MyShowsView {
 
@@ -109,6 +112,11 @@ class MyShowsFragment : Fragment(), MyShowsView {
 
             override fun onQueryTextChange(query: String): Boolean {
                 presenter.onSearchQueryChanged(query)
+                binding.searchBar.scrollFlags = if (query.trim().isEmpty()) {
+                    SCROLL_FLAG_SCROLL or SCROLL_FLAG_ENTER_ALWAYS
+                } else {
+                    SCROLL_FLAG_ENTER_ALWAYS
+                }
                 return true
             }
         })
