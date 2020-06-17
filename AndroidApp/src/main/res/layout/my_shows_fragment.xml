@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,29 +8,38 @@
     android:orientation="vertical"
     >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/search_bar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="@dimen/search_bar_margin_top"
-        android:layout_marginBottom="@dimen/search_bar_margin_bottom"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        android:background="@null"
+        app:elevation="0dp"
         >
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:iconifiedByDefault="false"
-            app:queryHint="@string/my_shows_search_query_hint"
-            app:queryBackground="@android:color/transparent"
-            />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="@dimen/search_bar_margin_top"
+            android:layout_marginBottom="@dimen/search_bar_margin_bottom"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                app:queryHint="@string/my_shows_search_query_hint"
+                app:queryBackground="@android:color/transparent"
+                />
+        </androidx.cardview.widget.CardView>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh"
@@ -115,4 +125,4 @@
         </LinearLayout>
     </FrameLayout>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
