@@ -116,6 +116,10 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
         presenter.onMarkAllWatchedClicked(show)
     }
 
+    fun scrollToTop() {
+        binding.recyclerView.smoothScrollToPosition(0)
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // region ToWatchView implementation
 

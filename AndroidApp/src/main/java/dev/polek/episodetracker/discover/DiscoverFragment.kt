@@ -16,8 +16,8 @@ import dev.polek.episodetracker.common.presentation.discover.DiscoverView
 import dev.polek.episodetracker.common.presentation.discover.model.DiscoverResultViewModel
 import dev.polek.episodetracker.databinding.DiscoverFragmentBinding
 import dev.polek.episodetracker.showdetails.ShowDetailsActivity
-import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.doOnClick
+import dev.polek.episodetracker.utils.recyclerview.HideKeyboardScrollListener
 import dev.polek.episodetracker.utils.showKeyboard
 
 class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
@@ -98,6 +98,10 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
     fun focusSearch() {
         binding.searchView.requestFocus()
         context?.showKeyboard(binding.searchView)
+    }
+
+    fun scrollToTop() {
+        binding.recyclerView.smoothScrollToPosition(0)
     }
 
     ///////////////////////////////////////////////////////////////////////////

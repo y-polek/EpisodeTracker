@@ -158,6 +158,10 @@ class MyShowsFragment : Fragment(), MyShowsView {
         super.onPause()
     }
 
+    fun scrollToTop() {
+        binding.recyclerView.smoothScrollToPosition(0)
+    }
+
     private fun onShowClicked(show: MyShowsListItem.ShowViewModel) {
         presenter.onShowClicked(show)
 

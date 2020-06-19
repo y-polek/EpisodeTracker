@@ -37,7 +37,11 @@ class MainActivity : AppCompatActivity(), MainView {
                 R.id.action_settings -> 3
                 else -> throw NotImplementedError("Unknown menu item: $menuItem")
             }
-            binding.pager.setCurrentItem(pagePosition, false)
+            if (binding.pager.currentItem != pagePosition) {
+                binding.pager.setCurrentItem(pagePosition, false)
+            } else {
+                scrollToTop(pagePosition)
+            }
             return@setOnNavigationItemSelectedListener true
         }
 
@@ -64,8 +68,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     fun openDiscoverTab() {
         binding.bottomNavigation.selectedItemId = R.id.action_discover
-        val discoverFragment = supportFragmentManager.fragments.firstOrNull { it is DiscoverFragment } as DiscoverFragment?
-        discoverFragment?.focusSearch()
+        findFragmentOfType<DiscoverFragment>()?.focusSearch()
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -81,6 +84,18 @@ class MainActivity : AppCompatActivity(), MainView {
     }
     // endregion
     ///////////////////////////////////////////////////////////////////////////
+
+    private fun scrollToTop(pagePosition: Int) {
+        when (pagePosition) {
+            0 -> findFragmentOfType<MyShowsFragment>()?.scrollToTop()
+            1 -> findFragmentOfType<ToWatchFragment>()?.scrollToTop()
+            2 -> findFragmentOfType<DiscoverFragment>()?.scrollToTop()
+        }
+    }
+
+    private inline fun <reified T: Fragment> findFragmentOfType(): T? {
+        return supportFragmentManager.fragments.firstOrNull { it is T } as T?
+    }
 
     private class PageAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
         override fun getItemCount() = NUMBER_OF_PAGES
