@@ -41,7 +41,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                 android:text="@string/action_add_to_my_shows"
-                app:drawableTint="@color/add_button_icon_tint"
+                android:drawableTint="@color/add_button_icon_tint"
                 tools:ignore="RtlHardcoded"
                 style="@style/Widget.MaterialComponents.FloatingActionButton"
                 />
