@@ -6,7 +6,9 @@
     <dimen name="search_bar_margin_bottom">8dp</dimen>
 
     <dimen name="card_view_height">150dp</dimen>
+    <dimen name="card_view_elevation">0dp</dimen>
     <dimen name="card_view_corner_radius">8dp</dimen>
+    <dimen name="card_view_stroke_width">1dp</dimen>
     <dimen name="card_view_margin_horizontal">16dp</dimen>
     <dimen name="card_view_margin_bottom">8dp</dimen>
 

@@ -7,13 +7,16 @@
     android:layout_height="wrap_content"
     >
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view"
         android:layout_width="@dimen/small_card_view_width"
         android:layout_height="@dimen/small_card_view_height"
         android:layout_marginHorizontal="6dp"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/card_view_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        app:strokeColor="@color/card_stroke_color"
+        app:strokeWidth="@dimen/card_view_stroke_width"
         >
 
         <ImageView
@@ -80,7 +83,7 @@
                 />
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>
 
