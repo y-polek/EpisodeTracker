@@ -106,9 +106,9 @@ extension DiscoverViewController: DiscoverView {
     }
     
     func displayRemoveShowConfirmation(result: DiscoverResultViewModel, callback: @escaping (KotlinBoolean) -> Void) {
-        let alert = UIAlertController(title: nil, message: "Are you sure you want to remove \"\(result.name)\"?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in callback(true) }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in callback(false) }))
+        let alert = UIAlertController(title: nil, message: string(R.str.remove_show_confirmation, result.name), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: string(R.str.action_remove), style: .destructive, handler: { _ in callback(true) }))
+        alert.addAction(UIAlertAction(title: string(R.str.action_cancel), style: .cancel, handler: { _ in callback(false) }))
         present(alert, animated: true, completion: nil)
     }
     
