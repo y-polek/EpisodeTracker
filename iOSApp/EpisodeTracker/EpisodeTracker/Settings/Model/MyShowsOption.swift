@@ -4,7 +4,7 @@ enum MyShowsOption: Int, CaseIterable, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .showLastWeekSection: return "Show \"Last Week\" section"
+        case .showLastWeekSection: return string(R.str.prefs_show_last_week)
         }
     }
 }

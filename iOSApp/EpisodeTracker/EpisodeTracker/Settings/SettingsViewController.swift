@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.topItem?.title = "Settings"
+        navigationController?.navigationBar.topItem?.title = string(R.str.settings)
         
         presenter = SettingsPresenter(prefs: AppDelegate.instance().preferences)
         presenter.attachView(view: self)

@@ -8,9 +8,9 @@ enum PreferenceSection: CustomStringConvertible {
     var description: String {
         switch self {
         case .appearance: return string(R.str.prefs_appearance)
-        case .myShows: return "My Shows"
-        case .toWatch: return "To Watch"
-        case .specials: return "Specials"
+        case .myShows: return string(R.str.prefs_my_shows)
+        case .toWatch: return string(R.str.prefs_to_watch)
+        case .specials: return string(R.str.prefs_specials)
         }
     }
     

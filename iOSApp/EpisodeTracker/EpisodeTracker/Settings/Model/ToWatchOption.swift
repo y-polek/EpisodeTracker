@@ -4,7 +4,7 @@ enum ToWatchOption: Int, CaseIterable, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .showBadge: return "Show number of episodes in a badge"
+        case .showBadge: return string(R.str.prefs_show_badge)
         }
     }
 }
