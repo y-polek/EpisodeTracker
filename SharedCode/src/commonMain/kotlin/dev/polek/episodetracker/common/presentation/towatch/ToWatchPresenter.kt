@@ -66,7 +66,10 @@ class ToWatchPresenter @Inject constructor(
     }
 
     fun onSearchQueryChanged(text: String) {
-        searchQuery = text.trim()
+        val query = text.trim()
+        if (query == searchQuery) return
+
+        searchQuery = query
         displayShows()
     }
 

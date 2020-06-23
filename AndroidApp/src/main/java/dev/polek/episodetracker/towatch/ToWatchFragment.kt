@@ -70,6 +70,7 @@ class ToWatchFragment : Fragment(), ToWatchView, ToWatchAdapter.Listener {
                 return true
             }
         })
+        presenter.onSearchQueryChanged(binding.searchView.query.toString())
 
         binding.showAllButton.doOnClick {
             binding.searchView.setQuery("", true)
