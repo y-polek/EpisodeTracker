@@ -11,12 +11,15 @@
     android:background="?android:attr/selectableItemBackground"
     >
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        app:strokeColor="@color/card_stroke_color"
+        app:strokeWidth="@dimen/card_view_stroke_width"
         >
         <ImageView
             android:id="@+id/image"
@@ -43,7 +46,7 @@
             android:indeterminate="true"
             android:indeterminateTint="?attr/colorOnPrimarySurface"
             />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
         android:layout_width="match_parent"
