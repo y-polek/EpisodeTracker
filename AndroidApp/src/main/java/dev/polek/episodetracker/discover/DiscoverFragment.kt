@@ -136,7 +136,11 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
     }
 
     override fun showSearchResults(results: List<DiscoverResultViewModel>) {
+        val previousResults = adapter.getResults()
         adapter.setResults(results)
+        if (previousResults.isNotEmpty() && !results.isEqualTo(previousResults)) {
+            binding.recyclerView.scrollToPosition(0)
+        }
     }
 
     override fun updateSearchResult(result: DiscoverResultViewModel) {
@@ -178,6 +182,15 @@ class DiscoverFragment : Fragment(), DiscoverView, DiscoverAdapter.Listener {
     ///////////////////////////////////////////////////////////////////////////
 
     companion object {
+
         fun instance() = DiscoverFragment()
+
+        private fun List<DiscoverResultViewModel>.isEqualTo(list: List<DiscoverResultViewModel>): Boolean {
+            if (this.size != list.size) return false
+            for (i in this.indices) {
+                if (this[i].id != list[i].id) return false
+            }
+            return true
+        }
     }
 }

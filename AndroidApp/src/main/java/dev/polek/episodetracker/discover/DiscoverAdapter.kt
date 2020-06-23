@@ -21,6 +21,8 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun getResults(): List<DiscoverResultViewModel> = results
+
     fun updateResult(result: DiscoverResultViewModel) {
         val position = results.indexOfFirst { it.id == result.id }
         if (position >= 0) {
