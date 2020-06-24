@@ -198,10 +198,12 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     private func creditsCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "credits_cell", for: indexPath) as! CreditsPreferenceCell
         
-        let option = CreditsOption(rawValue: indexPath.row)
+        guard let option = CreditsOption(rawValue: indexPath.row) else {
+            fatalError("Unknown CreditsOption at \(indexPath)")
+        }
         
-        cell.logo.image = UIImage(named: "ic-tmdb-logo")
-        cell.attribution.text = option?.description
+        cell.logo.image = UIImage(named: option.logo)
+        cell.attribution.text = option.attribution
         
         return cell
     }

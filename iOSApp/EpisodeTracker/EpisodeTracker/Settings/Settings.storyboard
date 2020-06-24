@@ -18,15 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rod-nb-4Na">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rod-nb-4Na">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" name="HeaderBackground"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="fur-pm-nPd" userLabel="Footer">
-                                    <rect key="frame" x="0.0" y="205.5" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="216.5" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="multichoice_cell" id="AgX-pi-wEn" customClass="MultichoicePrefereenceCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="multichoice_cell" rowHeight="44" id="AgX-pi-wEn" customClass="MultichoicePrefereenceCell" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AgX-pi-wEn" id="lHw-vB-L8j">
@@ -46,6 +46,7 @@
                                                             <rect key="frame" x="358" y="10" width="24" height="24"/>
                                                         </imageView>
                                                     </subviews>
+                                                    <edgeInsets key="layoutMargins" top="10" left="0.0" bottom="10" right="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -60,7 +61,7 @@
                                             <outlet property="nameLabel" destination="WW3-pY-zMo" id="Bwl-rp-367"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="switch_cell" id="j65-QJ-nPD" customClass="SwitchPreferenceCell" customModule="EpisodeTracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="switch_cell" rowHeight="44" id="j65-QJ-nPD" customClass="SwitchPreferenceCell" customModule="EpisodeTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j65-QJ-nPD" id="3XO-GZ-m2Y">
@@ -77,12 +78,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62k-q3-0Hb">
-                                                            <rect key="frame" x="333" y="6.5" width="51" height="31"/>
+                                                            <rect key="frame" x="333" y="10" width="51" height="24"/>
                                                             <connections>
                                                                 <action selector="onSwitched:" destination="j65-QJ-nPD" eventType="valueChanged" id="6u1-BI-xAb"/>
                                                             </connections>
                                                         </switch>
                                                     </subviews>
+                                                    <edgeInsets key="layoutMargins" top="10" left="0.0" bottom="10" right="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -98,28 +100,30 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="credits_cell" id="iiM-bk-c6G" userLabel="credits_cell" customClass="CreditsPreferenceCell" customModule="EpisodeTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iiM-bk-c6G" id="qw8-dS-JeR">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="59A-b2-Z0B">
-                                                    <rect key="frame" x="16" y="0.0" width="382" height="44"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="59A-b2-Z0B">
+                                                    <rect key="frame" x="16" y="0.0" width="382" height="55"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rpI-WW-LIE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
+                                                            <rect key="frame" x="0.0" y="10.5" width="80" height="34"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="100" id="CKQ-SJ-qBk"/>
+                                                                <constraint firstAttribute="width" constant="80" id="CKQ-SJ-qBk"/>
+                                                                <constraint firstAttribute="width" secondItem="rpI-WW-LIE" secondAttribute="height" multiplier="21:9" id="HLK-XG-3fb"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Attribution" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGr-RU-OL4">
-                                                            <rect key="frame" x="108" y="12" width="274" height="20.5"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <rect key="frame" x="96" y="18.5" width="286" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" name="TextColorPrimary"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <edgeInsets key="layoutMargins" top="10" left="0.0" bottom="10" right="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
