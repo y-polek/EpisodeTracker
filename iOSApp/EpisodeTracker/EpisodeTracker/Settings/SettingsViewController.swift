@@ -118,6 +118,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             if let option = AppearanceOption(rawValue: indexPath.row) {
                 presenter.onAppearanceOptionClicked(appearance: option.appearance)
             }
+        case .credits:
+            if let option = CreditsOption(rawValue: indexPath.row) {
+                option.url.toUrl()?.open()
+            }
         default:
             break
         }

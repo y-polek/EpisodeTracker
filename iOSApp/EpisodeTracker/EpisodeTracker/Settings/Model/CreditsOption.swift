@@ -14,4 +14,11 @@ enum CreditsOption: Int, CaseIterable {
             return "ic-tmdb-logo"
         }
     }
+    
+    var url: String {
+        switch self {
+        case .tmdb:
+            return string(R.str.prefs_tmdb_url)
+        }
+    }
 }
