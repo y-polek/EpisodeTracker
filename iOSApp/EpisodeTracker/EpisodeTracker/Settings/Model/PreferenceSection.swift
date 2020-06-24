@@ -4,6 +4,7 @@ enum PreferenceSection: CustomStringConvertible {
     case myShows
     case toWatch
     case specials
+    case credits
     
     var description: String {
         switch self {
@@ -11,6 +12,7 @@ enum PreferenceSection: CustomStringConvertible {
         case .myShows: return string(R.str.prefs_my_shows)
         case .toWatch: return string(R.str.prefs_to_watch)
         case .specials: return string(R.str.prefs_specials)
+        case .credits: return string(R.str.prefs_credits)
         }
     }
     
@@ -20,9 +22,9 @@ enum PreferenceSection: CustomStringConvertible {
     
     static var allSections: [PreferenceSection] {
         if #available(iOS 13, *) {
-            return [.appearance, .myShows, .toWatch, .specials]
+            return [.appearance, .myShows, .toWatch, .specials, .credits]
         } else {
-            return [.myShows, .toWatch, .specials]
+            return [.myShows, .toWatch, .specials, .credits]
         }
     }
     

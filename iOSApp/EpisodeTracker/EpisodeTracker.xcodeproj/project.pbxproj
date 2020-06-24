@@ -71,6 +71,8 @@
 		D2C201372433E11800BA5622 /* MyShowViewModel+ListDiffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C201362433E11800BA5622 /* MyShowViewModel+ListDiffable.swift */; };
 		D2C283C523E9F648002BEE91 /* SeasonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */; };
 		D2C283C723EA1D9A002BEE91 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */; };
+		D2C59F2924A3F138008B6F1B /* CreditsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C59F2824A3F138008B6F1B /* CreditsOption.swift */; };
+		D2C59F2B24A3F277008B6F1B /* CreditsPreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C59F2A24A3F277008B6F1B /* CreditsPreferenceCell.swift */; };
 		D2C7E97923FC629100DA8C4E /* RecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7E97823FC629100DA8C4E /* RecommendationCell.swift */; };
 		D2CC728D2414E87C00D4AD01 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC728C2414E87C00D4AD01 /* Animations.swift */; };
 		D2CC72922416E8A500D4AD01 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC72912416E8A500D4AD01 /* ErrorView.xib */; };
@@ -170,6 +172,8 @@
 		D2C201362433E11800BA5622 /* MyShowViewModel+ListDiffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyShowViewModel+ListDiffable.swift"; sourceTree = "<group>"; };
 		D2C283C423E9F648002BEE91 /* SeasonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonHeaderView.swift; sourceTree = "<group>"; };
 		D2C283C623EA1D9A002BEE91 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		D2C59F2824A3F138008B6F1B /* CreditsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsOption.swift; sourceTree = "<group>"; };
+		D2C59F2A24A3F277008B6F1B /* CreditsPreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsPreferenceCell.swift; sourceTree = "<group>"; };
 		D2C7E97823FC629100DA8C4E /* RecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationCell.swift; sourceTree = "<group>"; };
 		D2CC728C2414E87C00D4AD01 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		D2CC72912416E8A500D4AD01 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				D28D38EF245B55C000E9894B /* SettingsViewController.swift */,
 				D28D38F5245C141A00E9894B /* MultichoicePreferenceCell.swift */,
 				D28D38FA245C5BCC00E9894B /* SwitchPreferenceCell.swift */,
+				D2C59F2A24A3F277008B6F1B /* CreditsPreferenceCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				D28D38FC245C5DC100E9894B /* MyShowsOption.swift */,
 				D2C08E35246DD8AC00952E3A /* ToWatchOption.swift */,
 				D28D38FE245C6F4000E9894B /* SpecialsOption.swift */,
+				D2C59F2824A3F138008B6F1B /* CreditsOption.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -624,6 +630,7 @@
 				D276D51C243A80010040EB1C /* SwipeRippleCollectionViewCell.swift in Sources */,
 				D222456523EE147900082162 /* MyShowsHeaderView.swift in Sources */,
 				D22A897A2406CBB200014861 /* FloatingButton.swift in Sources */,
+				D2C59F2B24A3F277008B6F1B /* CreditsPreferenceCell.swift in Sources */,
 				D25A657C243E9A420094DDE1 /* UIViewController+HideKeyboard.swift in Sources */,
 				D2EDA465241EC00B00EAD144 /* Log.swift in Sources */,
 				D29D7AFE23A2974700B2832D /* UpcomingShowCell.swift in Sources */,
@@ -631,6 +638,7 @@
 				D29D7B0323A2A93D00B2832D /* ImageView.swift in Sources */,
 				D28D38FD245C5DC100E9894B /* MyShowsOption.swift in Sources */,
 				D232E73323F59E6300F024B9 /* AboutShowViewController.swift in Sources */,
+				D2C59F2924A3F138008B6F1B /* CreditsOption.swift in Sources */,
 				D2CC728D2414E87C00D4AD01 /* Animations.swift in Sources */,
 				D28D38F9245C2EDE00E9894B /* AppearanceOption.swift in Sources */,
 				D293933124184B6B00F028C6 /* ErrorView.swift in Sources */,

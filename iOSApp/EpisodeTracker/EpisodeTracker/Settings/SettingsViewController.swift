@@ -83,6 +83,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case .myShows: return MyShowsOption.allCases.count
         case .toWatch: return ToWatchOption.allCases.count
         case .specials: return SpecialsOption.allCases.count
+        case .credits: return CreditsOption.allCases.count
         }
     }
     
@@ -102,6 +103,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return toWatchCell(tableView, indexPath)
         case .specials:
             return specialsCell(tableView, indexPath)
+        case .credits:
+            return creditsCell(tableView, indexPath)
         }
     }
     
@@ -188,6 +191,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case .none:
             break
         }
+        
+        return cell
+    }
+    
+    private func creditsCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "credits_cell", for: indexPath) as! CreditsPreferenceCell
+        
+        let option = CreditsOption(rawValue: indexPath.row)
+        
+        cell.logo.image = UIImage(named: "ic-tmdb-logo")
+        cell.attribution.text = option?.description
         
         return cell
     }
