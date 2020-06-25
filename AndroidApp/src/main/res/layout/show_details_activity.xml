@@ -106,6 +106,8 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:layout_marginStart="16dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         android:textAppearance="@style/TextAppearance.App.CollapsingToolbar.Subtitle"
                         tools:text="2007 - 2019 • Netflix"
                         />
@@ -115,6 +117,7 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="16dp"
                         android:gravity="center_vertical"
+                        android:maxLines="1"
                         android:textAppearance="@style/TextAppearance.App.CollapsingToolbar.Subtitle"
                         android:background="?android:attr/selectableItemBackgroundBorderless"
                         tools:text="TV-MA"
