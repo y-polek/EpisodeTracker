@@ -234,6 +234,7 @@ class ShowDetailsActivity : AppCompatActivity(), ShowDetailsView,
         binding.collapsingToolbar.title = showName
         binding.subtitle.text = show.subhead
         binding.rating.text = show.rating
+        binding.rating.isVisible = show.rating.isNotBlank()
         binding.contentLayout.isVisible = true
     }
 
