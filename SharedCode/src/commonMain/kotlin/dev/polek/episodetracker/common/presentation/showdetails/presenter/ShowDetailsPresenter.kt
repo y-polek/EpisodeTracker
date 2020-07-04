@@ -1,5 +1,6 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
+import dev.polek.episodetracker.common.analytics.Analytics
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
@@ -27,7 +28,8 @@ class ShowDetailsPresenter(
     private val myShowsRepository: MyShowsRepository,
     private val showRepository: ShowRepository,
     private val episodesRepository: EpisodesRepository,
-    private val preferences: Preferences) : BasePresenter<ShowDetailsView>()
+    private val preferences: Preferences,
+    private val analytics: Analytics) : BasePresenter<ShowDetailsView>()
 {
     private var showDetails: ShowDetailsEntity? = null
     private var showSeasons: List<Season>? = null
@@ -130,6 +132,7 @@ class ShowDetailsPresenter(
         }
 
         view?.shareText(text)
+        analytics.logShare(text)
     }
 
     fun onMarkWatchedClicked() {
@@ -601,10 +604,11 @@ class ShowDetailsPresenter(
         private val myShowsRepository: MyShowsRepository,
         private val showRepository: ShowRepository,
         private val episodesRepository: EpisodesRepository,
-        private val preferences: Preferences)
+        private val preferences: Preferences,
+        private val analytics: Analytics)
     {
         fun create(showId: Int): ShowDetailsPresenter {
-            return ShowDetailsPresenter(showId, myShowsRepository, showRepository, episodesRepository, preferences)
+            return ShowDetailsPresenter(showId, myShowsRepository, showRepository, episodesRepository, preferences, analytics)
         }
     }
 }
