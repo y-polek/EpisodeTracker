@@ -46,6 +46,12 @@ interface Analytics {
         }
     }
 
+    fun logOpenRecommendation(tmdbId: Int) {
+        logEvent("event_open_recommendation") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
     private inline fun logEvent(name: String, init: MutableList<Param>.() -> Unit) {
         val params = mutableListOf<Param>()
         params.init()

@@ -185,6 +185,7 @@ class ShowDetailsPresenter(
 
     fun onRecommendationClicked(recommendation: RecommendationViewModel) {
         view?.openRecommendation(recommendation)
+        analytics.logOpenRecommendation(recommendation.showId)
     }
 
     fun onEpisodeWatchedStateToggled(episode: EpisodeViewModel) {
