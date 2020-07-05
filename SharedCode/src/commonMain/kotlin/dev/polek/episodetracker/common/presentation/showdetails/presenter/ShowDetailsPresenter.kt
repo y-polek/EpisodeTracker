@@ -320,6 +320,8 @@ class ShowDetailsPresenter(
             show.isAddInProgress = false
             view?.updateRecommendation(show)
         }
+
+        analytics.logAddRecommendation(show.showId)
     }
 
     fun onRemoveRecommendationClicked(show: RecommendationViewModel) {
@@ -337,6 +339,8 @@ class ShowDetailsPresenter(
                 view?.updateRecommendation(show)
             }
         }
+
+        analytics.logRemoveRecommendation(show.showId)
     }
 
     private fun displayHeader(show: ShowDetails) {

@@ -56,6 +56,18 @@ interface Analytics {
         }
     }
 
+    fun logAddRecommendation(tmdbId: Int) {
+        logEvent("event_add_recommendation") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
+    fun logRemoveRecommendation(tmdbId: Int) {
+        logEvent("event_remove_recommendation") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
     fun logOpenImdb(tmdbId: Int) {
         logEvent("event_open_imdb") {
             param("tmdb_id", tmdbId)
