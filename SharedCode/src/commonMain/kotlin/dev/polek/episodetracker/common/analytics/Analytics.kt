@@ -112,6 +112,12 @@ interface Analytics {
         }
     }
 
+    fun logToWatchEpisodeWatched(tmdbId: Int) {
+        logEvent("to_watch_episode_watched") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
     fun logNumberOfShows(count: Int) {
         val category = when (count) {
             0 -> "0"

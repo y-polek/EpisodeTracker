@@ -50,6 +50,8 @@ class ToWatchPresenter @Inject constructor(
         } else {
             episodesRepository.markNextEpisodeWatched(showTmdbId = show.id)
         }
+
+        analytics.logToWatchEpisodeWatched(show.id)
     }
 
     fun onShowClicked(show: ToWatchShowViewModel) {
