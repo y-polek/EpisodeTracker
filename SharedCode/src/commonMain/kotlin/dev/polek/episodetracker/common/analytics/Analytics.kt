@@ -11,61 +11,61 @@ interface Analytics {
     fun removeUserProperty(name: String)
 
     fun logShare(text: String, screen: Screen) {
-        logEvent("event_share") {
+        logEvent("share") {
             param("text", text)
             param("screen", screen.name)
         }
     }
 
     fun logAddShow(tmdbId: Int, screen: Screen) {
-        logEvent("event_add_shows") {
+        logEvent("add_shows") {
             param("tmdb_id", tmdbId)
             param("screen", screen.name)
         }
     }
 
     fun logRemoveShow(tmdbId: Int, screen: Screen) {
-        logEvent("event_remove_shows") {
+        logEvent("remove_shows") {
             param("tmdb_id", tmdbId)
             param("screen", screen.name)
         }
     }
 
     fun logArchiveShow(tmdbId: Int, screen: Screen) {
-        logEvent("event_archive_show") {
+        logEvent("archive_show") {
             param("tmdb_id", tmdbId)
             param("screen", screen.name)
         }
     }
 
     fun logUnarchiveShow(tmdbId: Int, screen: Screen) {
-        logEvent("event_unarchive_show") {
+        logEvent("unarchive_show") {
             param("tmdb_id", tmdbId)
             param("screen", screen.name)
         }
     }
 
     fun logOpenDetails(tmdbId: Int, screen: Screen) {
-        logEvent("event_open_details") {
+        logEvent("open_details") {
             param("tmdb_id", tmdbId)
             param("screen", screen.name)
         }
     }
 
     fun logOpenRecommendation(tmdbId: Int) {
-        logEvent("event_open_recommendation") {
+        logEvent("open_recommendation") {
             param("tmdb_id", tmdbId)
         }
     }
 
     fun logAddRecommendation(tmdbId: Int) {
-        logEvent("event_add_recommendation") {
+        logEvent("add_recommendation") {
             param("tmdb_id", tmdbId)
         }
     }
 
     fun logRemoveRecommendation(tmdbId: Int) {
-        logEvent("event_remove_recommendation") {
+        logEvent("remove_recommendation") {
             param("tmdb_id", tmdbId)
         }
     }
@@ -83,31 +83,31 @@ interface Analytics {
     }
 
     fun logOpenImdb(tmdbId: Int) {
-        logEvent("event_open_imdb") {
+        logEvent("open_imdb") {
             param("tmdb_id", tmdbId)
         }
     }
 
     fun logOpenHomePage(tmdbId: Int) {
-        logEvent("event_open_home_page") {
+        logEvent("open_home_page") {
             param("tmdb_id", tmdbId)
         }
     }
 
     fun logOpenInstagram(tmdbId: Int) {
-        logEvent("event_open_instagram") {
+        logEvent("open_instagram") {
             param("tmdb_id", tmdbId)
         }
     }
 
     fun logOpenFacebook(tmdbId: Int) {
-        logEvent("event_open_facebook") {
+        logEvent("open_facebook") {
             param("tmdb_id", tmdbId)
         }
     }
 
     fun logOpenTwitter(tmdbId: Int) {
-        logEvent("event_open_twitter") {
+        logEvent("open_twitter") {
             param("tmdb_id", tmdbId)
         }
     }
