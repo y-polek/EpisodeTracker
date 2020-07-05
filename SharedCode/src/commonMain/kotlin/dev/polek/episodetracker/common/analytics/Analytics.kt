@@ -39,6 +39,13 @@ interface Analytics {
         }
     }
 
+    fun logOpenDetails(tmdbId: Int, screen: Screen) {
+        logEvent("event_open_details") {
+            param("tmdb_id", tmdbId)
+            param("screen", screen.name)
+        }
+    }
+
     private inline fun logEvent(name: String, init: MutableList<Param>.() -> Unit) {
         val params = mutableListOf<Param>()
         params.init()

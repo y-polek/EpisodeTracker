@@ -134,6 +134,7 @@ class MyShowsPresenter @Inject constructor(
 
     fun onShowClicked(show: ShowViewModel) {
         view?.openMyShowDetails(show)
+        analytics.logOpenDetails(show.id, Screen.MY_SHOWS)
     }
 
     fun onRemoveShowClicked(show: ShowViewModel) {

@@ -54,6 +54,7 @@ class ToWatchPresenter @Inject constructor(
 
     fun onShowClicked(show: ToWatchShowViewModel) {
         view?.openToWatchShowDetails(show, show.nextEpisodeNumber)
+        analytics.logOpenDetails(show.id, Screen.TO_WATCH)
     }
 
     fun onMarkAllWatchedClicked(show: ToWatchShowViewModel) {

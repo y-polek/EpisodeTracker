@@ -81,6 +81,7 @@ class DiscoverPresenter @Inject constructor(
 
     fun onShowClicked(show: DiscoverResultViewModel) {
         view?.openDiscoverShow(show)
+        analytics.logOpenDetails(show.id, Screen.DISCOVER)
     }
 
     fun onRetryButtonClicked() {
