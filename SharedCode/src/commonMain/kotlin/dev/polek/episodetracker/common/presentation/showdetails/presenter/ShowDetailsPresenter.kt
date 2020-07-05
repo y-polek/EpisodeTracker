@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
 import dev.polek.episodetracker.common.analytics.Analytics
+import dev.polek.episodetracker.common.analytics.Analytics.Screen
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
@@ -111,6 +112,7 @@ class ShowDetailsPresenter(
         launch {
             myShowsRepository.addShow(showId)
         }
+        analytics.logAddShow(showId, Screen.SHOW_DETAILS)
     }
 
     fun onShareShowClicked() {
@@ -132,7 +134,7 @@ class ShowDetailsPresenter(
         }
 
         view?.shareText(text)
-        analytics.logShare(text)
+        analytics.logShare(text, Screen.SHOW_DETAILS)
     }
 
     fun onMarkWatchedClicked() {
@@ -161,6 +163,8 @@ class ShowDetailsPresenter(
             myShowsRepository.removeShow(showId)
             myShowsRepository.addShow(showId, archive = true)
         }
+
+        analytics.logArchiveShow(showId, Screen.SHOW_DETAILS)
     }
 
     fun onUnarchiveShowClicked() {
@@ -171,6 +175,8 @@ class ShowDetailsPresenter(
             myShowsRepository.removeShow(showId)
             myShowsRepository.addShow(showId, archive = false)
         }
+
+        analytics.logUnarchiveShow(showId, Screen.SHOW_DETAILS)
     }
 
     fun onRetryButtonClicked() {

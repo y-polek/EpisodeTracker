@@ -1,5 +1,7 @@
 package dev.polek.episodetracker.common.presentation.discover
 
+import dev.polek.episodetracker.common.analytics.Analytics
+import dev.polek.episodetracker.common.analytics.Analytics.Screen
 import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.di.Singleton
 import dev.polek.episodetracker.common.presentation.BasePresenter
@@ -12,7 +14,8 @@ import kotlinx.coroutines.launch
 @Singleton
 class DiscoverPresenter @Inject constructor(
     private val discoverRepository: DiscoverRepository,
-    private val myShowsRepository: MyShowsRepository) : BasePresenter<DiscoverView>()
+    private val myShowsRepository: MyShowsRepository,
+    private val analytics: Analytics) : BasePresenter<DiscoverView>()
 {
     private var searchResults: List<DiscoverResultViewModel>? = null
 
@@ -53,6 +56,8 @@ class DiscoverPresenter @Inject constructor(
             show.isAddInProgress = false
             view?.updateSearchResult(show)
         }
+
+        analytics.logAddShow(show.id, Screen.DISCOVER)
     }
 
     fun onRemoveButtonClicked(show: DiscoverResultViewModel) {
@@ -70,6 +75,8 @@ class DiscoverPresenter @Inject constructor(
                 view?.updateSearchResult(show)
             }
         }
+
+        analytics.logRemoveShow(show.id, Screen.DISCOVER)
     }
 
     fun onShowClicked(show: DiscoverResultViewModel) {
