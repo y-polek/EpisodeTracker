@@ -125,6 +125,7 @@ WHERE MyShow.tmdbId = ?;
 
 showDetails:
 SELECT
+ MyShow.tmdbId,
  MyShow.name,
  MyShow.imageUrl,
  year,

@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.common.presentation.showdetails.model
 
 data class ShowDetailsViewModel(
+    val id: Int,
     val overview: String,
     val genres: List<String>,
     val homePageUrl: String?,

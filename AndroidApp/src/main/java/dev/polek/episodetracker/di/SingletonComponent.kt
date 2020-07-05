@@ -1,6 +1,7 @@
 package dev.polek.episodetracker.di
 
 import dagger.Component
+import dev.polek.episodetracker.common.analytics.Analytics
 import dev.polek.episodetracker.common.presentation.app.AppPresenter
 import dev.polek.episodetracker.common.presentation.discover.DiscoverPresenter
 import dev.polek.episodetracker.common.presentation.main.MainPresenter
@@ -25,4 +26,5 @@ interface SingletonComponent {
     fun discoverPresenter(): DiscoverPresenter
     fun settingsPresenter(): SettingsPresenter
     fun showDetailsPresenterFactory(): ShowDetailsPresenter.Factory
+    fun analytics(): Analytics
 }

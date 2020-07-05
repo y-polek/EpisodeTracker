@@ -364,6 +364,7 @@ class ShowDetailsPresenter(
 
     private fun displayDetails(show: ShowDetails) {
         val detailsViewModel = ShowDetailsViewModel(
+            id = show.tmdbId,
             overview = show.overview,
             genres = show.genres,
             homePageUrl = show.homePageUrl,
@@ -376,6 +377,7 @@ class ShowDetailsPresenter(
 
     private fun displayDetails(show: ShowDetailsEntity) {
         val detailsViewModel = ShowDetailsViewModel(
+            id = show.tmdbId!!,
             overview = show.overview.orEmpty(),
             genres = show.genres,
             homePageUrl = show.homePageUrl,

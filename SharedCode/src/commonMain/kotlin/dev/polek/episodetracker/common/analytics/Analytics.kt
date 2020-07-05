@@ -52,6 +52,36 @@ interface Analytics {
         }
     }
 
+    fun logOpenImdb(tmdbId: Int) {
+        logEvent("event_open_imdb") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
+    fun logOpenHomePage(tmdbId: Int) {
+        logEvent("event_open_home_page") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
+    fun logOpenInstagram(tmdbId: Int) {
+        logEvent("event_open_instagram") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
+    fun logOpenFacebook(tmdbId: Int) {
+        logEvent("event_open_facebook") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
+    fun logOpenTwitter(tmdbId: Int) {
+        logEvent("event_open_twitter") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
     private inline fun logEvent(name: String, init: MutableList<Param>.() -> Unit) {
         val params = mutableListOf<Param>()
         params.init()
