@@ -4,6 +4,10 @@ interface Analytics {
 
     fun logEvent(name: String, params: List<Param>)
 
+    fun setUserProperty(name: String, value: String)
+
+    fun removeUserProperty(name: String)
+
     fun logShare(text: String, screen: Screen) {
         logEvent("event_share") {
             param("text", text)
@@ -80,6 +84,22 @@ interface Analytics {
         logEvent("event_open_twitter") {
             param("tmdb_id", tmdbId)
         }
+    }
+
+    fun logNumberOfShows(count: Int) {
+        val category = when (count) {
+            0 -> "0"
+            in 1..2 -> "1-2"
+            in 3..5 -> "3-5"
+            in 6..10 -> "6-10"
+            in 11..20 -> "11-20"
+            in 21..30 -> "21-30"
+            in 31..40 -> "31-40"
+            in 41..50 -> "41-50"
+            in 50..100 -> "50-100"
+            else -> ">100"
+        }
+        setUserProperty("number_of_shows", category)
     }
 
     private inline fun logEvent(name: String, init: MutableList<Param>.() -> Unit) {

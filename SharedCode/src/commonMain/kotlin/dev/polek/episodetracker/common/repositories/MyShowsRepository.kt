@@ -27,6 +27,7 @@ class MyShowsRepository @Inject constructor(
     private var archivedShowsQueueListener: QueryListener<ShowViewModel, List<ShowViewModel>>? = null
     private var isAddedOrAddingQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
     private var isArchivedQueryListeners = mutableMapOf<Int, QueryListener<Boolean, Boolean>>()
+    private var numberOfShowsQueryListener: QueryListener<Long, Long>? = null
 
     fun addShow(tmdbId: Int, markAllEpisodesWatched: Boolean = false, archive: Boolean = false) {
         if (isAddedOrAddingToMyShows(tmdbId)) {
@@ -171,6 +172,21 @@ class MyShowsRepository @Inject constructor(
     fun removeArchivedShowsSubscriber() {
         archivedShowsQueueListener?.destroy()
         archivedShowsQueueListener = null
+    }
+
+    fun setNumberOfShowsSubscriber(subscriber: Subscriber<Long>) {
+        removeNumberOfShowsSubscriber()
+
+        numberOfShowsQueryListener = QueryListener(
+            query = db.myShowQueries.numberOfShows(),
+            subscriber = subscriber,
+            notifyImmediately = true,
+            extractQueryResult = Query<Long>::executeAsOne)
+    }
+
+    fun removeNumberOfShowsSubscriber() {
+        numberOfShowsQueryListener?.destroy()
+        numberOfShowsQueryListener = null
     }
 
     fun showDetails(tmdbId: Int): ShowDetails? {

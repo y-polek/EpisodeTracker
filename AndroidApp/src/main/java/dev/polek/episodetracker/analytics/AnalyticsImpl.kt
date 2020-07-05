@@ -18,4 +18,12 @@ class AnalyticsImpl(private val analytics: FirebaseAnalytics) : Analytics {
             }
         }
     }
+
+    override fun setUserProperty(name: String, value: String) {
+        analytics.setUserProperty(name, value)
+    }
+
+    override fun removeUserProperty(name: String) {
+        analytics.setUserProperty(name, null)
+    }
 }
