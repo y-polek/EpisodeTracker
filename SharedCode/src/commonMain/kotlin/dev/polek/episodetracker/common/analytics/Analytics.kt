@@ -70,6 +70,18 @@ interface Analytics {
         }
     }
 
+    fun logOpenTrailer(tmdbId: Int) {
+        logEvent("open_trailer") {
+            param("tmdb_id", tmdbId)
+        }
+    }
+
+    fun logOpenCastMember(showTmdbId: Int) {
+        logEvent("open_cast_member") {
+            param("show_tmdb_id", showTmdbId)
+        }
+    }
+
     fun logOpenImdb(tmdbId: Int) {
         logEvent("event_open_imdb") {
             param("tmdb_id", tmdbId)

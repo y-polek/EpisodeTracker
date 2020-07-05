@@ -23,9 +23,11 @@ class AboutShowFragment : Fragment() {
     private val genreAdapter = GenreAdapter()
     private val trailerAdapter = TrailerAdapter(onPlayClicked = { trailer ->
         openUrl(trailer.url)
+        show?.id?.let(analytics::logOpenTrailer)
     })
     private val castAdapter = CastAdapter(onClicked = { castMember ->
         openUrl(castMember.wikipediaUrl)
+        show?.id?.let(analytics::logOpenCastMember)
     })
     private val recommendationAdapter = RecommendationAdapter(
         onClicked = { show ->
