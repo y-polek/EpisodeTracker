@@ -14,11 +14,14 @@
         android:orientation="horizontal"
         >
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="112dp"
             android:layout_height="63dp"
             android:layout_marginVertical="8dp"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="@dimen/card_view_corner_radius"
+            app:cardElevation="@dimen/card_view_elevation"
+            app:strokeColor="@color/card_stroke_color"
+            app:strokeWidth="@dimen/card_view_stroke_width"
             >
             <ImageView
                 android:id="@+id/image"
@@ -28,7 +31,7 @@
                 android:background="@drawable/image_background"
                 tools:src="@tools:sample/backgrounds/scenic"
                 />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="0dp"
