@@ -7,7 +7,8 @@ import kotlin.reflect.KProperty
 class LongPreferenceDelegate(
     private val settings: Settings,
     private val key: String,
-    private val defaultValue: Long)
+    private val defaultValue: Long,
+    private val valueChangedCallback: ((Long) -> Unit)? = null)
 {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): Long {
         return settings.getLong(key, defaultValue)
@@ -21,5 +22,7 @@ class LongPreferenceDelegate(
         } else {
             settings.remove(key)
         }
+
+        valueChangedCallback?.invoke(value ?: defaultValue)
     }
 }

@@ -1,6 +1,8 @@
 package dev.polek.episodetracker.common.presentation.towatch
 
 import co.touchlab.stately.ensureNeverFrozen
+import dev.polek.episodetracker.common.analytics.Analytics
+import dev.polek.episodetracker.common.analytics.Analytics.Screen
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.di.Singleton
@@ -14,7 +16,8 @@ import dev.polek.episodetracker.common.repositories.ToWatchRepository
 class ToWatchPresenter @Inject constructor(
     private val toWatchRepository: ToWatchRepository,
     private val episodesRepository: EpisodesRepository,
-    private val myShowsRepository: MyShowsRepository) : BasePresenter<ToWatchView>()
+    private val myShowsRepository: MyShowsRepository,
+    private val analytics: Analytics) : BasePresenter<ToWatchView>()
 {
     private var shows = emptyList<ToWatchShowViewModel>()
     private var searchQuery = ""
@@ -47,10 +50,13 @@ class ToWatchPresenter @Inject constructor(
         } else {
             episodesRepository.markNextEpisodeWatched(showTmdbId = show.id)
         }
+
+        analytics.logToWatchEpisodeWatched(show.id)
     }
 
     fun onShowClicked(show: ToWatchShowViewModel) {
         view?.openToWatchShowDetails(show, show.nextEpisodeNumber)
+        analytics.logOpenDetails(show.id, Screen.TO_WATCH)
     }
 
     fun onMarkAllWatchedClicked(show: ToWatchShowViewModel) {
@@ -63,6 +69,7 @@ class ToWatchPresenter @Inject constructor(
 
     fun onArchiveShowClicked(show: ToWatchShowViewModel) {
         myShowsRepository.archiveShow(show.id)
+        analytics.logArchiveShow(show.id, Screen.TO_WATCH)
     }
 
     fun onSearchQueryChanged(text: String) {

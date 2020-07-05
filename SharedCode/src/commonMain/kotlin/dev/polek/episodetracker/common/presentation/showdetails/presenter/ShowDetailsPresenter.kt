@@ -1,5 +1,7 @@
 package dev.polek.episodetracker.common.presentation.showdetails.presenter
 
+import dev.polek.episodetracker.common.analytics.Analytics
+import dev.polek.episodetracker.common.analytics.Analytics.Screen
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService.Companion.backdropImageUrl
@@ -27,7 +29,8 @@ class ShowDetailsPresenter(
     private val myShowsRepository: MyShowsRepository,
     private val showRepository: ShowRepository,
     private val episodesRepository: EpisodesRepository,
-    private val preferences: Preferences) : BasePresenter<ShowDetailsView>()
+    private val preferences: Preferences,
+    private val analytics: Analytics) : BasePresenter<ShowDetailsView>()
 {
     private var showDetails: ShowDetailsEntity? = null
     private var showSeasons: List<Season>? = null
@@ -109,6 +112,7 @@ class ShowDetailsPresenter(
         launch {
             myShowsRepository.addShow(showId)
         }
+        analytics.logAddShow(showId, Screen.SHOW_DETAILS)
     }
 
     fun onShareShowClicked() {
@@ -130,6 +134,7 @@ class ShowDetailsPresenter(
         }
 
         view?.shareText(text)
+        analytics.logShare(text, Screen.SHOW_DETAILS)
     }
 
     fun onMarkWatchedClicked() {
@@ -158,6 +163,8 @@ class ShowDetailsPresenter(
             myShowsRepository.removeShow(showId)
             myShowsRepository.addShow(showId, archive = true)
         }
+
+        analytics.logArchiveShow(showId, Screen.SHOW_DETAILS)
     }
 
     fun onUnarchiveShowClicked() {
@@ -168,6 +175,8 @@ class ShowDetailsPresenter(
             myShowsRepository.removeShow(showId)
             myShowsRepository.addShow(showId, archive = false)
         }
+
+        analytics.logUnarchiveShow(showId, Screen.SHOW_DETAILS)
     }
 
     fun onRetryButtonClicked() {
@@ -176,6 +185,7 @@ class ShowDetailsPresenter(
 
     fun onRecommendationClicked(recommendation: RecommendationViewModel) {
         view?.openRecommendation(recommendation)
+        analytics.logOpenRecommendation(recommendation.showId)
     }
 
     fun onEpisodeWatchedStateToggled(episode: EpisodeViewModel) {
@@ -310,6 +320,8 @@ class ShowDetailsPresenter(
             show.isAddInProgress = false
             view?.updateRecommendation(show)
         }
+
+        analytics.logAddRecommendation(show.showId)
     }
 
     fun onRemoveRecommendationClicked(show: RecommendationViewModel) {
@@ -327,6 +339,8 @@ class ShowDetailsPresenter(
                 view?.updateRecommendation(show)
             }
         }
+
+        analytics.logRemoveRecommendation(show.showId)
     }
 
     private fun displayHeader(show: ShowDetails) {
@@ -354,6 +368,7 @@ class ShowDetailsPresenter(
 
     private fun displayDetails(show: ShowDetails) {
         val detailsViewModel = ShowDetailsViewModel(
+            id = show.tmdbId,
             overview = show.overview,
             genres = show.genres,
             homePageUrl = show.homePageUrl,
@@ -366,6 +381,7 @@ class ShowDetailsPresenter(
 
     private fun displayDetails(show: ShowDetailsEntity) {
         val detailsViewModel = ShowDetailsViewModel(
+            id = show.tmdbId!!,
             overview = show.overview.orEmpty(),
             genres = show.genres,
             homePageUrl = show.homePageUrl,
@@ -601,10 +617,11 @@ class ShowDetailsPresenter(
         private val myShowsRepository: MyShowsRepository,
         private val showRepository: ShowRepository,
         private val episodesRepository: EpisodesRepository,
-        private val preferences: Preferences)
+        private val preferences: Preferences,
+        private val analytics: Analytics)
     {
         fun create(showId: Int): ShowDetailsPresenter {
-            return ShowDetailsPresenter(showId, myShowsRepository, showRepository, episodesRepository, preferences)
+            return ShowDetailsPresenter(showId, myShowsRepository, showRepository, episodesRepository, preferences, analytics)
         }
     }
 }

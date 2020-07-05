@@ -8,7 +8,8 @@ internal class EnumPreferenceDelegate<T: Enum<T>>(
     private val settings: Settings,
     private val key: String,
     private val defaultValue: T,
-    private val enumValues: Array<T>)
+    private val enumValues: Array<T>,
+    private val valueChangedCallback: ((T) -> Unit)? = null)
 {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         val name = settings.getStringOrNull(key) ?: return defaultValue
@@ -23,5 +24,7 @@ internal class EnumPreferenceDelegate<T: Enum<T>>(
         } else {
             settings.remove(key)
         }
+
+        valueChangedCallback?.invoke(value ?: defaultValue)
     }
 }

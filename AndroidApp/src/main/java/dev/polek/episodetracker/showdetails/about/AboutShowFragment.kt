@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import dev.polek.episodetracker.App
 import dev.polek.episodetracker.common.presentation.showdetails.model.CastMemberViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.RecommendationViewModel
 import dev.polek.episodetracker.common.presentation.showdetails.model.ShowDetailsViewModel
@@ -22,9 +23,11 @@ class AboutShowFragment : Fragment() {
     private val genreAdapter = GenreAdapter()
     private val trailerAdapter = TrailerAdapter(onPlayClicked = { trailer ->
         openUrl(trailer.url)
+        show?.id?.let(analytics::logOpenTrailer)
     })
     private val castAdapter = CastAdapter(onClicked = { castMember ->
         openUrl(castMember.wikipediaUrl)
+        show?.id?.let(analytics::logOpenCastMember)
     })
     private val recommendationAdapter = RecommendationAdapter(
         onClicked = { show ->
@@ -46,6 +49,8 @@ class AboutShowFragment : Fragment() {
     private val listener: Listener?
         get() = activity as? Listener
 
+    private val analytics = App.instance.di.analytics()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,18 +71,23 @@ class AboutShowFragment : Fragment() {
         binding.imdbButton.doOnClick {
             val imdbUrl = show?.imdbUrl ?: return@doOnClick
             openUrl(imdbUrl)
+            analytics.logOpenImdb(show!!.id)
         }
         binding.homePageButton.doOnClick {
             show?.homePageUrl?.let(::openUrl)
+            show?.id?.let(analytics::logOpenHomePage)
         }
         binding.instagramButton.doOnClick {
             show?.instagramUrl?.let(::openUrl)
+            show?.id?.let(analytics::logOpenInstagram)
         }
         binding.facebookButton.doOnClick {
             show?.facebookUrl?.let(::openUrl)
+            show?.id?.let(analytics::logOpenFacebook)
         }
         binding.twitterButton.doOnClick {
             show?.twitterUrl?.let(::openUrl)
+            show?.id?.let(analytics::logOpenTwitter)
         }
 
         binding.swipeRefresh.setOnRefreshListener {

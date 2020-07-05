@@ -1,6 +1,8 @@
 package dev.polek.episodetracker.common.presentation.myshows
 
 import com.russhwolf.settings.ExperimentalListener
+import dev.polek.episodetracker.common.analytics.Analytics
+import dev.polek.episodetracker.common.analytics.Analytics.Screen
 import dev.polek.episodetracker.common.datasource.db.QueryListener.Subscriber
 import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.di.Singleton
@@ -16,7 +18,8 @@ import kotlinx.coroutines.launch
 class MyShowsPresenter @Inject constructor(
     private val myShowsRepository: MyShowsRepository,
     private val showRepository: ShowRepository,
-    private val prefs: Preferences) : BasePresenter<MyShowsView>()
+    private val prefs: Preferences,
+    private val analytics: Analytics) : BasePresenter<MyShowsView>()
 {
     private var lastWeekShows = emptyList<UpcomingShowViewModel>()
     private var filteredLastWeekShows = emptyList<UpcomingShowViewModel>()
@@ -131,6 +134,7 @@ class MyShowsPresenter @Inject constructor(
 
     fun onShowClicked(show: ShowViewModel) {
         view?.openMyShowDetails(show)
+        analytics.logOpenDetails(show.id, Screen.MY_SHOWS)
     }
 
     fun onRemoveShowClicked(show: ShowViewModel) {
@@ -139,14 +143,18 @@ class MyShowsPresenter @Inject constructor(
                 myShowsRepository.removeShow(show.id)
             }
         }
+
+        analytics.logRemoveShow(show.id, Screen.MY_SHOWS)
     }
 
     fun onArchiveShowClicked(show: ShowViewModel) {
         myShowsRepository.archiveShow(show.id)
+        analytics.logArchiveShow(show.id, Screen.MY_SHOWS)
     }
 
     fun onUnarchiveShowClicked(show: ShowViewModel) {
         myShowsRepository.unarchiveShow(show.id)
+        analytics.logUnarchiveShow(show.id, Screen.MY_SHOWS)
     }
 
     fun onSearchQueryChanged(text: String) {
