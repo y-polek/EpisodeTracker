@@ -1,5 +1,7 @@
 package dev.polek.episodetracker.common.analytics
 
+import dev.polek.episodetracker.common.model.Appearance
+
 interface Analytics {
 
     fun logEvent(name: String, params: List<Param>)
@@ -114,10 +116,34 @@ interface Analytics {
         setUserProperty("number_of_shows", category)
     }
 
+    fun logAppearance(appearance: Appearance) {
+        setUserProperty("current_appearance", appearance.name)
+    }
+
+    fun logShowLastWeekSection(showLastWeek: Boolean) {
+        setUserProperty("last_week_section", showLastWeek)
+    }
+
+    fun logShowToWatchBadge(showBadge: Boolean) {
+        setUserProperty("to_watch_badge", showBadge)
+    }
+
+    fun logShowSpecials(showSpecials: Boolean) {
+        setUserProperty("show_specials", showSpecials)
+    }
+
+    fun logShowSpecialsInToWatchList(showSpecialsInToWatch: Boolean) {
+        setUserProperty("specials_in_to_watch", showSpecialsInToWatch)
+    }
+
     private inline fun logEvent(name: String, init: MutableList<Param>.() -> Unit) {
         val params = mutableListOf<Param>()
         params.init()
         logEvent(name, params)
+    }
+
+    private fun setUserProperty(name: String, value: Boolean) {
+        setUserProperty(name, value.toString())
     }
 
     sealed class Param constructor(val key: String) {

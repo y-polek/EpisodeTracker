@@ -7,7 +7,8 @@ import kotlin.reflect.KProperty
 class BooleanPreferenceDelegate(
     private val settings: Settings,
     private val key: String,
-    private val defaultValue: Boolean)
+    private val defaultValue: Boolean,
+    private val valueChangedCallback: ((Boolean) -> Unit)? = null)
 {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): Boolean {
         return settings.getBoolean(key, defaultValue)
@@ -21,5 +22,7 @@ class BooleanPreferenceDelegate(
         } else {
             settings.remove(key)
         }
+
+        valueChangedCallback?.invoke(value ?: defaultValue)
     }
 }

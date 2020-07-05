@@ -3,6 +3,7 @@ package dev.polek.episodetracker.common.preferences
 import com.russhwolf.settings.ExperimentalListener
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.SettingsListener
+import dev.polek.episodetracker.common.analytics.Analytics
 import dev.polek.episodetracker.common.di.Inject
 import dev.polek.episodetracker.common.di.Singleton
 import dev.polek.episodetracker.common.model.Appearance
@@ -11,11 +12,12 @@ import dev.polek.episodetracker.common.preferences.delegates.EnumPreferenceDeleg
 import dev.polek.episodetracker.common.preferences.delegates.LongPreferenceDelegate
 
 @Singleton
-class Preferences @Inject constructor(private val settings: Settings) {
+class Preferences @Inject constructor(private val settings: Settings, analytics: Analytics) {
 
     var appearance: Appearance by EnumPreferenceDelegate(settings, KEY_APPEARANCE,
         defaultValue = Appearance.AUTOMATIC,
-        enumValues = Appearance.values())
+        enumValues = Appearance.values(),
+        valueChangedCallback = analytics::logAppearance)
 
     var lastRefreshTimestamp: Long by LongPreferenceDelegate(settings, KEY_LAST_REFRESH_TIMESTAMP, 0L)
 
@@ -25,12 +27,36 @@ class Preferences @Inject constructor(private val settings: Settings) {
     var isEndedExpanded by BooleanPreferenceDelegate(settings, KEY_IS_ENDED_EXPANDED, defaultValue = true)
     var isArchivedExpanded by BooleanPreferenceDelegate(settings, KEY_IS_ARCHIVED_EXPANDED, defaultValue = false)
 
-    var showLastWeekSection by BooleanPreferenceDelegate(settings, KEY_SHOW_LAST_WEEK_SECTION, defaultValue = true)
+    var showLastWeekSection by BooleanPreferenceDelegate(
+        settings,
+        key = KEY_SHOW_LAST_WEEK_SECTION,
+        defaultValue = true,
+        valueChangedCallback = analytics::logShowLastWeekSection)
 
-    var showToWatchBadge by BooleanPreferenceDelegate(settings, KEY_SHOW_TO_WATCH_BADGE, defaultValue = true)
+    var showToWatchBadge by BooleanPreferenceDelegate(
+        settings,
+        key = KEY_SHOW_TO_WATCH_BADGE,
+        defaultValue = true,
+        valueChangedCallback = analytics::logShowToWatchBadge)
 
-    var showSpecials by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS, defaultValue = false)
-    var showSpecialsInToWatch by BooleanPreferenceDelegate(settings, KEY_SHOW_SPECIALS_IN_TO_WATCH, defaultValue = false)
+    var showSpecials by BooleanPreferenceDelegate(
+        settings,
+        key = KEY_SHOW_SPECIALS,
+        defaultValue = false,
+        valueChangedCallback = analytics::logShowSpecials)
+    var showSpecialsInToWatch by BooleanPreferenceDelegate(
+        settings,
+        key = KEY_SHOW_SPECIALS_IN_TO_WATCH,
+        defaultValue = false,
+        valueChangedCallback = analytics::logShowSpecialsInToWatchList)
+
+    init {
+        analytics.logAppearance(appearance)
+        analytics.logShowLastWeekSection(showLastWeekSection)
+        analytics.logShowToWatchBadge(showToWatchBadge)
+        analytics.logShowSpecials(showSpecials)
+        analytics.logShowSpecialsInToWatchList(showSpecialsInToWatch)
+    }
 
     @OptIn(ExperimentalListener::class)
     fun listenShowToWatchBadge(callback: () -> Unit): SettingsListener {
