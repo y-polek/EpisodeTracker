@@ -9,6 +9,7 @@ import dev.polek.episodetracker.common.datasource.omdb.OmdbService
 import dev.polek.episodetracker.common.datasource.themoviedb.TmdbService
 import dev.polek.episodetracker.common.network.Connectivity
 import dev.polek.episodetracker.common.preferences.Preferences
+import dev.polek.episodetracker.common.testutils.MockAnalytics
 import dev.polek.episodetracker.common.testutils.mockTmdbHttpClient
 import dev.polek.episodetracker.common.utils.parseDate
 import dev.polek.episodetracker.db.Database
@@ -32,7 +33,7 @@ class ToWatchRepositoryTest {
         db = Database(
             driver = sqlDriver,
             MyShowAdapter = MyShow.Adapter(genresAdapter = ListOfStringsAdapter, networksAdapter = ListOfStringsAdapter))
-        preferences = Preferences(Settings())
+        preferences = Preferences(Settings(), MockAnalytics())
         val tmdbService = TmdbService(client = mockTmdbHttpClient)
         val omdbService = OmdbService(client = mockTmdbHttpClient)
         val connectivity = object : Connectivity {
