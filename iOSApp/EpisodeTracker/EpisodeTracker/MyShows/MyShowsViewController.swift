@@ -17,7 +17,8 @@ class MyShowsViewController: UIViewController {
     private let presenter = MyShowsPresenter(
         myShowsRepository: AppDelegate.instance().myShowsRepository,
         showRepository: AppDelegate.instance().showRepository,
-        prefs: AppDelegate.instance().preferences)
+        prefs: AppDelegate.instance().preferences,
+        analytics: AppDelegate.instance().analytics)
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,7 +11,8 @@ class ToWatchViewController: UIViewController {
     private let presenter = ToWatchPresenter(
         toWatchRepository: AppDelegate.instance().toWatchRepository,
         episodesRepository: AppDelegate.instance().episodesRepository,
-        myShowsRepository: AppDelegate.instance().myShowsRepository)
+        myShowsRepository: AppDelegate.instance().myShowsRepository,
+        analytics: AppDelegate.instance().analytics)
     private var shows: [ToWatchShowViewModel]? = nil
     
     override func viewDidLoad() {

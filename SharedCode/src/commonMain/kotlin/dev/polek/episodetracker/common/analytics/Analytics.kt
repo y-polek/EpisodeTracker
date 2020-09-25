@@ -2,13 +2,13 @@ package dev.polek.episodetracker.common.analytics
 
 import dev.polek.episodetracker.common.model.Appearance
 
-interface Analytics {
+abstract class Analytics {
 
-    fun logEvent(name: String, params: List<Param>)
+    abstract fun logEvent(name: String, params: List<Param>)
 
-    fun setUserProperty(name: String, value: String)
+    abstract fun setUserProperty(name: String, value: String)
 
-    fun removeUserProperty(name: String)
+    abstract fun removeUserProperty(name: String)
 
     fun logShare(text: String, screen: Screen) {
         logEvent("share") {

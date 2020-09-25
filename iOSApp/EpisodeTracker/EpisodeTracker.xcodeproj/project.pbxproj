@@ -79,6 +79,7 @@
 		D2CEB3E523DCF9BB006D26BF /* RippleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */; };
 		D2D5E33523FDE88300FE6234 /* ImdbBadge.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D5E33423FDE88300FE6234 /* ImdbBadge.xib */; };
 		D2D5E33723FDF17E00FE6234 /* ImdbBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D5E33623FDF17E00FE6234 /* ImdbBadge.swift */; };
+		D2D6218A251EA14D00D81F16 /* AnalyticsImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D62189251EA14D00D81F16 /* AnalyticsImpl.swift */; };
 		D2D905CB23A8F89A00E45753 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CA23A8F89A00E45753 /* TableView.swift */; };
 		D2D905CE23A96A6E00E45753 /* ImageButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D905CD23A96A6E00E45753 /* ImageButton.xib */; };
 		D2D905D023A96CCB00E45753 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D905CF23A96CCB00E45753 /* ImageButton.swift */; };
@@ -180,6 +181,7 @@
 		D2CEB3E423DCF9BB006D26BF /* RippleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleTableViewCell.swift; sourceTree = "<group>"; };
 		D2D5E33423FDE88300FE6234 /* ImdbBadge.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImdbBadge.xib; sourceTree = "<group>"; };
 		D2D5E33623FDF17E00FE6234 /* ImdbBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImdbBadge.swift; sourceTree = "<group>"; };
+		D2D62189251EA14D00D81F16 /* AnalyticsImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsImpl.swift; sourceTree = "<group>"; };
 		D2D905CA23A8F89A00E45753 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		D2D905CD23A96A6E00E45753 /* ImageButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageButton.xib; sourceTree = "<group>"; };
 		D2D905CF23A96CCB00E45753 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 		D2BEEF1723A248820077F125 /* EpisodeTracker */ = {
 			isa = PBXGroup;
 			children = (
+				D2D62188251EA12B00D81F16 /* Analytics */,
 				D2BEEF2C23A249F70077F125 /* MyShows */,
 				D29D7B0B23A3BC5800B2832D /* ToWatch */,
 				D29D7B1223A44F6000B2832D /* Discover */,
@@ -467,6 +470,14 @@
 				D2D5E33623FDF17E00FE6234 /* ImdbBadge.swift */,
 			);
 			path = ImdbBadge;
+			sourceTree = "<group>";
+		};
+		D2D62188251EA12B00D81F16 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				D2D62189251EA14D00D81F16 /* AnalyticsImpl.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		D2D905CC23A96A0C00E45753 /* ImageButton */ = {
@@ -657,6 +668,7 @@
 				D28D38FF245C6F4000E9894B /* SpecialsOption.swift in Sources */,
 				D2F09F0F23F40675003BFFAA /* NavigationController.swift in Sources */,
 				D29DCAD023F9A68B00491ACD /* CastMemberCell.swift in Sources */,
+				D2D6218A251EA14D00D81F16 /* AnalyticsImpl.swift in Sources */,
 				D28D38F0245B55C000E9894B /* SettingsViewController.swift in Sources */,
 				D29DCACE23F93BCE00491ACD /* RippleCollectionViewCell.swift in Sources */,
 				D2242C1223F1B4F5001C8608 /* PadView.swift in Sources */,

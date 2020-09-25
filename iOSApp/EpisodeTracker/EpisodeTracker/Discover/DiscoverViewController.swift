@@ -10,7 +10,8 @@ class DiscoverViewController: UIViewController {
     
     private let presenter = DiscoverPresenter(
         discoverRepository: AppDelegate.instance().discoverRepository,
-        myShowsRepository: AppDelegate.instance().myShowsRepository)
+        myShowsRepository: AppDelegate.instance().myShowsRepository,
+        analytics: AppDelegate.instance().analytics)
     
     private var searchOnLoad: Bool = false
     
